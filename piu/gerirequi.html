@@ -60,56 +60,49 @@
             <div class="col-sm-3 col-md-2 sidebar">
                 <ul class="nav nav-sidebar">
                     <li><a href="#">Visao Geral <span class="sr-only">(current)</span></a></li>
-                    <li class="active"><a href="#">Gerir Pessoal</a></li>
-                    <li><a href="#">Gerir Merchandising</a></li>
+                    <li><a href="#">Gerir Pessoal</a></li>
+                    <li class="active"><a href="#">Gerir Merchandising</a></li>
                 </ul>
             </div>
             <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-                <h1 class="page-header">Gerir Pessoal </h1>
+                <h1 class="page-header">Gerir Merchandising </h1>
                 <div class="table-responsive">
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th>id</th>
-                                <th>Nome</th>
-                                <th>Data Nascimento</th>
-                                <th>Cargo</th>
+                                <th>Id</th>
+                                <th>Categoria</th>
+                                <th>Descrição</th>
+                                <th>Valor(EUR)</th>
                                 <th>Opções</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td>1</td>
-                                <td>Diogo Moura</td>
-                                <td>05-08-1995</td>
-                                <td>Amigo</td>
-                                <td><i class="fa fa-pencil"></i><i class="fa fa-briefcase"></i> <i class="fa fa-trash"></i></td>
+                                <td>Camisola</td>
+                                <td>Polar com logo do G.A.S.Porto</td>
+                                <td>10.00</td>
+                                <td><i class="fa fa-pencil"><i class="fa fa-trash"></i></td>
                             </tr>
                             <tr>
                                 <td>2</td>
-                                <td>Inês Santos</td>
-                                <td>05-12-1995</td>
-                                <td>Contabilista</td>
-                                <td><i class="fa fa-pencil"></i><i class="fa fa-briefcase"></i> <i class="fa fa-trash"></i></td>
+                                <td>Caneca</td>
+                                <td>Preta com Pega Azul</td>
+                                <td>5.00</td>
+                                <td><i class="fa fa-pencil"></i><i class="fa fa-trash"></i></td>
                             </tr>
                             <tr>
                                 <td>3</td>
-                                <td>João Silva</td>
-                                <td>20-10-1995</td>
-                                <td>Admin</td>
-                                <td><i class="fa fa-pencil"></i><i class="fa fa-briefcase"></i> <i class="fa fa-trash"></i></td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>Sérgio Domingues</td>
-                                <td>28-07-1995</td>
-                                <td>Amigo</td>
-                                <td><i class="fa fa-pencil"></i><i class="fa fa-briefcase"></i> <i class="fa fa-trash"></i></td>
+                                <td>Caneta</td>
+                                <td>Vermelha com PORTO.</td>
+                                <td>3.00</td>
+                                <td><i class="fa fa-pencil"></i><i class="fa fa-trash"></i></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
-                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#registerUser"><i class="fa fa-user-plus"></i> Novo Utilizador</button>
+                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#registerUser"><i class="fa fa-user-plus"></i> Novo Produto</button>
             </div>
         </div>
     </div>
@@ -120,60 +113,22 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">Novo utilizador</h4>
+                    <h4 class="modal-title">Novo Produto</h4>
                 </div>
                 <div class="modal-body">
                     <form role="form">
                         <div class="form-group">
-                            <label for="name">Nome:</label>
-                            <input  class="form-control" id="name">
+                            <label for="cat">Categoria:</label>
+                            <input class="form-control" id="cat">
                         </div>
                         <div class="form-group">
-                            <label for="email">Email:</label>
-                            <input type="email" class="form-control" id="email">
+                            <label for="description">Descrição:</label>
+                            <input class="form-control" id="description">
                         </div>
                         <div class="form-group">
-                            <label for="birthdate">Data de Nascimento:</label>
-                            <input type="date" class="form-control" id="birthdate">
+                            <label for="price">Preço:</label>
+                            <input type="number" class="form-control" id="price" value="0.00">
                         </div>
-                        <div class="form-group">
-                            <label for="cellphone">Telemóvel:</label>
-                            <input type="tel" class="form-control" id="birthdate">
-                        </div>
-                        <div class="form-group">
-                            <label for="role">Cargo:</label>
-                        <select class="form-control" id="role">
-                            <option>Amigo</option>
-                            <option>Adminitrador</option>
-                            <option>Contabilista</option>
-                        </select>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="paymethod">Metodo de Pagamento:</label>
-                        <select class="form-control" id="paymethod">
-                            <option>Referencia Bancaria</option>
-                            <option>Numerario</option>
-                            <option>Transferencia Bancaria</option>
-                            <option>Debito Directo</option>
-                        </select>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="freq">Frequencia de Pagamento</label>
-                        <select class="form-control" id="freq">
-                            <option>Semanal</option>
-                            <option>Mensal</option>
-                            <option>Trimestral</option>
-                            <option>Semestral</option>
-                            <option>Anual</option>
-                        </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="donation">Valor da Doação:</label>
-                            <input type="number" class="form-control" id="donation" value="0.00"/>
-                        </div>
-                        
                     </form>
                 </div>
                 <div class="modal-footer">
