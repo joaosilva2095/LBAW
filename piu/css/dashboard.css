@@ -15,12 +15,6 @@ body {
     padding-top: 50px;
 }
 
-input, input:focus, input:active {
-    border-color: transparent !important;
-    box-shadow: none !important;
-}
-
-
 /*
     Classes
 */
