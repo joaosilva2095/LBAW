@@ -20,7 +20,8 @@ body {
 */
 
 .sub-header {
-    padding-bottom: 10px;
+    border: 0;
+    margin: 1rem 0rem;
     border-bottom: 1px solid #eee;
 }
 
@@ -118,5 +119,5 @@ body {
 
 .placeholder img {
     display: inline-block;
-    border-radius: 50%;
+   /* border-radius: 50%;*/
 }
