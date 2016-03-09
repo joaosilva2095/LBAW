@@ -8,7 +8,7 @@
 
     <meta name="description" content="G.A.S.Porto - Management Panel">
     <meta name="author" content="CodeCats @ LBAW">
-    <link rel="icon" href="img/favicon.ico">
+     <link rel="icon" href="img/favicon.ico">
 
     <title>G.A.S.Porto - Management Panel</title>
 
@@ -97,119 +97,123 @@
                         <h4 class="text-center">Ferramentas</h4>
                         <hr class="sub-header">
                         <div class="row">
-                            <h5><i class="fa fa-pencil"></i> Editar perfil</h5>
+                            <h5><i class="fa fa-pencil fa-lg fa-fw"></i> Editar perfil</h5>
                         </div>
                         <div class="row">
-                            <h5><i class="fa fa-credit-card"></i> Editar metodo de pagamento</h5>
+                            <h5><i class="fa fa-credit-card fa-lg fa-fw"></i> Editar metodo de pagamento</h5>
                         </div>
-                        <div class="row">
-                            <h5><i class="fa fa-search"></i> Ver referência de multibanco</h5>
+                        <div class="row panel-group" id="accordion">
+                            <div class="panel-heading">
+                                <h5><i class="fa fa-search panel-title fa-lg fa-fw"></i><a data-toggle="collapse" data-parent="#accordion" href="#collapse1"> Ver referência de multibanco</a></h5>
+                            </div>
+                            <div id="collapse1" class="panel-body panel-collapse collapse">
+                                <h5> 2562548641200056532 </h5>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <h2>History</h2>
-                <hr class="sub-header">
-                <div class="table-responsive">
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>id</th>
-                                <th>Data</th>
-                                <th>Tipo</th>
-                                <th>Descrição</th>
-                                <th>Valor (EUR)</th>
-                                <th>Observações</th>
-                                <th>Opções</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>09-03-2016</td>
-                                <td>Doação</td>
-                                <td>Mensalidade de doação</td>
-                                <td>50</td>
-                                <td>pagamento por referência bancária</td>
-                                <td><i class="fa fa-file-pdf-o fa-lg fa-fw"></i></td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>17-02-2016</td>
-                                <td>Evento</td>
-                                <td>Jardim dos encantos</td>
-                                <td>10</td>
-                                <td>pagamento por débito direto</td>
-                                <td><i class="fa fa-file-pdf-o fa-lg fa-fw"></i> <i class="fa fa-calendar fa-lg fa-fw"></i></td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>09-02-2016</td>
-                                <td>Doação</td>
-                                <td>Mensalidade de doação</td>
-                                <td>50</td>
-                                <td>pagamento por referência bancária</td>
-                                <td><i class="fa fa-file-pdf-o fa-lg fa-fw"></i></td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>09-01-2016</td>
-                                <td>Doação</td>
-                                <td>Mensalidade de doação</td>
-                                <td>50</td>
-                                <td>pagamento por referência bancária</td>
-                                <td><i class="fa fa-file-pdf-o fa-lg fa-fw"></i></td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>09-12-2015</td>
-                                <td>Doação</td>
-                                <td>Mensalidade de doação</td>
-                                <td>50</td>
-                                <td>pagamento por referência bancária</td>
-                                <td><i class="fa fa-file-pdf-o fa-lg fa-fw"></i></td>
-                            </tr>
-                            <tr>
-                                <td>6</td>
-                                <td>09-11-2015</td>
-                                <td>Doação</td>
-                                <td>Mensalidade de doação</td>
-                                <td>50</td>
-                                <td>pagamento por referência bancária</td>
-                                <td><i class="fa fa-file-pdf-o fa-lg fa-fw"></i></td>
-                            </tr>
-                            <tr>
-                                <td>7</td>
-                                <td>24-11-2015</td>
-                                <td>Merchandising</td>
-                                <td>Camisola branca com simbolo</td>
-                                <td>15</td>
-                                <td>pagamento por débito direto</td>
-                                <td><i class="fa fa-file-pdf-o fa-lg fa-fw"></i></td>
-                            </tr>
-                            <tr>
-                                <td>8</td>
-                                <td>17-11-2015</td>
-                                <td>Evento</td>
-                                <td>Churrasco de Amigos</td>
-                                <td>0</td>
-                                <td></td>
-                                <td><i class="fa fa-file-pdf-o fa-lg fa-fw"></i><i class="fa fa-calendar fa-lg fa-fw"></i></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <h2>History</h2>
+                    <hr class="sub-header">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>id</th>
+                                    <th>Data</th>
+                                    <th>Tipo</th>
+                                    <th>Descrição</th>
+                                    <th>Valor (EUR)</th>
+                                    <th>Observações</th>
+                                    <th>Opções</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>09-03-2016</td>
+                                    <td>Doação</td>
+                                    <td>Mensalidade de doação</td>
+                                    <td>50</td>
+                                    <td>pagamento por referência bancária</td>
+                                    <td><i class="fa fa-file-pdf-o fa-lg fa-fw"></i></td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>17-02-2016</td>
+                                    <td>Evento</td>
+                                    <td>Jardim dos encantos</td>
+                                    <td>10</td>
+                                    <td>pagamento por débito direto</td>
+                                    <td><i class="fa fa-file-pdf-o fa-lg fa-fw"></i> <i class="fa fa-calendar fa-lg fa-fw"></i></td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>09-02-2016</td>
+                                    <td>Doação</td>
+                                    <td>Mensalidade de doação</td>
+                                    <td>50</td>
+                                    <td>pagamento por referência bancária</td>
+                                    <td><i class="fa fa-file-pdf-o fa-lg fa-fw"></i></td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>09-01-2016</td>
+                                    <td>Doação</td>
+                                    <td>Mensalidade de doação</td>
+                                    <td>50</td>
+                                    <td>pagamento por referência bancária</td>
+                                    <td><i class="fa fa-file-pdf-o fa-lg fa-fw"></i></td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>09-12-2015</td>
+                                    <td>Doação</td>
+                                    <td>Mensalidade de doação</td>
+                                    <td>50</td>
+                                    <td>pagamento por referência bancária</td>
+                                    <td><i class="fa fa-file-pdf-o fa-lg fa-fw"></i></td>
+                                </tr>
+                                <tr>
+                                    <td>6</td>
+                                    <td>09-11-2015</td>
+                                    <td>Doação</td>
+                                    <td>Mensalidade de doação</td>
+                                    <td>50</td>
+                                    <td>pagamento por referência bancária</td>
+                                    <td><i class="fa fa-file-pdf-o fa-lg fa-fw"></i></td>
+                                </tr>
+                                <tr>
+                                    <td>7</td>
+                                    <td>24-11-2015</td>
+                                    <td>Merchandising</td>
+                                    <td>Camisola branca com simbolo</td>
+                                    <td>15</td>
+                                    <td>pagamento por débito direto</td>
+                                    <td><i class="fa fa-file-pdf-o fa-lg fa-fw"></i></td>
+                                </tr>
+                                <tr>
+                                    <td>8</td>
+                                    <td>17-11-2015</td>
+                                    <td>Evento</td>
+                                    <td>Churrasco de Amigos</td>
+                                    <td>0</td>
+                                    <td></td>
+                                    <td><i class="fa fa-file-pdf-o fa-lg fa-fw"></i><i class="fa fa-calendar fa-lg fa-fw"></i></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- JQuery -->
-    <script src="js/vendor/jquery.min.js"></script>
+        <!-- JQuery -->
+        <script src="js/vendor/jquery.min.js"></script>
 
-    <!-- Bootstrap -->
-    <script src="js/vendor/bootstrap.min.js"></script>
+        <!-- Bootstrap -->
+        <script src="js/vendor/bootstrap.min.js"></script>
 
-    <!-- G.A.S.Porto -->
-    <script src="js/holder.min.js"></script>
+        <!-- G.A.S.Porto -->
+        <script src="js/holder.min.js"></script>
 </body>
 
 </html>
