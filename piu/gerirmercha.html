@@ -91,21 +91,21 @@
                                 <td>Camisola</td>
                                 <td>Polar com logo do G.A.S.Porto</td>
                                 <td>10.00</td>
-                                <td><i class="fa fa-pencil fa-lg fa-fw"></i> <i class="fa fa-trash fa-lg fa-fw"></i></td>
+                                <td><i class="fa fa-pencil fa-lg fa-fw" data-toggle="tooltip" data-original-title="Editar"></i> <i class="fa fa-trash fa-lg fa-fw" data-toggle="tooltip" data-original-title="Eliminar"></i></td>
                             </tr>
                             <tr>
                                 <td>2</td>
                                 <td>Caneca</td>
                                 <td>Preta com Pega Azul</td>
                                 <td>5.00</td>
-                                <td><i class="fa fa-pencil fa-lg fa-fw"></i> <i class="fa fa-trash fa-lg fa-fw"></i></td>
+                                <td><i class="fa fa-pencil fa-lg fa-fw" data-toggle="tooltip" data-original-title="Editar"></i> <i class="fa fa-trash fa-lg fa-fw" data-toggle="tooltip" data-original-title="Eliminar"></i></td>
                             </tr>
                             <tr>
                                 <td>3</td>
                                 <td>Caneta</td>
                                 <td>Vermelha com PORTO.</td>
                                 <td>3.00</td>
-                                <td><i class="fa fa-pencil fa-lg fa-fw"></i> <i class="fa fa-trash fa-lg fa-fw"></i></td>
+                                <td><i class="fa fa-pencil fa-lg fa-fw" data-toggle="tooltip" data-original-title="Editar"></i> <i class="fa fa-trash fa-lg fa-fw" data-toggle="tooltip" data-original-title="Eliminar"></i></td>
                             </tr>
                         </tbody>
                     </table>
@@ -158,6 +158,15 @@
 
     <!-- G.A.S.Porto -->
     <script src="js/holder.min.js"></script>
+    
+        <script type="text/javascript">
+        $(document).ready(function() {
+            $('[data-toggle="tooltip"]').tooltip({
+                placement: 'top'
+            });
+        });
+    </script>
+    
 </body>
 
 </html>

@@ -91,28 +91,28 @@
                                 <td>Diogo Moura</td>
                                 <td>05-08-1995</td>
                                 <td>Amigo</td>
-                                <td><i class="fa fa-pencil fa-lg fa-fw"></i> <i class="fa fa-briefcase fa-lg fa-fw"></i> <i class="fa fa-trash fa-lg fa-fw"></i></td>
+                                <td><i class="fa fa-pencil fa-lg fa-fw" data-toggle="tooltip" data-original-title="Editar"></i> <i class="fa fa-briefcase fa-lg fa-fw" data-toggle="tooltip" data-original-title="Alterar Cargo"></i> <i class="fa fa-trash fa-lg fa-fw" data-toggle="tooltip" data-original-title="Eliminar"></i></td>
                             </tr>
                             <tr>
                                 <td>2</td>
                                 <td>Inês Santos</td>
                                 <td>05-12-1995</td>
                                 <td>Contabilista</td>
-                                <td><i class="fa fa-pencil fa-lg fa-fw"></i> <i class="fa fa-briefcase fa-lg fa-fw"></i> <i class="fa fa-trash fa-lg fa-fw"></i></td>
+                                <td><i class="fa fa-pencil fa-lg fa-fw" data-toggle="tooltip" data-original-title="Editar"></i> <i class="fa fa-briefcase fa-lg fa-fw" data-toggle="tooltip" data-original-title="Alterar Cargo"></i> <i class="fa fa-trash fa-lg fa-fw" data-toggle="tooltip" data-original-title="Eliminar"></i></td>
                             </tr>
                             <tr>
                                 <td>3</td>
                                 <td>João Silva</td>
                                 <td>20-10-1995</td>
                                 <td>Admin</td>
-                                <td><i class="fa fa-pencil fa-lg fa-fw"></i> <i class="fa fa-briefcase fa-lg fa-fw"></i> <i class="fa fa-trash fa-lg fa-fw"></i></td>
+                                <td><i class="fa fa-pencil fa-lg fa-fw" data-toggle="tooltip" data-original-title="Editar"></i> <i class="fa fa-briefcase fa-lg fa-fw" data-toggle="tooltip" data-original-title="Alterar Cargo"></i> <i class="fa fa-trash fa-lg fa-fw" data-toggle="tooltip" data-original-title="Eliminar"></i></td>
                             </tr>
                             <tr>
                                 <td>4</td>
                                 <td>Sérgio Domingues</td>
                                 <td>28-07-1995</td>
                                 <td>Contabilista</td>
-                                <td><i class="fa fa-pencil fa-lg fa-fw"></i> <i class="fa fa-briefcase fa-lg fa-fw"></i> <i class="fa fa-trash fa-lg fa-fw"></i></td>
+                                <td><i class="fa fa-pencil fa-lg fa-fw" data-toggle="tooltip" data-original-title="Editar"></i> <i class="fa fa-briefcase fa-lg fa-fw" data-toggle="tooltip" data-original-title="Alterar Cargo"></i> <i class="fa fa-trash fa-lg fa-fw" data-toggle="tooltip" data-original-title="Eliminar"></i></td>
                             </tr>
                         </tbody>
                     </table>
@@ -203,6 +203,15 @@
 
     <!-- G.A.S.Porto -->
     <script src="js/holder.min.js"></script>
+    
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('[data-toggle="tooltip"]').tooltip({
+                placement: 'top'
+            });
+        });
+    </script>
+    
 </body>
 
 </html>
