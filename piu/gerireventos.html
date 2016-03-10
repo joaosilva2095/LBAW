@@ -61,49 +61,64 @@
                 <ul class="nav nav-sidebar">
                     <li><a href="homepageadmin.html">Visao Geral <span class="sr-only">(current)</span></a></li>
                     <li><a href="gerirpessoal.html">Gerir Pessoal</a></li>
-                    <li class="active"><a href="gerirmercha.html">Gerir Merchandising</a></li>
-                    <li><a href="gerireventos.html">Eventos</a></li>
+                    <li><a href="gerirmercha.html">Gerir Merchandising</a></li>
+                    <li class="active"><a href="gerireventos.html">Eventos</a></li>
                 </ul>
             </div>
             <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-                <h1 class="page-header">Gerir Merchandising </h1>
+                <h1 class="page-header">Eventos </h1>
                 <div class="table-responsive">
                     <table class="table table-striped">
                         <thead>
                             <tr>
                                 <th>Id</th>
-                                <th>Categoria</th>
                                 <th>Descrição</th>
-                                <th>Valor(EUR)</th>
+                                <th>Data</th>
+                                <th>Local</th>
+                                <th>Duração</th>
+                                <th>Participantes</th>
+                                <th>Preço</th>
                                 <th>Opções</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td>1</td>
-                                <td>Camisola</td>
-                                <td>Polar com logo do G.A.S.Porto</td>
-                                <td>10.00</td>
-                                <td><i class="fa fa-pencil fa-lg fa-fw"></i> <i class="fa fa-trash fa-lg fa-fw"></i></td>
+                                <td>Encontro de Amigos do GAS Porto</td>
+                                <td>20-06-2015</td>
+                                <td>Praça dos Leões</td>
+                                <td>4h</td>
+                                <td>49</td>
+                                <td>8</td>
+                                <td><a href="event.html"><i class="fa fa-calendar fa-lg fa-fw" data-toggle="tooltip" data-original-title="Ver Evento"></i></a>
+                                    <a href="#"><i class="fa fa-trash fa-lg fa-fw" data-toggle="tooltip" data-original-title="Eliminar"></i></a></td>
                             </tr>
                             <tr>
                                 <td>2</td>
-                                <td>Caneca</td>
-                                <td>Preta com Pega Azul</td>
-                                <td>5.00</td>
-                                <td><i class="fa fa-pencil fa-lg fa-fw"></i> <i class="fa fa-trash fa-lg fa-fw"></i></td>
+                                <td>Passeio Jardim dos Encantos</td>
+                                <td>17-02-2016</td>
+                                <td>Praça dos Leões</td>
+                                <td>2h</td>
+                                <td>15</td>
+                                <td>10</td>
+                                <td><a href="event.html"><i class="fa fa-calendar fa-lg fa-fw" data-toggle="tooltip" data-original-title="Ver Evento"></i></a>
+                                    <a href="#"><i class="fa fa-trash fa-lg fa-fw" data-toggle="tooltip" data-original-title="Eliminar"></i></a></td>
                             </tr>
                             <tr>
                                 <td>3</td>
-                                <td>Caneta</td>
-                                <td>Vermelha com PORTO.</td>
-                                <td>3.00</td>
-                                <td><i class="fa fa-pencil fa-lg fa-fw"></i> <i class="fa fa-trash fa-lg fa-fw"></i></td>
+                                <td>Jantar G.A.S.Porto</td>
+                                <td>02-11-2015</td>
+                                <td>3 Desejos</td>
+                                <td>Indefinida</td>
+                                <td>30</td>
+                                <td>Grátis</td>
+                                <td><a href="event.html"><i class="fa fa-calendar fa-lg fa-fw" data-toggle="tooltip" data-original-title="Ver Evento"></i></a>
+                                    <a href="#"><i class="fa fa-trash fa-lg fa-fw" data-toggle="tooltip" data-original-title="Eliminar"></i></a></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
-                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#registerUser"><i class="fa fa-user-plus"></i> Novo Produto</button>
+                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#registerUser"><i class="fa fa-calendar-plus-o fa-lg"></i> Novo Evento</button>
             </div>
         </div>
     </div>
@@ -114,17 +129,25 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">Novo Produto</h4>
+                    <h4 class="modal-title">Novo Evento</h4>
                 </div>
                 <div class="modal-body">
                     <form role="form">
                         <div class="form-group">
-                            <label for="cat">Categoria:</label>
-                            <input class="form-control" id="cat">
+                            <label for="desc">Descrição:</label>
+                            <input class="form-control" id="desc">
                         </div>
                         <div class="form-group">
-                            <label for="description">Descrição:</label>
-                            <input class="form-control" id="description">
+                            <label for="date">Data:</label>
+                            <input type="date" class="form-control" id="date">
+                        </div>
+                        <div class="form-group">
+                            <label for="local">Local:</label>
+                            <input class="form-control" id="local">
+                        </div>
+                        <div class="form-group">
+                            <label for="duration">Duração:</label>
+                            <input type="number" class="form-control" id="duration">
                         </div>
                         <div class="form-group">
                             <label for="price">Preço:</label>
@@ -151,6 +174,15 @@
 
     <!-- G.A.S.Porto -->
     <script src="js/holder.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip({
+        placement : 'top'
+    });
+});
+    </script>
+
 </body>
 
 </html>
