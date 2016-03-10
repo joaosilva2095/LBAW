@@ -33,8 +33,7 @@
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
-                aria-controls="navbar">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -45,7 +44,14 @@
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="#"><i class="fa fa-user"></i> João Silva (Admin)</a></li>
-                    <li><a href="#"><i class="fa fa-bell"></i> Notificações</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> Notificações</a>
+                        <ul style="width:300px;" class="dropdown-menu list-group">
+                            <li class="list-group-item list-group-item-success">Pagamento Adicionado <span class="badge">1</span></li>
+                            <li class="list-group-item list-group-item-info">Confirmada Participação Evento <span class="badge">2</span></li>
+                            <li class="list-group-item list-group-item-danger"><i class="fa fa-exclamation-triangle fa-fw"></i> Pagamento Atraso <span class="badge">1</span></li>
+                        </ul>
+                    </li>
                     <li><a href="login.html"><i class="fa fa-lock"></i> Sair</a></li>
                 </ul>
                 <form class="navbar-form navbar-right">
@@ -176,11 +182,11 @@
     <script src="js/holder.min.js"></script>
 
     <script type="text/javascript">
-        $(document).ready(function(){
-    $('[data-toggle="tooltip"]').tooltip({
-        placement : 'top'
-    });
-});
+        $(document).ready(function() {
+            $('[data-toggle="tooltip"]').tooltip({
+                placement: 'top'
+            });
+        });
     </script>
 
 </body>

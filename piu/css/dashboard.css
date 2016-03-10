@@ -31,6 +31,13 @@ body {
     background-color: #00325F;
 }
 
+.navbar-inverse .navbar-nav > .open > a,
+.navbar-inverse .navbar-nav > .open > a:focus,
+.navbar-inverse .navbar-nav > .open > a:active,
+.navbar-inverse .navbar-nav > .open > a:hover {
+    background-color: transparent;
+}
+
 .navbar-fixed-top {
     border: 0;
 }
