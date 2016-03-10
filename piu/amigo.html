@@ -33,7 +33,8 @@
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+                aria-controls="navbar">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -75,7 +76,8 @@
 
                 <div class="row placeholders">
                     <div class="col-sm-3 placeholder">
-                        <img src="https://scontent-lhr3-1.xx.fbcdn.net/hphotos-xat1/v/t1.0-9/12341049_1179748312054410_9172589199064535805_n.jpg?oh=c1d50021e11962f8f9213b5db27a1be3&oe=574E9754" class="img-responsive img-circle center-block" alt="Generic placeholder thumbnail">
+                        <img src="https://scontent-lhr3-1.xx.fbcdn.net/hphotos-xat1/v/t1.0-9/12341049_1179748312054410_9172589199064535805_n.jpg?oh=c1d50021e11962f8f9213b5db27a1be3&oe=574E9754"
+                        class="img-responsive img-circle center-block" alt="Generic placeholder thumbnail">
                     </div>
                     <div class="col-sm-3 text-left">
                         <div class="row">
@@ -99,25 +101,31 @@
                             <p>Mensal</p>
                         </div>
                     </div>
-                    <div class="jumbotron col-sm-4 col-sm-offset-1 placeholder text-left">
-                        <h3 class="text-center">Ferramentas</h3>
-                        <div class="row">
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="modal" data-target="#editProfile">
-                                <h6><i class="fa fa-pencil fa-lg fa-fw"></i>Editar perfil</h6>
-                            </button>
-                        </div>
-                        <div class="row dropdown">
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="modal" data-target="#methPayment">
-                                <h6><i class="fa fa-credit-card fa-lg fa-fw"></i>Editar metodo de pagamento</h6>
-                            </button>
-                        </div>
-                        <div class="row panel-group" id="accordion">
-                            <button type="button" class="panel-heading btn btn-default dropdown-toggle" data-toggle="collapse" data-parent="#accordion" href="#ref">
-                                <h6><i class="fa fa-search panel-title fa-lg fa-fw"></i>Ver referência de multibanco</h6>
-                            </button>
-                        </div>
-                        <div id="ref" class="panel-body panel-collapse collapse">
-                            <h6> 2562548641200056532 </h6>
+                    <div class="panel-group col-sm-3 col-sm-offset-1 placeholder text-justify h-align" id="settings">
+                        <div class="panel panel-default">
+                            <h4 class="panel-heading panel-title text-center" data-toggle="collapse" data-parent="#settings" href="#setting">
+                                <i class="fa fa-cogs fa-lg fa-fw"></i>Ferramentas
+                             </h4>
+                            <div id="setting" class="panel-collapse collapse panel-body">
+                                <div class="row">
+                                    <button type="button" class="btn btn-default btn-block" data-toggle="modal" data-target="#editProfile">
+                                        <h6><i class="fa fa-pencil fa-lg fa-fw"></i>Editar perfil</h6>
+                                    </button>
+                                </div>
+                                <div class="row">
+                                    <button type="button" class="btn btn-default btn-block" data-toggle="modal" data-target="#methPayment">
+                                        <h6><i class="fa fa-credit-card fa-lg fa-fw"></i>Editar metodo de pagamento</h6>
+                                    </button>
+                                </div>
+                                <div class="row panel-group panel" id="accordion">
+                                    <button type="button" class="btn btn-default btn-block" data-toggle="collapse" data-parent="#accordion" href="#ref">
+                                        <h6><i class="fa fa-search fa-lg fa-fw"></i>Ver referência de multibanco</h6>
+                                    </button>
+                                    <div id="ref" class="panel-collapse collapse panel-body">
+                                        <h6> 2562548641200056532 </h6>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -153,7 +161,7 @@
                                 <td>Jardim dos Encantos</td>
                                 <td>10</td>
                                 <td>pagamento por débito direto</td>
-                                <td><i class="fa fa-file-pdf-o fa-lg fa-fw" data-toggle="tooltip" data-original-title="Imprimir Recibo"></i> <i class="fa fa-calendar fa-lg fa-fw" data-toggle="tooltip" data-original-title="Ver evento"></i></td>
+                                <td><i class="fa fa-file-pdf-o fa-lg fa-fw" data-toggle="tooltip" data-original-title="Imprimir Recibo"></i>                                    <i class="fa fa-calendar fa-lg fa-fw" data-toggle="tooltip" data-original-title="Ver evento"></i></td>
                             </tr>
                             <tr>
                                 <td>3</td>
@@ -207,7 +215,9 @@
                                 <td>Churrasco de Amigos</td>
                                 <td>Grátis</td>
                                 <td></td>
-                                <td><i class="fa fa-file-pdf-o fa-lg fa-fw" data-toggle="tooltip" data-original-title="Imprimir Recibo"></i><i class="fa fa-calendar fa-lg fa-fw" data-toggle="tooltip" data-original-title="Ver evento"></i></td>
+                                <td><i class="fa fa-file-pdf-o fa-lg fa-fw" data-toggle="tooltip" data-original-title="Imprimir Recibo"></i>
+                                    <i class="fa fa-calendar fa-lg fa-fw" data-toggle="tooltip" data-original-title="Ver evento"></i>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -267,12 +277,14 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title" for="sel1">metodo de pagamento</h4>
                 </div>
-                <select class="form-control" id="sel1">
-                    <option value="referencia multibanco">referencia multibanco</option>
-                    <option value="debito direto">debito direto</option>
-                    <option value="transferência bancária">transferência bancária</option>
-                    <option value="cheque">cheque</option>
-                </select>
+                <div class="modal-body">
+                    <select class="form-control" id="sel1">
+                        <option value="referencia multibanco">referencia multibanco</option>
+                        <option value="debito direto">debito direto</option>
+                        <option value="transferência bancária">transferência bancária</option>
+                        <option value="cheque">cheque</option>
+                    </select>
+                </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
                     <button type="button" class="btn btn-primary">Guardar</button>
@@ -292,15 +304,15 @@
 
     <!-- G.A.S.Porto -->
     <script src="js/holder.min.js"></script>
-    
-        <script type="text/javascript">
+
+    <script type="text/javascript">
         $(document).ready(function() {
             $('[data-toggle="tooltip"]').tooltip({
                 placement: 'top'
             });
         });
     </script>
-    
+
 </body>
 
 </html>
