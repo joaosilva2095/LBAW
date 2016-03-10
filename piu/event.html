@@ -33,8 +33,7 @@
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
-                aria-controls="navbar">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -44,9 +43,18 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
+
                     <li><a href="#"><i class="fa fa-user"></i> Inês Santos (Contabilista)</a></li>
-                    <li><a href="#"><i class="fa fa-bell"></i> Notificações</a></li>
-                    <li><a href="#"><i class="fa fa-lock"></i> Sair</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> Notificações <span class="badge">4</span></a>
+                        <ul class="dropdown-menu list-group">
+                            <li class="list-group-item list-group-item-success">Novo Pagamento</li>
+                            <li class="list-group-item list-group-item-info">Participação Evento</li>
+                            <li class="list-group-item list-group-item-danger"><i class="fa fa-exclamation-triangle fa-fw"></i> Pagamento Atraso</li>
+                            <li class="list-group-item list-group-item-info">Participação Evento</li>
+                        </ul>
+                    </li>
+                    <li><a href="login.html"><i class="fa fa-lock"></i> Sair</a></li>
                 </ul>
                 <form class="navbar-form navbar-right">
                     <input type="text" class="form-control" placeholder="Search...">
@@ -59,8 +67,8 @@
         <div class="row">
             <div class="col-sm-3 col-md-2 sidebar">
                 <ul class="nav nav-sidebar">
-                    <li class="active"><a href="#">Minha página <span class="sr-only">(current)</span></a></li>
-                    <li><a href="#">Eventos passados</a></li>
+                    <li><a href="amigo.html">Minha página</a></li>
+                    <li class="active"><a href="#">Eventos passados  <span class="sr-only">(current)</span></a></li>
                 </ul>
             </div>
             <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
@@ -68,19 +76,18 @@
 
                 <div class="row placeholders">
                     <div class="col-sm-3 placeholder">
-                        <img src="http://aefmup.pt/wp-content/uploads/2015InvictaCon-e1443032549404.jpg"
-                        class="img-responsive img-circle center-block" alt="Generic placeholder thumbnail">
+                        <img src="http://aefmup.pt/wp-content/uploads/2015InvictaCon-e1443032549404.jpg" class="img-responsive img-circle center-block" alt="Generic placeholder thumbnail">
                     </div>
                     <div class="col-sm-3 text-left">
                         <div class="row">
                             <h4>Descrição</h4>
                             <p>Encontro de Amigos do GAS Porto</p>
                         </div>
-                        <div class="row">                            
+                        <div class="row">
                             <h4>Data:</h4>
                             <p>20 de Junho de 2015</p>
                         </div>
-                        <div class="row">                            
+                        <div class="row">
                             <h4>Local:</h4>
                             <p>Praça dos Leões</p>
                         </div>
@@ -140,7 +147,7 @@
                                 <td>João Mateus</td>
                                 <td><i class="fa fa-check"></i></td>
                                 <td><i class="fa fa-check"></i></td>
-                            </tr>                                             
+                            </tr>
                         </tbody>
                     </table>
                 </div>

@@ -155,7 +155,7 @@
 var myPieChart = new Chart(ctx).Pie(data);
 
 var dataBar = {
-    labels: ["January", "February", "March", "April", "May", "June", "July"],
+    labels: ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho"],
     datasets: [
         {
             label: "My First dataset",

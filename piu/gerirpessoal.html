@@ -33,8 +33,7 @@
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
-                aria-controls="navbar">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -45,8 +44,16 @@
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="#"><i class="fa fa-user"></i> João Silva (Admin)</a></li>
-                    <li><a href="#"><i class="fa fa-bell"></i> Notificações</a></li>
-                    <li><a href="#"><i class="fa fa-lock"></i> Sair</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> Notificações <span class="badge">4</span></a>
+                        <ul class="dropdown-menu list-group">
+                            <li class="list-group-item list-group-item-success">Novo Pagamento</li>
+                            <li class="list-group-item list-group-item-info">Participação Evento</li>
+                            <li class="list-group-item list-group-item-danger"><i class="fa fa-exclamation-triangle fa-fw"></i> Pagamento Atraso</li>
+                            <li class="list-group-item list-group-item-info">Participação Evento</li>
+                        </ul>
+                    </li>
+                    <li><a href="login.html"><i class="fa fa-lock"></i> Sair</a></li>
                 </ul>
                 <form class="navbar-form navbar-right">
                     <input type="text" class="form-control" placeholder="Search...">
@@ -59,9 +66,10 @@
         <div class="row">
             <div class="col-sm-3 col-md-2 sidebar">
                 <ul class="nav nav-sidebar">
-                    <li><a href="homepageadmin.html">Visao Geral <span class="sr-only">(current)</span></a></li>
-                    <li class="active"><a href="gerirpessoal.html">Gerir Pessoal</a></li>
+                    <li><a href="homepageadmin.html">Visao Geral</a></li>
+                    <li class="active"><a href="gerirpessoal.html">Gerir Pessoal <span class="sr-only">(current)</span></a></li>
                     <li><a href="gerirmercha.html">Gerir Merchandising</a></li>
+                    <li><a href="gerireventos.html">Eventos</a></li>
                 </ul>
             </div>
             <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
@@ -103,7 +111,7 @@
                                 <td>4</td>
                                 <td>Sérgio Domingues</td>
                                 <td>28-07-1995</td>
-                                <td>Amigo</td>
+                                <td>Contabilista</td>
                                 <td><i class="fa fa-pencil fa-lg fa-fw"></i> <i class="fa fa-briefcase fa-lg fa-fw"></i> <i class="fa fa-trash fa-lg fa-fw"></i></td>
                             </tr>
                         </tbody>
@@ -126,7 +134,7 @@
                     <form role="form">
                         <div class="form-group">
                             <label for="name">Nome:</label>
-                            <input  class="form-control" id="name">
+                            <input class="form-control" id="name">
                         </div>
                         <div class="form-group">
                             <label for="email">Email:</label>
@@ -142,26 +150,26 @@
                         </div>
                         <div class="form-group">
                             <label for="role">Cargo:</label>
-                        <select class="form-control" id="role">
+                            <select class="form-control" id="role">
                             <option>Amigo</option>
                             <option>Adminitrador</option>
                             <option>Contabilista</option>
                         </select>
                         </div>
-                        
+
                         <div class="form-group">
                             <label for="paymethod">Metodo de Pagamento:</label>
-                        <select class="form-control" id="paymethod">
+                            <select class="form-control" id="paymethod">
                             <option>Referencia Bancaria</option>
                             <option>Numerario</option>
                             <option>Transferencia Bancaria</option>
                             <option>Debito Directo</option>
                         </select>
                         </div>
-                        
+
                         <div class="form-group">
                             <label for="freq">Frequencia de Pagamento</label>
-                        <select class="form-control" id="freq">
+                            <select class="form-control" id="freq">
                             <option>Semanal</option>
                             <option>Mensal</option>
                             <option>Trimestral</option>
@@ -171,9 +179,9 @@
                         </div>
                         <div class="form-group">
                             <label for="donation">Valor da Doação:</label>
-                            <input type="number" class="form-control" id="donation" value="0.00"/>
+                            <input type="number" class="form-control" id="donation" value="0.00" />
                         </div>
-                        
+
                     </form>
                 </div>
                 <div class="modal-footer">
