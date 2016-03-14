@@ -104,15 +104,22 @@
                             <p>8€</p>
                         </div>
                     </div>
-                    <div class="col-sm-4 col-sm-offset-1 placeholder text-left">
-                        <h4 class="text-center">Ferramentas</h4>
-                        <hr class="sub-header">
-                        <div class="row">
-                            <h5><i class="fa fa-calendar-check-o"></i> Registar presença</h5>
+                       <div class="col-sm-3 col-sm-offset-1 placeholder text-justify" id="settings">
+                        <div class="dropdown">
+                            <button class="btn btn-primary dropdown-toggle btn-block" type="button" data-toggle="dropdown">
+                                <h4><i class="fa fa-cogs fa-lg fa-fw"></i>Ferramentas</h4>
+                            </button>
+                            <ul class="dropdown-menu col-sm-12">                                
+                                <li>
+                                    <a data-toggle="modal" data-target="#methPayment">
+                                        <h6><i class="fa fa-check"></i>Registar presença</h6>
+                                    </a>
+                                </li>                                
+                            </ul>
                         </div>
                     </div>
                 </div>
-                <h2>History</h2>
+                <h2>Participantes</h2>
                 <hr class="sub-header">
                 <div class="table-responsive">
                     <table class="table table-striped">
@@ -122,6 +129,7 @@
                                 <th>Nome</th>
                                 <th>Participou</th>
                                 <th>Pago</th>
+                                <th>Opções</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -130,23 +138,28 @@
                                 <td>José Freitas</td>
                                 <td><i class="fa fa-check"></i></td>
                                 <td><i class="fa fa-check"></i></td>
+                                <td><a href="#"><i class="fa fa-trash fa-lg fa-fw" data-toggle="tooltip" data-original-title="Eliminar"></i></a></td>
                             </tr>
                             <tr>
                                 <td>2234</td>
                                 <td>Maria do Carmo</td>
                                 <td><i class="fa fa-check"></i></td>
                                 <td><i class="fa fa-check"></i></td>
+                                <td><a href="#"><i class="fa fa-trash fa-lg fa-fw" data-toggle="tooltip" data-original-title="Eliminar"></i></a></td>
                             </tr>
                             <tr>
                                 <td>233</td>
                                 <td>Juliana Silva</td>
                                 <td><i class="fa fa-check"></i></td>
+                                <td></td>
+                                <td><a href="#"><i class="fa fa-trash fa-lg fa-fw" data-toggle="tooltip" data-original-title="Eliminar"></i></a></td>
                             </tr>
                             <tr>
                                 <td>445</td>
                                 <td>João Mateus</td>
                                 <td><i class="fa fa-check"></i></td>
                                 <td><i class="fa fa-check"></i></td>
+                               <td><a href="#"><i class="fa fa-trash fa-lg fa-fw" data-toggle="tooltip" data-original-title="Eliminar"></i></a></td>
                             </tr>
                         </tbody>
                     </table>
@@ -163,6 +176,14 @@
 
     <!-- G.A.S.Porto -->
     <script src="js/holder.min.js"></script>
+    
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('[data-toggle="tooltip"]').tooltip({
+                placement: 'top'
+            });
+        });
+    </script>
 </body>
 
 </html>
