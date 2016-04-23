@@ -4,7 +4,7 @@ include_once($BASE_DIR.'database/users.php');
 
 // TODO remove this variables
 $users = array();
-$user=array('name' => 'João Silva', 'role' => 'Admins');
+$user=array('name' => 'João Silva', 'role' => 'Admin');
 $notifications=array();
 
 $smarty->assign('notifications', $notifications);

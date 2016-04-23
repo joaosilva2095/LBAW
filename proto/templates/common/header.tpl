@@ -13,13 +13,13 @@
     <title>G.A.S.Porto - Management Panel</title>
 
     <!-- Bootstrap -->
-    <link href="css/vendor/bootstrap.min.css" rel="stylesheet">
+    <link href="{$BASE_URL}css/vendor/bootstrap.min.css" rel="stylesheet">
 
     <!-- Font Awesome -->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
 
     <!-- G.A.S.Porto -->
-    <link href="css/dashboard.css" rel="stylesheet">
+    <link href="{$BASE_URL}css/dashboard.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
