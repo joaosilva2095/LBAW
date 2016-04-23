@@ -117,13 +117,13 @@
     <!-- /.modal -->
 
     <!-- JQuery -->
-    <script src="js/vendor/jquery.min.js"></script>
+    <script src="{$BASE_URL}javascript/vendor/jquery.min.js"></script>
 
     <!-- Bootstrap -->
-    <script src="js/vendor/bootstrap.min.js"></script>
+    <script src="{$BASE_URL}javascript/vendor/bootstrap.min.js"></script>
 
     <!-- G.A.S.Porto -->
-    <script src="js/holder.min.js"></script>
+    <script src="{$BASE_URL}javascript/holder.min.js"></script>
 
     <script type="text/javascript">
         $(document).ready(function() {
