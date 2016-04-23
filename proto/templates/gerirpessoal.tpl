@@ -21,20 +21,23 @@
                             </tr>
                         </thead>
                         <tbody>
-                            
+
                             {foreach $users as $key => $user}
-                            
+
                             <tr>
                                 <td>{$user.id}</td>
                                 <td>{$user.name}</td>
                                 <td>{$user.birth}</td>
                                 <td>{$user.role}</td>
-                                <td><i class="fa fa-pencil fa-lg fa-fw" data-toggle="tooltip" data-original-title="Editar"></i> <i class="fa fa-briefcase fa-lg fa-fw" data-toggle="tooltip" data-original-title="Alterar Cargo"></i> <i class="fa fa-trash fa-lg fa-fw"
-                                        data-toggle="tooltip" data-original-title="Eliminar"></i></td>
+                                <td>
+                                    <i class="fa fa-pencil fa-lg fa-fw" data-toggle="tooltip" data-original-title="Editar"></i>
+                                    <i class="fa fa-briefcase fa-lg fa-fw" data-toggle="tooltip" data-original-title="Alterar Cargo"></i>
+                                    <i class="fa fa-trash fa-lg fa-fw" data-toggle="tooltip" data-original-title="Eliminar"></i>
+                                </td>
                             </tr>
-                            
+
                             {/foreach}
-                            
+
                         </tbody>
                     </table>
                 </div>
@@ -124,7 +127,7 @@
 
     <!-- G.A.S.Porto -->
     <script src="{$BASE_URL}javascript/holder.min.js"></script>
-    
+
     <!-- G.A.S.Porto -->
     <script src="{$BASE_URL}javascript/gerirpessoal.min.js"></script>
 
