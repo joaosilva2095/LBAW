@@ -1,4 +1,4 @@
-<?php
+<?php 
 
 /**
     Register a friend in the database
@@ -45,6 +45,17 @@ function register_user($id, $role, $email, $password, $name, $gender, $birth) {
 }
 
 /**
+    Get all the users of the database
+    @return all the users of the database
+ */
+function get_all_users() {
+    global $conn;
+    $stmt = $conn->prepare("SELECT id, role, name, birth FROM users");
+    $stmt->execute();
+    return $stmt->fetchAll();
+}
+
+/**
     Verify the user credentials by querrying the database.
     Uses sha256 encryptation.
    
@@ -59,6 +70,6 @@ function isLoginCorrect($username, $password) {
                             WHERE email = ? AND password = ?");
     $stmt->execute(array($username, sha1($password)));
     return $stmt->fetch() == true;
-  }
+}
 
 ?>

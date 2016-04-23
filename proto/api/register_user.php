@@ -32,7 +32,7 @@ if ($role === 'Amigo') {
     $result = register_friend(
     $params['id'],
     $params['email'],
-    $params['password'],
+    sha1($params['password']),
     $params['name'],
     $params['gender'],
     $params['birth'],
@@ -45,7 +45,7 @@ if ($role === 'Amigo') {
     $params['id'],
     $params['role'],
     $params['email'],
-    $params['password'],
+    sha1($params['password']),
     $params['name'],
     $params['gender'],
     $params['birth']);

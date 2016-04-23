@@ -3,7 +3,7 @@ include_once('../config/init.php');
 include_once($BASE_DIR.'database/users.php');
 
 // TODO remove this variables
-$users = array();
+$users = get_all_users();
 $user=array('name' => 'João Silva', 'role' => 'Admin');
 $notifications=array();
 
