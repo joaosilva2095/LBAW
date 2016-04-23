@@ -21,20 +21,23 @@
                             </tr>
                         </thead>
                         <tbody>
-                            
+
                             {foreach $users as $key => $user}
-                            
+
                             <tr>
                                 <td>{$user.id}</td>
                                 <td>{$user.name}</td>
                                 <td>{$user.birth}</td>
                                 <td>{$user.role}</td>
-                                <td><i class="fa fa-pencil fa-lg fa-fw" data-toggle="tooltip" data-original-title="Editar"></i> <i class="fa fa-briefcase fa-lg fa-fw" data-toggle="tooltip" data-original-title="Alterar Cargo"></i> <i class="fa fa-trash fa-lg fa-fw"
-                                        data-toggle="tooltip" data-original-title="Eliminar"></i></td>
+                                <td>
+                                    <i class="fa fa-pencil fa-lg fa-fw" data-toggle="tooltip" data-original-title="Editar"></i>
+                                    <i class="fa fa-briefcase fa-lg fa-fw" data-toggle="tooltip" data-original-title="Alterar Cargo"></i>
+                                    <i class="fa fa-trash fa-lg fa-fw" data-toggle="tooltip" data-original-title="Eliminar"></i>
+                                </td>
                             </tr>
-                            
+
                             {/foreach}
-                            
+
                         </tbody>
                     </table>
                 </div>
@@ -55,23 +58,23 @@
                     <form role="form">
                         <div class="form-group">
                             <label for="name">Nome:</label>
-                            <input class="form-control" id="name">
+                            <input class="form-control" id="name" required="required">
                         </div>
                         <div class="form-group">
                             <label for="email">Email:</label>
-                            <input type="email" class="form-control" id="email">
+                            <input type="email" class="form-control" id="email" required="required">
                         </div>
                         <div class="form-group">
                             <label for="birthdate">Data de Nascimento:</label>
-                            <input type="date" class="form-control" id="birthdate">
+                            <input type="date" class="form-control" id="birthdate" required="required">
                         </div>
                         <div class="form-group">
                             <label for="cellphone">Telemóvel:</label>
-                            <input type="tel" class="form-control" id="cellphone">
+                            <input type="tel" class="form-control" id="cellphone" required="required">
                         </div>
                         <div class="form-group">
                             <label for="role">Cargo:</label>
-                            <select class="form-control" id="role">
+                            <select class="form-control" id="role" required="required">
                             <option>Amigo</option>
                             <option>Adminitrador</option>
                             <option>Contabilista</option>
@@ -80,7 +83,7 @@
 
                         <div class="form-group">
                             <label for="paymethod">Metodo de Pagamento:</label>
-                            <select class="form-control" id="paymethod">
+                            <select class="form-control" id="paymethod" required="required">
                             <option>Referencia Bancaria</option>
                             <option>Numerario</option>
                             <option>Transferencia Bancaria</option>
@@ -90,7 +93,7 @@
 
                         <div class="form-group">
                             <label for="freq">Frequencia de Pagamento</label>
-                            <select class="form-control" id="freq">
+                            <select class="form-control" id="freq" required="required">
                             <option>Semanal</option>
                             <option>Mensal</option>
                             <option>Trimestral</option>
@@ -107,7 +110,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                    <button type="button" class="btn btn-primary">Guardar</button>
+                    <button type="button" class="btn btn-primary" id="registerUserSubmit">Guardar</button>
                 </div>
             </div>
             <!-- /.modal-content -->
@@ -124,6 +127,9 @@
 
     <!-- G.A.S.Porto -->
     <script src="{$BASE_URL}javascript/holder.min.js"></script>
+
+    <!-- G.A.S.Porto -->
+    <script src="{$BASE_URL}javascript/gerirpessoal.min.js"></script>
 
     <script type="text/javascript">
         $(document).ready(function() {

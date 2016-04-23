@@ -2,6 +2,8 @@
 include_once('../config/init.php');
 include_once($BASE_DIR.'database/users.php');
 
+// TODO check permissions
+
 // TODO remove this variables
 $users = get_all_users();
 $user=array('name' => 'João Silva', 'role' => 'Admin');
