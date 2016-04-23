@@ -13,7 +13,6 @@ if (!$_GET['username'] || !$_GET['password']) {
 $username = $_GET['username'];
 $password = $_GET['password'];
 
-/* TODO: implementar funcao */
 //Data	operations
 if (is_login_correct($username, $password)) {
     $_SESSION['username'] = $username;
