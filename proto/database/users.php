@@ -43,4 +43,22 @@ function register_user($id, $role, $email, $password, $name, $gender, $birth) {
                             VALUES (?, ?, ?, ?, ?, ?, ?)");
     return $stmt->execute($id, $role, $email, $password, $name, $gender, $birth);
 }
+
+/**
+    Verify the user credentials by querrying the database.
+    Uses sha256 encryptation.
+   
+    @param username user's name
+    @param password user's password   
+**/
+
+function isLoginCorrect($username, $password) {
+    global $conn;
+    $stmt = $conn->prepare("SELECT * 
+                            FROM users 
+                            WHERE email = ? AND password = ?");
+    $stmt->execute(array($username, sha1($password)));
+    return $stmt->fetch() == true;
+  }
+
 ?>

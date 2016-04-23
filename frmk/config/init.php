@@ -5,13 +5,13 @@
   error_reporting(E_ERROR | E_WARNING); // E_NOTICE by default
 
   $BASE_DIR = '/opt/lbaw/lbaw1532/public_html/frmk/'; //FIXME
-  $BASE_URL = '/~lbaw1532/public_html/frmk/'; //FIXME
+  $BASE_URL = '/~lbaw1532/frmk/'; //FIXME
 
-  $conn = new PDO('pgsql:host=vdbm;dbname=lbaw1532', 'lbaw1532', 'RO79F2J6'); //FIXME
+  $conn = new PDO('pgsql:host=dbm;dbname=lbaw1532', 'lbaw1532', 'RO79F2J6'); //FIXME
   $conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-  $conn->exec('SET SCHEMA \'_schema_\''); //FIXME
+  $conn->exec('SET SCHEMA \'frmk\''); //FIXME
 
   include_once($BASE_DIR . 'lib/smarty/Smarty.class.php');
   
@@ -30,4 +30,5 @@
   unset($_SESSION['error_messages']);  
   unset($_SESSION['field_errors']);
   unset($_SESSION['form_values']);
-?>
+  ?>
+
