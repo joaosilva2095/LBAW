@@ -10,9 +10,9 @@
     @param name name of the user
     @param gender gender of the user
     @param birth birth date of the user
-    @param nif nif of the user´
+    @param nif nif of the user
     @param cellphone cellphone of the user
-    @param donative_type donative type of the user (might be "Referência Multibanco", "Débito Direto", "Transferência Bancária", "Numerário")
+    @param donative_type donative type of the user (might be "Referência Multibanco", "Débito Direto", "Transferência Bancária", "Numerário")Fixe
     @param periodicity periodicity of the donative payment
  */
 function register_friend($id, $email, $password, $name, $gender, $birth, $nif, $cellphone, $donative_type, $periodicity) {
@@ -23,7 +23,7 @@ function register_friend($id, $email, $password, $name, $gender, $birth, $nif, $
     global $conn;
     $stmt = $conn->prepare("INSERT INTO friends 
                             VALUES (?, ?, ?, false, null, null, ?, ?)");
-    $stmt->execute($id, $nif, $cellphone, $donative_type, $periodicity);
+    return $stmt->execute($id, $nif, $cellphone, $donative_type, $periodicity);
 }
 
 /**
@@ -41,6 +41,6 @@ function register_user($id, $role, $email, $password, $name, $gender, $birth) {
     global $conn;
     $stmt = $conn->prepare("INSERT INTO users 
                             VALUES (?, ?, ?, ?, ?, ?, ?)");
-    $stmt->execute($id, $role, $email, $password, $name, $gender, $birth);
+    return $stmt->execute($id, $role, $email, $password, $name, $gender, $birth);
 }
 ?>
