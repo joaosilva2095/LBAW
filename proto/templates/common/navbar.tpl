@@ -14,7 +14,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#"><i class="fa fa-user"></i> {$user.name} {$user.role}</a></li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> Notificações <span class="badge">{$notifications.length}</span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> Notificações <span class="badge">{$notifications|@count}</span></a>
 
                     <ul class="dropdown-menu list-group">
 
