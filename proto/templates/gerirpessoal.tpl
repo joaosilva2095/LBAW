@@ -133,3 +133,5 @@
         });
     </script>
 </body>
+
+{include file='common/footer.tpl'}
