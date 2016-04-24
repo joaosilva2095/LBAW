@@ -8,18 +8,18 @@
 
     <meta name="description" content="G.A.S.Porto - Login">
     <meta name="author" content="CodeCats @ LBAW">
-    <link rel="icon" href="img/favicon.ico">
+    <link rel="icon" href="{$BASE_URL}img/favicon.ico">
 
     <title>G.A.S.Porto - Login</title>
 
     <!-- Bootstrap -->
-    <link href="../css/vendor/bootstrap.min.css" rel="stylesheet">
+    <link href="{$BASE_URL}css/vendor/bootstrap.min.css" rel="stylesheet">
 
     <!-- Font Awesome -->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
 
     <!-- G.A.S.Porto -->
-    <link href="../css/login.css" rel="stylesheet">
+    <link href="{$BASE_URL}css/login.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -32,7 +32,7 @@
     <div class="row v-align">
         <div class="col-sm-3 h-align">
             <header class="page-title text-center">G.A.S.Porto</header>
-
+            
             <form role="form" class="login-form" action="../actions/login.php" method="post">
                 <div class="form-group">
                     <label for="username">Usuário:</label>
@@ -53,13 +53,13 @@
     </div>
 
     <!-- JQuery -->
-    <script src="../js/vendor/jquery.min.js"></script>
+    <script src="{$BASE_URL}js/vendor/jquery.min.js"></script>
 
     <!-- Bootstrap -->
-    <script src="../js/vendor/bootstrap.min.js"></script>
+    <script src="{$BASE_URL}js/vendor/bootstrap.min.js"></script>
 
     <!-- G.A.S.Porto -->
-    <script src="../js/holder.min.js"></script>
+    <script src="{$BASE_URL}js/holder.min.js"></script>
 </body>
 
 </html>
