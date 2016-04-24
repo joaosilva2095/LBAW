@@ -33,14 +33,14 @@
         <div class="col-sm-3 h-align">
             <header class="page-title text-center">G.A.S.Porto</header>
 
-            <form role="form" class="login-form" action="../actions/login.php" method="get">
+            <form role="form" class="login-form" action="../actions/login.php" method="post">
                 <div class="form-group">
                     <label for="username">Usuário:</label>
-                    <input type="text" required="required" class="form-control" id="username" placeholder="Usuário">
+                    <input type="text" required="required" name="username" class="form-control" id="username" placeholder="Utilizador">
                 </div>
                 <div class="form-group">
                     <label for="password">Password:</label>
-                    <input type="password" required="required" class="form-control" id="password" placeholder="Password">
+                    <input type="password" required="required" name="password" class="form-control" id="password" placeholder="Password">
                 </div>
                 <div class="text-right">
                     <a href="#">Esqueceu a password?</a>

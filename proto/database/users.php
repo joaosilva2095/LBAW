@@ -1,5 +1,7 @@
 <?php 
 
+include_once("../config/init.php");
+
 /**
     Register a friend in the database
     
@@ -63,13 +65,140 @@ function get_all_users() {
     @param password user's password   
 **/
 
-function isLoginCorrect($username, $password) {
+function is_login_correct($username, $password) {
     global $conn;
     $stmt = $conn->prepare("SELECT * 
                             FROM users 
                             WHERE email = ? AND password = ?");
-    $stmt->execute(array($username, sha1($password)));
+    $stmt->execute(array($username, hash("sha256", $password)));
     return $stmt->fetch() == true;
 }
+
+/**
+    Get user's role.
+   
+    @param email user's username
+    @returns User's role in case of success or false on failure.    
+**/
+function get_user_role($email) {
+    global $conn;
+    $stmt = $conn->prepare("SELECT ROLE 
+                            FROM users 
+                            WHERE email = ?");
+    $stmt->execute(array($email));
+    return $stmt->fetch();
+}
+
+/**
+    Get user's entity
+   
+    @param email user's username
+    @returns User user entity or false if fail   
+**/
+function get_user_by_name($username) {
+    global $conn;
+    $stmt = $conn->prepare("SELECT * 
+                            FROM users 
+                            WHERE email = ?");
+    $stmt->execute(array($username));
+    return $stmt->fetch();
+}
+
+
+/**
+    Get friends's info (entity) from 2 querries (user + friend)
+   
+    @param email user's username
+    @returns User friend entity or false if fail   
+**/
+function get_friend_info($username) {
+    if (($user = get_user_by_name($username)) === false) {
+        return false;
+    }
+
+    global $conn;
+    $stmt = $conn->prepare("SELECT * 
+                            FROM friends 
+                            WHERE id = ?");
+    $stmt->execute(array($user.id));
+    $friend = $stmt->fetch();
+
+    if ($friend === false) {
+        return false;
+    }
+
+    return array_merge($user, $friend);
+}
+
+
+/**
+    Get user's history (KING OF SQL)
+   
+    @param id user's id
+    @returns history user's history or false if fail   
+**/
+function get_user_history($id) {
+    global $conn;
+
+    //get payments history
+    $stmt = $conn->prepare("
+    ((SELECT payments.id AS id, payments.payment_date AS date,payments.payment_type AS type, payments.value AS value 
+         FROM users,friends, payments, donatives, mercha_purchases
+         WHERE friends.id = ?
+         AND ( 
+              (donatives.friend = friends.id
+               AND payments.id = donatives.id) 
+              OR
+              (payments.id = mercha_purchases.id AND
+               mercha_purchases.friend = friends.id)
+         )
+         GROUP BY payments.id,friends.id)
+    UNION
+    (SELECT events.id, events.event_date AS date, 'Evento' as type, events.price AS value
+        FROM events, payments, friends, friend_events,users
+        WHERE users.id = ?
+        AND events.id = friend_events.event
+        AND friend_events.friend = users.id        
+        GROUP BY events.id)) 
+        ORDER BY date DESC");
+    $stmt->execute(array($user.id));
+
+    return $stmt->fetchAll();
+}
+
+/**
+    Get all users's history (global)
+   
+    @returns hystory global history  
+**/
+function get_global_history() {
+    global $conn;
+
+    //get payments history
+    $stmt = $conn->prepare("((SELECT friends.id, payments.id, payments.payment_date AS date,payments.payment_type AS type, payments.value AS value 
+         FROM users,friends, payments, donatives, mercha_purchases
+         WHERE friends.id = users.id
+         AND ( 
+              (payments.id = donatives.id
+               AND donatives.friend = friends.id) 
+              OR
+              (payments.id = mercha_purchases.id AND
+               mercha_purchases.id = payments.id)
+         )
+         GROUP BY payments.id,friends.id)
+    UNION
+        (SELECT friends.id, events.id, events.event_date AS date, 'Evento' as type, events.price AS value
+        FROM events, payments, friends, friend_events,users
+        WHERE events.id = friend_events.event
+        AND friend_events.friend = friends.id
+        AND users.id = friends.id
+        GROUP BY events.id,friends.id)) 
+        ORDER BY date"
+        );
+
+    $stmt->execute();
+    return $stmt->fetchAll();
+}
+
 
 ?>
