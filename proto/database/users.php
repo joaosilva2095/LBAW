@@ -167,7 +167,7 @@ function get_user_history($id) {
         ORDER BY date DESC");
     $stmt->execute(array($id,$id));
 
-    return $stmt->fetchAll();
+   return $stmt->fetchAll();    
 }
 
 /**

@@ -68,9 +68,7 @@
                                 <th>id</th>
                                 <th>Data</th>
                                 <th>Tipo</th>
-                                <th>Descrição</th>
                                 <th>Valor (EUR)</th>
-                                <th>Observações</th>
                                 <th>Opções</th>
                             </tr>
                         </thead>
@@ -84,10 +82,12 @@
                                 <td>{$entry.type}</td>                                                 
                                 <td>{$entry.value}</td>
                                 
-                                 <td><i class="fa fa-file-pdf-o fa-lg fa-fw" data-toggle="tooltip" data-original-title="Imprimir Recibo"></i></td>
+                                <td><i class="fa fa-file-pdf-o fa-lg fa-fw" data-toggle="tooltip" data-original-title="Imprimir Recibo"></i></td>
                                 
                                 {if $entry.type eq "Evento"}
-                                <i class="fa fa-calendar fa-lg fa-fw" data-toggle="tooltip" data-original-title="Ver evento"></i></td> }                               
+                                <td> <i class="fa fa-calendar fa-lg fa-fw" data-toggle="tooltip" data-original-title="Ver evento"></i></td>                                                            
+                                {else}
+                                <td></td>
                                 {/if}
                             </tr>
                             

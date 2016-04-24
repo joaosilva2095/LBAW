@@ -13,10 +13,10 @@ if ($role != "Amigo") {
 $friend = get_friend_info($_SESSION['username']);
 
 //TODO VERIFICAR SE DÁ FALSE
-$history = get_user_history($user.id);
+$history = get_user_history($friend['id']);
 
 $smarty->assign('user', $friend);
-$smarty->assign('hystory', $hystory);
+$smarty->assign('history', $history);
 $smarty->display('../templates/amigo.tpl');
 
 ?>
