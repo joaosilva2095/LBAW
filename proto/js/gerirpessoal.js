@@ -13,7 +13,7 @@ function registerUser() {
 
     // Async call to login
     $.post(
-        "", // TODO fix URL
+        "../api/register_user.php",
         {
             id: id,
             role: role,
@@ -24,7 +24,7 @@ function registerUser() {
             birth: birth
         },
         function (data) {
-            // TODO check error code
+            console.log(data.status);
         })
         .fail(function (error) {
             displayError("Error while processing the registration of the new user...");
@@ -51,7 +51,7 @@ function registerFriend() {
 
     // Async call to login
     $.post(
-        "", // TODO fix URL
+        "../api/register_user.php",
         {
             id: id,
             role: role,
@@ -66,7 +66,7 @@ function registerFriend() {
             periodicity: periodicity
         },
         function (data) {
-            // TODO check error code
+            console.log(data.status);
         })
         .fail(function (error) {
             displayError("Error while processing the registration of the new user...");
