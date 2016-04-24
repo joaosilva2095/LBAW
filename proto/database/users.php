@@ -98,12 +98,12 @@ function get_user_role($email) {
     @param email user's username
     @returns User user entity or false if fail   
 **/
-function get_user_by_name($username) {
+function get_user_by_name($email) {
     global $conn;
     $stmt = $conn->prepare("SELECT * 
                             FROM users 
                             WHERE email = ?");
-    $stmt->execute(array($username));
+    $stmt->execute(array($email));
     return $stmt->fetch();
 }
 
@@ -123,8 +123,10 @@ function get_friend_info($username) {
     $stmt = $conn->prepare("SELECT * 
                             FROM friends 
                             WHERE id = ?");
-    $stmt->execute(array($user.id));
-    $friend = $stmt->fetch();
+
+    $stmt->execute(array($user['id']));
+    
+    $friend = $stmt->fetchAll();
 
     if ($friend === false) {
         return false;
