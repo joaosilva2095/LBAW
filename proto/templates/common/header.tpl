@@ -8,7 +8,7 @@
 
     <meta name="description" content="G.A.S.Porto - Management Panel">
     <meta name="author" content="CodeCats @ LBAW">
-    <link rel="icon" href="img/favicon.ico">
+    <link rel="icon" href="{$BASE_URL}img/favicon.ico">
 
     <title>G.A.S.Porto - Management Panel</title>
 

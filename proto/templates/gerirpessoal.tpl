@@ -57,6 +57,10 @@
                 <div class="modal-body">
                     <form role="form">
                         <div class="form-group">
+                            <label for="identification">ID:</label>
+                            <input class="form-control" id="identification" required="required">
+                        </div>
+                        <div class="form-group">
                             <label for="name">Nome:</label>
                             <input class="form-control" id="name" required="required">
                         </div>
@@ -65,45 +69,57 @@
                             <input type="email" class="form-control" id="email" required="required">
                         </div>
                         <div class="form-group">
-                            <label for="birthdate">Data de Nascimento:</label>
-                            <input type="date" class="form-control" id="birthdate" required="required">
+                            <label for="password">Password:</label>
+                            <input type="password" class="form-control" id="password" required="required">
                         </div>
                         <div class="form-group">
-                            <label for="cellphone">Telemóvel:</label>
-                            <input type="tel" class="form-control" id="cellphone" required="required">
+                            <label for="gender">Género:</label>
+                            <select class="form-control" id="gender" required="required">
+                            <option>M</option>
+                            <option>F</option>
+                        </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="birthdate">Data de Nascimento:</label>
+                            <input type="date" class="form-control" id="birthdate" required="required">
                         </div>
                         <div class="form-group">
                             <label for="role">Cargo:</label>
                             <select class="form-control" id="role" required="required">
                             <option>Amigo</option>
-                            <option>Adminitrador</option>
+                            <option>Administrador</option>
                             <option>Contabilista</option>
                         </select>
                         </div>
 
-                        <div class="form-group">
-                            <label for="paymethod">Metodo de Pagamento:</label>
-                            <select class="form-control" id="paymethod" required="required">
-                            <option>Referencia Bancaria</option>
-                            <option>Numerario</option>
-                            <option>Transferencia Bancaria</option>
-                            <option>Debito Directo</option>
-                        </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="freq">Frequencia de Pagamento</label>
-                            <select class="form-control" id="freq" required="required">
-                            <option>Semanal</option>
-                            <option>Mensal</option>
-                            <option>Trimestral</option>
-                            <option>Semestral</option>
-                            <option>Anual</option>
-                        </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="donation">Valor da Doação:</label>
-                            <input type="number" class="form-control" id="donation" value="0.00" />
+                        <div id="friendOnlyParams">
+                            <div class="form-group">
+                                <label for="nif">NIF:</label>
+                                <input class="form-control" id="nif" required="required">
+                            </div>
+                            <div class="form-group">
+                                <label for="cellphone">Telemóvel:</label>
+                                <input type="tel" class="form-control" id="cellphone" required="required">
+                            </div>
+                            <div class="form-group">
+                                <label for="paymethod">Metodo de Pagamento:</label>
+                                <select class="form-control" id="paymethod" required="required">
+                                    <option>Referencia Bancaria</option>
+                                    <option>Numerario</option>
+                                    <option>Transferencia Bancaria</option>
+                                    <option>Debito Directo</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="freq">Frequencia de Pagamento</label>
+                                <select class="form-control" id="freq" required="required">
+                                    <option>Semanal</option>
+                                    <option>Mensal</option>
+                                    <option>Trimestral</option>
+                                    <option>Semestral</option>
+                                    <option>Anual</option>
+                                </select>
+                            </div>
                         </div>
 
                     </form>
@@ -120,16 +136,16 @@
     <!-- /.modal -->
 
     <!-- JQuery -->
-    <script src="{$BASE_URL}javascript/vendor/jquery.min.js"></script>
+    <script src="{$BASE_URL}js/vendor/jquery.min.js"></script>
 
     <!-- Bootstrap -->
-    <script src="{$BASE_URL}javascript/vendor/bootstrap.min.js"></script>
+    <script src="{$BASE_URL}js/vendor/bootstrap.min.js"></script>
 
     <!-- G.A.S.Porto -->
-    <script src="{$BASE_URL}javascript/holder.min.js"></script>
+    <script src="{$BASE_URL}js/holder.min.js"></script>
 
     <!-- G.A.S.Porto -->
-    <script src="{$BASE_URL}javascript/gerirpessoal.min.js"></script>
+    <script src="{$BASE_URL}js/gerirpessoal.min.js"></script>
 
     <script type="text/javascript">
         $(document).ready(function() {

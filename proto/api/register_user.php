@@ -3,7 +3,10 @@ include_once('../../config/init.php');
 include_once($BASE_DIR.'database/users.php');
 
 // Check if the user is logged in
+if(!isset($_SESSION['username']))
+    return;
 
+// TODO Check permissions
 
 // Role
 if (!isset($_POST['role'])) {
