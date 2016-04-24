@@ -126,7 +126,7 @@ function get_friend_info($username) {
 
     $stmt->execute(array($user['id']));
     
-    $friend = $stmt->fetchAll();
+    $friend = $stmt->fetch();
 
     if ($friend === false) {
         return false;
