@@ -124,9 +124,8 @@ function get_friend_info($username) {
                             FROM friends 
                             WHERE id = ?");
 
-    $stmt->execute(array($user['id']));
-    
-    $friend = $stmt->fetch();
+    $stmt->execute(array($user['id']));    
+    $friend = $stmt->fetchAll();
 
     if ($friend === false) {
         return false;
@@ -134,6 +133,7 @@ function get_friend_info($username) {
 
     return array_merge($user, $friend);
 }
+
 
 /**
     Get user's history (KING OF SQL)
@@ -165,8 +165,8 @@ function get_user_history($id) {
         AND friend_events.friend = users.id        
         GROUP BY events.id)) 
         ORDER BY date DESC");
-        
     $stmt->execute(array($id,$id));
+
     return $stmt->fetchAll();
 }
 

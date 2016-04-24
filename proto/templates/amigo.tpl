@@ -8,30 +8,30 @@
              {include file='common/sidebar_adm.tpl'}
              
             <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-                <h1 class="page-header">$user.</h1>
+                <h1 class="page-header">{$user.name}</h1>
 
                 <div class="row placeholders">
                 
                     <div class="col-sm-3 text-left">
                         <div class="row">
                             <h4>Data Nascimento:</h4>
-                            <p>$user.birth</p>
+                            <p>{$user.birth}</p>
                         </div>
                         <div class="row">
                             <h4>Email:</h4>
-                            <p>$user.email</p>
+                            <p>{$user.email}</p>
                         </div>
                         <div class="row">
                             <h4>Contacto:</h4>
-                            <p>$user.cellphone</p>
+                            <p>{$user.cellphone}</p>
                         </div>
                         <div class="row">
                             <h4>Método de pagamento:</h4>
-                            <p>$user.donative_type</p>
+                            <p>{$user.donative_type}</p>
                         </div>
                         <div class="row">
                             <h4>Frequência de pagamento:</h4>
-                            <p>$user.periodicity</p>
+                            <p>{$user.periodicity}</p>
                         </div>
                     </div>
                     <div class="col-sm-3 col-sm-offset-1 placeholder text-justify" id="settings">
