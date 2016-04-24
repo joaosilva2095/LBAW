@@ -14,16 +14,18 @@
     @param cellphone cellphone of the user
     @param donative_type donative type of the user (might be "Referência Multibanco", "Débito Direto", "Transferência Bancária", "Numerário")Fixe
     @param periodicity periodicity of the donative payment
+    @param donative_amount donative amount of the user
+    @return true if successfull, false otherwise
  */
-function register_friend($id, $email, $password, $name, $gender, $birth, $nif, $cellphone, $donative_type, $periodicity) {
+function register_friend($id, $email, $password, $name, $gender, $birth, $nif, $cellphone, $donative_type, $periodicity, $donative_amount) {
     // Register the user in the database
-    register_user($id, "Amigo", $email, $password, $name, $gender, $birth);
+    if (!register_user($id, "Amigo", $email, $password, $name, $gender, $birth)) return false;
 
     // Register the friend
     global $conn;
     $stmt = $conn->prepare("INSERT INTO friends 
-                            VALUES (?, ?, ?, false, null, null, ?, ?)");
-    return $stmt->execute($id, $nif, $cellphone, $donative_type, $periodicity);
+                            VALUES (?, ?, ?, false, null, null, ?, ?, ?)");
+    return $stmt->execute($id, $nif, $cellphone, $donative_type, $periodicity, $donative_amount);
 }
 
 /**
@@ -36,6 +38,7 @@ function register_friend($id, $email, $password, $name, $gender, $birth, $nif, $
     @param name name of the user
     @param gender gender of the user
     @param birth birth date of the user
+    @return true if successfull, false otherwise
  */
 function register_user($id, $role, $email, $password, $name, $gender, $birth) {
     global $conn;

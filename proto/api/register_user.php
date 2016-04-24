@@ -15,7 +15,7 @@ $role = $_POST['role'];
 
 // Check if all parameters exist
 $params = array('id', 'email', 'password', 'name', 'gender', 'birth');
-if ($role === 'Amigo') array_push($params, 'nif', 'cellphone', 'donative_type', 'periodicity');
+if ($role === 'Amigo') array_push($params, 'nif', 'cellphone', 'donative_type', 'periodicity', 'donative_amount');
 
 foreach($params as $param) {
     if (!isset($_POST[$param])) {
@@ -39,7 +39,8 @@ if ($role === 'Amigo') {
     $params['nif'],
     $params['cellphone'],
     $params['donative_type'],
-    $params['periodicity']);
+    $params['periodicity'],
+    $params['donative_amount']);
 } else {
     $result = register_user(
     $params['id'],

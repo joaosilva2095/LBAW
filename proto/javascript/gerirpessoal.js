@@ -21,9 +21,9 @@ function registerUser() {
             birth: birth,
             cellphone: cellphone,
             role: role,
-            donativeType: donativeType,
+            donative_type: donativeType,
             periodicity: periodicity,
-            donativeValue: donativeValue
+            donative_value: donativeValue
         },
         function (data) {
             // TODO check error code
