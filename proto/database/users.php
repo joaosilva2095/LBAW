@@ -124,8 +124,7 @@ function get_friend_info($username) {
                             FROM friends 
                             WHERE id = ?");
 
-    $stmt->execute(array($user['id']));
-    
+    $stmt->execute(array($user['id']));    
     $friend = $stmt->fetchAll();
 
     if ($friend === false) {
