@@ -4,7 +4,7 @@
 function destroy_session() {
     unset($_SESSION);
     session_destroy();
-    session_write_close();    
+    session_write_close();
 }
 //==============================//
 
@@ -27,37 +27,37 @@ if (is_login_correct($username, $password)) {
     $_SESSION['username'] = $username;
     $_SESSION['success_message'] = 'Login successful';
 
-    /*Get user's role*/    
+    /*Get user's role*/
     //echo "<script type='text/javascript'>alert('$username');</script>";
     //sleep(3);    
-    
+
     $role = get_user_role($username);
-        
-    if ($role === false) { //Error
-        $_SESSION['error_message'] = 'role not found';        
+
+    if ($role === false || count($role) == 0) { //Error
+        $_SESSION['error_message'] = 'role not found';
         //destroy_session();
         header('Location:'.$_SERVER['HTTP_REFERER']);
         exit;
     }
 
     /* Redirects to user's home page according to user's role */
-
-    switch ($role) {
+       
+    switch ($role['role']) {
         case "Administrador":
-            $_SESSION['role'] = $role;
+            $_SESSION['role'] = $role['role'];
             header('Location: ../pages/admin.php');
             break;
         case "Contabilista":
-            $_SESSION['role'] = $role;
+            $_SESSION['role'] = $role['role'];
             header('Location: ../pages/contabilista.php');
             break;
         case "Amigo":
-            $_SESSION['role'] = $role;
+            $_SESSION['role'] = $role['role'];
             header('Location: ../pages/amigo.php');
             break;
         default:
             //Error
-            $_SESSION['error_message'] = var_dump($role);
+            $_SESSION['error_message'] = "Invalid Privileges";
            // destroy_session();
             header('Location:'.$_SERVER['HTTP_REFERER']);
             exit;
