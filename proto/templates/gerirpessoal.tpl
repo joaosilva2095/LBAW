@@ -112,7 +112,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="freq">Frequencia de Pagamento</label>
-                                <select class="form-control" id="freq" required="required">
+                                <select class="form-control" id="periodicity" required="required">
                                     <option>Semanal</option>
                                     <option>Mensal</option>
                                     <option>Trimestral</option>

@@ -15,11 +15,10 @@ if (!isset($_POST['role'])) {
     http_response_code(404);
     return;
 }
-$role = $_POST['role'];
 
 // Check if all parameters exist
-$params = array('id', 'email', 'password', 'name', 'gender', 'birth');
-if ($role === 'Amigo') array_push($params, 'nif', 'cellphone', 'donative_type', 'periodicity');
+$params = array('id', 'role', 'email', 'password', 'name', 'gender', 'birth');
+if ($_POST['role'] === 'Amigo') array_push($params, 'nif', 'cellphone', 'donative_type', 'periodicity');
 
 foreach($params as $param) {
     if (!isset($_POST[$param])) {

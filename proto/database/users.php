@@ -27,7 +27,7 @@ function register_friend($id, $email, $password, $name, $gender, $birth, $nif, $
     global $conn;
     $stmt = $conn->prepare("INSERT INTO friends 
                             VALUES (?, ?, ?, false, null, null, ?, ?, ?)");
-    return $stmt->execute($id, $nif, $cellphone, $donative_type, $periodicity, $donative_amount);
+    return $stmt->execute(array($id, $nif, $cellphone, $donative_type, $periodicity, $donative_amount));
 }
 
 /**
@@ -46,7 +46,7 @@ function register_user($id, $role, $email, $password, $name, $gender, $birth) {
     global $conn;
     $stmt = $conn->prepare("INSERT INTO users 
                             VALUES (?, ?, ?, ?, ?, ?, ?)");
-    return $stmt->execute($id, $role, $email, $password, $name, $gender, $birth);
+    return $stmt->execute(array($id, $role, $email, $password, $name, $gender, $birth));
 }
 
 /**

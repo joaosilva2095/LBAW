@@ -11,6 +11,9 @@ function registerUser() {
     var gender = $('#gender').val();
     var birth = $('#birthdate').val();
 
+
+    console.log(role);
+
     // Async call to login
     $.post(
         "../api/register_user.php",
@@ -24,7 +27,7 @@ function registerUser() {
             birth: birth
         },
         function (data, statusText, xhr) {
-            console.log(xhr.status);
+            $('#registerUser').modal('hide');
         })
         .fail(function (error) {
             console.log("Error while processing the registration of the new user...");
@@ -67,7 +70,7 @@ function registerFriend() {
             periodicity: periodicity
         },
         function (data, statusText, xhr) {
-            console.log(xhr.status);
+            $('#registerUser').modal('hide');
         })
         .fail(function (error) {
             console.log("Error while processing the registration of the new user...");
