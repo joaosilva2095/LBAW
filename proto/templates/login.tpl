@@ -13,13 +13,13 @@
     <title>G.A.S.Porto - Login</title>
 
     <!-- Bootstrap -->
-    <link href="css/vendor/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/vendor/bootstrap.min.css" rel="stylesheet">
 
     <!-- Font Awesome -->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
 
     <!-- G.A.S.Porto -->
-    <link href="css/login.css" rel="stylesheet">
+    <link href="../css/login.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -53,13 +53,13 @@
     </div>
 
     <!-- JQuery -->
-    <script src="js/vendor/jquery.min.js"></script>
+    <script src="../js/vendor/jquery.min.js"></script>
 
     <!-- Bootstrap -->
-    <script src="js/vendor/bootstrap.min.js"></script>
+    <script src="../js/vendor/bootstrap.min.js"></script>
 
     <!-- G.A.S.Porto -->
-    <script src="js/holder.min.js"></script>
+    <script src="../js/holder.min.js"></script>
 </body>
 
 </html>
