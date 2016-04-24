@@ -23,11 +23,12 @@ function registerUser() {
             gender: gender,
             birth: birth
         },
-        function (data) {
-            console.log(data.status);
+        function (data, statusText, xhr) {
+            console.log(xhr.status);
         })
         .fail(function (error) {
-            displayError("Error while processing the registration of the new user...");
+            console.log("Error while processing the registration of the new user...");
+            console.log(error.status);
         });
 }
 
@@ -46,8 +47,8 @@ function registerFriend() {
 
     var nif = $('#nif').val();
     var cellphone = $('#cellphone').val();
-    var donativeType = ('#paymethod').val();
-    var periodicity = ('#periodicity').val();
+    var donativeType = $('#paymethod').val();
+    var periodicity = $('#periodicity').val();
 
     // Async call to login
     $.post(
@@ -65,11 +66,12 @@ function registerFriend() {
             donative_type: donativeType,
             periodicity: periodicity
         },
-        function (data) {
-            console.log(data.status);
+        function (data, statusText, xhr) {
+            console.log(xhr.status);
         })
         .fail(function (error) {
-            displayError("Error while processing the registration of the new user...");
+            console.log("Error while processing the registration of the new user...");
+            console.log(error.status);
         });
 }
 

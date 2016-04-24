@@ -1,16 +1,20 @@
 <?php 
-include_once('../../config/init.php');
+include_once('../config/init.php');
 include_once($BASE_DIR.'database/users.php');
 
 // Check if the user is logged in
-if (!isset($_SESSION['username'])) return;
+if(!isset($_SESSION['username'])) {
+    $_SESSION['error_messages'][] = 'No permission to access this page!';
+    http_response_code(404);
+    return;
+}
 
 // TODO Check permissions
 
 // Role
 if (!isset($_POST['role'])) {
     $_SESSION['error_messages'][] = 'Parameters are missing!';
-    header('', true, 404);
+    http_response_code(404);
     return;
 }
 $role = $_POST['role'];
@@ -22,7 +26,7 @@ if ($role === 'Amigo') array_push($params, 'nif', 'cellphone', 'donative_type', 
 foreach($params as $param) {
     if (!isset($_POST[$param])) {
         $_SESSION['error_messages'][] = 'Parameters are missing!';
-        header('', true, 404);
+        http_response_code(404);
         return;
     } else {
         $params[$param] = $_POST[$param];
@@ -32,7 +36,7 @@ foreach($params as $param) {
 // Validate input parameters
 if (!filter_var($params['email'], FILTER_VALIDATE_EMAIL)) {
     $_SESSION['error_messages'][] = 'Invalid input emails!';
-    header('', true, 404);
+    http_response_code(404);
     return;
 }
 
@@ -64,11 +68,11 @@ if ($role === 'Amigo') {
 // Return result
 if ($result) {
     $_SESSION['success_messages'][] = 'Registered successfully!';
-    header('', true, 200);
+    http_response_code(200);
     return;
 } else {
     $_SESSION['error_messages'][] = 'Error while registering in the database!';
-    header('', true, 404);
+    http_response_code(404);
     return;
 }
 

@@ -75,9 +75,9 @@
                         <div class="form-group">
                             <label for="gender">Género:</label>
                             <select class="form-control" id="gender" required="required">
-                            <option>M</option>
-                            <option>F</option>
-                        </select>
+                                <option>M</option>
+                                <option>F</option>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="birthdate">Data de Nascimento:</label>
@@ -86,10 +86,10 @@
                         <div class="form-group">
                             <label for="role">Cargo:</label>
                             <select class="form-control" id="role" required="required">
-                            <option>Amigo</option>
-                            <option>Administrador</option>
-                            <option>Contabilista</option>
-                        </select>
+                                <option>Amigo</option>
+                                <option>Administrador</option>
+                                <option>Contabilista</option>
+                            </select>
                         </div>
 
                         <div id="friendOnlyParams">
