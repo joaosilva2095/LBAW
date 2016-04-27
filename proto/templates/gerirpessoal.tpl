@@ -20,7 +20,7 @@
                                 <th>Opções</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="users">
 
                             {foreach $users as $key => $user}
 
@@ -138,6 +138,9 @@
     <!-- JQuery -->
     <script src="{$BASE_URL}js/vendor/jquery.min.js"></script>
 
+    <!-- JQuery UI -->
+    <script src="{$BASE_URL}js/vendor/jquery-ui.min.js"></script>
+    
     <!-- Bootstrap -->
     <script src="{$BASE_URL}js/vendor/bootstrap.min.js"></script>
 

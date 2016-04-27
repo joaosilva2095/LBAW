@@ -34,7 +34,7 @@ if (is_login_correct($username, $password)) {
     $role = get_user_role($username);
 
     if ($role === false || count($role) == 0) { //Error
-        $_SESSION['error_message'] = 'role not found';
+        $_SESSION['error_message'] = 'Role not found';
         //destroy_session();
         header('Location:'.$_SERVER['HTTP_REFERER']);
         exit;
