@@ -27,7 +27,7 @@
                     </ul>
 
                 </li>
-                <li><a href="login.html"><i class="fa fa-lock"></i> Sair</a></li>
+                <li><a href="{$BASE_URL}actions/logout.php"><i class="fa fa-lock"></i> Sair</a></li>
             </ul>
             <form class="navbar-form navbar-right" action="pesquisa.html" method="GET">
                 <input type="text" class="form-control" placeholder="Search...">
