@@ -9,10 +9,18 @@ if ($role != "Amigo") {
     exit;
 }
 
-//TODO VERIFICAR SE DÁ FALSE
+
 $friend = get_friend_info($_SESSION['username']);
 
-//TODO VERIFICAR SE DÁ FALSE
+if ($friend === false) {
+    unset($_SESSION);
+    session_destroy();
+    session_write_close();
+
+    $smarty->display('../templates/login.tpl');
+}
+
+
 $history = get_user_history($friend['id']);
 
 $smarty->assign('user', $friend);
