@@ -13,7 +13,7 @@ include_once("../database/users.php");
 
 //Input	control
 if (!$_POST['username'] || !$_POST['password']) {
-    $_SESSION['error_message'] = "Invalid Login";
+    $_SESSION['error_messages'] = "Invalid Login";
     $_SESSION['form_values'] = $_POST;
     header('Location: '.$_SERVER['HTTP_REFERER']);
     exit;
@@ -25,7 +25,7 @@ $password = $_POST['password'];
 //Data	operations
 if (is_login_correct($username, $password)) {
     $_SESSION['username'] = $username;
-    $_SESSION['success_message'] = 'Login successful';
+    $_SESSION['success_messages'] = 'Login successful';
 
     /*Get user's role*/
     //echo "<script type='text/javascript'>alert('$username');</script>";
@@ -34,7 +34,7 @@ if (is_login_correct($username, $password)) {
     $role = get_user_role($username);
 
     if ($role === false || count($role) == 0) { //Error
-        $_SESSION['error_message'] = 'Role not found';
+        $_SESSION['error_messages'] = 'Role not found';
         //destroy_session();
         header('Location:'.$_SERVER['HTTP_REFERER']);
         exit;
@@ -57,13 +57,13 @@ if (is_login_correct($username, $password)) {
             break;
         default:
             //Error
-            $_SESSION['error_message'] = "Invalid Privileges";
+            $_SESSION['error_messages'] = "Invalid Privileges";
            // destroy_session();
             header('Location:'.$_SERVER['HTTP_REFERER']);
             exit;
     }
 } else {
-    $_SESSION['error_message'] = 'Login failed';
+    $_SESSION['error_messages'] = 'Login failed';
     // destroy_session();
     //Redirect to login
     header('Location: '.$_SERVER['HTTP_REFERER']);

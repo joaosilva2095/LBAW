@@ -9,6 +9,5 @@ if (strcmp($role, "Administrador") != 0) {
     $_SESSION['error_messages'][] = 'No permission to access this page!';
     exit;
 } else {
-    //TODO smarty->display("../templates/visaogeral.tpl");
     header('Location: gerirpessoal.php');
 }
