@@ -13,7 +13,7 @@
                     <table class="table table-striped table-hover">
                         <thead>
                             <tr>
-                                <th>id</th>
+                                <th>ID</th>
                                 <th>Nome</th>
                                 <th>Data Nascimento</th>
                                 <th>Cargo</th>
@@ -149,14 +149,6 @@
 
     <!-- G.A.S.Porto -->
     <script src="{$BASE_URL}js/gerirpessoal.min.js"></script>
-
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('[data-toggle="tooltip"]').tooltip({
-                placement: 'top'
-            });
-        });
-    </script>
 </body>
 
 {include file='common/footer.tpl'}
