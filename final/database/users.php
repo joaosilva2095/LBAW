@@ -85,7 +85,7 @@ function is_login_correct($username, $password) {
 **/
 function get_user_role($email) {
     global $conn;
-    $stmt = $conn->prepare("SELECT ROLE 
+    $stmt = $conn->prepare("SELECT role 
                             FROM users 
                             WHERE email = ?");
     $stmt->execute(array($email));
