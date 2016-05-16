@@ -2,7 +2,6 @@
 include_once('../config/init.php');
 include_once($BASE_DIR.'database/users.php');
 
-echo $_SESSION['role'];
 // Validate user
 if (!isset($_SESSION['username'])
 || !isset($_SESSION['username'])

@@ -59,6 +59,28 @@ function registerUser() {
 }
 
 /**
+ * Remove a user from the database
+ */
+function removeUser() {
+    // Variables
+    var id = $(this).closest('tr').attr('id');
+
+    // Async call to login
+    $.post(
+        "../api/delete_user.php", {
+            id: id
+        },
+        function (data, statusText, xhr) {
+            $('#user' + id).remove();
+            
+            enableTooltips();
+        })
+        .fail(function (error) {
+            $('#user' + id).highlightAnimation('#A94442', 1500);
+        });    
+}
+
+/**
  * Enable the tooltips
  */
 function enableTooltips() {
@@ -89,6 +111,8 @@ $(document).ready(function () {
     enableTooltips();
     
     $('#registerUserSubmit').click(registerUser);
+    
+    $('i[data-original-title="Eliminar"]').click(removeUser);
 
     $('#role').change(function () {
         var role = $('#role').val();
