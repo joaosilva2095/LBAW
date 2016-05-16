@@ -17,6 +17,8 @@ $history = get_user_history($friend['id']);
 
 $smarty->assign('user', $friend);
 $smarty->assign('history', $history);
+
+
 $smarty->display('../templates/amigo.tpl');
 
 ?>
