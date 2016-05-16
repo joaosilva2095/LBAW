@@ -27,7 +27,13 @@ function register_friend($id, $email, $password, $name, $gender, $birth, $nif, $
     global $conn;
     $stmt = $conn->prepare("INSERT INTO friends 
                             VALUES (?, ?, ?, false, null, null, ?, ?, ?)");
-    return $stmt->execute(array($id, $nif, $cellphone, $donative_type, $periodicity, $donative_amount));
+
+    try {
+        return $stmt->execute(array($id, $nif, $cellphone, $donative_type, $periodicity, $donative_amount));
+    } catch (PDOException $e) {
+        if($e->getCode() == 23505) return false; // Unique constraint violation
+        else return false; // TODO Log to the file
+    }
 }
 
 /**
@@ -46,7 +52,12 @@ function register_user($id, $role, $email, $password, $name, $gender, $birth) {
     global $conn;
     $stmt = $conn->prepare("INSERT INTO users 
                             VALUES (?, ?, ?, ?, ?, ?, ?)");
-    return $stmt->execute(array($id, $role, $email, $password, $name, $gender, $birth));
+    try {
+        return $stmt->execute(array($id, $role, $email, $password, $name, $gender, $birth));
+    } catch (PDOException $e) {
+        if($e->getCode() == 23505) return false; // Unique constraint violation
+        else return false; // TODO Log to the file
+    }
 }
 
 /**
@@ -85,6 +96,7 @@ function is_login_correct($username, $password) {
 **/
 function get_user_role($email) {
     global $conn;
+
     $stmt = $conn->prepare("SELECT ROLE 
                             FROM users 
                             WHERE email = ?");

@@ -54,8 +54,7 @@ function registerUser() {
             enableTooltips();
         })
         .fail(function (error) {
-            console.log("Error while processing the registration of the new user...");
-            console.log(error.status);
+            $('#registerStatus').fadeIn();
         });
 }
 

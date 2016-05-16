@@ -123,6 +123,10 @@
                         </div>
 
                     </form>
+                    <div class="alert alert-danger alert-dismissible" style="display: none;" role="alert" id="registerStatus">
+                        <button type="button" class="close" onclick="$('#registerStatus').fadeOut()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        Failed to register the new user!
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
@@ -140,7 +144,6 @@
 
     <!-- JQuery UI -->
     <script src="{$BASE_URL}js/vendor/jquery-ui.min.js"></script>
-    
     <!-- Bootstrap -->
     <script src="{$BASE_URL}js/vendor/bootstrap.min.js"></script>
 

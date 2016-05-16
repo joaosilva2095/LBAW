@@ -12,7 +12,6 @@ if (!isset($_SESSION['username'])
     return;
 }
 
-echo '1';
 // Role
 if (!isset($_POST['role'])) {
     $_SESSION['error_messages'][] = 'Parameters are missing!';
@@ -24,7 +23,7 @@ if (!isset($_POST['role'])) {
 $params = array('id', 'role', 'email', 'password', 'name', 'gender', 'birth');
 if ($_POST['role'] === 'Amigo') array_push($params, 'nif', 'cellphone', 'donative_type', 'periodicity');
 
-echo '2';
+
 foreach($params as $param) {
     if (!isset($_POST[$param])) {
         $_SESSION['error_messages'][] = 'Parameters are missing!';
@@ -35,7 +34,7 @@ foreach($params as $param) {
     }
 }
 
-echo '3';
+
 // Validate input parameters
 if (!filter_var($params['email'], FILTER_VALIDATE_EMAIL)) {
     $_SESSION['error_messages'][] = 'Invalid input emails!';
@@ -68,7 +67,7 @@ if ($role === 'Amigo') {
     $params['birth']);
 }
 
-echo '4';
+
 // Return result
 if ($result) {
     $_SESSION['success_messages'][] = 'Registered successfully!';
