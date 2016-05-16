@@ -20,7 +20,7 @@
 
                         {foreach $notifications as $notification}
 
-                        <li class="list-group-item list-group-item-{$notification.type}">{$notification.description}</li>
+                        <li class="list-group-item list-group-item-{$notification.notification_type|@strtolower}">{$notification.description}</li>
 
                         {/foreach}
                         
