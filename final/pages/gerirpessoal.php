@@ -11,9 +11,9 @@ if (!isset($_SESSION['username'])
     return;
 }
 
-$user = get_user_by_name($_SESSION['username']);
+$user = get_user_by_email($_SESSION['username']);
 $users = get_all_users();
-$notifications = array();
+$notifications = get_user_notifications($user['id']);
 
 $smarty->assign('notifications', $notifications);
 $smarty->assign('user', $user);

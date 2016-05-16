@@ -103,12 +103,12 @@ function get_user_role($email) {
 }
 
 /**
-    Get user's entity
+    Get user's entity by its email
    
     @param email user's username
     @returns User user entity or false if fail   
 **/
-function get_user_by_name($email) {
+function get_user_by_email($email) {
     global $conn;
     $stmt = $conn->prepare("SELECT * 
                             FROM users 
@@ -117,6 +117,20 @@ function get_user_by_name($email) {
     return $stmt->fetch();
 }
 
+/**
+    Get the notifications of a user
+    
+    @param user user to get the notifications
+    @return all the notifications of the user
+**/
+function get_user_notifications($user) {
+    global $conn;
+    $stmt = $conn->prepare("SELECT * 
+                            FROM web_notifications 
+                            WHERE user_id = ?");
+    $stmt->execute(array($user));
+    return $stmt->fetchAll();
+}
 
 /**
     Get friends's info (entity) from 2 querries (user + friend)
