@@ -24,7 +24,7 @@
 
                             {foreach $users as $key => $user}
 
-                            <tr>
+                            <tr id="user{$user.id}">
                                 <td>{$user.id}</td>
                                 <td>{$user.name}</td>
                                 <td>{$user.birth}</td>

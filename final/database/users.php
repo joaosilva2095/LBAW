@@ -61,6 +61,20 @@ function register_user($id, $role, $email, $password, $name, $gender, $birth) {
 }
 
 /**
+    Remove a user from the database
+    
+    @param id id of the user to remove
+    @return true if successfull, false otherwise
+**/
+function remove_user($id) {
+    global $conn;
+    
+    $stmt = $conn->prepare("DELETE FROM users 
+                            WHERE id = ?");
+    return $stmt->execute(array($id));
+}
+
+/**
     Get all the users of the database
     @return all the users of the database
  */
@@ -141,7 +155,7 @@ function get_user_notifications($user) {
     @returns User friend entity or false if fail   
 **/
 function get_friend_info($username) {
-    if (($user = get_user_by_name($username)) === false) {
+    if (($user = get_user_by_email($username)) === false) {
         return false;
     }
 
