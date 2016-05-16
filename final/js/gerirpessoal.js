@@ -54,7 +54,7 @@ function registerUser() {
             enableTooltips();
         })
         .fail(function (error) {
-            $('#registerStatus').show();
+            $('#registerStatus').fadeIn();
         });
 }
 

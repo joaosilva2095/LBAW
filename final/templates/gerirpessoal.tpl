@@ -124,8 +124,8 @@
 
                     </form>
 
-                    <div class="alert alert-error alert-dismissible hidden" role="alert" id="registerStatus">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <div class="alert alert-danger alert-dismissible" style="display: none;" role="alert" id="registerStatus">
+                        <button type="button" class="close" onclick="$('#registerStatus').fadeOut()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         Failed to register the new user!
                     </div>
                 </div>
