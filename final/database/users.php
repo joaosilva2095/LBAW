@@ -27,6 +27,7 @@ function register_friend($id, $email, $password, $name, $gender, $birth, $nif, $
     global $conn;
     $stmt = $conn->prepare("INSERT INTO friends 
                             VALUES (?, ?, ?, false, null, null, ?, ?, ?)");
+
     try {
         return $stmt->execute(array($id, $nif, $cellphone, $donative_type, $periodicity, $donative_amount));
     } catch (PDOException $e) {
@@ -95,7 +96,8 @@ function is_login_correct($username, $password) {
 **/
 function get_user_role($email) {
     global $conn;
-    $stmt = $conn->prepare("SELECT role 
+
+    $stmt = $conn->prepare("SELECT ROLE 
                             FROM users 
                             WHERE email = ?");
     $stmt->execute(array($email));

@@ -1,11 +1,41 @@
-{include file='common/header.tpl'}
+<?php /* Smarty version Smarty-3.1.15, created on 2016-05-09 17:55:55
+         compiled from "/opt/lbaw/lbaw1532/public_html/final/templates/gerirpessoal.tpl" */ ?>
+<?php /*%%SmartyHeaderCode:21096728215730ae4904c941-21528714%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+$_valid = $_smarty_tpl->decodeProperties(array (
+  'file_dependency' => 
+  array (
+    '0cb3d76f9be4f08c0b7c8bdb654192312a020fcb' => 
+    array (
+      0 => '/opt/lbaw/lbaw1532/public_html/final/templates/gerirpessoal.tpl',
+      1 => 1462809352,
+      2 => 'file',
+    ),
+  ),
+  'nocache_hash' => '21096728215730ae4904c941-21528714',
+  'function' => 
+  array (
+  ),
+  'version' => 'Smarty-3.1.15',
+  'unifunc' => 'content_5730ae49148db7_88625104',
+  'variables' => 
+  array (
+    'users' => 0,
+    'user' => 0,
+    'BASE_URL' => 0,
+  ),
+  'has_nocache_code' => false,
+),false); /*/%%SmartyHeaderCode%%*/?>
+<?php if ($_valid && !is_callable('content_5730ae49148db7_88625104')) {function content_5730ae49148db7_88625104($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ('common/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
+
 
 <body>
-    {include file='common/navbar.tpl'}
+    <?php echo $_smarty_tpl->getSubTemplate ('common/navbar.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
+
 
     <div class="container-fluid">
         <div class="row">
-            {include file='common/sidebar_adm.tpl'}
+            <?php echo $_smarty_tpl->getSubTemplate ('common/sidebar_adm.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
+
 
             <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
                 <h1 class="page-header">Gerir Pessoal</h1>
@@ -22,13 +52,23 @@
                         </thead>
                         <tbody id="users">
 
-                            {foreach $users as $key => $user}
+                            <?php  $_smarty_tpl->tpl_vars['user'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['user']->_loop = false;
+ $_smarty_tpl->tpl_vars['key'] = new Smarty_Variable;
+ $_from = $_smarty_tpl->tpl_vars['users']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
+foreach ($_from as $_smarty_tpl->tpl_vars['user']->key => $_smarty_tpl->tpl_vars['user']->value) {
+$_smarty_tpl->tpl_vars['user']->_loop = true;
+ $_smarty_tpl->tpl_vars['key']->value = $_smarty_tpl->tpl_vars['user']->key;
+?>
 
                             <tr>
-                                <td>{$user.id}</td>
-                                <td>{$user.name}</td>
-                                <td>{$user.birth}</td>
-                                <td>{$user.role}</td>
+                                <td><?php echo $_smarty_tpl->tpl_vars['user']->value['id'];?>
+</td>
+                                <td><?php echo $_smarty_tpl->tpl_vars['user']->value['name'];?>
+</td>
+                                <td><?php echo $_smarty_tpl->tpl_vars['user']->value['birth'];?>
+</td>
+                                <td><?php echo $_smarty_tpl->tpl_vars['user']->value['role'];?>
+</td>
                                 <td>
                                     <i class="fa fa-pencil fa-lg fa-fw" data-toggle="tooltip" data-original-title="Editar"></i>
                                     <i class="fa fa-briefcase fa-lg fa-fw" data-toggle="tooltip" data-original-title="Alterar Cargo"></i>
@@ -36,7 +76,7 @@
                                 </td>
                             </tr>
 
-                            {/foreach}
+                            <?php } ?>
 
                         </tbody>
                     </table>
@@ -123,10 +163,6 @@
                         </div>
 
                     </form>
-                    <div class="alert alert-danger alert-dismissible" style="display: none;" role="alert" id="registerStatus">
-                        <button type="button" class="close" onclick="$('#registerStatus').fadeOut()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        Failed to register the new user!
-                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
@@ -140,18 +176,25 @@
     <!-- /.modal -->
 
     <!-- JQuery -->
-    <script src="{$BASE_URL}js/vendor/jquery.min.js"></script>
+    <script src="<?php echo $_smarty_tpl->tpl_vars['BASE_URL']->value;?>
+js/vendor/jquery.min.js"></script>
 
     <!-- JQuery UI -->
-    <script src="{$BASE_URL}js/vendor/jquery-ui.min.js"></script>
+    <script src="<?php echo $_smarty_tpl->tpl_vars['BASE_URL']->value;?>
+js/vendor/jquery-ui.min.js"></script>
+    
     <!-- Bootstrap -->
-    <script src="{$BASE_URL}js/vendor/bootstrap.min.js"></script>
+    <script src="<?php echo $_smarty_tpl->tpl_vars['BASE_URL']->value;?>
+js/vendor/bootstrap.min.js"></script>
 
     <!-- G.A.S.Porto -->
-    <script src="{$BASE_URL}js/holder.min.js"></script>
+    <script src="<?php echo $_smarty_tpl->tpl_vars['BASE_URL']->value;?>
+js/holder.min.js"></script>
 
     <!-- G.A.S.Porto -->
-    <script src="{$BASE_URL}js/gerirpessoal.min.js"></script>
+    <script src="<?php echo $_smarty_tpl->tpl_vars['BASE_URL']->value;?>
+js/gerirpessoal.min.js"></script>
 </body>
 
-{include file='common/footer.tpl'}
+<?php echo $_smarty_tpl->getSubTemplate ('common/footer.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
+<?php }} ?>

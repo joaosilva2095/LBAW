@@ -2,6 +2,7 @@
 include_once('../config/init.php');
 include_once($BASE_DIR.'database/users.php');
 
+echo $_SESSION['role'];
 // Validate user
 if (!isset($_SESSION['username'])
 || !isset($_SESSION['username'])
@@ -22,6 +23,7 @@ if (!isset($_POST['role'])) {
 $params = array('id', 'role', 'email', 'password', 'name', 'gender', 'birth');
 if ($_POST['role'] === 'Amigo') array_push($params, 'nif', 'cellphone', 'donative_type', 'periodicity');
 
+
 foreach($params as $param) {
     if (!isset($_POST[$param])) {
         $_SESSION['error_messages'][] = 'Parameters are missing!';
@@ -31,6 +33,7 @@ foreach($params as $param) {
         $params[$param] = $_POST[$param];
     }
 }
+
 
 // Validate input parameters
 if (!filter_var($params['email'], FILTER_VALIDATE_EMAIL)) {
@@ -63,6 +66,7 @@ if ($role === 'Amigo') {
     $params['gender'],
     $params['birth']);
 }
+
 
 // Return result
 if ($result) {
