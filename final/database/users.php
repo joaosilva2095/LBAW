@@ -171,7 +171,7 @@ function get_friend_info($username) {
         return false;
     }
 
-    return array_merge($user, $friend[0]);
+    return array_merge($user, $friend);
 }
 
 
