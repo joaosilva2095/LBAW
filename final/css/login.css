@@ -6,7 +6,6 @@ a, a:active, a:hover, a:focus, a:link, a:visited, input::-moz-focus-inner, butto
     outline: none;
 }
 
-
 /*
     Elements
 */
@@ -19,12 +18,10 @@ html, body {
     font-family: Roboto, sans-serif;
     background-color: #00325F;
 }
-
 input, input:focus, input:active {
     border-color: transparent !important;
     box-shadow: none !important;
 }
-
 
 /*
     Classes
@@ -35,45 +32,36 @@ input, input:focus, input:active {
     top: 50%;
     transform: translateY(-50%);
 }
-
 .h-align {
     margin-left: auto;
     margin-right: auto;
     float: none;
 }
-
 .row {
     margin: 0;
 }
-
 .page-title {
     color: white;
     font-size: 7rem;
 }
-
 .login-form {
     color: white;
-    font-size: 2.5rem;    
+    font-size: 2.5rem;
 }
-
 .login-form a {
     color: white;
 }
-
 .login-form label {
     font-weight: 400;
 }
-
 .login-form div {
     margin-top: 2rem;
     margin-bottom: 2rem;
 }
-
 .login-form input {
     height: 5rem;
     font-size: 2rem;
 }
-
 .login-form button {
     font-size: 2rem;
 }

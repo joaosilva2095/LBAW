@@ -1,4 +1,4 @@
-<?php 
+<?php
 include_once('../config/init.php');
 include_once($BASE_DIR.'database/users.php');
 
@@ -12,12 +12,11 @@ if (!isset($_SESSION['username'])
 }
 
 $user = get_user_by_email($_SESSION['username']);
-$users = get_all_users();
 $notifications = get_user_notifications($user['id']);
+$users = get_all_users();
 
-$smarty->assign('notifications', $notifications);
 $smarty->assign('user', $user);
+$smarty->assign('notifications', $notifications);
 $smarty->assign('users', $users);
 
 $smarty->display('../templates/gerirpessoal.tpl');
-?>

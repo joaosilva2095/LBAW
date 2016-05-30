@@ -2,11 +2,11 @@
     <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
             <a class="navbar-brand" href="#">G.A.S.Porto</a>
         </div>
 
@@ -23,14 +23,14 @@
                         <li class="list-group-item list-group-item-{$notification.notification_type|@strtolower}">{$notification.description}</li>
 
                         {/foreach}
-                        
+
                     </ul>
 
                 </li>
                 <li><a href="{$BASE_URL}actions/logout.php"><i class="fa fa-lock"></i> Sair</a></li>
             </ul>
-            <form class="navbar-form navbar-right" action="pesquisa.html" method="GET">
-                <input type="text" class="form-control" placeholder="Search...">
+            <form class="navbar-form navbar-right" role="search" action="pesquisa.php" method="GET">
+                <input name="user" type="text" class="form-control" placeholder="Search...">
             </form>
         </div>
     </div>

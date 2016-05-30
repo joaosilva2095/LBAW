@@ -1,7 +1,8 @@
-<?php 
+<?php
 
 //==============================//
-function destroy_session() {
+function destroy_session()
+{
     unset($_SESSION);
     session_destroy();
     session_write_close();
@@ -13,7 +14,6 @@ include_once("../database/users.php");
 
 //Input	control
 if (!$_POST['username'] || !$_POST['password']) {
-
     $_SESSION['error_messages'] = "Invalid Login";
 
     $_SESSION['form_values'] = $_POST;
@@ -33,7 +33,7 @@ if (is_login_correct($username, $password)) {
 
     /*Get user's role*/
     //echo "<script type='text/javascript'>alert('$username');</script>";
-    //sleep(3);    
+    //sleep(3);
 
     $role = get_user_role($username);
 
@@ -47,7 +47,7 @@ if (is_login_correct($username, $password)) {
     }
 
     /* Redirects to user's home page according to user's role */
-       
+
     switch ($role['role']) {
         case "Administrador":
             $_SESSION['role'] = $role['role'];
@@ -70,11 +70,9 @@ if (is_login_correct($username, $password)) {
             exit;
     }
 } else {
-    $_SESSION['error_messages'] = 'Login failed';   
+    $_SESSION['error_messages'] = 'Login failed';
     // destroy_session();
     //Redirect to login
     header('Location: '.$_SERVER['HTTP_REFERER']);
     exit;
 }
-
-?>
