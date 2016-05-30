@@ -34,7 +34,6 @@ function registerUser() {
         },
         function (data, statusText, xhr) {
             $('#registerUser').modal('hide');
-            $('#registerUser form').trigger('reset');
 
             $('#users tr:last').after(
                 '<tr>' +
@@ -49,7 +48,7 @@ function registerUser() {
                 '</td>' +
                 '</tr>'
             );
-            
+
             $('#users tr:last').highlightAnimation('#DFF0D8', 1500);
             enableTooltips();
         })
@@ -64,6 +63,7 @@ function registerUser() {
 function removeUser() {
     // Variables
     var id = $(this).closest('tr').attr('id');
+    id = id.replace("user", "");
 
     // Async call to login
     $.post(
@@ -72,12 +72,10 @@ function removeUser() {
         },
         function (data, statusText, xhr) {
             $('#user' + id).remove();
-            
-            enableTooltips();
         })
         .fail(function (error) {
             $('#user' + id).highlightAnimation('#A94442', 1500);
-        });    
+        });
 }
 
 /**
@@ -109,10 +107,14 @@ $.fn.highlightAnimation = function (highlightColor, duration) {
  */
 $(document).ready(function () {
     enableTooltips();
-    
+
     $('#registerUserSubmit').click(registerUser);
-    
+
     $('i[data-original-title="Eliminar"]').click(removeUser);
+
+    $('#registerStatus').click(function() {
+      $(this).fadeOut();
+    });
 
     $('#role').change(function () {
         var role = $('#role').val();

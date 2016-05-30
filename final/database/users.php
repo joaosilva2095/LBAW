@@ -1,23 +1,23 @@
-<?php 
+<?php
 
 include_once("../config/init.php");
 
 /**
-    Register a friend in the database
-    
-    @param id id of the user to be registered
-    @param role role of the user (might be "Contabilista", "Administrador", "Amigo")
-    @param email email of the user, it will be used to login
-    @param password unhashed user password
-    @param name name of the user
-    @param gender gender of the user
-    @param birth birth date of the user
-    @param nif nif of the user
-    @param cellphone cellphone of the user
-    @param donative_type donative type of the user (might be "Referência Multibanco", "Débito Direto", "Transferência Bancária", "Numerário")Fixe
-    @param periodicity periodicity of the donative payment
-    @param donative_amount donative amount of the user
-    @return true if successfull, false otherwise
+ *  Register a friend in the database
+
+ *  @param id id of the user to be registered
+ *  @param role role of the user (might be "Contabilista", "Administrador", "Amigo")
+ *  @param email email of the user, it will be used to login
+ *  @param password unhashed user password
+ *  @param name name of the user
+ *  @param gender gender of the user
+ *  @param birth birth date of the user
+ *  @param nif nif of the user
+ *  @param cellphone cellphone of the user
+ *  @param donative_type donative type of the user (might be "Referência Multibanco", "Débito Direto", "Transferência Bancária", "Numerário")Fixe
+ *  @param periodicity periodicity of the donative payment
+ *  @param donative_amount donative amount of the user
+ *  @return true if successfull, false otherwise
  */
 function register_friend($id, $email, $password, $name, $gender, $birth, $nif, $cellphone, $donative_type, $periodicity, $donative_amount) {
     // Register the user in the database
@@ -25,7 +25,7 @@ function register_friend($id, $email, $password, $name, $gender, $birth, $nif, $
 
     // Register the friend
     global $conn;
-    $stmt = $conn->prepare("INSERT INTO friends 
+    $stmt = $conn->prepare("INSERT INTO friends
                             VALUES (?, ?, ?, false, null, null, ?, ?, ?)");
 
     try {
@@ -37,20 +37,20 @@ function register_friend($id, $email, $password, $name, $gender, $birth, $nif, $
 }
 
 /**
-    Register a user in the database
+ *  Register a user in the database
 
-    @param id id of the user to be registered
-    @param role role of the user (might be "Contabilista", "Administrador", "Amigo")
-    @param email email of the user, it will be used to login
-    @param password unhashed user password
-    @param name name of the user
-    @param gender gender of the user
-    @param birth birth date of the user
-    @return true if successfull, false otherwise
+ *  @param id id of the user to be registered
+ *  @param role role of the user (might be "Contabilista", "Administrador", "Amigo")
+ *  @param email email of the user, it will be used to login
+ *  @param password unhashed user password
+ *  @param name name of the user
+ *  @param gender gender of the user
+ *  @param birth birth date of the user
+ *  @return true if successfull, false otherwise
  */
 function register_user($id, $role, $email, $password, $name, $gender, $birth) {
     global $conn;
-    $stmt = $conn->prepare("INSERT INTO users 
+    $stmt = $conn->prepare("INSERT INTO users
                             VALUES (?, ?, ?, ?, ?, ?, ?)");
     try {
         return $stmt->execute(array($id, $role, $email, $password, $name, $gender, $birth));
@@ -61,22 +61,22 @@ function register_user($id, $role, $email, $password, $name, $gender, $birth) {
 }
 
 /**
-    Remove a user from the database
-    
-    @param id id of the user to remove
-    @return true if successfull, false otherwise
-**/
+ *  Remove a user from the database
+ *
+ *  @param id id of the user to remove
+ *  @return true if successfull, false otherwise
+ */
 function remove_user($id) {
     global $conn;
-    
-    $stmt = $conn->prepare("DELETE FROM users 
+
+    $stmt = $conn->prepare("DELETE FROM users
                             WHERE id = ?");
     return $stmt->execute(array($id));
 }
 
 /**
-    Get all the users of the database
-    @return all the users of the database
+ *  Get all the users of the database
+ *  @return all the users of the database
  */
 function get_all_users() {
     global $conn;
@@ -86,85 +86,84 @@ function get_all_users() {
 }
 
 /**
-    Verify the user credentials by querrying the database.
-    Uses sha256 encryptation.
-   
-    @param username user's name
-    @param password user's password   
-**/
+ *  Verify the user credentials by querrying the database.
+ *  Uses sha256 encryptation.
 
+ *  @param username user's name
+ *  @param password user's password
+ */
 function is_login_correct($username, $password) {
     global $conn;
-    $stmt = $conn->prepare("SELECT * 
-                            FROM users 
+    $stmt = $conn->prepare("SELECT *
+                            FROM users
                             WHERE email = ? AND password = ?");
     $stmt->execute(array($username, hash("sha256", $password)));
     return $stmt->fetch() == true;
 }
 
 /**
-    Get user's role.
-   
-    @param email user's username
-    @returns User's role in case of success or false on failure.    
-**/
+ *  Get user's role.
+
+ *  @param email user's username
+ *  @returns User's role in case of success or false on failure.
+ */
 function get_user_role($email) {
     global $conn;
 
-    $stmt = $conn->prepare("SELECT ROLE 
-                            FROM users 
+    $stmt = $conn->prepare("SELECT ROLE
+                            FROM users
                             WHERE email = ?");
     $stmt->execute(array($email));
     return $stmt->fetch();
 }
 
 /**
-    Get user's entity by its email
-   
-    @param email user's username
-    @returns User user entity or false if fail   
-**/
+ *  Get user's entity by its email
+
+ *  @param email user's username
+ *  @returns User user entity or false if fail
+ */
 function get_user_by_email($email) {
     global $conn;
-    $stmt = $conn->prepare("SELECT * 
-                            FROM users 
+    $stmt = $conn->prepare("SELECT *
+                            FROM users
                             WHERE email = ?");
     $stmt->execute(array($email));
     return $stmt->fetch();
 }
 
 /**
-    Get the notifications of a user
-    
-    @param user user to get the notifications
-    @return all the notifications of the user
-**/
+ *  Get the notifications of a user
+
+ *  @param user user to get the notifications
+ *  @return all the notifications of the user
+ */
 function get_user_notifications($user) {
     global $conn;
-    $stmt = $conn->prepare("SELECT * 
-                            FROM web_notifications 
+    $stmt = $conn->prepare("SELECT *
+                            FROM web_notifications
                             WHERE user_id = ?");
     $stmt->execute(array($user));
     return $stmt->fetchAll();
 }
 
 /**
-    Get friends's info (entity) from 2 querries (user + friend)
-   
-    @param email user's username
-    @returns User friend entity or false if fail   
-**/
+ *  Get friends's info (entity) from 2 querries (user + friend)
+
+ *  @param email user's username
+ *  @returns User friend entity or false if fail
+ */
 function get_friend_info($username) {
     if (($user = get_user_by_email($username)) === false) {
         return false;
     }
 
     global $conn;
-    $stmt = $conn->prepare("SELECT * 
-                            FROM friends 
+    $stmt = $conn->prepare("SELECT *
+                            FROM friends
                             WHERE id = ?");
 
-    $stmt->execute(array($user['id']));    
+    $stmt->execute(array($user['id']));
     $friend = $stmt->fetchAll();
 
     if ($friend === false) {
@@ -176,22 +175,22 @@ function get_friend_info($username) {
 
 
 /**
-    Get user's history (KING OF SQL)
-   
-    @param id user's id
-    @returns history user's history or false if fail   
-**/
+ *  Get user's history (KING OF SQL)
+
+ *  @param id user's id
+ *  @returns history user's history or false if fail
+ */
 function get_user_history($id) {
     global $conn;
 
     //get payments history
     $stmt = $conn->prepare("
-    ((SELECT payments.id AS id, payments.payment_date AS date,payments.payment_type AS type, payments.value AS value 
+    ((SELECT payments.id AS id, payments.payment_date AS date,payments.payment_type AS type, payments.value AS value
          FROM users,friends, payments, donatives, mercha_purchases
          WHERE friends.id = ?
-         AND ( 
+         AND (
               (donatives.friend = friends.id
-               AND payments.id = donatives.id) 
+               AND payments.id = donatives.id)
               OR
               (payments.id = mercha_purchases.id AND
                mercha_purchases.friend = friends.id)
@@ -202,29 +201,29 @@ function get_user_history($id) {
         FROM events, payments, friends, friend_events,users
         WHERE users.id = ?
         AND events.id = friend_events.event
-        AND friend_events.friend = users.id        
-        GROUP BY events.id)) 
+        AND friend_events.friend = users.id
+        GROUP BY events.id))
         ORDER BY date DESC");
     $stmt->execute(array($id,$id));
 
-   return $stmt->fetchAll();    
+   return $stmt->fetchAll();
 }
 
 /**
-    Get all users's history (global)
-   
-    @returns hystory global history  
-**/
+ *  Get all users's history (global)
+
+ *  @returns hystory global history
+ */
 function get_global_history() {
     global $conn;
 
     //get payments history
-    $stmt = $conn->prepare("((SELECT friends.id, payments.id, payments.payment_date AS date,payments.payment_type AS type, payments.value AS value 
+    $stmt = $conn->prepare("((SELECT friends.id, payments.id, payments.payment_date AS date,payments.payment_type AS type, payments.value AS value
          FROM users,friends, payments, donatives, mercha_purchases
          WHERE friends.id = users.id
-         AND ( 
+         AND (
               (payments.id = donatives.id
-               AND donatives.friend = friends.id) 
+               AND donatives.friend = friends.id)
               OR
               (payments.id = mercha_purchases.id AND
                mercha_purchases.id = payments.id)
@@ -236,13 +235,12 @@ function get_global_history() {
         WHERE events.id = friend_events.event
         AND friend_events.friend = friends.id
         AND users.id = friends.id
-        GROUP BY events.id,friends.id)) 
+        GROUP BY events.id,friends.id))
         ORDER BY date"
         );
 
     $stmt->execute();
     return $stmt->fetchAll();
 }
-
 
 ?>

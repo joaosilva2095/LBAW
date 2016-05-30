@@ -27,7 +27,7 @@ body {
 
 .navbar-inverse {
     font-family: "Roboto Condensed";
-    font-size: 16px;    
+    font-size: 16px;
     background-color: #00325F;
 }
 
@@ -66,6 +66,9 @@ body {
     }
 }
 
+.clickable {
+    cursor: pointer;
+}
 
 /* Sidebar navigation */
 

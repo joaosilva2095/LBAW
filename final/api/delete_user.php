@@ -1,4 +1,4 @@
-<?php 
+<?php
 include_once('../config/init.php');
 include_once($BASE_DIR.'database/users.php');
 
@@ -26,7 +26,6 @@ foreach($params as $param) {
 
 // Remove from the database
 $result = remove_user($params['id']);
-
 
 // Return result
 if ($result) {

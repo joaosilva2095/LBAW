@@ -30,9 +30,9 @@
                                 <td>{$user.birth}</td>
                                 <td>{$user.role}</td>
                                 <td>
-                                    <i class="fa fa-pencil fa-lg fa-fw" data-toggle="tooltip" data-original-title="Editar"></i>
-                                    <i class="fa fa-briefcase fa-lg fa-fw" data-toggle="tooltip" data-original-title="Alterar Cargo"></i>
-                                    <i class="fa fa-trash fa-lg fa-fw" data-toggle="tooltip" data-original-title="Eliminar"></i>
+                                    <i class="fa fa-pencil fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Editar"></i>
+                                    <i class="fa fa-briefcase fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Alterar Cargo"></i>
+                                    <i class="fa fa-trash fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Eliminar"></i>
                                 </td>
                             </tr>
 
@@ -41,7 +41,8 @@
                         </tbody>
                     </table>
                 </div>
-                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#registerUser"><i class="fa fa-user-plus"></i> Novo Utilizador</button>
+                <button type="button" class="btn btn-default" data-toggle="modal" onclick="$('
+                #registerUser form').trigger('reset');" data-target="#registerUser"><i class="fa fa-user-plus"></i> Novo Utilizador</button>
             </div>
         </div>
     </div>
@@ -124,7 +125,7 @@
 
                     </form>
                     <div class="alert alert-danger alert-dismissible" style="display: none;" role="alert" id="registerStatus">
-                        <button type="button" class="close" onclick="$('#registerStatus').fadeOut()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         Failed to register the new user!
                     </div>
                 </div>
