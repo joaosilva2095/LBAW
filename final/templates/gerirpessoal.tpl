@@ -30,9 +30,11 @@
                                 <td>{$user.birth}</td>
                                 <td>{$user.role}</td>
                                 <td>
+                                    {if $role == 'Administrador'}
                                     <i class="fa fa-pencil fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Editar"></i>
                                     <i class="fa fa-briefcase fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Alterar Cargo"></i>
-                                    <i class="fa fa-trash fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Eliminar"></i>
+                                    <i class="fa fa-trash fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Eliminar"></i> {/if} {if $role == 'Contabilista'}
+                                    <i class="fa fa-pause fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Pausar"></i> {/if}
                                 </td>
                             </tr>
 

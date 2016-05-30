@@ -10,11 +10,13 @@ if (!isset($_SESSION['username'])
     http_response_code(404);
     return;
 }
+$role = $_SESSION['role'];
 
 $user = get_user_by_email($_SESSION['username']);
 $notifications = get_user_notifications($user['id']);
 $users = get_all_users();
 
+$smarty->assign('role', $role);
 $smarty->assign('user', $user);
 $smarty->assign('notifications', $notifications);
 $smarty->assign('users', $users);
