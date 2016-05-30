@@ -110,7 +110,7 @@ function get_search_user_by_name($user)
 
     $user = "%".$user."%";
     $stmt = $conn->prepare("SELECT id, name, birth, role FROM users
-                          WHERE LOWER(name) LIKE LOWER(?)");
+                          WHERE LOWER(name) LIKE LOWER(?) ORDER BY name ASC");
     $stmt->execute(array($user));
 
     return $stmt->fetchAll();

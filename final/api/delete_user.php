@@ -5,7 +5,7 @@ include_once($BASE_DIR.'database/users.php');
 // Validate user
 if (!isset($_SESSION['username'])
 || !isset($_SESSION['username'])
-|| ($_SESSION['role'] !== 'Contabilista' && $_SESSION['role'] !== 'Administrador')) {
+|| $_SESSION['role'] !== 'Administrador') {
     $_SESSION['error_messages'][] = 'No permission to access this page!';
     http_response_code(404);
     return;
@@ -14,7 +14,7 @@ if (!isset($_SESSION['username'])
 // Check if all parameters exist
 $params = array('id');
 
-foreach($params as $param) {
+foreach ($params as $param) {
     if (!isset($_POST[$param])) {
         $_SESSION['error_messages'][] = 'Parameters are missing!';
         http_response_code(404);
@@ -37,5 +37,3 @@ if ($result) {
     http_response_code(404);
     return;
 }
-
-?>

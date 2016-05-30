@@ -19,40 +19,38 @@ function registerUser() {
 
     // Async call to login
     $.post(
-        "../api/register_user.php", {
-            id: id,
-            role: role,
-            email: email,
-            password: password,
-            name: name,
-            gender: gender,
-            birth: birth,
-            nif: nif,
-            cellphone: cellphone,
-            donative_type: donativeType,
-            periodicity: periodicity
-        },
-        function (data, statusText, xhr) {
-            $('#registerUser').modal('hide');
+            "../api/register_user.php", {
+                id: id,
+                role: role,
+                email: email,
+                password: password,
+                name: name,
+                gender: gender,
+                birth: birth,
+                nif: nif,
+                cellphone: cellphone,
+                donative_type: donativeType,
+                periodicity: periodicity
+            },
+            function(data, statusText, xhr) {
+                $('#registerUser').modal('hide');
 
-            $('#users tr:last').after(
-                '<tr>' +
-                '<td>' + id + '</td>' +
-                '<td>' + name + '</td>' +
-                '<td>' + birth + '</td>' +
-                '<td>' + role + '</td>' +
-                '<td>' +
-                '<i class="fa fa-pencil fa-lg fa-fw" data-toggle="tooltip" data-original-title="Editar"></i>' +
-                '<i class="fa fa-briefcase fa-lg fa-fw" data-toggle="tooltip" data-original-title="Alterar Cargo"></i>' +
-                '<i class="fa fa-trash fa-lg fa-fw" data-toggle="tooltip" data-original-title="Eliminar"></i>' +
-                '</td>' +
-                '</tr>'
-            );
+                var tr = $('#users tr:last');
+                var trNew = tr.clone();
+                trNew.attr("id", "user" + id);
+                tr.after(trNew);
+                $("#user" + id + " td:nth-child(1)").html(id);
+                $("#user" + id + " td:nth-child(2)").html(name);
+                $("#user" + id + " td:nth-child(3)").html(birth);
+                $("#user" + id + " td:nth-child(4)").html(role);
 
-            $('#users tr:last').highlightAnimation('#DFF0D8', 1500);
-            enableTooltips();
-        })
-        .fail(function (error) {
+                trNew.highlightAnimation('#DFF0D8', 1500);
+
+                // Update listeners
+                $('i[data-original-title="Eliminar"]').click(removeUser);
+                enableTooltips();
+            })
+        .fail(function(error) {
             $('#registerStatus').fadeIn();
         });
 }
@@ -67,13 +65,13 @@ function removeUser() {
 
     // Async call to login
     $.post(
-        "../api/delete_user.php", {
-            id: id
-        },
-        function (data, statusText, xhr) {
-            $('#user' + id).remove();
-        })
-        .fail(function (error) {
+            "../api/delete_user.php", {
+                id: id
+            },
+            function(data, statusText, xhr) {
+                $('#user' + id).remove();
+            })
+        .fail(function(error) {
             $('#user' + id).highlightAnimation('#A94442', 1500);
         });
 }
@@ -92,7 +90,7 @@ function enableTooltips() {
  * @param highlightColor color to highlight
  * @param duration duration of the animation
  */
-$.fn.highlightAnimation = function (highlightColor, duration) {
+$.fn.highlightAnimation = function(highlightColor, duration) {
     var highlightBg = highlightColor || "#DFF0D8";
     var animateMs = duration || 1500;
     var originalBg = this.css("background-color");
@@ -105,7 +103,7 @@ $.fn.highlightAnimation = function (highlightColor, duration) {
 /**
  * On document ready
  */
-$(document).ready(function () {
+$(document).ready(function() {
     enableTooltips();
 
     $('#registerUserSubmit').click(registerUser);
@@ -113,10 +111,10 @@ $(document).ready(function () {
     $('i[data-original-title="Eliminar"]').click(removeUser);
 
     $('#registerStatus').click(function() {
-      $(this).fadeOut();
+        $(this).fadeOut();
     });
 
-    $('#role').change(function () {
+    $('#role').change(function() {
         var role = $('#role').val();
         if (role === 'Amigo') {
             $('#friendOnlyParams').fadeIn();
