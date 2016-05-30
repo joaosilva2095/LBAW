@@ -91,9 +91,6 @@
 
     <!-- G.A.S.Porto -->
     <script src="{$BASE_URL}js/holder.min.js"></script>
-
-    <!-- G.A.S.Porto -->
-    <script src="{$BASE_URL}js/gerirpessoal.min.js"></script>
 </body>
 
 {include file='common/footer.tpl'}

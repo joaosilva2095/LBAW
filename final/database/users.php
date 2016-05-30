@@ -94,7 +94,7 @@ function remove_user($id)
 function get_all_users()
 {
     global $conn;
-    $stmt = $conn->prepare("SELECT id, role, name, birth FROM users");
+    $stmt = $conn->prepare("SELECT id, role, name, birth FROM users ORDER BY name ASC");
     $stmt->execute();
     return $stmt->fetchAll();
 }
