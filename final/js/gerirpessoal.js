@@ -3,9 +3,9 @@ var green = '#DFF0D8';
 var red = '#A94442';
 
 /**
- * Function to register a user
+ * Function to register / update a user
  */
-function registerUser() {
+function updateUser() {
     // Variables
     var id = $('#identification').val();
     var role = $('#role').val();
@@ -37,7 +37,7 @@ function registerUser() {
                 periodicity: periodicity
             },
             function(data, statusText, xhr) {
-                $('#registerUser').modal('hide');
+                $('#userModal').modal('hide');
 
                 var tr = $('#users tr:last');
                 var trNew = tr.clone();
@@ -55,7 +55,7 @@ function registerUser() {
                 enableTooltips();
             })
         .fail(function(error) {
-            $('#registerStatus').fadeIn();
+            $('#userStatus').fadeIn();
         });
 }
 
@@ -147,13 +147,54 @@ $.fn.highlightAnimation = function(highlightColor, duration) {
 $(document).ready(function() {
     enableTooltips();
 
-    $('#registerUserSubmit').click(registerUser);
+    $('#newUser').click(function() {
+        $('#userModal form').trigger('reset');
+        $('#friendOnlyParams').fadeIn();
+        $('#userModalTitle').html('Novo Utilizador');
+    });
+    $('#userSubmit').click(updateUser);
 
+    $('i[data-original-title="Editar"]').click(function() {
+        $('#userModal form').trigger('reset');
+        $('#userModalTitle').html('Editar Utilizador');
+
+        // Fill data
+        var id = $(this).closest('tr').attr('id');
+        id = id.replace("user", "");
+
+        // Variables
+        var name = $("#user" + id + " td:nth-child(2)").text();
+        var email = $("#user" + id + " td:nth-child(3)").text();
+        var gender = $("#user" + id + " td:nth-child(4)").text();
+        var birth = $("#user" + id + " td:nth-child(5)").text();
+        var cellphone = $("#user" + id + " td:nth-child(6)").text();
+        var nif = $("#user" + id + " td:nth-child(7)").text();
+        var donativeType = $("#user" + id + " td:nth-child(8)").text();
+        var periodicity = $("#user" + id + " td:nth-child(9)").text();
+        var role = $("#user" + id + " td:nth-child(10)").text();
+
+        if (role == 'Amigo')
+            $('#friendOnlyParams').fadeIn();
+        else
+            $('#friendOnlyParams').fadeOut();
+
+        // Set form
+        $('#identification').val(id);
+        $('#name').val(name);
+        $('#email').val(email);
+        $('#gender').val(gender);
+        $('#birthdate').val(birthdate);
+        $('#role').val(role);
+        $('#nif').val(nif);
+        $('#cellphone').val(cellphone);
+        $('#paymethod').val(donativeType);
+        $('#periodicity').val(periodicity);
+    });
     $('i[data-original-title="Eliminar"]').click(removeUser);
     $('i[data-original-title="Congelar"]').click(togglePauseUser);
     $('i[data-original-title="Descongelar"]').click(togglePauseUser);
 
-    $('#registerStatus').click(function() {
+    $('#userStatus').click(function() {
         $(this).fadeOut();
     });
 

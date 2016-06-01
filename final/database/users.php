@@ -109,7 +109,7 @@ function toggle_pause_friend($id)
 function get_all_users()
 {
     global $conn;
-    $stmt = $conn->prepare("SELECT users.id, role, name, birth, frozen FROM users
+    $stmt = $conn->prepare("SELECT users.id, role, name, email, gender, birth, frozen, nif, cellphone, donative_type, periodicity FROM users
                             LEFT OUTER JOIN friends
                             ON users.id = friends.id
                             ORDER BY name ASC");

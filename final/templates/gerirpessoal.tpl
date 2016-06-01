@@ -15,7 +15,13 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Nome</th>
+                                <th>Email</th>
+                                <th>Género</th>
                                 <th>Data Nascimento</th>
+                                <th>Telemóvel</th>
+                                <th>NIF</th>
+                                <th>Tipo Donativo</th>
+                                <th>Periodicidade</th>
                                 <th>Cargo</th>
                                 <th>Opções</th>
                             </tr>
@@ -31,14 +37,30 @@
                             {/if}
                                 <td>{$user.id}</td>
                                 <td>{$user.name}</td>
+                                <td>{$user.email}</td>
+                                <td>{$user.gender}</td>
                                 <td>{$user.birth}</td>
+
+                                {if $user.role === 'Amigo'}
+                                    <td>{$user.nif}</td>
+                                    <td>{$user.cellphone}</td>
+                                    <td>{$user.donative_type}</td>
+                                    <td>{$user.periodicity}</td>
+                                {else}
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                {/if}
+
                                 <td>{$user.role}</td>
 
                                 <td>
                                   <a href="user.php?user={$user.id}" class="fa fa-eye fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Ver"></a>
                                   {if $role === 'Administrador'}
-                                      <i class="fa fa-pencil fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Editar"></i>
-                                      <i class="fa fa-trash fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Eliminar"></i>
+                                  <i data-toggle="modal" data-target="#userModal">
+                                    <i class="fa fa-pencil fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Editar"></i>
+                                  </i>
+                                  <i class="fa fa-trash fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Eliminar"></i>
                                   {elseif $role === 'Contabilista' && $user.role === 'Amigo'}
                                       {if $user.frozen}
                                           <i id="user{$user.id}-frozen" class="fa fa-play fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Descongelar"></i>
@@ -54,19 +76,20 @@
                         </tbody>
                     </table>
                 </div>
-                <button type="button" class="btn btn-default" data-toggle="modal" onclick="$('
-                #registerUser form').trigger('reset');" data-target="#registerUser"><i class="fa fa-user-plus"></i> Novo Utilizador</button>
+                <button id="newUser" type="button" class="btn btn-default" data-toggle="modal" data-target="#userModal">
+                  <i class="fa fa-user-plus"></i> Novo Utilizador
+                </button>
             </div>
         </div>
     </div>
 
 
-    <div class="modal fade" tabindex="-1" role="dialog" id="registerUser">
+    <div class="modal fade" tabindex="-1" role="dialog" id="userModal">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">Novo utilizador</h4>
+                    <h4 id="userModalTitle" class="modal-title"></h4>
                 </div>
                 <div class="modal-body">
                     <form role="form">
@@ -136,14 +159,14 @@
                         </div>
 
                     </form>
-                    <div class="alert alert-danger alert-dismissible" style="display: none;" role="alert" id="registerStatus">
+                    <div class="alert alert-danger alert-dismissible" style="display: none;" role="alert" id="userStatus">
                         <button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         Failed to register the new user!
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                    <button type="button" class="btn btn-primary" id="registerUserSubmit">Guardar</button>
+                    <button type="button" class="btn btn-primary" id="userSubmit">Guardar</button>
                 </div>
             </div>
             <!-- /.modal-content -->
