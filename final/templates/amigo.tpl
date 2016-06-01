@@ -171,16 +171,16 @@
     <!-- /.modal -->
 
  <!-- JQuery -->
-    <script src="{$BASE_URL}javascript/vendor/jquery.min.js"></script>
+    <script src="{$BASE_URL}js/vendor/jquery.min.js"></script>
 
     <!-- Bootstrap -->
-    <script src="{$BASE_URL}javascript/vendor/bootstrap.min.js"></script>
+    <script src="{$BASE_URL}js/vendor/bootstrap.min.js"></script>
 
     <!-- G.A.S.Porto -->
-    <script src="{$BASE_URL}javascript/holder.min.js"></script>
+    <script src="{$BASE_URL}js/holder.min.js"></script>
 
     <!-- G.A.S.Porto -->
-    <script src="{$BASE_URL}javascript/gerirpessoal.min.js"></script>
+    <script src="{$BASE_URL}js/gerirpessoal.min.js"></script>
 
     <script type="text/javascript">
         $(document).ready(function() {
