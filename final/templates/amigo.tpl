@@ -69,6 +69,7 @@
                                 <th>Data</th>
                                 <th>Tipo</th>
                                 <th>Valor (EUR)</th>
+                                <th>Recibo</th>
                                 <th>Opções</th>
                             </tr>
                         </thead>
@@ -81,15 +82,19 @@
                                 <td>{$entry.date}</td>
                                 <td>{$entry.type}</td>                                                 
                                 <td>{$entry.value}</td>                            
-                                
-                                {if $entry.type eq "Evento"}
+                                                               
+                                {if $entry.type eq "Evento"}  
                                     <td></td>
-                                    <td> <i class="fa fa-calendar fa-lg fa-fw" data-toggle="tooltip" data-original-title="Ver evento"></i></td>                                                            
-                                {else}                                     
-                                    <td><i class="fa fa-file-pdf-o fa-lg fa-fw" data-toggle="tooltip" data-original-title="Imprimir Recibo"></i></td>
-                                    <td> <i class="fa fa-calendar fa-lg fa-fw" data-toggle="tooltip" data-original-title="Ver Pagamento"></i></td>     
+                                    <td>    
+                                    <i class="fa fa-eye fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Ver evento"></i>                                                                
+                                {else}
+                                    <td> <i class="fa fa-file-pdf-o fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Imprimir Recibo"></i> </td> 
+                                    <td> <i class="fa fa-eye fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Ver Pagamento"></i>                                                                                          
                                 {/if}
-                                                                
+                                
+                                <i class="fa fa-pencil fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Editar"></i>                                
+                                <i class="fa fa-trash fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Eliminar"></i>  
+                                </td>                                
                             </tr>
                             
                             {/foreach}
