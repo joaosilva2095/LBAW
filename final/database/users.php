@@ -87,6 +87,23 @@ function remove_user($id)
 }
 
 /**
+ *  Remove a friend_event from the database
+ *
+ *  @param friend_id id of the friend related to friend_event
+ *  @param event_id id of the event related to friend_event
+ *  @return true if successfull, false otherwise
+ */
+function remove_friend_event($friend_id,$event_id)
+{
+    global $conn;
+
+    $stmt = $conn->prepare("DELETE FROM friend_events
+                            WHERE friend = ? 
+                            AND event = ?");
+    return $stmt->execute(array($friend_id,$event_id));
+}
+
+/**
  *  Toggle pause state of user in the database
  *
  *  @param id id of the user to paused
