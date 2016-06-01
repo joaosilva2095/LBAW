@@ -1,7 +1,6 @@
 // Used colors
 var green = '#DFF0D8';
 var red = '#A94442';
-var yellow = '#FCF8E3';
 
 /**
  * Function to register a user
@@ -95,7 +94,23 @@ function togglePauseUser() {
                 id: id
             },
             function(data, statusText, xhr) {
-                $('#user' + id).css("background-color", yellow);
+                var userRow = $('#user' + id);
+                var userFrozenIcon = $('#user' + id + "-frozen");
+                if (userRow.hasClass('warning')) {
+                    userRow.removeClass('warning');
+                    userFrozenIcon.removeClass('fa-play');
+                    userFrozenIcon.addClass('fa-pause');
+                    userFrozenIcon.tooltip('hide')
+                        .attr('data-original-title', 'Congelar')
+                        .tooltip('fixTitle');
+                } else {
+                    userRow.addClass('warning');
+                    userFrozenIcon.removeClass('fa-pause');
+                    userFrozenIcon.addClass('fa-play');
+                    userFrozenIcon.tooltip('hide')
+                        .attr('data-original-title', 'Descongelar')
+                        .tooltip('fixTitle');
+                }
             })
         .fail(function(error) {
             $('#user' + id).highlightAnimation(red, 1500);
@@ -135,7 +150,8 @@ $(document).ready(function() {
     $('#registerUserSubmit').click(registerUser);
 
     $('i[data-original-title="Eliminar"]').click(removeUser);
-    $('i[data-original-title="Pausar"]').click(togglePauseUser);
+    $('i[data-original-title="Congelar"]').click(togglePauseUser);
+    $('i[data-original-title="Descongelar"]').click(togglePauseUser);
 
     $('#registerStatus').click(function() {
         $(this).fadeOut();

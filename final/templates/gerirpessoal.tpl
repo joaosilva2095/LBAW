@@ -34,18 +34,20 @@
                                 <td>{$user.birth}</td>
                                 <td>{$user.role}</td>
 
-                                {if $role === 'Administrador'}
                                 <td>
-                                    <i class="fa fa-pencil fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Editar"></i>
-                                    <i class="fa fa-briefcase fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Alterar Cargo"></i>
-                                    <i class="fa fa-trash fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Eliminar"></i>
+                                  <a href="user.php?user={$user.id}" class="fa fa-eye fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Ver"></a>
+                                  {if $role === 'Administrador'}
+                                      <i class="fa fa-pencil fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Editar"></i>
+                                      <i class="fa fa-trash fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Eliminar"></i>
+                                  {elseif $role === 'Contabilista' && $user.role === 'Amigo'}
+                                      {if $user.frozen}
+                                          <i id="user{$user.id}-frozen" class="fa fa-play fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Descongelar"></i>
+                                      {else}
+                                          <i id="user{$user.id}-frozen" class="fa fa-pause fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Congelar"></i>
+                                      {/if}
+                                  {/if}
                                 </td>
 
-                                {elseif $role === 'Contabilista' && $user.role === 'Amigo'}
-                                <td>
-                                    <i class="fa fa-pause fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Pausar"></i>
-                                </td>
-                                {/if}
                             </tr>
                             {/foreach}
 
