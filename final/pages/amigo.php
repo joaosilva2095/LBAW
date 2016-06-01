@@ -11,10 +11,10 @@ if ($role != "Amigo") {
 
 //TODO VERIFICAR SE DÁ FALSE
 $friend = get_friend_info($_SESSION['username']);
-var_dump($friend);
+
 //TODO VERIFICAR SE DÁ FALSE
 $history = get_user_history($friend['id']);
-var_dump($history);
+
 $smarty->assign('user', $friend);
 $smarty->assign('history', $history);
 
