@@ -42,11 +42,12 @@
                                 <td>{$user.birth}</td>
 
                                 {if $user.role === 'Amigo'}
-                                    <td>{$user.nif}</td>
                                     <td>{$user.cellphone}</td>
+                                    <td>{$user.nif}</td>
                                     <td>{$user.donative_type}</td>
                                     <td>{$user.periodicity}</td>
                                 {else}
+                                    <td></td>
                                     <td></td>
                                     <td></td>
                                     <td></td>
@@ -144,7 +145,7 @@
                                     <option>Referência Multibanco</option>
                                     <option>Numerário</option>
                                     <option>Transferência Bancária</option>
-                                    <option>Débito Directo</option>
+                                    <option>Débito Direto</option>
                                 </select>
                             </div>
                             <div class="form-group">
