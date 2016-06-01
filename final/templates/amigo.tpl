@@ -80,15 +80,16 @@
                                 <td>{$entry.id}</td>
                                 <td>{$entry.date}</td>
                                 <td>{$entry.type}</td>                                                 
-                                <td>{$entry.value}</td>
-                                
-                                <td><i class="fa fa-file-pdf-o fa-lg fa-fw" data-toggle="tooltip" data-original-title="Imprimir Recibo"></i></td>
+                                <td>{$entry.value}</td>                            
                                 
                                 {if $entry.type eq "Evento"}
-                                <td> <i class="fa fa-calendar fa-lg fa-fw" data-toggle="tooltip" data-original-title="Ver evento"></i></td>                                                            
-                                {else}
-                                <td></td>
+                                    <td></td>
+                                    <td> <i class="fa fa-calendar fa-lg fa-fw" data-toggle="tooltip" data-original-title="Ver evento"></i></td>                                                            
+                                {else}                                     
+                                    <td><i class="fa fa-file-pdf-o fa-lg fa-fw" data-toggle="tooltip" data-original-title="Imprimir Recibo"></i></td>
+                                    <td> <i class="fa fa-calendar fa-lg fa-fw" data-toggle="tooltip" data-original-title="Ver Pagamento"></i></td>     
                                 {/if}
+                                                                
                             </tr>
                             
                             {/foreach}
