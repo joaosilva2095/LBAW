@@ -34,24 +34,24 @@
                             <p>{$user.periodicity}</p>
                         </div>
                     </div>
-                    <div class="col-sm-3 col-sm-offset-1 placeholder text-justify" id="settings">
+                    <div class="col-sm-3 col-sm-offset-1 placeholder text-justify" id="settings" >
                         <div class="panel panel-primary">
                             <div class="panel-heading">
                                 <h4><i class="fa fa-cogs fa-lg fa-fw panel-title"></i>Ferramentas</h4>
                             </div>
                             <div class="panel-body">
                                 <a data-toggle="modal" data-target="#editProfile">
-                                    <h6><i class="fa fa-pencil fa-lg fa-fw"></i>Editar perfil</h6>
+                                    <h6 style="cursor:pointer;"><i class="fa fa-pencil fa-lg fa-fw clickable"></i>Editar perfil</h6>
                                 </a>
                                 <a data-toggle="modal" data-target="#methPayment">
-                                    <h6><i class="fa fa-credit-card fa-lg fa-fw"></i>Editar metodo de pagamento</h6>
+                                    <h6 style="cursor:pointer;"><i class="fa fa-credit-card fa-lg fa-fw clickable"></i>Editar metodo de pagamento</h6>
                                 </a>
                                 <a>
                                     <div class="container" id="accordion">
-                                        <h6 data-toggle="collapse" data-parent="#accordion" href="#ref"><i class="fa fa-search fa-lg fa-fw"></i>Ver referência de multibanco</h6>
+                                        <h6 data-toggle="collapse" data-parent="#accordion" href="#ref" style="cursor:pointer;"><i class="fa fa-search fa-lg fa-fw clickable"></i>Ver referência de multibanco</h6>
 
                                         <div id="ref" class="collapse">
-                                            <h6> 2562548641200056532 </h6>
+                                            <h6> 2562548641200056532 </h6> <!--            TODO            -->
                                         </div>
                                     </div>
                                 </a>
@@ -86,10 +86,10 @@
                                 {if $entry.type eq "Evento"}  
                                     <td></td>
                                     <td>    
-                                    <i class="fa fa-eye fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Ver evento"></i>                                                                
+                                    <i class="fa fa-eye fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Ver detalhes"></i>                                                                
                                 {else}
                                     <td> <i class="fa fa-file-pdf-o fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Imprimir Recibo"></i> </td> 
-                                    <td> <i class="fa fa-eye fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Ver Pagamento"></i>                                                                                          
+                                    <td> <i class="fa fa-eye fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Ver detalhes"></i>                                                                                          
                                 {/if}
                                 
                                 <i class="fa fa-pencil fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Editar"></i>                                
