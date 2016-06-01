@@ -16,10 +16,9 @@ include_once('../config/init.php');
  *  @param cellphone cellphone of the user
  *  @param donative_type donative type of the user (might be "Referência Multibanco", "Débito Direto", "Transferência Bancária", "Numerário")Fixe
  *  @param periodicity periodicity of the donative payment
- *  @param donative_amount donative amount of the user
  *  @return true if successfull, false otherwise
  */
-function register_friend($id, $email, $password, $name, $gender, $birth, $nif, $cellphone, $donative_type, $periodicity, $donative_amount)
+function register_friend($id, $email, $password, $name, $gender, $birth, $nif, $cellphone, $donative_type, $periodicity)
 {
     // Register the user in the database
     if (!register_user($id, "Amigo", $email, $password, $name, $gender, $birth)) {
@@ -29,11 +28,11 @@ function register_friend($id, $email, $password, $name, $gender, $birth, $nif, $
     // Register the friend
     global $conn;
     $stmt = $conn->prepare("INSERT INTO friends
-                            VALUES (?, ?, ?, false, null, null, ?, ?, ?)");
-
+                            VALUES (?, ?, ?, false, null, null, ?, ?)");
     try {
-        return $stmt->execute(array($id, $nif, $cellphone, $donative_type, $periodicity, $donative_amount));
+        return $stmt->execute(array($id, $nif, $cellphone, $donative_type, $periodicity));
     } catch (PDOException $e) {
+        var_dump($e);
         if ($e->getCode() == 23505) {
             return false;
         } // Unique constraint violation
@@ -88,13 +87,32 @@ function remove_user($id)
 }
 
 /**
+ *  Toggle pause state of user in the database
+ *
+ *  @param id id of the user to paused
+ *  @return true if successfull, false otherwise
+ */
+function toggle_pause_friend($id)
+{
+    global $conn;
+
+    $stmt = $conn->prepare("UPDATE friends
+                            SET frozen = NOT frozen
+                            WHERE id = ?");
+    return $stmt->execute(array($id));
+}
+
+/**
  *  Get all the users of the database
  *  @return all the users of the database
  */
 function get_all_users()
 {
     global $conn;
-    $stmt = $conn->prepare("SELECT id, role, name, birth FROM users ORDER BY name ASC");
+    $stmt = $conn->prepare("SELECT users.id, role, name, birth, frozen FROM users
+                            LEFT OUTER JOIN friends
+                            ON users.id = friends.id
+                            ORDER BY name ASC");
     $stmt->execute();
     return $stmt->fetchAll();
 }

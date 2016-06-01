@@ -1,3 +1,8 @@
+// Used colors
+var green = '#DFF0D8';
+var red = '#A94442';
+var yellow = '#FCF8E3';
+
 /**
  * Function to register a user
  */
@@ -44,7 +49,7 @@ function registerUser() {
                 $("#user" + id + " td:nth-child(3)").html(birth);
                 $("#user" + id + " td:nth-child(4)").html(role);
 
-                trNew.highlightAnimation('#DFF0D8', 1500);
+                trNew.highlightAnimation(green, 1500);
 
                 // Update listeners
                 $('i[data-original-title="Eliminar"]').click(removeUser);
@@ -72,7 +77,28 @@ function removeUser() {
                 $('#user' + id).remove();
             })
         .fail(function(error) {
-            $('#user' + id).highlightAnimation('#A94442', 1500);
+            $('#user' + id).highlightAnimation(red, 1500);
+        });
+}
+
+/**
+ * Toggle pause a user from the database
+ */
+function togglePauseUser() {
+    // Variables
+    var id = $(this).closest('tr').attr('id');
+    id = id.replace("user", "");
+
+    // Async call to login
+    $.post(
+            "../api/pause_user.php", {
+                id: id
+            },
+            function(data, statusText, xhr) {
+                $('#user' + id).css("background-color", yellow);
+            })
+        .fail(function(error) {
+            $('#user' + id).highlightAnimation(red, 1500);
         });
 }
 
@@ -109,6 +135,7 @@ $(document).ready(function() {
     $('#registerUserSubmit').click(registerUser);
 
     $('i[data-original-title="Eliminar"]').click(removeUser);
+    $('i[data-original-title="Pausar"]').click(togglePauseUser);
 
     $('#registerStatus').click(function() {
         $(this).fadeOut();

@@ -24,20 +24,29 @@
 
                             {foreach $users as $key => $user}
 
+                            {if $user.role === 'Amigo' && $user.frozen}
+                            <tr class="warning" id="user{$user.id}">
+                            {else}
                             <tr id="user{$user.id}">
+                            {/if}
                                 <td>{$user.id}</td>
                                 <td>{$user.name}</td>
                                 <td>{$user.birth}</td>
                                 <td>{$user.role}</td>
+
+                                {if $role === 'Administrador'}
                                 <td>
-                                    {if $role == 'Administrador'}
                                     <i class="fa fa-pencil fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Editar"></i>
                                     <i class="fa fa-briefcase fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Alterar Cargo"></i>
-                                    <i class="fa fa-trash fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Eliminar"></i> {/if} {if $role == 'Contabilista'}
-                                    <i class="fa fa-pause fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Pausar"></i> {/if}
+                                    <i class="fa fa-trash fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Eliminar"></i>
                                 </td>
-                            </tr>
 
+                                {elseif $role === 'Contabilista' && $user.role === 'Amigo'}
+                                <td>
+                                    <i class="fa fa-pause fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Pausar"></i>
+                                </td>
+                                {/if}
+                            </tr>
                             {/foreach}
 
                         </tbody>
@@ -107,16 +116,15 @@
                             <div class="form-group">
                                 <label for="paymethod">Metodo de Pagamento:</label>
                                 <select class="form-control" id="paymethod" required="required">
-                                    <option>Referencia Bancaria</option>
-                                    <option>Numerario</option>
-                                    <option>Transferencia Bancaria</option>
-                                    <option>Debito Directo</option>
+                                    <option>Referência Multibanco</option>
+                                    <option>Numerário</option>
+                                    <option>Transferência Bancária</option>
+                                    <option>Débito Directo</option>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="freq">Frequencia de Pagamento</label>
                                 <select class="form-control" id="periodicity" required="required">
-                                    <option>Semanal</option>
                                     <option>Mensal</option>
                                     <option>Trimestral</option>
                                     <option>Semestral</option>

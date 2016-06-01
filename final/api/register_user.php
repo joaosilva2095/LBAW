@@ -1,4 +1,4 @@
-<?php 
+<?php
 include_once('../config/init.php');
 include_once($BASE_DIR.'database/users.php');
 
@@ -20,10 +20,11 @@ if (!isset($_POST['role'])) {
 
 // Check if all parameters exist
 $params = array('id', 'role', 'email', 'password', 'name', 'gender', 'birth');
-if ($_POST['role'] === 'Amigo') array_push($params, 'nif', 'cellphone', 'donative_type', 'periodicity');
+if ($_POST['role'] === 'Amigo') {
+    array_push($params, 'nif', 'cellphone', 'donative_type', 'periodicity');
+}
 
-
-foreach($params as $param) {
+foreach ($params as $param) {
     if (!isset($_POST[$param])) {
         $_SESSION['error_messages'][] = 'Parameters are missing!';
         http_response_code(404);
@@ -33,7 +34,6 @@ foreach($params as $param) {
     }
 }
 
-
 // Validate input parameters
 if (!filter_var($params['email'], FILTER_VALIDATE_EMAIL)) {
     $_SESSION['error_messages'][] = 'Invalid input emails!';
@@ -42,7 +42,7 @@ if (!filter_var($params['email'], FILTER_VALIDATE_EMAIL)) {
 }
 
 // Insert in the database
-if ($role === 'Amigo') {
+if ($params['role'] === 'Amigo') {
     $result = register_friend(
     $params['id'],
     $params['email'],
@@ -53,8 +53,7 @@ if ($role === 'Amigo') {
     $params['nif'],
     $params['cellphone'],
     $params['donative_type'],
-    $params['periodicity'],
-    $params['donative_amount']);
+    $params['periodicity']);
 } else {
     $result = register_user(
     $params['id'],
@@ -77,5 +76,3 @@ if ($result) {
     http_response_code(404);
     return;
 }
-
-?>
