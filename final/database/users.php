@@ -32,6 +32,7 @@ function register_friend($id, $email, $password, $name, $gender, $birth, $nif, $
     try {
         return $stmt->execute(array($id, $nif, $cellphone, $donative_type, $periodicity));
     } catch (PDOException $e) {
+        var_dump($e);
         if ($e->getCode() == 23505) {
             return false;
         } // Unique constraint violation
@@ -116,58 +117,6 @@ function toggle_pause_friend($id)
                             SET frozen = NOT frozen
                             WHERE id = ?");
     return $stmt->execute(array($id));
-}
-
-/**
- *  Edit a friend in the database
-
- *  @param id id of the user to be edited
- *  @param role role of the user (might be "Contabilista", "Administrador", "Amigo")
- *  @param email email of the user, it will be used to login
- *  @param name name of the user
- *  @param gender gender of the user
- *  @param birth birth date of the user
- *  @param nif nif of the user
- *  @param cellphone cellphone of the user
- *  @param donative_type donative type of the user (might be "Referência Multibanco", "Débito Direto", "Transferência Bancária", "Numerário")Fixe
- *  @param periodicity periodicity of the donative payment
- *  @return true if successfull, false otherwise
- */
-function edit_friend($id, $email, $name, $gender, $birth, $nif, $cellphone, $donative_type, $periodicity)
-{
-    // Register the user in the database
-    if (!edit_user($id, "Amigo", $email, $name, $gender, $birth)) {
-        return false;
-    }
-
-    // Register the friend
-    global $conn;
-    $stmt = $conn->prepare("UPDATE friends SET nif = ?, cellphone = ?, donative_type = ?, periodicity = ? WHERE id = ?");
-    try {
-        return $stmt->execute(array($nif, $cellphone, $donative_type, $periodicity, $id));
-    } catch (PDOException $e) {
-    }
-}
-
-/**
- *  Edit a user in the database
-
- *  @param id id of the user to be edited
- *  @param role role of the user (might be "Contabilista", "Administrador", "Amigo")
- *  @param email email of the user, it will be used to login
- *  @param name name of the user
- *  @param gender gender of the user
- *  @param birth birth date of the user
- *  @return true if successfull, false otherwise
- */
-function edit_user($id, $role, $email, $name, $gender, $birth)
-{
-    global $conn;
-    $stmt = $conn->prepare("UPDATE users SET role = ?, email = ?, name = ?, gender = ?, birth = ? WHERE id = ?");
-    try {
-        return $stmt->execute(array($role, $email, $name, $gender, $birth, $id));
-    } catch (PDOException $e) {
-    }
 }
 
 /**
@@ -332,22 +281,22 @@ function get_user_history($id)
     ((SELECT payments.id AS id, payments.payment_date AS date,payments.payment_type AS type, payments.value AS value
          FROM users,friends, payments, donatives, mercha_purchases
          WHERE friends.id = ?
-         AND (
-              (donatives.friend = friends.id
-               AND payments.id = donatives.id)
-              OR
-              (payments.id = mercha_purchases.id AND
-               mercha_purchases.friend = friends.id)
-         )
-         GROUP BY payments.id,friends.id)
-    UNION
+            AND (
+                (donatives.friend = friends.id
+                AND payments.id = donatives.id)
+                OR
+                (payments.id = mercha_purchases.id AND
+                mercha_purchases.friend = friends.id)
+            )
+         GROUP BY payments.id,friends.id )
+UNION
     (SELECT events.id, events.event_date AS date, 'Evento' as type, events.price AS value
-        FROM events, payments, friends, friend_events,users
-        WHERE users.id = ?
-        AND events.id = friend_events.event
-        AND friend_events.friend = users.id
+        FROM events, friends, friend_events
+        WHERE friends.id = ?
+            AND friend_events.friend = friends.id
+            AND events.id = friend_events.event
         GROUP BY events.id))
-        ORDER BY date DESC");
+ORDER BY date DESC");
     $stmt->execute(array($id,$id));
 
     return $stmt->fetchAll();
