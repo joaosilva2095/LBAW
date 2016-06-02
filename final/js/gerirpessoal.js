@@ -265,6 +265,17 @@ function configNewUserModal() {
 }
 
 /**
+ * Configuration of the add notification modal
+ */
+function configAddNotificationModal() {
+    // Fill data
+    var id = $(this).closest('tr').attr('id');
+    id = id.replace("user", "");
+
+    $('#notificationUserId').val(id);
+}
+
+/**
  * Animate a element with a color
  * @param highlightColor color to highlight
  * @param duration duration of the animation
@@ -272,6 +283,7 @@ function configNewUserModal() {
 $.fn.highlightAnimation = function (highlightColor, duration) {
     var highlightBg = highlightColor || "#DFF0D8";
     var animateMs = duration || 1500;
+    this.css("background-color", ""); // Reset color of the row
     var originalBg = this.css("background-color");
     this.stop().css("background-color", highlightBg)
         .animate({
@@ -298,6 +310,7 @@ $(document).ready(function () {
     $('i[data-original-title="Eliminar"]').click(removeUser);
     $('i[data-original-title="Congelar"]').click(togglePauseUser);
     $('i[data-original-title="Descongelar"]').click(togglePauseUser);
+    $('i[data-original-title="Notificar"]').click(configAddNotificationModal);
 
     $('#userStatus').click(function () {
         $(this).fadeOut();
