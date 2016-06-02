@@ -119,7 +119,7 @@
                 <div class="modal-body">
                     <form role="form">
                         <div class="form-group">
-                            <label for="name">Nome:</label>
+                            <label for="name">Nome:</label>, 7, 83, 0.642 )
                             <input class="form-control" id="name">
                         </div>
                         <div class="form-group">

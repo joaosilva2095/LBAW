@@ -13,7 +13,8 @@ include_once('../config/init.php');
  * @param birth birth date of the user
  * @param nif nif of the user
  * @param cellphone cellphone of the user
- * @param donative_type donative type of the user (might be "Referência Multibanco", "Débito Direto", "Transferência Bancária", "Numerário")Fixe
+ * @param donative_type donative type of the user
+ * (might be "Referência Multibanco", "Débito Direto", "Transferência Bancária", "Numerário")
  * @param periodicity periodicity of the donative payment
  * @return true if successfull, false otherwise
  */
@@ -109,7 +110,8 @@ function toggle_pause_friend($id)
  * @param birth birth date of the user
  * @param nif nif of the user
  * @param cellphone cellphone of the user
- * @param donative_type donative type of the user (might be "Referência Multibanco", "Débito Direto", "Transferência Bancária", "Numerário")Fixe
+ * @param donative_type donative type of the user
+ * (might be "Referência Multibanco", "Débito Direto", "Transferência Bancária", "Numerário")
  * @param periodicity periodicity of the donative payment
  * @return true if successfull, false otherwise
  */
@@ -119,13 +121,15 @@ function edit_friend($id, $email, $name, $gender, $birth, $nif, $cellphone, $don
 
     // Check if is a new friend
     $stmt = $conn->prepare("SELECT id FROM friends WHERE id = ?");
-    if (!$stmt->execute(array($id)))
+    if (!$stmt->execute(array($id))) {
         return false;
+    }
     if ($stmt->rowCount() <= 0) {
         $stmt = $conn->prepare("INSERT INTO friends
-                            VALUES (?, ?, ?, FALSE, NULL, NULL, ?, ?)");
-        if (!$stmt->execute(array($id, $nif, $cellphone, $donative_type, $periodicity)))
+                                VALUES (?, ?, ?, FALSE, NULL, NULL, ?, ?)");
+        if (!$stmt->execute(array($id, $nif, $cellphone, $donative_type, $periodicity))) {
             return false;
+        }
     }
 
     // Register the user in the database
@@ -134,7 +138,8 @@ function edit_friend($id, $email, $name, $gender, $birth, $nif, $cellphone, $don
     }
 
     // Register the friend
-    $stmt = $conn->prepare("UPDATE friends SET nif = ?, cellphone = ?, donative_type = ?, periodicity = ? WHERE id = ?");
+    $stmt = $conn->prepare("UPDATE friends
+                            SET nif = ?, cellphone = ?, donative_type = ?, periodicity = ? WHERE id = ?");
     try {
         return $stmt->execute(array($nif, $cellphone, $donative_type, $periodicity, $id));
     } catch (PDOException $e) {
@@ -158,12 +163,14 @@ function edit_user($id, $role, $email, $name, $gender, $birth)
     // Check if previously the user was a friend
     if ($role !== 'Amigo') {
         $stmt = $conn->prepare("SELECT id FROM friends WHERE id = ?");
-        if (!$stmt->execute(array($id)))
+        if (!$stmt->execute(array($id))) {
             return false;
+        }
         if ($stmt->rowCount() > 0) {
             $stmt = $conn->prepare("DELETE FROM friends WHERE id = ?");
-            if (!$stmt->execute(array($id)))
+            if (!$stmt->execute(array($id))) {
                 return false;
+            }
         }
     }
 
@@ -182,7 +189,9 @@ function edit_user($id, $role, $email, $name, $gender, $birth)
 function get_all_users()
 {
     global $conn;
-    $stmt = $conn->prepare("SELECT users.id, role, name, email, gender, birth, frozen, nif, cellphone, donative_type, periodicity FROM users
+    $stmt = $conn->prepare("SELECT users.id, role, name, email, gender, birth, frozen,
+                                    nif, cellphone, donative_type, periodicity
+                            FROM users
                             LEFT OUTER JOIN friends
                             ON users.id = friends.id
                             ORDER BY name ASC");
@@ -361,7 +370,9 @@ function get_global_history()
     global $conn;
 
     //get payments history
-    $stmt = $conn->prepare("((SELECT friends.id, payments.id, payments.payment_date AS date,payments.payment_type AS type, payments.value AS value
+    $stmt = $conn->prepare("(
+        (SELECT friends.id, payments.id, payments.payment_date AS date,
+                payments.payment_type AS type, payments.value AS value
          FROM users,friends, payments, donatives, mercha_purchases
          WHERE friends.id = users.id
          AND (
@@ -379,8 +390,7 @@ function get_global_history()
         AND friend_events.friend = friends.id
         AND users.id = friends.id
         GROUP BY events.id,friends.id))
-        ORDER BY date"
-    );
+        ORDER BY date");
 
     $stmt->execute();
     return $stmt->fetchAll();
