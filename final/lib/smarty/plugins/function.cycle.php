@@ -38,7 +38,7 @@
  * @author credit to Gerard <gerard@interfold.com>
  * @author credit to Jason Sweat <jsweat_php@yahoo.com>
  * @version  1.3
- * @param array                    $params   parameters
+ * @param array $params parameters
  * @param Smarty_Internal_Template $template template object
  * @return string|null
  */
@@ -48,9 +48,9 @@ function smarty_function_cycle($params, $template)
     static $cycle_vars;
 
     $name = (empty($params['name'])) ? 'default' : $params['name'];
-    $print = (isset($params['print'])) ? (bool) $params['print'] : true;
-    $advance = (isset($params['advance'])) ? (bool) $params['advance'] : true;
-    $reset = (isset($params['reset'])) ? (bool) $params['reset'] : false;
+    $print = (isset($params['print'])) ? (bool)$params['print'] : true;
+    $advance = (isset($params['advance'])) ? (bool)$params['advance'] : true;
+    $reset = (isset($params['reset'])) ? (bool)$params['reset'] : false;
 
     if (!isset($params['values'])) {
         if (!isset($cycle_vars[$name]['values'])) {
@@ -59,8 +59,9 @@ function smarty_function_cycle($params, $template)
             return;
         }
     } else {
-        if(isset($cycle_vars[$name]['values'])
-            && $cycle_vars[$name]['values'] != $params['values'] ) {
+        if (isset($cycle_vars[$name]['values'])
+            && $cycle_vars[$name]['values'] != $params['values']
+        ) {
             $cycle_vars[$name]['index'] = 0;
         }
         $cycle_vars[$name]['values'] = $params['values'];
@@ -75,10 +76,10 @@ function smarty_function_cycle($params, $template)
     if (is_array($cycle_vars[$name]['values'])) {
         $cycle_array = $cycle_vars[$name]['values'];
     } else {
-        $cycle_array = explode($cycle_vars[$name]['delimiter'],$cycle_vars[$name]['values']);
+        $cycle_array = explode($cycle_vars[$name]['delimiter'], $cycle_vars[$name]['values']);
     }
 
-    if (!isset($cycle_vars[$name]['index']) || $reset ) {
+    if (!isset($cycle_vars[$name]['index']) || $reset) {
         $cycle_vars[$name]['index'] = 0;
     }
 
@@ -94,7 +95,7 @@ function smarty_function_cycle($params, $template)
     }
 
     if ($advance) {
-        if ( $cycle_vars[$name]['index'] >= count($cycle_array) -1 ) {
+        if ($cycle_vars[$name]['index'] >= count($cycle_array) - 1) {
             $cycle_vars[$name]['index'] = 0;
         } else {
             $cycle_vars[$name]['index']++;

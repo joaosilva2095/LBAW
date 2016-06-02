@@ -20,7 +20,7 @@ if (!isset($_POST['role'])) {
 }
 
 // Check if all parameters exist
-$params = array('id', 'role', 'email', 'password', 'name', 'gender', 'birth');
+$params = array('id', 'role', 'email', 'name', 'gender', 'birth');
 if ($_POST['role'] === 'Amigo') {
     array_push($params, 'nif', 'cellphone', 'donative_type', 'periodicity');
 }
@@ -44,10 +44,9 @@ if (!filter_var($params['email'], FILTER_VALIDATE_EMAIL)) {
 
 // Insert in the database
 if ($params['role'] === 'Amigo') {
-    $result = register_friend(
+    $result = edit_friend(
         $params['id'],
         $params['email'],
-        hash("sha256", $params['password']),
         $params['name'],
         $params['gender'],
         $params['birth'],
@@ -56,11 +55,10 @@ if ($params['role'] === 'Amigo') {
         $params['donative_type'],
         $params['periodicity']);
 } else {
-    $result = register_user(
+    $result = edit_user(
         $params['id'],
         $params['role'],
         $params['email'],
-        hash("sha256", $params['password']),
         $params['name'],
         $params['gender'],
         $params['birth']);
@@ -69,11 +67,11 @@ if ($params['role'] === 'Amigo') {
 
 // Return result
 if ($result) {
-    $_SESSION['success_messages'][] = 'Registered successfully!';
+    $_SESSION['success_messages'][] = 'Edited successfully!';
     http_response_code(200);
     return;
 } else {
-    $_SESSION['error_messages'][] = 'Error while registering in the database!';
+    $_SESSION['error_messages'][] = 'Error while editing in the database!';
     http_response_code(404);
     return;
 }

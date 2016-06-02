@@ -1,11 +1,12 @@
 <?php
 include_once('../config/init.php');
-include_once($BASE_DIR.'database/users.php');
+include_once($BASE_DIR . 'database/users.php');
 
 // Validate user
 if (!isset($_SESSION['username'])
-|| !isset($_SESSION['username'])
-|| ($_SESSION['role'] !== 'Contabilista' && $_SESSION['role'] !== 'Administrador')) {
+    || !isset($_SESSION['username'])
+    || ($_SESSION['role'] !== 'Contabilista' && $_SESSION['role'] !== 'Administrador')
+) {
     $_SESSION['error_messages'][] = 'No permission to access this page!';
     http_response_code(404);
     return;
@@ -22,8 +23,7 @@ if (isset($_GET['user'])) {
 if (is_numeric($user)) {
     $atm_users = get_search_user_by_atm_reference($user);
     $smarty->assign('atm_users', $atm_users);
-}
-// Friend name
+} // Friend name
 else {
     $name_users = get_search_user_by_name($user);
     $smarty->assign('name_users', $name_users);

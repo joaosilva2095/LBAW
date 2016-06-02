@@ -44,7 +44,7 @@
  * @version 1.2
  * @author Monte Ohrt <monte at ohrt dot com>
  * @author credits to Jason Sweat (added cc, bcc and subject functionality)
- * @param array                    $params   parameters
+ * @param array $params parameters
  * @param Smarty_Internal_Template $template template object
  * @return string
  */
@@ -54,7 +54,7 @@ function smarty_function_mailto($params, $template)
     $extra = '';
 
     if (empty($params['address'])) {
-        trigger_error("mailto: missing 'address' parameter",E_USER_WARNING);
+        trigger_error("mailto: missing 'address' parameter", E_USER_WARNING);
 
         return;
     } else {
@@ -127,7 +127,7 @@ function smarty_function_mailto($params, $template)
     } elseif ($encode == 'hex') {
         preg_match('!^(.*)(\?.*)$!', $address, $match);
         if (!empty($match[2])) {
-            trigger_error("mailto: hex encoding does not work with extra attributes. Try javascript.",E_USER_WARNING);
+            trigger_error("mailto: hex encoding does not work with extra attributes. Try javascript.", E_USER_WARNING);
 
             return;
         }

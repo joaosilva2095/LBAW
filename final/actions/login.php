@@ -7,6 +7,7 @@ function destroy_session()
     session_destroy();
     session_write_close();
 }
+
 //==============================//
 
 /*action page*/
@@ -17,7 +18,7 @@ if (!$_POST['username'] || !$_POST['password']) {
     $_SESSION['error_messages'] = "Invalid Login";
 
     $_SESSION['form_values'] = $_POST;
-    header('Location: '.$_SERVER['HTTP_REFERER']);
+    header('Location: ' . $_SERVER['HTTP_REFERER']);
     exit;
 }
 
@@ -42,7 +43,7 @@ if (is_login_correct($username, $password)) {
         $_SESSION['error_messages'] = 'Role not found';
 
         //destroy_session();
-        header('Location:'.$_SERVER['HTTP_REFERER']);
+        header('Location:' . $_SERVER['HTTP_REFERER']);
         exit;
     }
 
@@ -65,14 +66,14 @@ if (is_login_correct($username, $password)) {
             //Error
             $_SESSION['error_messages'] = "Invalid Privileges";
 
-           // destroy_session();
-            header('Location:'.$_SERVER['HTTP_REFERER']);
+            // destroy_session();
+            header('Location:' . $_SERVER['HTTP_REFERER']);
             exit;
     }
 } else {
     $_SESSION['error_messages'] = 'Login failed';
     // destroy_session();
     //Redirect to login
-    header('Location: '.$_SERVER['HTTP_REFERER']);
+    header('Location: ' . $_SERVER['HTTP_REFERER']);
     exit;
 }
