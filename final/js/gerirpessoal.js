@@ -1,76 +1,8 @@
+/*global $ */
+
 // Used colors
 var green = '#DFF0D8';
 var red = '#A94442';
-
-/**
- * Function to register a user
- */
-function registerUser() {
-    // Variables
-    var id = $('#identification').val();
-    var role = $('#role').val();
-    var email = $('#email').val();
-    var password = $('#password').val();
-    var name = $('#name').val();
-    var gender = $('#gender').val();
-    var birth = $('#birthdate').val();
-
-    // Friend only
-    var nif = $('#nif').val();
-    var cellphone = $('#cellphone').val();
-    var donativeType = $('#paymethod').val();
-    var periodicity = $('#periodicity').val();
-    if (role != 'Amigo') {
-        nif = " ";
-        cellphone = " ";
-        donativeType = " ";
-        periodicity = " ";
-    }
-
-    // Async call to register
-    $.post(
-        "../api/register_user.php", {
-            id: id,
-            role: role,
-            email: email,
-            password: password,
-            name: name,
-            gender: gender,
-            birth: birth,
-            nif: nif,
-            cellphone: cellphone,
-            donative_type: donativeType,
-            periodicity: periodicity
-        },
-        function(data, statusText, xhr) {
-            $('#userModal').modal('hide');
-
-            var tr = $('#users tr:last');
-            var trNew = tr.clone();
-            trNew.attr("id", "user" + id);
-            tr.after(trNew);
-
-            $("#user" + id + " td:nth-child(1)").html(id);
-            $("#user" + id + " td:nth-child(2)").html(name);
-            $("#user" + id + " td:nth-child(3)").html(email);
-            $("#user" + id + " td:nth-child(4)").html(gender);
-            $("#user" + id + " td:nth-child(5)").html(birth);
-            $("#user" + id + " td:nth-child(6)").html(cellphone);
-            $("#user" + id + " td:nth-child(7)").html(nif);
-            $("#user" + id + " td:nth-child(8)").html(donativeType);
-            $("#user" + id + " td:nth-child(9)").html(periodicity);
-            $("#user" + id + " td:nth-child(10)").html(role);
-
-            trNew.highlightAnimation(green, 1500);
-
-            // Update listeners
-            $('i[data-original-title="Eliminar"]').click(removeUser);
-            enableTooltips();
-        })
-        .fail(function(error) {
-            $('#userStatus').fadeIn();
-        });
-}
 
 /**
  * Remove a user from the database
@@ -82,14 +14,84 @@ function removeUser() {
 
     // Async call to login
     $.post(
-        "../api/delete_user.php", {
-            id: id
-        },
-        function(data, statusText, xhr) {
-            $('#user' + id).remove();
-        })
-        .fail(function(error) {
+            "../api/delete_user.php", {
+                id: id
+            },
+            function (data, statusText, xhr) {
+                $('#user' + id).remove();
+            })
+        .fail(function (error) {
             $('#user' + id).highlightAnimation(red, 1500);
+        });
+}
+
+/**
+ * Function to register a user
+ */
+function registerUser() {
+    // Variables
+    var id = $('#identification').val(),
+        role = $('#role').val(),
+        email = $('#email').val(),
+        password = $('#password').val(),
+        name = $('#name').val(),
+        gender = $('#gender').val(),
+        birth = $('#birthdate').val(),
+
+        // Friend only
+        nif = $('#nif').val(),
+        cellphone = $('#cellphone').val(),
+        donativeType = $('#paymethod').val(),
+        periodicity = $('#periodicity').val();
+    if (role !== 'Amigo') {
+        nif = " ";
+        cellphone = " ";
+        donativeType = " ";
+        periodicity = " ";
+    }
+
+    // Async call to register
+    $.post(
+            "../api/register_user.php", {
+                id: id,
+                role: role,
+                email: email,
+                password: password,
+                name: name,
+                gender: gender,
+                birth: birth,
+                nif: nif,
+                cellphone: cellphone,
+                donative_type: donativeType,
+                periodicity: periodicity
+            },
+            function (data, statusText, xhr) {
+                $('#userModal').modal('hide');
+
+                var tr = $('#users tr:last'),
+                    trNew = tr.clone();
+                trNew.attr("id", "user" + id);
+                tr.after(trNew);
+
+                $("#user" + id + " td:nth-child(1)").html(id);
+                $("#user" + id + " td:nth-child(2)").html(name);
+                $("#user" + id + " td:nth-child(3)").html(email);
+                $("#user" + id + " td:nth-child(4)").html(gender);
+                $("#user" + id + " td:nth-child(5)").html(birth);
+                $("#user" + id + " td:nth-child(6)").html(cellphone);
+                $("#user" + id + " td:nth-child(7)").html(nif);
+                $("#user" + id + " td:nth-child(8)").html(donativeType);
+                $("#user" + id + " td:nth-child(9)").html(periodicity);
+                $("#user" + id + " td:nth-child(10)").html(role);
+
+                trNew.highlightAnimation(green, 1500);
+
+                // Update listeners
+                $('i[data-original-title="Eliminar"]').click(removeUser);
+                enableTooltips();
+            })
+        .fail(function (error) {
+            $('#userStatus').fadeIn();
         });
 }
 
@@ -103,29 +105,29 @@ function togglePauseUser() {
 
     // Async call to login
     $.post(
-        "../api/pause_user.php", {
-            id: id
-        },
-        function(data, statusText, xhr) {
-            var userRow = $('#user' + id);
-            var userFrozenIcon = $('#user' + id + "-frozen");
-            if (userRow.hasClass('warning')) {
-                userRow.removeClass('warning');
-                userFrozenIcon.removeClass('fa-play');
-                userFrozenIcon.addClass('fa-pause');
-                userFrozenIcon.tooltip('hide')
-                    .attr('data-original-title', 'Congelar')
-                    .tooltip('fixTitle');
-            } else {
-                userRow.addClass('warning');
-                userFrozenIcon.removeClass('fa-pause');
-                userFrozenIcon.addClass('fa-play');
-                userFrozenIcon.tooltip('hide')
-                    .attr('data-original-title', 'Descongelar')
-                    .tooltip('fixTitle');
-            }
-        })
-        .fail(function(error) {
+            "../api/pause_user.php", {
+                id: id
+            },
+            function (data, statusText, xhr) {
+                var userRow = $('#user' + id),
+                    userFrozenIcon = $('#user' + id + "-frozen");
+                if (userRow.hasClass('warning')) {
+                    userRow.removeClass('warning');
+                    userFrozenIcon.removeClass('fa-play');
+                    userFrozenIcon.addClass('fa-pause');
+                    userFrozenIcon.tooltip('hide')
+                        .attr('data-original-title', 'Congelar')
+                        .tooltip('fixTitle');
+                } else {
+                    userRow.addClass('warning');
+                    userFrozenIcon.removeClass('fa-pause');
+                    userFrozenIcon.addClass('fa-play');
+                    userFrozenIcon.tooltip('hide')
+                        .attr('data-original-title', 'Descongelar')
+                        .tooltip('fixTitle');
+                }
+            })
+        .fail(function (error) {
             $('#user' + id).highlightAnimation(red, 1500);
         });
 }
@@ -135,19 +137,20 @@ function togglePauseUser() {
  */
 function updateUser() {
     // Variables
-    var id = $('#identification').val();
-    var role = $('#role').val();
-    var email = $('#email').val();
-    var password = $('#password').val();
-    var name = $('#name').val();
-    var gender = $('#gender').val();
-    var birth = $('#birthdate').val();
+    var id = $('#identification').val(),
+        role = $('#role').val(),
+        email = $('#email').val(),
+        password = $('#password').val(),
+        name = $('#name').val(),
+        gender = $('#gender').val(),
+        birth = $('#birthdate').val(),
 
-    // Friend only
-    var nif = $('#nif').val();
-    var cellphone = $('#cellphone').val();
-    var donativeType = $('#paymethod').val();
-    var periodicity = $('#periodicity').val();
+        // Friend only
+        nif = $('#nif').val(),
+        cellphone = $('#cellphone').val(),
+        donativeType = $('#paymethod').val(),
+        periodicity = $('#periodicity').val();
+
     if (role != 'Amigo') {
         nif = " ";
         cellphone = " ";
@@ -157,35 +160,35 @@ function updateUser() {
 
     // Async call to edit
     $.post(
-        "../api/edit_user.php", {
-            id: id,
-            role: role,
-            email: email,
-            name: name,
-            gender: gender,
-            birth: birth,
-            nif: nif,
-            cellphone: cellphone,
-            donative_type: donativeType,
-            periodicity: periodicity
-        },
-        function(data, statusText, xhr) {
-            $('#userModal').modal('hide');
+            "../api/edit_user.php", {
+                id: id,
+                role: role,
+                email: email,
+                name: name,
+                gender: gender,
+                birth: birth,
+                nif: nif,
+                cellphone: cellphone,
+                donative_type: donativeType,
+                periodicity: periodicity
+            },
+            function (data, statusText, xhr) {
+                $('#userModal').modal('hide');
 
-            $("#user" + id + " td:nth-child(1)").html(id);
-            $("#user" + id + " td:nth-child(2)").html(name);
-            $("#user" + id + " td:nth-child(3)").html(email);
-            $("#user" + id + " td:nth-child(4)").html(gender);
-            $("#user" + id + " td:nth-child(5)").html(birth);
-            $("#user" + id + " td:nth-child(6)").html(cellphone);
-            $("#user" + id + " td:nth-child(7)").html(nif);
-            $("#user" + id + " td:nth-child(8)").html(donativeType);
-            $("#user" + id + " td:nth-child(9)").html(periodicity);
-            $("#user" + id + " td:nth-child(10)").html(role);
+                $("#user" + id + " td:nth-child(1)").html(id);
+                $("#user" + id + " td:nth-child(2)").html(name);
+                $("#user" + id + " td:nth-child(3)").html(email);
+                $("#user" + id + " td:nth-child(4)").html(gender);
+                $("#user" + id + " td:nth-child(5)").html(birth);
+                $("#user" + id + " td:nth-child(6)").html(cellphone);
+                $("#user" + id + " td:nth-child(7)").html(nif);
+                $("#user" + id + " td:nth-child(8)").html(donativeType);
+                $("#user" + id + " td:nth-child(9)").html(periodicity);
+                $("#user" + id + " td:nth-child(10)").html(role);
 
-            $('#user' + id).highlightAnimation(green, 1500);
-        })
-        .fail(function(error) {
+                $('#user' + id).highlightAnimation(green, 1500);
+            })
+        .fail(function (error) {
             $('#userStatus').fadeIn();
         });
 }
@@ -266,7 +269,7 @@ function configNewUserModal() {
  * @param highlightColor color to highlight
  * @param duration duration of the animation
  */
-$.fn.highlightAnimation = function(highlightColor, duration) {
+$.fn.highlightAnimation = function (highlightColor, duration) {
     var highlightBg = highlightColor || "#DFF0D8";
     var animateMs = duration || 1500;
     var originalBg = this.css("background-color");
@@ -279,11 +282,11 @@ $.fn.highlightAnimation = function(highlightColor, duration) {
 /**
  * On document ready
  */
-$(document).ready(function() {
+$(document).ready(function () {
     enableTooltips();
 
     $('#newUser').click(configNewUserModal);
-    $('#userForm').submit(function(e) {
+    $('#userForm').submit(function (e) {
         e.preventDefault();
         if ($('#userModalTitle').text() == 'Novo Utilizador')
             registerUser();
@@ -296,11 +299,11 @@ $(document).ready(function() {
     $('i[data-original-title="Congelar"]').click(togglePauseUser);
     $('i[data-original-title="Descongelar"]').click(togglePauseUser);
 
-    $('#userStatus').click(function() {
+    $('#userStatus').click(function () {
         $(this).fadeOut();
     });
 
-    $('#role').change(function() {
+    $('#role').change(function () {
         var role = $('#role').val();
         if (role === 'Amigo') {
             $('#nif').attr("required", "required");
