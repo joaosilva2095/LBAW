@@ -1,4 +1,4 @@
-<?php
+<?php 
 
 include_once('../config/init.php');
 
@@ -18,8 +18,7 @@ include_once('../config/init.php');
  * @param periodicity periodicity of the donative payment
  * @return true if successfull, false otherwise
  */
-function register_friend($id, $email, $password, $name, $gender, $birth, $nif, $cellphone, $donative_type, $periodicity)
-{
+function register_friend($id, $email, $password, $name, $gender, $birth, $nif, $cellphone, $donative_type, $periodicity) {
     // Register the user in the database
     if (!register_user($id, "Amigo", $email, $password, $name, $gender, $birth)) {
         return false;
@@ -52,8 +51,7 @@ function register_friend($id, $email, $password, $name, $gender, $birth, $nif, $
  * @param birth birth date of the user
  * @return true if successfull, false otherwise
  */
-function register_user($id, $role, $email, $password, $name, $gender, $birth)
-{
+function register_user($id, $role, $email, $password, $name, $gender, $birth) {
     global $conn;
     $stmt = $conn->prepare("INSERT INTO users
                             VALUES (?, ?, ?, ?, ?, ?, ?)");
@@ -75,8 +73,7 @@ function register_user($id, $role, $email, $password, $name, $gender, $birth)
  * @param id id of the user to remove
  * @return true if successfull, false otherwise
  */
-function remove_user($id)
-{
+function remove_user($id) {
     global $conn;
 
     $stmt = $conn->prepare("DELETE FROM users
@@ -90,8 +87,7 @@ function remove_user($id)
  * @param id id of the user to paused
  * @return true if successfull, false otherwise
  */
-function toggle_pause_friend($id)
-{
+function toggle_pause_friend($id) {
     global $conn;
 
     $stmt = $conn->prepare("UPDATE friends
@@ -115,8 +111,7 @@ function toggle_pause_friend($id)
  * @param periodicity periodicity of the donative payment
  * @return true if successfull, false otherwise
  */
-function edit_friend($id, $email, $name, $gender, $birth, $nif, $cellphone, $donative_type, $periodicity)
-{
+function edit_friend($id, $email, $name, $gender, $birth, $nif, $cellphone, $donative_type, $periodicity) {
     global $conn;
 
     // Check if is a new friend
@@ -142,9 +137,31 @@ function edit_friend($id, $email, $name, $gender, $birth, $nif, $cellphone, $don
                             SET nif = ?, cellphone = ?, donative_type = ?, periodicity = ? WHERE id = ?");
     try {
         return $stmt->execute(array($nif, $cellphone, $donative_type, $periodicity, $id));
-    } catch (PDOException $e) {
-    }
+    } catch (PDOException $e) {}
 }
+
+function edit_friend_short($id, $email, $name, $birth, $cellphone) {
+    global $conn;
+
+    $stmt = $conn->prepare("UPDATE friends 
+                           SET cellphone = ?, WHERE id = ?");
+
+    if(!$stmt.execute(array($cellphone,$id)))
+        return false;
+
+    $stmt = $conn->prepare("UPDATE users
+                            SET name= ?, 
+                            email = ?, 
+                            birth=? 
+                            WHERE id = ?");
+    try {
+        return $stmt->execute(array($name, $email, $birth, $id));
+    } catch (PDOException $e) {}
+}
+
+
+
+
 
 /**
  *  Edit a user in the database
@@ -156,8 +173,7 @@ function edit_friend($id, $email, $name, $gender, $birth, $nif, $cellphone, $don
  * @param birth birth date of the user
  * @return true if successfull, false otherwise
  */
-function edit_user($id, $role, $email, $name, $gender, $birth)
-{
+function edit_user($id, $role, $email, $name, $gender, $birth) {
     global $conn;
 
     // Check if previously the user was a friend
@@ -178,16 +194,14 @@ function edit_user($id, $role, $email, $name, $gender, $birth)
     $stmt = $conn->prepare("UPDATE users SET role = ?, email = ?, name = ?, gender = ?, birth = ? WHERE id = ?");
     try {
         return $stmt->execute(array($role, $email, $name, $gender, $birth, $id));
-    } catch (PDOException $e) {
-    }
+    } catch (PDOException $e) {}
 }
 
 /**
  *  Get all the users of the database
  * @return all the users of the database
  */
-function get_all_users()
-{
+function get_all_users() {
     global $conn;
     $stmt = $conn->prepare("SELECT users.id, role, name, email, gender, birth, frozen,
                                     nif, cellphone, donative_type, periodicity
@@ -204,11 +218,10 @@ function get_all_users()
  * @param user name of the user to be searched
  * @return results that match the user
  */
-function get_search_user_by_name($user)
-{
+function get_search_user_by_name($user) {
     global $conn;
 
-    $user = "%" . $user . "%";
+    $user = "%".$user."%";
     $stmt = $conn->prepare("SELECT id, name, birth, role FROM users
                           WHERE LOWER(name) LIKE LOWER(?) ORDER BY name ASC");
     $stmt->execute(array($user));
@@ -221,8 +234,7 @@ function get_search_user_by_name($user)
  * @param atm_reference atm reference of the user to be searched
  * @return results that match the user's atm reference
  */
-function get_search_user_by_atm_reference($atm_reference)
-{
+function get_search_user_by_atm_reference($atm_reference) {
     global $conn;
 
     $stmt = $conn->prepare("SELECT atm_reference, users.id, name, birth, role FROM payments
@@ -243,8 +255,7 @@ function get_search_user_by_atm_reference($atm_reference)
  * @param username user's name
  * @param password user's password
  */
-function is_login_correct($username, $password)
-{
+function is_login_correct($username, $password) {
     global $conn;
     $stmt = $conn->prepare("SELECT *
                             FROM users
@@ -258,8 +269,7 @@ function is_login_correct($username, $password)
  * @param email user's username
  * @returns User's role in case of success or false on failure.
  */
-function get_user_role($email)
-{
+function get_user_role($email) {
     global $conn;
 
     $stmt = $conn->prepare("SELECT ROLE
@@ -274,8 +284,7 @@ function get_user_role($email)
  * @param email user's username
  * @returns User user entity or false if fail
  */
-function get_user_by_email($email)
-{
+function get_user_by_email($email) {
     global $conn;
     $stmt = $conn->prepare("SELECT *
                             FROM users
@@ -289,8 +298,7 @@ function get_user_by_email($email)
  * @param user user to get the notifications
  * @return all the notifications of the user
  */
-function get_user_notifications($user)
-{
+function get_user_notifications($user) {
     global $conn;
     $stmt = $conn->prepare("SELECT *
                             FROM web_notifications
@@ -304,8 +312,7 @@ function get_user_notifications($user)
  * @param username email user's username
  * @returns User friend entity or false if fail
  */
-function get_friend_info($username)
-{
+function get_friend_info($username) {
     if (($user = get_user_by_email($username)) === false) {
         return false;
     }
@@ -331,8 +338,7 @@ function get_friend_info($username)
  * @param id user's id
  * @returns history user's history or false if fail
  */
-function get_user_history($id)
-{
+function get_user_history($id) {
     global $conn;
 
     //get general history
@@ -356,7 +362,7 @@ function get_user_history($id)
         AND events.id = friend_events.event
         GROUP BY events.id)
     ORDER BY date DESC;");
-    $stmt->execute(array($id,$id,$id));
+    $stmt->execute(array($id, $id, $id));
 
     return $stmt->fetchAll();
 }
@@ -365,8 +371,7 @@ function get_user_history($id)
  *  Get all users's history (global)
  * @returns hystory global history
  */
-function get_global_history()
-{
+function get_global_history() {
     global $conn;
 
     //get payments history

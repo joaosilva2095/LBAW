@@ -4,32 +4,51 @@ $(document).ready(function () {
         placement: 'top'
     });
 
-    $('#EditUserModal').click(function(){ 
-        console.log("cenas");
+    $('#EditUserModal').click(function () {
         var name = $("#UserName").text();
         var email = $("#UserEmail").text();
         var cellphone = $("#UserCellphone").text();
         var birth = $("#UserBirth").text();
-        
+
         //set form
         $('#name').val(name);
         $('#dateBirth').val(birth);
         $('#email').val(email);
-        $('#contact').val(cellphone);       
-        
-    });   
+        $('#contact').val(cellphone);
+    });
 
-    //  $('#EditProfileSubmit').click();
+    // $('#EditProfileSubmit').click(editUser);   ja nao é necessari, fio criado metodo onsubmit
     //  $('#EditPaymentSubmit').click();
 
 });
 
+function editUser(id) {
 
-function editUser() {
-
+    var name = $('#name').val(),
+        email = $('#email').val(),
+        birth = $('#dateBirth').val(),
+        cellphone = $('#contact').val();
+    
+    alert(name + email + birth + cellphone);
+    
     $.post(
         "../api/edit_profile.php", {
+            id: id,
+            email: email,
+            name: name,
+            birth: birth,
+            cellphone: cellphone
+        },
+        function (data, statusText, xhr) {                                  
+            $('#editProfile').modal('hide');
 
+            $("#UserName").html(name);
+            $("#UserEmail").html(email);
+            $("#UserBirth").html(birth);
+            $("#UserCellphone").html(cellphone);
+        })
+        .fail(function (error) {
+            $('#userStatus').fadeIn();
         });
 
 

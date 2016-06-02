@@ -9,7 +9,8 @@
 
             <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
                 <h1 id="UserName" class="page-header">{$user.name}</h1>
-
+                
+                
                 <div class="row placeholders">
 
                     <div class="col-sm-3 text-left">
@@ -114,7 +115,7 @@
                     <h4 class="modal-title">Editar Perfil</h4>
                 </div>
                 <div class="modal-body">
-                    <form role="form">
+                    <form id = "editFriendForm" role="form" onsubmit="editUser({$user.id}); return false;">
                         <div class="form-group">
                             <label for="name">Nome:</label>
                             <input class="form-control" id="name">
@@ -135,7 +136,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                    <button id="EditProfileSubmit" type="button" class="btn btn-primary">Guardar</button>
+                    <input id="EditProfileSubmit" type="submit" class="btn btn-primary" form="editFriendForm"></input>
                 </div>
             </div>
             <!-- /.modal-content -->
