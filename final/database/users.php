@@ -27,7 +27,7 @@ function register_friend($id, $email, $password, $name, $gender, $birth, $nif, $
     // Register the friend
     global $conn;
     $stmt = $conn->prepare("INSERT INTO friends
-                            VALUES (?, ?, ?, false, null, null, ?, ?)");
+                            VALUES (?, ?, ?, FALSE, NULL, NULL, ?, ?)");
     try {
         return $stmt->execute(array($id, $nif, $cellphone, $donative_type, $periodicity));
     } catch (PDOException $e) {
@@ -115,13 +115,25 @@ function toggle_pause_friend($id)
  */
 function edit_friend($id, $email, $name, $gender, $birth, $nif, $cellphone, $donative_type, $periodicity)
 {
+    global $conn;
+
+    // Check if is a new friend
+    $stmt = $conn->prepare("SELECT role FROM users WHERE id = ? AND role = 'Amigo'");
+    if (!$stmt->execute(array($id)))
+        return false;
+    if ($stmt->rowCount() <= 0) {
+        $stmt = $conn->prepare("INSERT INTO friends
+                            VALUES (?, ?, ?, FALSE, NULL, NULL, ?, ?)");
+        if (!$stmt->execute(array($id, $nif, $cellphone, $donative_type, $periodicity)))
+            return false;
+    }
+
     // Register the user in the database
     if (!edit_user($id, "Amigo", $email, $name, $gender, $birth)) {
         return false;
     }
 
     // Register the friend
-    global $conn;
     $stmt = $conn->prepare("UPDATE friends SET nif = ?, cellphone = ?, donative_type = ?, periodicity = ? WHERE id = ?");
     try {
         return $stmt->execute(array($nif, $cellphone, $donative_type, $periodicity, $id));
@@ -144,14 +156,18 @@ function edit_user($id, $role, $email, $name, $gender, $birth)
     global $conn;
 
     // Check if previously the user was a friend
-    $stmt = $conn->prepare("SELECT role FROM users WHERE id = ? AND role = 'Amigo'");
-    $stmt->execute(array($id));
-    echo "Number of columns of the result: " . $stmt->fetchColumn();
-    if ($stmt->fetchColumn() > 0) {
-        $stmt = $conn->prepare("DELETE FROM friends WHERE id = ?");
-        $stmt->execute(array($id));
+    if ($role !== 'Amigo') {
+        $stmt = $conn->prepare("SELECT role FROM users WHERE id = ? AND role = 'Amigo'");
+        if (!$stmt->execute(array($id)))
+            return false;
+        if ($stmt->rowCount() > 0) {
+            $stmt = $conn->prepare("DELETE FROM friends WHERE id = ?");
+            if (!$stmt->execute(array($id)))
+                return false;
+        }
     }
 
+    // Update user details
     $stmt = $conn->prepare("UPDATE users SET role = ?, email = ?, name = ?, gender = ?, birth = ? WHERE id = ?");
     try {
         return $stmt->execute(array($role, $email, $name, $gender, $birth, $id));

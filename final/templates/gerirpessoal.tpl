@@ -95,7 +95,7 @@
                 <h4 id="userModalTitle" class="modal-title"></h4>
             </div>
             <div class="modal-body">
-                <form role="form">
+                <form role="form" id="userForm">
                     <div class="form-group">
                         <label for="identification">ID:</label>
                         <input class="form-control" id="identification" required="required">
@@ -170,7 +170,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                <button type="button" class="btn btn-primary" id="userSubmit">Guardar</button>
+                <button type="submit" form="userForm" class="btn btn-primary">Guardar</button>
             </div>
         </div>
         <!-- /.modal-content -->
