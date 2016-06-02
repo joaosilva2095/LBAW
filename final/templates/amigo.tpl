@@ -41,17 +41,17 @@
                             </div>
                             <div class="panel-body">
                                 <a data-toggle="modal" data-target="#editProfile">
-                                    <h6 style="cursor:pointer;"><i class="fa fa-pencil fa-lg fa-fw clickable"></i>Editar perfil</h6>
+                                    <h6 class="clickable"><i class="fa fa-pencil fa-lg fa-fw"></i>Editar perfil</h6>
                                 </a>
                                 <a data-toggle="modal" data-target="#methPayment">
-                                    <h6 style="cursor:pointer;"><i class="fa fa-credit-card fa-lg fa-fw clickable"></i>Editar metodo de pagamento</h6>
+                                    <h6 class="clickable"><i class="fa fa-credit-card fa-lg fa-fw"></i>Editar método de pagamento</h6>
                                 </a>
                                 <a>
                                     <div class="container" id="accordion">
-                                        <h6 data-toggle="collapse" data-parent="#accordion" href="#ref" style="cursor:pointer;"><i class="fa fa-search fa-lg fa-fw clickable"></i>Ver referência de multibanco</h6>
+                                        <h6 data-toggle="collapse" data-parent="#accordion" href="#ref" class="clickable"><i class="fa fa-search fa-lg fa-fw"></i>Ver referência de multibanco</h6>
 
                                         <div id="ref" class="collapse">
-                                            <h6> 2562548641200056532 </h6> <!--            TODO            -->
+                                            <h6> 2562548641200056532 </h6> <!--   -------         TODO       -----     -->
                                         </div>
                                     </div>
                                 </a>
@@ -77,7 +77,7 @@
                         
                             {foreach $history as $entry}
                         
-                            <tr <!-- id ="{entry}{} --> >
+                            <tr>
                                 <td>{$entry.id}</td>
                                 <td>{$entry.date}</td>
                                 <td>{$entry.type}</td>                                                 
@@ -119,7 +119,7 @@
                 <div class="modal-body">
                     <form role="form">
                         <div class="form-group">
-                            <label for="name">Nome:</label>, 7, 83, 0.642 )
+                            <label for="name">Nome:</label>
                             <input class="form-control" id="name">
                         </div>
                         <div class="form-group">
@@ -186,15 +186,7 @@
     <script src="{$BASE_URL}js/holder.min.js"></script>
 
     <!-- G.A.S.Porto -->
-    <script src="{$BASE_URL}js/gerirpessoal.min.js"></script>
-
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('[data-toggle="tooltip"]').tooltip({
-                placement: 'top'
-            });
-        });
-    </script>
+    <script src="{$BASE_URL}js/amigo.min.js"></script>
 
 </body>
 
