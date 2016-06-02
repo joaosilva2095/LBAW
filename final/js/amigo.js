@@ -1,22 +1,35 @@
 $(document).ready(function () {
 
-    $('#EditProfileSubmit').click();
-    $('#EditPaymentSubmit').click();
+    $('[data-toggle="tooltip"]').tooltip({
+        placement: 'top'
+    });
+
+    $('#EditUserModal').click(function(){
+        console.log("cenas");
+        var name = $("#UserName").text();
+        var email = $("#UserEmail").text();
+        var cellphone = $("#UserCellphone").text();
+        var birth = $("#UserBirth").text();
+
+        //set form
+        $('#name').val(name);
+        $('#dateBirth').val(birth);
+        $('#email').val(email);
+        $('#contact').val(cellphone);
+
+    });
+
+    //  $('#EditProfileSubmit').click();
+    //  $('#EditPaymentSubmit').click();
 
 });
 
 
 function editUser() {
 
-    var name = $("#EditProfileSubmit" + id + " td:nth-child(2)").text();
-    var email = $("#EditProfileSubmit" + id + " td:nth-child(3)").text();
-    var gender = $("#EditProfileSubmit" + id + " td:nth-child(4)").text();
-    var birth = $("#EditProfileSubmit" + id + " td:nth-child(5)").text();
-    var cellphone = $("#EditProfileSubmit" + id + " td:nth-child(6)").text();
-
     $.post(
         "../api/edit_profile.php", {
-                
+
         });
 
 
