@@ -1,11 +1,12 @@
 <?php
 include_once('../config/init.php');
-include_once($BASE_DIR.'database/users.php');
+include_once($BASE_DIR . 'database/users.php');
 
 // Validate user
 if (!isset($_SESSION['username'])
-|| !isset($_SESSION['username'])
-|| $_SESSION['role'] !== 'Administrador') {
+    || !isset($_SESSION['username'])
+    || $_SESSION['role'] !== 'Administrador'
+) {
     $_SESSION['error_messages'][] = 'No permission to access this page!';
     http_response_code(404);
     return;
@@ -44,25 +45,25 @@ if (!filter_var($params['email'], FILTER_VALIDATE_EMAIL)) {
 // Insert in the database
 if ($params['role'] === 'Amigo') {
     $result = register_friend(
-    $params['id'],
-    $params['email'],
-    hash("sha256", $params['password']),
-    $params['name'],
-    $params['gender'],
-    $params['birth'],
-    $params['nif'],
-    $params['cellphone'],
-    $params['donative_type'],
-    $params['periodicity']);
+        $params['id'],
+        $params['email'],
+        hash("sha256", $params['password']),
+        $params['name'],
+        $params['gender'],
+        $params['birth'],
+        $params['nif'],
+        $params['cellphone'],
+        $params['donative_type'],
+        $params['periodicity']);
 } else {
     $result = register_user(
-    $params['id'],
-    $params['role'],
-    $params['email'],
-    hash("sha256", $params['password']),
-    $params['name'],
-    $params['gender'],
-    $params['birth']);
+        $params['id'],
+        $params['role'],
+        $params['email'],
+        hash("sha256", $params['password']),
+        $params['name'],
+        $params['gender'],
+        $params['birth']);
 }
 
 

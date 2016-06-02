@@ -29,7 +29,7 @@
  * @author Monte Ohrt <monte at ohrt dot com>
  * @author credits to Duda <duda@big.hu>
  * @version 1.0
- * @param array                    $params   parameters
+ * @param array $params parameters
  * @param Smarty_Internal_Template $template template object
  * @return string
  * @uses smarty_function_escape_special_chars()

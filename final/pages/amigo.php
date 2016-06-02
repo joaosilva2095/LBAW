@@ -1,11 +1,11 @@
-<?php 
+<?php
 include_once('../config/init.php');
-include_once($BASE_DIR.'database/users.php');
+include_once($BASE_DIR . 'database/users.php');
 
 $role = $_SESSION['role'];
 
 if ($role != "Amigo") {
-    header('Location: '.$_SERVER['HTTP_REFERER']); //redirects to previous page
+    header('Location: ' . $_SERVER['HTTP_REFERER']); //redirects to previous page
     exit;
 }
 

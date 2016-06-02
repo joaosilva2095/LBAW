@@ -1,9 +1,9 @@
-<?php 
+<?php
 include_once('../config/init.php');
 
 // Check if he is logged in already
-if(isset($_SESSION['username'])) {
-    switch($_SESSION['role']) {
+if (isset($_SESSION['username'])) {
+    switch ($_SESSION['role']) {
         case "Administrador":
             header('Location: ../pages/admin.php');
             break;
@@ -16,7 +16,7 @@ if(isset($_SESSION['username'])) {
         default:
             $_SESSION['error_messages'] = "Invalid Privileges";
             header('Location: ../actions/logout.php');
-            exit;   
+            exit;
     }
 }
 

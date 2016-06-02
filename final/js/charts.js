@@ -1,4 +1,4 @@
-    Chart.defaults.global = {
+Chart.defaults.global = {
     // Boolean - Whether to animate the chart
     animation: true,
 
@@ -124,16 +124,18 @@
     multiTooltipTemplate: "<%= value %>",
 
     // Function - Will fire on animation progression.
-    onAnimationProgress: function(){},
+    onAnimationProgress: function () {
+    },
 
     // Function - Will fire on animation completion.
-    onAnimationComplete: function(){}
+    onAnimationComplete: function () {
+    }
 }
-        
-        var data = [
+
+var data = [
     {
         value: 50,
-        color:"#F7464A",
+        color: "#F7464A",
         highlight: "#FF5A5E",
         label: "Amigos"
     },
@@ -150,8 +152,8 @@
         label: "Contabilistas"
     }
 ]
-        var ctx = document.getElementById("myChart").getContext("2d");
-        // For a pie chart
+var ctx = document.getElementById("myChart").getContext("2d");
+// For a pie chart
 var myPieChart = new Chart(ctx).Pie(data);
 
 var dataBar = {
