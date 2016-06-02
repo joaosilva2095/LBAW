@@ -5,13 +5,13 @@
 
     <div class="container-fluid">
         <div class="row">
-             {include file='common/sidebar_adm.tpl'}
-             
+            {include file='common/sidebar_adm.tpl'}
+
             <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
                 <h1 class="page-header">{$user.name}</h1>
 
                 <div class="row placeholders">
-                
+
                     <div class="col-sm-3 text-left">
                         <div class="row">
                             <h4>Data Nascimento:</h4>
@@ -34,7 +34,7 @@
                             <p>{$user.periodicity}</p>
                         </div>
                     </div>
-                    <div class="col-sm-3 col-sm-offset-1 placeholder text-justify" id="settings" >
+                    <div class="col-sm-3 col-sm-offset-1 placeholder text-justify" id="settings">
                         <div class="panel panel-primary">
                             <div class="panel-heading">
                                 <h4><i class="fa fa-cogs fa-lg fa-fw panel-title"></i>Ferramentas</h4>
@@ -51,7 +51,8 @@
                                         <h6 data-toggle="collapse" data-parent="#accordion" href="#ref" style="cursor:pointer;"><i class="fa fa-search fa-lg fa-fw clickable"></i>Ver referência de multibanco</h6>
 
                                         <div id="ref" class="collapse">
-                                            <h6> 2562548641200056532 </h6> <!--            TODO            -->
+                                            <h6> 2562548641200056532 </h6>
+                                            <!--            TODO            -->
                                         </div>
                                     </div>
                                 </a>
@@ -74,31 +75,29 @@
                             </tr>
                         </thead>
                         <tbody>
-                        
+
                             {foreach $history as $entry}
-                        
-                            <tr <!-- id ="{entry}{} --> >
+
+                            <tr>
                                 <td>{$entry.id}</td>
                                 <td>{$entry.date}</td>
-                                <td>{$entry.type}</td>                                                 
-                                <td>{$entry.value}</td>                            
-                                                               
-                                {if $entry.type eq "Evento"}  
-                                    <td></td>
-                                    <td>    
-                                    <i class="fa fa-eye fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Ver detalhes"></i>                                                                
-                                {else}
-                                    <td> <i class="fa fa-file-pdf-o fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Imprimir Recibo"></i> </td> 
-                                    <td> <i class="fa fa-eye fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Ver detalhes"></i>                                                                                          
-                                {/if}
-                                
-                                <i class="fa fa-pencil fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Editar"></i>                                
-                                <i class="fa fa-trash fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Eliminar"></i>  
-                                </td>                                
+                                <td>{$entry.type}</td>
+                                <td>{$entry.value}</td>
+
+                                {if $entry.type eq "Evento"}
+                                <td></td>
+                                <td>
+                                    <i class="fa fa-eye fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Ver detalhes"></i> {else}
+                                    <td> <i class="fa fa-file-pdf-o fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Imprimir Recibo"></i> </td>
+                                    <td> <i class="fa fa-eye fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Ver detalhes"></i> {/if}
+
+                                        <i class="fa fa-pencil fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Editar"></i>
+                                        <i class="fa fa-trash fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Eliminar"></i>
+                                    </td>
                             </tr>
-                            
+
                             {/foreach}
-                                                       
+
                         </tbody>
                     </table>
                 </div>
@@ -129,7 +128,7 @@
                         <div class="form-group">
                             <label for="email">Email:</label>
                             <input class="form-control" id="email">
-                        </div>                                               
+                        </div>
                         <div class="form-group">
                             <label for="contact">Contacto:</label>
                             <input class="form-control" id="contact">
@@ -176,7 +175,7 @@
     </div>
     <!-- /.modal -->
 
- <!-- JQuery -->
+    <!-- JQuery -->
     <script src="{$BASE_URL}js/vendor/jquery.min.js"></script>
 
     <!-- Bootstrap -->
@@ -194,6 +193,7 @@
                 placement: 'top'
             });
         });
+
     </script>
 
 </body>
