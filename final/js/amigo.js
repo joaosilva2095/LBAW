@@ -4,14 +4,12 @@ $(document).ready(function () {
         placement: 'top'
     });
 
-
-    /*$('#EditUser').click(function(){ 
+    $('#EditUserModal').click(function(){ 
         console.log("cenas");
         var name = $("#UserName").text();
         var email = $("#UserEmail").text();
         var cellphone = $("#UserCellphone").text();
         var birth = $("#UserBirth").text();
-        console.log(name,email,birth,cellphone);
         
         //set form
         $('#name').val(name);
@@ -19,7 +17,7 @@ $(document).ready(function () {
         $('#email').val(email);
         $('#contact').val(cellphone);       
         
-    });    */
+    });   
 
     //  $('#EditProfileSubmit').click();
     //  $('#EditPaymentSubmit').click();
