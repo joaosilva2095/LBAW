@@ -322,7 +322,7 @@ function get_friend_info($username)
         return false;
     }
 
-    return array_merge($user, $friend);
+    return array_merge($user, $friend[0]);
 }
 
 
@@ -335,28 +335,28 @@ function get_user_history($id)
 {
     global $conn;
 
-    //get payments history
+    //get general history
     $stmt = $conn->prepare("
-    ((SELECT payments.id AS id, payments.payment_date AS date,payments.payment_type AS type, payments.value AS value
-         FROM users,friends, payments, donatives, mercha_purchases
+    (SELECT payments.id AS id, payments.payment_date AS date,payments.payment_type AS type, payments.value AS value
+         FROM friends, payments, donatives
          WHERE friends.id = ?
-         AND (
-              (donatives.friend = friends.id
-               AND payments.id = donatives.id)
-              OR
-              (payments.id = mercha_purchases.id AND
-               mercha_purchases.friend = friends.id)
-         )
-         GROUP BY payments.id,friends.id)
+         AND donatives.friend = friends.id
+         AND payments.id = donatives.id)
     UNION
-    (SELECT events.id, events.event_date AS date, 'Evento' as type, events.price AS value
-        FROM events, payments, friends, friend_events,users
-        WHERE users.id = ?
+    (SELECT payments.id AS id, payments.payment_date AS date,payments.payment_type AS type, payments.value AS value
+            FROM friends, payments, mercha_purchases
+            WHERE friends.id = ?
+            AND mercha_purchases.friend = friends.id
+            AND payments.id = mercha_purchases.id)
+    UNION
+    (SELECT events.id AS id, events.event_date AS date, 'Evento' as type, events.price AS value
+        FROM events, friends, friend_events
+        WHERE friends.id = ?
+        AND friend_events.friend = friends.id
         AND events.id = friend_events.event
-        AND friend_events.friend = users.id
-        GROUP BY events.id))
-        ORDER BY date DESC");
-    $stmt->execute(array($id, $id));
+        GROUP BY events.id)
+    ORDER BY date DESC;");
+    $stmt->execute(array($id,$id,$id));
 
     return $stmt->fetchAll();
 }
