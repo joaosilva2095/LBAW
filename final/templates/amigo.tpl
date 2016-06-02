@@ -77,7 +77,7 @@
                         
                             {foreach $history as $entry}
                         
-                            <tr>
+                            <tr <!-- id ="{entry}{} --> >
                                 <td>{$entry.id}</td>
                                 <td>{$entry.date}</td>
                                 <td>{$entry.type}</td>                                                 
@@ -129,7 +129,7 @@
                         <div class="form-group">
                             <label for="email">Email:</label>
                             <input class="form-control" id="email">
-                        </div>
+                        </div>                                               
                         <div class="form-group">
                             <label for="contact">Contacto:</label>
                             <input class="form-control" id="contact">
@@ -138,7 +138,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                    <button type="button" class="btn btn-primary">Guardar</button>
+                    <button id="EditProfileSubmit" type="button" class="btn btn-primary">Guardar</button>
                 </div>
             </div>
             <!-- /.modal-content -->
@@ -159,15 +159,15 @@
                 </div>
                 <div class="modal-body">
                     <select class="form-control" id="sel1">
-                        <option value="referencia multibanco">referencia multibanco</option>
-                        <option value="debito direto">debito direto</option>
-                        <option value="transferência bancária">transferência bancária</option>
-                        <option value="cheque">cheque</option>
+                        <option value="referencia multibanco">Referência multibanco</option>
+                        <option value="debito direto">Débito direto</option>
+                        <option value="transferência bancária">Transferência bancária</option>
+                        <option value="cheque">Cheque</option>
                     </select>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                    <button type="button" class="btn btn-primary">Guardar</button>
+                    <button id="EditPaymentSubmit" type="button" class="btn btn-primary">Guardar</button>
                 </div>
             </div>
             <!-- /.modal-content -->

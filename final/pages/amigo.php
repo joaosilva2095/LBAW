@@ -4,7 +4,7 @@ include_once($BASE_DIR.'database/users.php');
 
 $role = $_SESSION['role'];
 
-if ($role != "Amigo") {
+if (strcmp($role, "Amigo") != 0) {
     header('Location: '.$_SERVER['HTTP_REFERER']); //redirects to previous page
     exit;
 }
