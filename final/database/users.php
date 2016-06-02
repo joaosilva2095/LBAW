@@ -118,7 +118,7 @@ function edit_friend($id, $email, $name, $gender, $birth, $nif, $cellphone, $don
     global $conn;
 
     // Check if is a new friend
-    $stmt = $conn->prepare("SELECT role FROM users WHERE id = ? AND role = 'Amigo'");
+    $stmt = $conn->prepare("SELECT id FROM friends WHERE id = ?");
     if (!$stmt->execute(array($id)))
         return false;
     if ($stmt->rowCount() <= 0) {
@@ -157,7 +157,7 @@ function edit_user($id, $role, $email, $name, $gender, $birth)
 
     // Check if previously the user was a friend
     if ($role !== 'Amigo') {
-        $stmt = $conn->prepare("SELECT role FROM users WHERE id = ? AND role = 'Amigo'");
+        $stmt = $conn->prepare("SELECT id FROM friends WHERE id = ?");
         if (!$stmt->execute(array($id)))
             return false;
         if ($stmt->rowCount() > 0) {
