@@ -84,12 +84,10 @@ function editUserPayment(id) {
 
 
 function removeHistoryEntry(){
-    
-    var id = $(this).closest('tr').children().index(0);
-    var type = $(this).closest('tr').children().index(2);
-    
-    alert(id +" "+ type);
-    
+        
+    var id = $($(this).closest('tr').children()[0]).html();
+    var type = $($(this).closest('tr').children()[2]).html();
+   
     $.post(
         "../api/remove_hist_entry.php", {
             id: id,
@@ -102,6 +100,5 @@ function removeHistoryEntry(){
         .fail(function (error) {
             console.log(error);
             $('#friendStatus2').fadeIn();
-        });
-    
+        });    
 }

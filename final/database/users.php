@@ -177,7 +177,7 @@ function edit_friend_payment($id, $payment){
 }
 
 function remove_history_entry($id, $type){
-    global $conn;
+    global $conn;      
         
     if($type == 'Evento'){
           $stmt = $conn->prepare("DELETE FROM friend_events 
