@@ -28,7 +28,7 @@
                         </div>
                         <div class="row">
                             <h4>Método de pagamento:</h4>
-                            <p>{$user.donative_type}</p>
+                            <p id="UserDonative">{$user.donative_type}</p>
                         </div>
                         <div class="row">
                             <h4>Frequência de pagamento:</h4>
@@ -45,7 +45,7 @@
                                     <h6 id="EditUserModal" class="clickable"><i class="fa fa-pencil fa-lg fa-fw"></i>Editar perfil</h6>
                                 </a>
                                 <a data-toggle="modal" data-target="#methPayment">
-                                    <h6 class="clickable"><i class="fa fa-credit-card fa-lg fa-fw"></i>Editar método de pagamento</h6>
+                                    <h6 id="EditPaymentModal" class="clickable"><i class="fa fa-credit-card fa-lg fa-fw"></i>Editar método de pagamento</h6>
                                 </a>
                                 <a>
                                     <div class="container" id="accordion">
@@ -158,19 +158,26 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title" for="sel1">metodo de pagamento</h4>
+                    <h4 class="modal-title" for="sel1">Método de pagamento</h4>
                 </div>
                 <div class="modal-body">
-                    <select class="form-control" id="sel1">
-                        <option value="referencia multibanco">Referência multibanco</option>
-                        <option value="debito direto">Débito direto</option>
-                        <option value="transferência bancária">Transferência bancária</option>
-                        <option value="cheque">Cheque</option>
-                    </select>
+                    <form id = "editUserPayment" role="form" onsubmit="editUserPayment({$user.id}); return false;">
+                        <select class="form-control" id="sel1">
+                            <option value="Referência multibanco">Referência multibanco</option>
+                            <option value="Débito direto">Débito direto</option>
+                            <option value="Transferência bancária">Transferência bancária</option>
+                            <option value="Cheque">Cheque</option>
+                        </select>
+                    </form>
+                      <div class="alert alert-danger alert-dismissible" style="display: none;" role="alert" id="friendStatus2">
+                        <button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span>
+                        </button>
+                        Failed to complete the action! Please verify the information.
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                    <button id="EditPaymentSubmit" type="button" class="btn btn-primary">Guardar</button>
+                    <input id="EditPaymentSubmit" type="submit" class="btn btn-primary" form="editUserPayment"></input>
                 </div>
             </div>
             <!-- /.modal-content -->
