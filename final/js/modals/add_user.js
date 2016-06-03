@@ -1,27 +1,6 @@
 /*global $ */
 
 /**
- * Remove a user from the database
- */
-function removeUser() {
-    // Variables
-    var id = $(this).closest('tr').attr('id');
-    id = id.replace("user", "");
-
-    // Async call to login
-    $.post(
-            "../api/delete_user.php", {
-                id: id
-            },
-            function (data, statusText, xhr) {
-                $('#user' + id).remove();
-            })
-        .fail(function (error) {
-            $('#user' + id).highlightAnimation(red, 1500);
-        });
-}
-
-/**
  * Function to register a user
  */
 function registerUser() {

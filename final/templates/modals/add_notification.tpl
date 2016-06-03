@@ -1,4 +1,3 @@
-<!-- Add notification modal -->
 <div class="modal fade" tabindex="-1" role="dialog" id="notificationModal">
     <div class="modal-dialog">
         <div class="modal-content">

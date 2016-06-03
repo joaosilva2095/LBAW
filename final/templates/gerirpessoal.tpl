@@ -78,6 +78,9 @@
         </div>
     </div>
 
+    <!-- Confirm Dialog -->
+    {include file='modals/confirm_action.tpl'}
+
     <!-- Register / Edit user -->
     {include file='modals/add_user.tpl'}
 
