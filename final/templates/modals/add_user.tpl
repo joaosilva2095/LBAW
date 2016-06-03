@@ -4,10 +4,10 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 id="userModalTitle" class="modal-title"></h4>
+                <h4 id="userModalTitle" class="modal-title">Adicionar Utilizador</h4>
             </div>
             <div class="modal-body">
-                <form role="form" id="userForm">
+                <form id="userForm">
                     <div class="form-group">
                         <label for="identification">ID:</label>
                         <input class="form-control" id="identification" required="required">
@@ -27,8 +27,9 @@
                     <div class="form-group">
                         <label for="gender">Género:</label>
                         <select class="form-control" id="gender" required="required">
-                            <option>M</option>
-                            <option>F</option>
+                            <option value="" disabled="disabled">&nbsp;</option>
+                            <option value="M">M</option>
+                            <option value="F">F</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -38,9 +39,10 @@
                     <div class="form-group">
                         <label for="role">Cargo:</label>
                         <select class="form-control" id="role" required="required">
-                            <option>Amigo</option>
-                            <option>Administrador</option>
-                            <option>Contabilista</option>
+                            <option value="" disabled="disabled">&nbsp;</option>
+                            <option value="Amigo">Amigo</option>
+                            <option value="Administrador">Administrador</option>
+                            <option value="Contabilista">Contabilista</option>
                         </select>
                     </div>
 
@@ -56,19 +58,21 @@
                         <div class="form-group">
                             <label for="paymethod">Metodo de Pagamento:</label>
                             <select class="form-control" id="paymethod" required="required">
-                                <option>Referência Multibanco</option>
-                                <option>Numerário</option>
-                                <option>Transferência Bancária</option>
-                                <option>Débito Direto</option>
+                                <option value="" disabled="disabled">&nbsp;</option>
+                                <option value="Referência Multibanco">Referência Multibanco</option>
+                                <option value="Numerário">Numerário</option>
+                                <option value="Transferência Bancária">Transferência Bancária</option>
+                                <option value="Débito Direto">Débito Direto</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="freq">Frequencia de Pagamento</label>
+                            <label for="periodicity">Frequencia de Pagamento</label>
                             <select class="form-control" id="periodicity" required="required">
-                                <option>Mensal</option>
-                                <option>Trimestral</option>
-                                <option>Semestral</option>
-                                <option>Anual</option>
+                                <option value="" disabled="disabled">&nbsp;</option>
+                                <option value="Mensal">Mensal</option>
+                                <option value="Trimestral">Trimestral</option>
+                                <option value="Semestral">Semestral</option>
+                                <option value="Anual">Anual</option>
                             </select>
                         </div>
                     </div>
