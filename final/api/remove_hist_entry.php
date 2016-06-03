@@ -2,6 +2,16 @@
 include_once('../config/init.php');
 include_once($BASE_DIR.'database/users.php');
 
+// Validate user
+
+if (!isset($_SESSION['username'])
+    || !isset($_SESSION['role'])
+    || $_SESSION['role'] === 'Amigo') {
+    $_SESSION['error_messages'][] = 'No permission to access this page!';
+    http_response_code(404);
+    return;
+}
+
 $params = array('id', 'type');
 
 foreach($params as $param) {
@@ -16,7 +26,7 @@ foreach($params as $param) {
 
 $result = remove_history_entry(
                         $params['id'],
-                        $params['payment']);
+                        $params['type']);
 
 // Return result
 if ($result) {

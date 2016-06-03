@@ -24,9 +24,8 @@ $(document).ready(function () {
 
         $('#sel1').val(payment);
     });
-    
-    $('#RemoveEntry').click(removeHistoryEntry);
-    
+
+    $('#RemoveEntry').click(confirmRemoveHistoryEntry);
 
 });
 
@@ -83,22 +82,33 @@ function editUserPayment(id) {
 }
 
 
-function removeHistoryEntry(){
-        
-    var id = $($(this).closest('tr').children()[0]).html();
-    var type = $($(this).closest('tr').children()[2]).html();
-   
+function removeHistoryEntry(id, type) {
+ 
     $.post(
         "../api/remove_hist_entry.php", {
             id: id,
             type: type
         },
         function (data, statusText, xhr) {
-          //  $('#methPayment').modal('hide');
-          //  $("#UserDonative").html(payment);
+            $("#" + type + id).remove();
         })
         .fail(function (error) {
-            console.log(error);
-            $('#friendStatus2').fadeIn();
-        });    
+            $("#" + type + id).highlightAnimation(red, 1500);
+        });
+}
+
+function confirmRemoveHistoryEntry() {
+    var closest_tr = $(this).closest('tr'),
+        id = $(closest_tr.children()[0]).html(),
+        type = $(closest_tr.children()[2]).html();
+     
+     console.log(closest_tr);   
+     
+    $('#confirm').modal({
+        backdrop: 'static',
+        keyboard: false
+    })
+        .one('click', '#delete', function () {
+            removeHistoryEntry(id, type);
+        });
 }

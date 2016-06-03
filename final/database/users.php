@@ -181,7 +181,7 @@ function remove_history_entry($id, $type){
         
     if($type == 'Evento'){
           $stmt = $conn->prepare("DELETE FROM friend_events 
-                                         WHERE id = ?");        
+                                         WHERE event = ?");        
     }else {
         $stmt = $conn->prepare("DELETE FROM payments 
                                          WHERE id = ?"); 

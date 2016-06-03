@@ -76,7 +76,7 @@
                         <tbody>
 
                             {foreach $history as $entry}
-                            <tr>
+                            <tr id={$entry.type}{$entry.id}>
                                 <td>{$entry.id}</td>
                                 <td>{$entry.date}</td>
                                 <td>{$entry.type}</td>
@@ -192,6 +192,9 @@
         <!-- /.modal-dialog -->
     </div>
     <!-- /.modal -->
+
+    {include file='modals/confirm_action.tpl'}
+
 
     <!-- G.A.S.Porto -->
     <script src="{$BASE_URL}js/amigo.min.js"></script>

@@ -2,6 +2,15 @@
 include_once('../config/init.php');
 include_once($BASE_DIR.'database/users.php');
 
+// Validate user
+if (!isset($_SESSION['username'])
+    || !isset($_SESSION['role'])
+   ) {
+    $_SESSION['error_messages'][] = 'No permission to access this page!';
+    http_response_code(404);
+    return;
+}
+
 
 $params = array('id', 'payment');
 
