@@ -237,6 +237,9 @@ function get_all_users()
  */
 function get_search_user_by_name($user)
 {
+    if($user === "")
+        return array();
+
     global $conn;
 
     $user = "%".$user."%";

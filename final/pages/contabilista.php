@@ -11,12 +11,4 @@ if (!isset($_SESSION['username'])
     return;
 }
 
-$role = $_SESSION['role'];
-
-if (strcmp($role, "Contabilista") != 0) {
-    header('Location: ' . $_SERVER['HTTP_REFERER']); //redirects to previous page
-    $_SESSION['error_messages'][] = 'No permission to access this page!';
-    exit;
-} else {
-    header('Location: gerirpessoal.php');
-}
+header('Location: gerirpessoal.php');
