@@ -59,53 +59,7 @@
                         </div>
                     </div>
                 </div>
-                <h2>Histórico</h2>
-                <hr class="sub-header">
-                <div class="table-responsive">
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>id</th>
-                                <th>Data</th>
-                                <th>Tipo</th>
-                                <th>Valor (EUR)</th>
-                                <th>Recibo</th>
-                                <th>Opções</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-
-                            {foreach $history as $entry}
-                            <tr id={$entry.type}{$entry.id}>
-                                <td>{$entry.id}</td>
-                                <td>{$entry.date}</td>
-                                <td>{$entry.type}</td>
-                                <td>{$entry.value}</td>
-
-                                {if $entry.type eq "Evento"}
-                                <td></td>
-                                <td>
-                                    <i class="fa fa-eye fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Ver detalhes"></i>
-                                {else}
-                                    <td> <i class="fa fa-file-pdf-o fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Imprimir Recibo"></i> </td>
-                                    <td> <i class="fa fa-eye fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Ver detalhes"></i> 
-                                 {/if}
-                                        <i id="EditEntry" class="fa fa-pencil fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Editar"></i>
-                                        <i id="RemoveEntry" class="fa fa-trash fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Eliminar"></i>
-                                        
-                                   <!-- TODO    REMOVE   BELOW COMMENT TO REMOVE PRIVILEGES FROM FRIEND -->     
-                                        
-                                    <!--  {if $user.role != 'Amigo'}
-                                        add above buttons here;
-                                      {/if} -->                                     
-                                    </td>
-                            </tr>
-
-                            {/foreach}
-
-                        </tbody>
-                    </table>
-                </div>
+                {include file='history/history.tpl'}               
             </div>
         </div>
     </div>
@@ -193,12 +147,65 @@
     </div>
     <!-- /.modal -->
 
+
+    <!-- Modal -->
+    <div id="editHistory" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Editar entrada do histórico</h4>
+                </div>
+                <div class="modal-body">
+                    <form id = "editHistoryForm" role="form" onsubmit="editUser({$user.id}); return false;">
+                        <div class="form-group">
+                            <label for="name">Nome:</label>
+                            <input class="form-control" id="name">
+                        </div>
+                        <div class="form-group">
+                            <label for="dateBirth">Data Nascimento:</label>
+                            <input class="form-control" id="dateBirth">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input class="form-control" id="email">
+                        </div>
+                        <div class="form-group">
+                            <label for="contact">Contacto:</label>
+                            <input class="form-control" id="contact">
+                        </div>
+                    </form>
+                    <div class="alert alert-danger alert-dismissible" style="display: none;" role="alert" id="friendStatus">
+                        <button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span>
+                        </button>
+                        Failed to complete the action! Please verify the information.
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                    <input id="EditHistorySubmit" type="submit" class="btn btn-primary" form="editHistoryForm"></input>
+                </div>                
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+
     {include file='modals/confirm_action.tpl'}
 
 
     <!-- G.A.S.Porto -->
     <script src="{$BASE_URL}js/amigo.min.js"></script>
 
+
+<!-- Bootstrap core JavaScript
+    ================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
 </body>
 

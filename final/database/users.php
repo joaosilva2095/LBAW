@@ -1,4 +1,4 @@
-<?php
+<?php 
 
 /**
  *  Register a friend in the database
@@ -16,8 +16,7 @@
  * @param periodicity periodicity of the donative payment
  * @return true if successfull, false otherwise
  */
-function register_friend($id, $email, $password, $name, $gender, $birth, $nif, $cellphone, $donative_type, $periodicity)
-{
+function register_friend($id, $email, $password, $name, $gender, $birth, $nif, $cellphone, $donative_type, $periodicity) {
     // Register the user in the database
     if (!register_user($id, "Amigo", $email, $password, $name, $gender, $birth)) {
         return false;
@@ -50,8 +49,7 @@ function register_friend($id, $email, $password, $name, $gender, $birth, $nif, $
  * @param birth birth date of the user
  * @return true if successfull, false otherwise
  */
-function register_user($id, $role, $email, $password, $name, $gender, $birth)
-{
+function register_user($id, $role, $email, $password, $name, $gender, $birth) {
     global $conn;
     $stmt = $conn->prepare("INSERT INTO users
                             VALUES (?, ?, ?, ?, ?, ?, ?)");
@@ -73,8 +71,7 @@ function register_user($id, $role, $email, $password, $name, $gender, $birth)
  * @param id id of the user to remove
  * @return true if successfull, false otherwise
  */
-function remove_user($id)
-{
+function remove_user($id) {
     global $conn;
 
     $stmt = $conn->prepare("DELETE FROM users
@@ -88,8 +85,7 @@ function remove_user($id)
  * @param id id of the user to paused
  * @return true if successfull, false otherwise
  */
-function toggle_pause_friend($id)
-{
+function toggle_pause_friend($id) {
     global $conn;
 
     $stmt = $conn->prepare("UPDATE friends
@@ -113,8 +109,7 @@ function toggle_pause_friend($id)
  * @param periodicity periodicity of the donative payment
  * @return true if successfull, false otherwise
  */
-function edit_friend($id, $email, $name, $gender, $birth, $nif, $cellphone, $donative_type, $periodicity)
-{
+function edit_friend($id, $email, $name, $gender, $birth, $nif, $cellphone, $donative_type, $periodicity) {
     global $conn;
 
     // Check if is a new friend
@@ -147,16 +142,14 @@ function edit_friend($id, $email, $name, $gender, $birth, $nif, $cellphone, $don
 
 
 /*short version from the one above*/
-function edit_friend_short($id, $email, $name, $birth, $cellphone)
-{
+function edit_friend_short($id, $email, $name, $birth, $cellphone) {
     global $conn;
- 
+
     $stmt = $conn->prepare("UPDATE friends 
                            SET cellphone = ? WHERE id = ?");
-           
-    $result = $stmt->execute(array($cellphone,$id));  
-    if(!$result)
-        return false;      
+
+    $result = $stmt->execute(array($cellphone, $id));
+    if (!$result) return false;
 
     $stmt = $conn->prepare("UPDATE users
                             SET name = ?, email = ?, birth = ? 
@@ -166,28 +159,28 @@ function edit_friend_short($id, $email, $name, $birth, $cellphone)
     } catch (PDOException $e) {}
 }
 
-function edit_friend_payment($id, $payment){    
+function edit_friend_payment($id, $payment) {
     global $conn;
- 
+
     $stmt = $conn->prepare("UPDATE friends 
                            SET donative_type = ? WHERE id = ?");
-      try {
-        return $stmt->execute(array($payment,$id)); 
-    } catch (PDOException $e) {}       
+    try {
+        return $stmt->execute(array($payment, $id));
+    } catch (PDOException $e) {}
 }
 
-function remove_history_entry($id, $type){
-    global $conn;      
-        
-    if($type == 'Evento'){
-          $stmt = $conn->prepare("DELETE FROM friend_events 
-                                         WHERE event = ?");        
-    }else {
+function remove_history_entry($id, $type) {
+    global $conn;
+
+    if ($type == 'Evento') {
+        $stmt = $conn->prepare("DELETE FROM friend_events 
+                                         WHERE event = ?");
+    } else {
         $stmt = $conn->prepare("DELETE FROM payments 
-                                         WHERE id = ?"); 
+                                         WHERE id = ?");
     }
-    
-    return $stmt->execute(array($id)); 
+
+    return $stmt->execute(array($id));
 }
 
 
@@ -201,8 +194,7 @@ function remove_history_entry($id, $type){
  * @param birth birth date of the user
  * @return true if successfull, false otherwise
  */
-function edit_user($id, $role, $email, $name, $gender, $birth)
-{
+function edit_user($id, $role, $email, $name, $gender, $birth) {
     global $conn;
 
     // Check if previously the user was a friend
@@ -232,8 +224,7 @@ function edit_user($id, $role, $email, $name, $gender, $birth)
  *  Get all the users of the database
  * @return all the users of the database
  */
-function get_all_users()
-{
+function get_all_users() {
     global $conn;
     $stmt = $conn->prepare("SELECT users.id, role, name, email, gender, birth, frozen,
                                     nif, cellphone, donative_type, periodicity
@@ -250,8 +241,7 @@ function get_all_users()
  * @param user name of the user to be searched
  * @return results that match the user
  */
-function get_search_user_by_name($user)
-{
+function get_search_user_by_name($user) {
     global $conn;
 
     $user = "%".$user."%";
@@ -267,8 +257,7 @@ function get_search_user_by_name($user)
  * @param atm_reference atm reference of the user to be searched
  * @return results that match the user's atm reference
  */
-function get_search_user_by_atm_reference($atm_reference)
-{
+function get_search_user_by_atm_reference($atm_reference) {
     global $conn;
 
     $stmt = $conn->prepare("SELECT atm_reference, users.id, name, birth, role FROM payments
@@ -289,8 +278,7 @@ function get_search_user_by_atm_reference($atm_reference)
  * @param username user's name
  * @param password user's password
  */
-function is_login_correct($username, $password)
-{
+function is_login_correct($username, $password) {
     global $conn;
     $stmt = $conn->prepare("SELECT *
                             FROM users
@@ -304,8 +292,7 @@ function is_login_correct($username, $password)
  * @param email user's username
  * @returns User's role in case of success or false on failure.
  */
-function get_user_role($email)
-{
+function get_user_role($email) {
     global $conn;
 
     $stmt = $conn->prepare("SELECT ROLE
@@ -320,8 +307,7 @@ function get_user_role($email)
  * @param email user's username
  * @returns User user entity or false if fail
  */
-function get_user_by_email($email)
-{
+function get_user_by_email($email) {
     global $conn;
     $stmt = $conn->prepare("SELECT *
                             FROM users
@@ -335,8 +321,7 @@ function get_user_by_email($email)
  * @param username email user's username
  * @returns User friend entity or false if fail
  */
-function get_friend_info($username)
-{
+function get_friend_info($username) {
     if (($user = get_user_by_email($username)) === false) {
         return false;
     }
@@ -358,70 +343,102 @@ function get_friend_info($username)
 
 
 /**
- *  Get user's history (KING OF SQL)
+ *  Get user's s
  * @param id user's id
  * @returns history user's history or false if fail
  */
-function get_user_history($id)
-{
+function get_user_event_history($id) {
     global $conn;
 
-    //get general history
-    $stmt = $conn->prepare("
-    (SELECT payments.id AS id, payments.payment_date AS date,payments.payment_type AS type, payments.value AS value
-         FROM friends, payments, donatives
-         WHERE friends.id = ?
-         AND donatives.friend = friends.id
-         AND payments.id = donatives.id)
-    UNION
-    (SELECT payments.id AS id, payments.payment_date AS date,payments.payment_type AS type, payments.value AS value
-            FROM friends, payments, mercha_purchases
-            WHERE friends.id = ?
-            AND mercha_purchases.friend = friends.id
-            AND payments.id = mercha_purchases.id)
-    UNION
-    (SELECT events.id AS id, events.event_date AS date, 'Evento' as type, events.price AS value
-        FROM events, friends, friend_events
-        WHERE friends.id = ?
-        AND friend_events.friend = friends.id
-        AND events.id = friend_events.event
-        GROUP BY events.id)
-    ORDER BY date DESC;");
-    $stmt->execute(array($id, $id, $id));
+    $stmt = $conn->prepare("SELECT events.*
+    FROM events, friends, friend_events
+    WHERE friends.id = ?
+    AND friend_events.friend = friends.id
+    AND events.id = friend_events.event
+    GROUP BY events.id
+    ORDER BY events.event_date DESC");
+
+    $stmt->execute(array($id));
 
     return $stmt->fetchAll();
 }
+
+function get_user_event_payments($id) {
+    global $conn;
+
+    $stmt = $conn->prepare("SELECT payments.*, events.name
+         FROM payments, friends, friend_events, events
+         WHERE friends.id = ?
+         AND friend_events.friend = friends.id
+         AND friend_events.payment = payments.id
+         AND friend_events.event = events.id
+         ORDER BY payments.payment_date DESC");
+
+    $stmt->execute(array($id));
+
+    return $stmt->fetchAll();
+}
+
+function get_user_donative_history($id) {
+    global $conn;
+
+    $stmt = $conn->prepare("SELECT payments.*, donatives.donative_type
+         FROM friends, payments, donatives
+         WHERE friends.id = ?
+         AND donatives.friend = friends.id
+         AND payments.id = donatives.id
+         ORDER BY payments.payment_date DESC");
+
+    $stmt->execute(array($id));
+
+    return $stmt->fetchAll();
+}
+
+function get_user_merchandise_history($id) {
+
+    global $conn;
+
+    $stmt = $conn->prepare("SELECT payments.*, mercha_purchases.quantity, mercha_products.description, mercha_products.price
+    FROM friends, payments, mercha_purchases, mercha_products
+    WHERE friends.id = ?
+    AND mercha_purchases.friend = friends.id
+    AND payments.id = mercha_purchases.id
+    AND mercha_purchases.product = mercha_products.id
+    ORDER BY payment_date DESC");
+
+    $stmt->execute(array($id));
+
+    return $stmt->fetchAll();
+}
+
 
 /**
  *  Get all users's history (global)
  * @returns hystory global history
  */
-function get_global_history()
-{
+function get_global_history() {  /* TODO REDO THIS METHOD */
     global $conn;
 
     //get payments history
-    $stmt = $conn->prepare("(
-        (SELECT friends.id, payments.id, payments.payment_date AS date,
-                payments.payment_type AS type, payments.value AS value
-         FROM users,friends, payments, donatives, mercha_purchases
-         WHERE friends.id = users.id
-         AND (
-              (payments.id = donatives.id
-               AND donatives.friend = friends.id)
-              OR
-              (payments.id = mercha_purchases.id AND
-               mercha_purchases.id = payments.id)
-         )
-         GROUP BY payments.id,friends.id)
-    UNION
-        (SELECT friends.id, events.id, events.event_date AS date, 'Evento' as type, events.price AS value
-        FROM events, payments, friends, friend_events,users
-        WHERE events.id = friend_events.event
-        AND friend_events.friend = friends.id
-        AND users.id = friends.id
-        GROUP BY events.id,friends.id))
-        ORDER BY date");
+    $stmt = $conn->prepare(" (
+    (SELECT friends.id, payments.id, payments.payment_date AS date,
+    payments.payment_type AS type, payments.value AS value
+    FROM users, friends, payments, donatives, mercha_purchases
+    WHERE friends.id = users.id
+    AND(
+    (payments.id = donatives.id
+    AND donatives.friend = friends.id)
+    OR(payments.id = mercha_purchases.id AND
+    mercha_purchases.id = payments.id))
+    GROUP BY payments.id, friends.id)
+    UNION(SELECT friends.id, events.id, events.event_date AS date, 'Evento'
+    as type, events.price AS value
+    FROM events, payments, friends, friend_events, users
+    WHERE events.id = friend_events.event
+    AND friend_events.friend = friends.id
+    AND users.id = friends.id
+    GROUP BY events.id, friends.id))
+    ORDER BY date ");
 
     $stmt->execute();
     return $stmt->fetchAll();

@@ -1,9 +1,5 @@
 $(document).ready(function () {
 
-    $('[data-toggle="tooltip"]').tooltip({
-        placement: 'top'
-    });
-
     $('#EditUserModal').click(function () {
         var name = $("#UserName").text();
         var email = $("#UserEmail").text();
@@ -25,7 +21,9 @@ $(document).ready(function () {
         $('#sel1').val(payment);
     });
 
-    $('#RemoveEntry').click(confirmRemoveHistoryEntry);
+    $('i[data-original-title="Editar"]').click(editHistoryEntry);
+    $('i[data-original-title="Eliminar"]').click(confirmRemoveHistoryEntry);
+    
 
 });
 
@@ -59,8 +57,6 @@ function editUser(id) {
             console.log(error);
             $('#friendStatus').fadeIn();
         });
-
-
 }
 
 function editUserPayment(id) {
@@ -101,9 +97,7 @@ function confirmRemoveHistoryEntry() {
     var closest_tr = $(this).closest('tr'),
         id = $(closest_tr.children()[0]).html(),
         type = $(closest_tr.children()[2]).html();
-     
-     console.log(closest_tr);   
-     
+      
     $('#confirm').modal({
         backdrop: 'static',
         keyboard: false
@@ -111,4 +105,33 @@ function confirmRemoveHistoryEntry() {
         .one('click', '#delete', function () {
             removeHistoryEntry(id, type);
         });
+}
+
+
+function editHistoryEntry(){
+     var closest_tr = $(this).closest('tr'),
+        id = $(closest_tr.children()[0]).html(),
+        type = $(closest_tr.children()[2]).html();
+        
+        alert(closest_tr);
+        
+       /*
+        $.post(
+        "../api/edit_hist_entry.php", {
+            id: id,
+            type: type
+        },
+        function (data, statusText, xhr) {
+            $('#editHistory').modal('hide');
+            
+            $("#UserName").html(name);
+            $("#UserEmail").html(email);
+            $("#UserBirth").html(birth);
+            $("#UserCellphone").html(cellphone);
+            $("#UserNameNav").html(name + " (Amigo)");
+        })
+        .fail(function (error) {
+            $("#" + type + id).highlightAnimation(red, 1500);
+        }); 
+    */    
 }
