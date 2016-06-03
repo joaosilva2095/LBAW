@@ -133,11 +133,16 @@
                             <input class="form-control" id="contact">
                         </div>
                     </form>
+                    <div class="alert alert-danger alert-dismissible" style="display: none;" role="alert" id="friendStatus">
+                        <button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span>
+                        </button>
+                        Failed to complete the action! Please verify the information.
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
                     <input id="EditProfileSubmit" type="submit" class="btn btn-primary" form="editFriendForm"></input>
-                </div>
+                </div>                
             </div>
             <!-- /.modal-content -->
         </div>

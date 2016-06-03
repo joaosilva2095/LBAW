@@ -29,7 +29,7 @@ function editUser(id) {
         birth = $('#dateBirth').val(),
         cellphone = $('#contact').val();
     
-    alert(name + email + birth + cellphone);
+    //alert(name + email + birth + cellphone);
     
     $.post(
         "../api/edit_profile.php", {
@@ -39,16 +39,18 @@ function editUser(id) {
             birth: birth,
             cellphone: cellphone
         },
-        function (data, statusText, xhr) {                                  
+        function (data, statusText, xhr) {                                             
             $('#editProfile').modal('hide');
 
             $("#UserName").html(name);
             $("#UserEmail").html(email);
             $("#UserBirth").html(birth);
             $("#UserCellphone").html(cellphone);
+            $("#UserNameNav").html(name+" (Amigo)");
         })
-        .fail(function (error) {
-            $('#userStatus').fadeIn();
+        .fail(function (error) { 
+            console.log(error);                       
+            $('#friendStatus').fadeIn();
         });
 
 
