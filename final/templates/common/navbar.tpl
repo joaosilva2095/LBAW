@@ -13,11 +13,11 @@
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#"><i class="fa fa-user"></i> {$user.name} ({$user.role})</a></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> Notificações
+                <li id="notifications" class="dropdown">
+                    <a href="#" class="dropdown-toggle"><i class="fa fa-bell"></i> Notificações
                         <span class="badge">{$notifications|@count}</span></a>
 
-                    <ul id="notifications" class="dropdown-menu list-group">
+                    <ul class="dropdown-menu list-group">
 
                         {foreach $notifications as $notification}
                         <li id="notification{$notification.id}" class="list-group-item list-group-item-{$notification.notification_type|@strtolower}">{$notification.description}</li>

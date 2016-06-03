@@ -1,28 +1,24 @@
 /*global $ */
 
 /**
- * Function to register a user
+ * Mark a notification as seen
  */
-function addUserNotification() {
-    // Variables
-    var id = $('#notificationUserId').val(),
-        message = $('#notificationMessage').val(),
-        type = $('#notificationType').val();
+function markNotification() {
+    var id = $(this).attr('id');
+    id = id.replace("notification", "");
 
-    // Async call to register
+    // Async call to mark notification
     $.post(
-            "../api/add_notification.php", {
-                id: id,
-                message: message,
-                type: type
+            "../api/mark_notification.php", {
+                id: id
             },
             function (data, statusText, xhr) {
-                $('#notificationModal').modal('hide');
-
-                $('#user' + id).highlightAnimation(green, 1500);
+                $('#notification' + id).remove();
+                var badges = $('#notifications .badge');
+                badges.html(parseInt(badges.html()) - 1);
             })
         .fail(function (error) {
-            $('#notificationStatus').fadeIn();
+            $('#notification' + id).highlightAnimation(red, 1500);
         });
 }
 
@@ -30,14 +26,18 @@ function addUserNotification() {
  * Configure the elements
  */
 function config() {
-    $('#notificationForm').submit(function (e) {
-        e.preventDefault();
-        addUserNotification();
+    // Dropdown toggler
+    $('#notifications a').click(function (event) {
+        $(this).parent().toggleClass('open');
     });
 
-    $('#notificationStatus').click(function () {
-        $(this).fadeOut();
+    $('body').click(function (e) {
+        if (!$('#notifications').is(e.target) && $('#notifications').has(e.target).length === 0 && $('.open').has(e.target).length === 0) {
+            $('#notifications').removeClass('open');
+        }
     });
+
+    $('#notifications li').click(markNotification);
 }
 
 /**

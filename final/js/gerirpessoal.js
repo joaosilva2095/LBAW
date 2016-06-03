@@ -1,6 +1,24 @@
 /*global $ */
 
 /**
+ * Remove a user from the database
+ * @param {string} id id of the user to be removed
+ */
+function removeUser(id) {
+    // Async call to login
+    $.post(
+            "../api/delete_user.php", {
+                id: id
+            },
+            function (data, statusText, xhr) {
+                $('#user' + id).remove();
+            })
+        .fail(function (error) {
+            $('#user' + id).highlightAnimation(red, 1500);
+        });
+}
+
+/**
  * Toggle pause a user from the database
  */
 function togglePauseUser() {
@@ -34,6 +52,23 @@ function togglePauseUser() {
             })
         .fail(function (error) {
             $('#user' + id).highlightAnimation(red, 1500);
+        });
+}
+
+/**
+ * Confirm remove user
+ */
+function confirmRemoveUser() {
+    // Variables
+    var id = $(this).closest('tr').attr('id');
+    id = id.replace("user", "");
+
+    $('#confirm').modal({
+            backdrop: 'static',
+            keyboard: false
+        })
+        .one('click', '#delete', function () {
+            removeUser(id);
         });
 }
 
@@ -82,6 +117,8 @@ function configEditUserModal() {
     $('#cellphone').val(cellphone);
     $('#paymethod').val(donativeType);
     $('#periodicity').val(periodicity);
+
+    $('#role').trigger('change');
 }
 
 /**
@@ -96,15 +133,20 @@ function configAddNotificationModal() {
 }
 
 /**
- * On document ready
+ * Configure the elements
  */
-$(document).ready(function () {
+function config() {
     enableTooltips();
 
     // Manage users
     $('i[data-original-title="Editar"]').click(configEditUserModal);
-    $('i[data-original-title="Eliminar"]').click(removeUser);
+    $('i[data-original-title="Eliminar"]').click(confirmRemoveUser);
     $('i[data-original-title="Congelar"]').click(togglePauseUser);
     $('i[data-original-title="Descongelar"]').click(togglePauseUser);
     $('i[data-original-title="Notificar"]').click(configAddNotificationModal);
-});
+}
+
+/**
+ * On document ready
+ */
+$(document).ready(config);

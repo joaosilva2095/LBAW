@@ -1,4 +1,3 @@
-<!-- Register / Edit user modal -->
 <div class="modal fade" tabindex="-1" role="dialog" id="userModal">
     <div class="modal-dialog">
         <div class="modal-content">
