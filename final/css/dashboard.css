@@ -83,6 +83,9 @@ body {
     color: #333;
     text-decoration: none;
 }
+#notifications li {
+    cursor: pointer;
+}
 
 /* Sidebar navigation */
 
