@@ -11,7 +11,8 @@ function destroy_session()
 //==============================//
 
 /*action page*/
-include_once("../database/users.php");
+include_once('../config/init.php');
+include_once($BASE_DIR . 'database/users.php');
 
 //Input	control
 if (!$_POST['username'] || !$_POST['password']) {
