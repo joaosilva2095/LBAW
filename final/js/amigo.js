@@ -24,6 +24,9 @@ $(document).ready(function () {
 
         $('#sel1').val(payment);
     });
+    
+    $('#RemoveEntry').click(removeHistoryEntry);
+    
 
 });
 
@@ -65,7 +68,7 @@ function editUserPayment(id) {
     var payment = $('#sel1').val();
 
     $.post(
-        "../api/edit_donative.php", {
+        "../api/edit_donative_meth.php", {
             id: id,
             payment: payment
         },
@@ -77,4 +80,28 @@ function editUserPayment(id) {
             console.log(error);
             $('#friendStatus2').fadeIn();
         });
+}
+
+
+function removeHistoryEntry(){
+    
+    var id = $(this).closest('tr').children().index(0);
+    var type = $(this).closest('tr').children().index(2);
+    
+    alert(id +" "+ type);
+    
+    $.post(
+        "../api/remove_hist_entry.php", {
+            id: id,
+            type: type
+        },
+        function (data, statusText, xhr) {
+          //  $('#methPayment').modal('hide');
+          //  $("#UserDonative").html(payment);
+        })
+        .fail(function (error) {
+            console.log(error);
+            $('#friendStatus2').fadeIn();
+        });
+    
 }
