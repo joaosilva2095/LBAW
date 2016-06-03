@@ -8,75 +8,53 @@
  * @param  {integer} $duration    duration of the event
  * @param  {string} $place       place of the event
  * @param  {real} $price       price of the event
- * @return boolean  true if successful, false otherwise
+ * @return integer  id of the event if successful, false otherwise
  */
 function register_event($name, $description, $date, $duration, $place, $price)
 {
     global $conn;
     $stmt = $conn->prepare("INSERT INTO events (name, description, event_date, duration, place, price)
-                            VALUES (?, ?, ?, ?, ?, ?)");
-    try {
-        return $stmt->execute(array($name, $description, $date, $duration, $place, $price));
-    } catch (PDOException $e) {
-        if ($e->getCode() == 23505) {
-            return false;
-        } // Unique constraint violation
-        else {
-            return false;
-        } // TODO Log to the file
+                            VALUES (?, ?, ?, ?, ?, ?) RETURNING id");
+    if (!$stmt->execute(array($name, $description, $date, $duration, $place, $price))) {
+        return false;
     }
+    return $stmt->fetch();
 }
 
 /**
  *  Remove a user from the database
  *
- * @param id id of the user to remove
+ * @param $event_id id of the user to remove
  * @return true if successfull, false otherwise
  */
-function remove_event($id)
+function remove_event($event_id)
 {
     global $conn;
 
     $stmt = $conn->prepare("DELETE FROM events
                             WHERE id = ?");
-    return $stmt->execute(array($id));
+    return $stmt->execute(array($event_id));
 }
 
 /**
- *  Edit a user in the database
- * @param id id of the user to be edited
- * @param role role of the user (might be "Contabilista", "Administrador", "Amigo")
- * @param email email of the user, it will be used to login
- * @param name name of the user
- * @param gender gender of the user
- * @param birth birth date of the user
- * @return true if successfull, false otherwise
+ * Edit a event in the database
+ * @param  {integer} $event_id        id of the event
+ * @param  {string} $name        name of the event
+ * @param  {string} $description description of the event
+ * @param  {date} $date        date of the event
+ * @param  {integer} $duration    duration of the event
+ * @param  {string} $place       place of the event
+ * @param  {real} $price       price of the event
+ * @return boolean  true if successful, false otherwise
  */
-function edit_event($id, $role, $email, $name, $gender, $birth)
+function edit_event($event_id, $name, $description, $date, $duration, $place, $price)
 {
     global $conn;
-
-    // Check if previously the user was a friend
-    if ($role !== 'Amigo') {
-        $stmt = $conn->prepare("SELECT id FROM friends WHERE id = ?");
-        if (!$stmt->execute(array($id))) {
-            return false;
-        }
-        if ($stmt->rowCount() > 0) {
-            $stmt = $conn->prepare("DELETE FROM friends WHERE id = ?");
-            if (!$stmt->execute(array($id))) {
-                return false;
-            }
-        }
-    }
-
-    // Update user details
-    $stmt = $conn->prepare("UPDATE users SET role = ?, email = ?, name = ?, gender = ?, birth = ? WHERE id = ?");
-    try {
-        return $stmt->execute(array($role, $email, $name, $gender, $birth, $id));
-    } catch (PDOException $e) {
-
-    }
+    $stmt = $conn->prepare("UPDATE events SET
+                            name = ?, description = ?, event_date = ?,
+                            duration = ?, place = ?, price = ?
+                            WHERE id = ?");
+    return $stmt->execute(array($name, $description, $date, $duration, $place, $price, $event_id));
 }
 
 /**

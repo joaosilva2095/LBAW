@@ -25,7 +25,6 @@
 
                             {foreach $events as $key => $event}
                             <tr id="event{$event.id}">
-                                <td style="display:none;">{$event.id}</td>
                                 <td style="display:none;">{$event.description}</td>
                                 <td>{$event.name}</td>
                                 <td>{$event.event_date}</td>
@@ -50,7 +49,7 @@
                     </table>
                 </div>
                 {if $role === 'Administrador'}
-                <button id="newUser" type="button" class="btn btn-default" data-toggle="modal" data-target="#addEventModal">
+                <button id="newEvent" type="button" class="btn btn-default" data-toggle="modal" data-target="#addEventModal">
                     <i class="fa fa-calendar-plus-o"></i> Novo Evento
                 </button>
                 {/if}
@@ -65,7 +64,7 @@
     {include file='modals/add_event.tpl'}
 
     <!-- G.A.S.Porto -->
-    <script src="{$BASE_URL}js/gerirpessoal.min.js "></script>
+    <script src="{$BASE_URL}js/gerireventos.min.js "></script>
 
 </body>
 

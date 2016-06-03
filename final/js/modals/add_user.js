@@ -64,7 +64,9 @@ function registerUser() {
                 trNew.highlightAnimation(green, 1500);
 
                 // Update listeners
-                $('i[data-original-title="Eliminar"]').click(removeUser);
+                $('i[data-original-title="Notificar"]').click(configAddNotificationModal);
+                $('i[data-original-title="Editar"]').click(configEditUserModal);
+                $('i[data-original-title="Eliminar"]').click(confirmRemoveUser);
                 enableTooltips();
             })
         .fail(function (error) {
@@ -115,7 +117,6 @@ function updateUser() {
             function (data, statusText, xhr) {
                 $('#addUserModal').modal('hide');
 
-                $("#user" + id + " td:nth-child(1)").html(id);
                 $("#user" + id + " td:nth-child(2)").html(name);
                 $("#user" + id + " td:nth-child(3)").html(email);
                 $("#user" + id + " td:nth-child(4)").html(gender);
