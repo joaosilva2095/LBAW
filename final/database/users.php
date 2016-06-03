@@ -241,7 +241,11 @@ function get_all_users() {
  * @param user name of the user to be searched
  * @return results that match the user
  */
-function get_search_user_by_name($user) {
+function get_search_user_by_name($user)
+{
+    if($user === "")
+        return array();
+
     global $conn;
 
     $user = "%".$user."%";

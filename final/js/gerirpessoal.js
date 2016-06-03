@@ -76,8 +76,8 @@ function confirmRemoveUser() {
  * Configuration of the edit user modal
  */
 function configEditUserModal() {
-    $('#userModal form').trigger('reset');
-    $('#userModalTitle').html('Editar Utilizador');
+    $('#addUserModal form').trigger('reset');
+    $('#addUserModalTitle').html('Editar Utilizador');
 
     // Fill data
     var id = $(this).closest('tr').attr('id');
