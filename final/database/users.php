@@ -176,6 +176,21 @@ function edit_friend_payment($id, $payment){
     } catch (PDOException $e) {}       
 }
 
+function remove_history_entry($id, $type){
+    global $conn;      
+        
+    if($type == 'Evento'){
+          $stmt = $conn->prepare("DELETE FROM friend_events 
+                                         WHERE event = ?");        
+    }else {
+        $stmt = $conn->prepare("DELETE FROM payments 
+                                         WHERE id = ?"); 
+    }
+    
+    return $stmt->execute(array($id)); 
+}
+
+
 /**
  *  Edit a user in the database
  * @param id id of the user to be edited

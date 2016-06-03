@@ -76,7 +76,7 @@
                         <tbody>
 
                             {foreach $history as $entry}
-                            <tr>
+                            <tr id={$entry.type}{$entry.id}>
                                 <td>{$entry.id}</td>
                                 <td>{$entry.date}</td>
                                 <td>{$entry.type}</td>
@@ -88,12 +88,16 @@
                                     <i class="fa fa-eye fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Ver detalhes"></i>
                                 {else}
                                     <td> <i class="fa fa-file-pdf-o fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Imprimir Recibo"></i> </td>
-                                    <td> <i class="fa fa-eye fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Ver detalhes"></i> {/if}
+                                    <td> <i class="fa fa-eye fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Ver detalhes"></i> 
+                                 {/if}
+                                        <i id="EditEntry" class="fa fa-pencil fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Editar"></i>
+                                        <i id="RemoveEntry" class="fa fa-trash fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Eliminar"></i>
                                         
-                                      {if $user.role != 'Amigo'}
-                                        <i class="fa fa-pencil fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Editar"></i>
-                                        <i class="fa fa-trash fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Eliminar"></i>
-                                       {/if}
+                                   <!-- TODO    REMOVE   BELOW COMMENT TO REMOVE PRIVILEGES FROM FRIEND -->     
+                                        
+                                    <!--  {if $user.role != 'Amigo'}
+                                        add above buttons here;
+                                      {/if} -->                                     
                                     </td>
                             </tr>
 
@@ -188,6 +192,9 @@
         <!-- /.modal-dialog -->
     </div>
     <!-- /.modal -->
+
+    {include file='modals/confirm_action.tpl'}
+
 
     <!-- G.A.S.Porto -->
     <script src="{$BASE_URL}js/amigo.min.js"></script>

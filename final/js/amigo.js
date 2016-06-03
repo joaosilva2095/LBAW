@@ -25,6 +25,8 @@ $(document).ready(function () {
         $('#sel1').val(payment);
     });
 
+    $('#RemoveEntry').click(confirmRemoveHistoryEntry);
+
 });
 
 function editUser(id) {
@@ -65,7 +67,7 @@ function editUserPayment(id) {
     var payment = $('#sel1').val();
 
     $.post(
-        "../api/edit_donative.php", {
+        "../api/edit_donative_meth.php", {
             id: id,
             payment: payment
         },
@@ -76,5 +78,37 @@ function editUserPayment(id) {
         .fail(function (error) {
             console.log(error);
             $('#friendStatus2').fadeIn();
+        });
+}
+
+
+function removeHistoryEntry(id, type) {
+ 
+    $.post(
+        "../api/remove_hist_entry.php", {
+            id: id,
+            type: type
+        },
+        function (data, statusText, xhr) {
+            $("#" + type + id).remove();
+        })
+        .fail(function (error) {
+            $("#" + type + id).highlightAnimation(red, 1500);
+        });
+}
+
+function confirmRemoveHistoryEntry() {
+    var closest_tr = $(this).closest('tr'),
+        id = $(closest_tr.children()[0]).html(),
+        type = $(closest_tr.children()[2]).html();
+     
+     console.log(closest_tr);   
+     
+    $('#confirm').modal({
+        backdrop: 'static',
+        keyboard: false
+    })
+        .one('click', '#delete', function () {
+            removeHistoryEntry(id, type);
         });
 }
