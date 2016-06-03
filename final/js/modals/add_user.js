@@ -1,8 +1,5 @@
 /*global $ */
 
-var green = '#DFF0D8';
-var red = '#A94442';
-
 /**
  * Remove a user from the database
  */

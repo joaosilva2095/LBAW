@@ -82,6 +82,8 @@ function configEditUserModal() {
     $('#cellphone').val(cellphone);
     $('#paymethod').val(donativeType);
     $('#periodicity').val(periodicity);
+
+    $('#role').trigger('change');
 }
 
 /**
@@ -96,9 +98,9 @@ function configAddNotificationModal() {
 }
 
 /**
- * On document ready
+ * Configure the elements
  */
-$(document).ready(function () {
+function config() {
     enableTooltips();
 
     // Manage users
@@ -107,4 +109,9 @@ $(document).ready(function () {
     $('i[data-original-title="Congelar"]').click(togglePauseUser);
     $('i[data-original-title="Descongelar"]').click(togglePauseUser);
     $('i[data-original-title="Notificar"]').click(configAddNotificationModal);
-});
+}
+
+/**
+ * On document ready
+ */
+$(document).ready(config);

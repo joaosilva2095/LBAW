@@ -1,5 +1,8 @@
 /*global $ */
 
+var green = '#DFF0D8';
+var red = '#A94442';
+
 /**
  * Animate a element with a color
  * @param highlightColor color to highlight
