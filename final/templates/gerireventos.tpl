@@ -32,7 +32,7 @@
                                 <td>{$event.place}</td>
                                 <td>{$event.price}</td>
                                 <td>
-                                    <i data-toggle="modal" data-target="#eventModal">
+                                    <i data-toggle="modal" data-target="#seeEventModal">
                                         <i class="fa fa-eye fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Ver"></i>
                                     </i>
                                     {if $role === 'Administrador'}
@@ -62,6 +62,9 @@
 
     <!-- Register / Edit event -->
     {include file='modals/add_event.tpl'}
+
+    <!-- See event -->
+    {include file='modals/see_event.tpl'}
 
     <!-- G.A.S.Porto -->
     <script src="{$BASE_URL}js/gerireventos.min.js "></script>

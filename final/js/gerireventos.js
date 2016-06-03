@@ -64,10 +64,29 @@ function configEditEventModal() {
 }
 
 /**
+ * Configuration of the see event modal
+ */
+function configSeeEventModal() {
+    $('#seeEventModal form').trigger('reset');
+
+    // Fill data
+    var id = $(this).closest('tr').attr('id');
+    id = id.replace("event", "");
+
+    var description = $("#event" + id + " td:nth-child(1)").text(),
+        name = $("#event" + id + " td:nth-child(2)").text();
+
+    // Set form
+    $('#seeEventName').val(name);
+    $('#seeEventDescription').val(description);
+}
+
+/**
  * Configure the elements
  */
 function config() {
     // Manage users
+    $('i[data-original-title="Ver"]').click(configSeeEventModal);
     $('i[data-original-title="Editar"]').click(configEditEventModal);
     $('i[data-original-title="Eliminar"]').click(confirmRemoveEvent);
 }
