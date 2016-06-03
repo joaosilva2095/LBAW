@@ -2,7 +2,7 @@
 include_once('../config/init.php');
 include_once($BASE_DIR.'database/users.php');
 
-sleep(4);
+
 $params = array('id', 'payment');
 
 foreach($params as $param) {
@@ -17,8 +17,8 @@ foreach($params as $param) {
 
 
 $result = edit_friend_payment(
-$params['id'],
-$params['payment']);
+                        $params['id'],
+                        $params['payment']);
 
 
 // Return result

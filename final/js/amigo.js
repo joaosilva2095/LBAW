@@ -17,12 +17,11 @@ $(document).ready(function () {
         $('#contact').val(cellphone);
     });
 
-    $('#EditPaymentModal').click(function () {
-        
+    $('#EditPaymentModal').click(function (event) {
+        event.preventDefault();
+
         var payment = $("#UserDonative").text();
-        
-        alert(payment);
-        //set form
+
         $('#sel1').val(payment);
     });
 
@@ -61,11 +60,9 @@ function editUser(id) {
 
 
 }
-function editUserPayment($id) {
 
+function editUserPayment(id) {
     var payment = $('#sel1').val();
-
-    alert(payment);
 
     $.post(
         "../api/edit_donative.php", {
@@ -73,14 +70,11 @@ function editUserPayment($id) {
             payment: payment
         },
         function (data, statusText, xhr) {
-            alert("lol1");
-           // $('#methPayment').modal('hide');
-
+            $('#methPayment').modal('hide');
             $("#UserDonative").html(payment);
         })
         .fail(function (error) {
-            alert("lol");
             console.log(error);
             $('#friendStatus2').fadeIn();
-        });       
+        });
 }

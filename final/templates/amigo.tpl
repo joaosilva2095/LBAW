@@ -163,10 +163,11 @@
                 <div class="modal-body">
                     <form id = "editUserPayment" role="form" onsubmit="editUserPayment({$user.id}); return false;">
                         <select id="sel1" class="form-control">
-                            <option value="Referência multibanco">Referência Multibanco</option>
-                            <option value="Débito direto">Débito direto</option>
-                            <option value="Transferência bancária">Transferência bancária</option>
-                            <option value="Cheque">Cheque</option>
+                            <option value="" disabled="disabled">&nbsp;</option>
+                            <option value="Referência Multibanco">Referência Multibanco</option>
+                            <option value="Numerário">Numerário</option>
+                            <option value="Transferência Bancária">Transferência Bancária</option>
+                            <option value="Débito Direto">Débito Direto</option>
                         </select>
                     </form>
                       <div class="alert alert-danger alert-dismissible" style="display: none;" role="alert" id="friendStatus2">
