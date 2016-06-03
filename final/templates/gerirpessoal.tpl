@@ -51,7 +51,7 @@
                                     {/if}
                                     <td>{$user.role}</td>
                                     <td>
-                                        <a href="user.php?user={$user.id}" class="fa fa-eye fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Ver"></a>
+                                        <a href="amigo.php?user={$user.id}" class="fa fa-eye fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Ver"></a>
                                         <i data-toggle="modal" data-target="#notificationModal">
                                             <i class="fa fa-bullhorn fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Notificar"></i>
                                         </i>

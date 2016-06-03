@@ -136,8 +136,6 @@ function configAddNotificationModal() {
  * Configure the elements
  */
 function config() {
-    enableTooltips();
-
     // Manage users
     $('i[data-original-title="Editar"]').click(configEditUserModal);
     $('i[data-original-title="Eliminar"]').click(confirmRemoveUser);

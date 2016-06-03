@@ -32,3 +32,12 @@ function enableTooltips() {
         placement: 'top'
     });
 }
+
+/**
+ * Configure the elements
+ */
+function config() {
+    enableTooltips();
+}
+
+$(document).ready(config);
