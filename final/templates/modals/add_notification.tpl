@@ -37,3 +37,5 @@
         </div>
     </div>
 </div>
+
+<script src="{$BASE_URL}js/modals/add_notification.min.js"></script>

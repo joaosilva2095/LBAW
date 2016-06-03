@@ -1,15 +1,5 @@
 <?php
 
-//==============================//
-function destroy_session()
-{
-    unset($_SESSION);
-    session_destroy();
-    session_write_close();
-}
-
-//==============================//
-
 /*action page*/
 include_once('../config/init.php');
 include_once($BASE_DIR . 'database/users.php');
@@ -42,8 +32,6 @@ if (is_login_correct($username, $password)) {
     if ($role === false || count($role) == 0) { //Error
 
         $_SESSION['error_messages'] = 'Role not found';
-
-        //destroy_session();
         header('Location:' . $_SERVER['HTTP_REFERER']);
         exit;
     }
@@ -66,14 +54,11 @@ if (is_login_correct($username, $password)) {
         default:
             //Error
             $_SESSION['error_messages'] = "Invalid Privileges";
-
-            // destroy_session();
             header('Location:' . $_SERVER['HTTP_REFERER']);
             exit;
     }
 } else {
     $_SESSION['error_messages'] = 'Login failed';
-    // destroy_session();
     //Redirect to login
     header('Location: ' . $_SERVER['HTTP_REFERER']);
     exit;

@@ -22,13 +22,6 @@ embed {
 body {
     padding-top: 50px;
 }
-#users td a,
-#users td a:hover,
-#users td a:visited,
-#users td a:active {
-    color: #333;
-    text-decoration: none;
-}
 
 /*
     Classes
@@ -77,6 +70,18 @@ body {
 }
 .clickable {
     cursor: pointer;
+}
+
+/*
+    Ids
+*/
+
+#users td a,
+#users td a:hover,
+#users td a:visited,
+#users td a:active {
+    color: #333;
+    text-decoration: none;
 }
 
 /* Sidebar navigation */

@@ -17,20 +17,27 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> Notificações
                         <span class="badge">{$notifications|@count}</span></a>
 
-                    <ul class="dropdown-menu list-group">
+                    <ul id="notifications" class="dropdown-menu list-group">
 
                         {foreach $notifications as $notification}
-                        <li class="list-group-item list-group-item-{$notification.notification_type|@strtolower}">{$notification.description}</li>
+                        <li id="notification{$notification.id}" class="list-group-item list-group-item-{$notification.notification_type|@strtolower}">{$notification.description}</li>
                         {/foreach}
 
                     </ul>
 
                 </li>
-                <li><a href="{$BASE_URL}actions/logout.php"><i class="fa fa-lock"></i> Sair</a></li>
+                <li><a href="{$BASE_URL}actions/logout.php"><i class="fa fa-sign-out"></i> Sair</a></li>
             </ul>
             <form class="navbar-form navbar-right" role="search" action="pesquisa.php" method="GET">
-                <input name="user" type="text" class="form-control" placeholder="Search...">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Procurar" name="user">
+                    <div class="input-group-btn">
+                        <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
+                    </div>
+                </div>
             </form>
         </div>
     </div>
 </nav>
+
+<script src="{$BASE_URL}js/common/navbar.min.js"></script>

@@ -91,3 +91,5 @@
         </div>
     </div>
 </div>
+
+<script src="{$BASE_URL}js/modals/add_user.min.js"></script>

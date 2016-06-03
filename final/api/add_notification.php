@@ -4,9 +4,8 @@ include_once($BASE_DIR . 'database/notifications.php');
 
 // Validate user
 if (!isset($_SESSION['username'])
-    || !isset($_SESSION['username'])
-    || $_SESSION['role'] === 'Amigo'
-) {
+    || !isset($_SESSION['role'])
+    || $_SESSION['role'] === 'Amigo') {
     $_SESSION['error_messages'][] = 'No permission to access this page!';
     http_response_code(404);
     return;

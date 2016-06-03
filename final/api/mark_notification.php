@@ -1,12 +1,11 @@
 <?php
 include_once('../config/init.php');
-include_once($BASE_DIR . 'database/users.php');
+include_once($BASE_DIR . 'database/notifications.php');
 
 // Validate user
 if (!isset($_SESSION['username'])
     || !isset($_SESSION['role'])
-    || $_SESSION['role'] !== 'Contabilista'
-) {
+    || $_SESSION['role'] === 'Amigo') {
     $_SESSION['error_messages'][] = 'No permission to access this page!';
     http_response_code(404);
     return;
@@ -25,16 +24,16 @@ foreach ($params as $param) {
     }
 }
 
-// Remove from the database
-$result = toggle_pause_friend($params['id']);
+// Add notification
+$result = mark_as_seen($params['id']);
 
 // Return result
 if ($result) {
-    $_SESSION['success_messages'][] = 'Toggle paused user successfully!';
+    $_SESSION['success_messages'][] = 'Marked notification as seen successfully!';
     http_response_code(200);
     return;
 } else {
-    $_SESSION['error_messages'][] = 'Error while toggling user pause in the database!';
+    $_SESSION['error_messages'][] = 'Error while marking notification as seen in the database!';
     http_response_code(404);
     return;
 }

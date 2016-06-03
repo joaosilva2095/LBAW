@@ -27,3 +27,16 @@ function add_notification($user_id, $description, $notification_type)
                             VALUES (?, ?, ?)");
     return $stmt->execute(array($user_id, $description, $notification_type));
 }
+
+/**
+ * Mark a notification as seen
+ * @param {integer} $notification_id id of the notification to be marked
+ */
+function mark_as_seen($notification_id)
+{
+    global $conn;
+    $stmt = $conn->prepare("UPDATE web_notifications
+                            SET seen = TRUE
+                            WHERE id = ?");
+    return $stmt->execute(array($notification_id));
+}

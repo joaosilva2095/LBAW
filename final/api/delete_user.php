@@ -4,7 +4,7 @@ include_once($BASE_DIR . 'database/users.php');
 
 // Validate user
 if (!isset($_SESSION['username'])
-    || !isset($_SESSION['username'])
+    || !isset($_SESSION['role'])
     || $_SESSION['role'] !== 'Administrador'
 ) {
     $_SESSION['error_messages'][] = 'No permission to access this page!';
