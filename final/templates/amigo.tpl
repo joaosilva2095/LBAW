@@ -5,9 +5,8 @@
 
     <div class="container-fluid">
         <div class="row">
-            {include file='common/sidebar_adm.tpl'}
 
-            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <div class="col-sm-9 col-sm-offset-1 col-md-10 col-md-offset-1 main">
                 <h1 id="UserName" class="page-header">{$user.name}</h1>
                 
                 
@@ -28,7 +27,7 @@
                         </div>
                         <div class="row">
                             <h4>Método de pagamento:</h4>
-                            <p>{$user.donative_type}</p>
+                            <p id="UserDonative">{$user.donative_type}</p>
                         </div>
                         <div class="row">
                             <h4>Frequência de pagamento:</h4>
@@ -45,7 +44,7 @@
                                     <h6 id="EditUserModal" class="clickable"><i class="fa fa-pencil fa-lg fa-fw"></i>Editar perfil</h6>
                                 </a>
                                 <a data-toggle="modal" data-target="#methPayment">
-                                    <h6 class="clickable"><i class="fa fa-credit-card fa-lg fa-fw"></i>Editar método de pagamento</h6>
+                                    <h6 id="EditPaymentModal" class="clickable"><i class="fa fa-credit-card fa-lg fa-fw"></i>Editar método de pagamento</h6>
                                 </a>
                                 <a>
                                     <div class="container" id="accordion">
@@ -86,12 +85,15 @@
                                 {if $entry.type eq "Evento"}
                                 <td></td>
                                 <td>
-                                    <i class="fa fa-eye fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Ver detalhes"></i> {else}
+                                    <i class="fa fa-eye fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Ver detalhes"></i>
+                                {else}
                                     <td> <i class="fa fa-file-pdf-o fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Imprimir Recibo"></i> </td>
                                     <td> <i class="fa fa-eye fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Ver detalhes"></i> {/if}
-
+                                        
+                                      {if $user.role != 'Amigo'}
                                         <i class="fa fa-pencil fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Editar"></i>
                                         <i class="fa fa-trash fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Eliminar"></i>
+                                       {/if}
                                     </td>
                             </tr>
 
@@ -158,19 +160,27 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title" for="sel1">metodo de pagamento</h4>
+                    <h4 class="modal-title" for="sel1">Método de pagamento</h4>
                 </div>
                 <div class="modal-body">
-                    <select class="form-control" id="sel1">
-                        <option value="referencia multibanco">Referência multibanco</option>
-                        <option value="debito direto">Débito direto</option>
-                        <option value="transferência bancária">Transferência bancária</option>
-                        <option value="cheque">Cheque</option>
-                    </select>
+                    <form id = "editUserPayment" role="form" onsubmit="editUserPayment({$user.id}); return false;">
+                        <select id="sel1" class="form-control">
+                            <option value="" disabled="disabled">&nbsp;</option>
+                            <option value="Referência Multibanco">Referência Multibanco</option>
+                            <option value="Numerário">Numerário</option>
+                            <option value="Transferência Bancária">Transferência Bancária</option>
+                            <option value="Débito Direto">Débito Direto</option>
+                        </select>
+                    </form>
+                      <div class="alert alert-danger alert-dismissible" style="display: none;" role="alert" id="friendStatus2">
+                        <button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span>
+                        </button>
+                        Failed to complete the action! Please verify the information.
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                    <button id="EditPaymentSubmit" type="button" class="btn btn-primary">Guardar</button>
+                    <input id="EditPaymentSubmit" type="submit" class="btn btn-primary" form="editUserPayment"></input>
                 </div>
             </div>
             <!-- /.modal-content -->
@@ -178,15 +188,6 @@
         <!-- /.modal-dialog -->
     </div>
     <!-- /.modal -->
-
-    <!-- JQuery -->
-    <script src="{$BASE_URL}js/vendor/jquery.min.js"></script>
-
-    <!-- Bootstrap -->
-    <script src="{$BASE_URL}js/vendor/bootstrap.min.js"></script>
-
-    <!-- G.A.S.Porto -->
-    <script src="{$BASE_URL}js/holder.min.js"></script>
 
     <!-- G.A.S.Porto -->
     <script src="{$BASE_URL}js/amigo.min.js"></script>

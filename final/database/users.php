@@ -154,16 +154,26 @@ function edit_friend_short($id, $email, $name, $birth, $cellphone)
     $stmt = $conn->prepare("UPDATE friends 
                            SET cellphone = ? WHERE id = ?");
            
-    $result = $stmt->execute(array($cellphone,$id));
-    
+    $result = $stmt->execute(array($cellphone,$id));  
+    if(!$result)
+        return false;      
+
     $stmt = $conn->prepare("UPDATE users
                             SET name = ?, email = ?, birth = ? 
                             WHERE id = ?");
     try {
         return $stmt->execute(array($name, $email, $birth, $id));
-    } catch (PDOException $e) {
+    } catch (PDOException $e) {}
+}
 
-    }
+function edit_friend_payment($id, $payment){    
+    global $conn;
+ 
+    $stmt = $conn->prepare("UPDATE friends 
+                           SET donative_type = ? WHERE id = ?");
+      try {
+        return $stmt->execute(array($payment,$id)); 
+    } catch (PDOException $e) {}       
 }
 
 /**
