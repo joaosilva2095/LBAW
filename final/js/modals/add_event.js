@@ -1,81 +1,58 @@
 /*global $ */
 
 /**
- * Function to register a user
+ * Function to register a event
  */
-function registerUser() {
+function registerEvent() {
     // Variables
-    var id = $('#identification').val(),
-        role = $('#role').val(),
-        email = $('#email').val(),
-        password = $('#password').val(),
-        name = $('#name').val(),
-        gender = $('#gender').val(),
-        birth = $('#birthdate').val(),
-
-        // Friend only
-        nif = $('#nif').val(),
-        cellphone = $('#cellphone').val(),
-        donativeType = $('#paymethod').val(),
-        periodicity = $('#periodicity').val();
-    if (role !== 'Amigo') {
-        nif = " ";
-        cellphone = " ";
-        donativeType = " ";
-        periodicity = " ";
-    }
+    var name = $('#name').val(),
+        description = $('#description').val(),
+        date = $('#date').val(),
+        duration = $('#duration').val(),
+        place = $('#place').val(),
+        price = $('#price').val();
 
     // Async call to register
     $.post(
-            "../api/register_user.php", {
-                id: id,
-                role: role,
-                email: email,
-                password: password,
+            "../api/register_event.php", {
                 name: name,
-                gender: gender,
-                birth: birth,
-                nif: nif,
-                cellphone: cellphone,
-                donative_type: donativeType,
-                periodicity: periodicity
+                description: description,
+                date: date,
+                duration: duration,
+                place: place,
+                price: price
             },
             function (data, statusText, xhr) {
-                $('#addUserModal').modal('hide');
+                $('#addEventModal').modal('hide');
 
-                var tr = $('#users tr:last'),
+                var tr = $('#events tr:last'),
                     trNew = tr.clone();
-                trNew.attr("id", "user" + id);
-                trNew.removeClass("warning");
+                trNew.attr("id", "event" + id);
                 tr.after(trNew);
 
-                $("#user" + id + " td:nth-child(1)").html(id);
-                $("#user" + id + " td:nth-child(2)").html(name);
-                $("#user" + id + " td:nth-child(3)").html(email);
-                $("#user" + id + " td:nth-child(4)").html(gender);
-                $("#user" + id + " td:nth-child(5)").html(birth);
-                $("#user" + id + " td:nth-child(6)").html(cellphone);
-                $("#user" + id + " td:nth-child(7)").html(nif);
-                $("#user" + id + " td:nth-child(8)").html(donativeType);
-                $("#user" + id + " td:nth-child(9)").html(periodicity);
-                $("#user" + id + " td:nth-child(10)").html(role);
-                $("#user" + id + " td:nth-child(11) a").attr("href", "amigo.php?user=" + id);
+                $("#event" + id + " td:nth-child(1)").html(id);
+                $("#event" + id + " td:nth-child(2)").html(description);
+                $("#event" + id + " td:nth-child(3)").html(name);
+                $("#event" + id + " td:nth-child(4)").html(date);
+                $("#event" + id + " td:nth-child(5)").html(duration);
+                $("#event" + id + " td:nth-child(6)").html(place);
+                $("#event" + id + " td:nth-child(7)").html(price);
 
                 trNew.highlightAnimation(green, 1500);
 
                 // Update listeners
-                $('i[data-original-title="Eliminar"]').click(removeUser);
+                $('i[data-original-title="Eliminar"]').click(removeEvent);
                 enableTooltips();
             })
         .fail(function (error) {
-            $('#addUserStatus').fadeIn();
+            $('#addEventStatus').fadeIn();
         });
 }
 
 /**
- * Update user in the database
+ * Update event in the database
  */
-function updateUser() {
+function updateEvent() {
     // Variables
     var id = $('#identification').val(),
         role = $('#role').val(),

@@ -1,23 +1,22 @@
 <?php
 
 /**
- *  Register a user in the database
- * @param id id of the user to be registered
- * @param role role of the user (might be "Contabilista", "Administrador", "Amigo")
- * @param email email of the user, it will be used to login
- * @param password unhashed user password
- * @param name name of the user
- * @param gender gender of the user
- * @param birth birth date of the user
- * @return true if successfull, false otherwise
+ * Register a event in the database
+ * @param  {string} $name        name of the event
+ * @param  {string} $description description of the event
+ * @param  {date} $date        date of the event
+ * @param  {integer} $duration    duration of the event
+ * @param  {string} $place       place of the event
+ * @param  {real} $price       price of the event
+ * @return boolean  true if successful, false otherwise
  */
-function register_event($id, $role, $email, $password, $name, $gender, $birth)
+function register_event($name, $description, $date, $duration, $place, $price)
 {
     global $conn;
-    $stmt = $conn->prepare("INSERT INTO users
-                            VALUES (?, ?, ?, ?, ?, ?, ?)");
+    $stmt = $conn->prepare("INSERT INTO events (name, description, event_date, duration, place, price)
+                            VALUES (?, ?, ?, ?, ?, ?)");
     try {
-        return $stmt->execute(array($id, $role, $email, $password, $name, $gender, $birth));
+        return $stmt->execute(array($name, $description, $date, $duration, $place, $price));
     } catch (PDOException $e) {
         if ($e->getCode() == 23505) {
             return false;
@@ -38,7 +37,7 @@ function remove_event($id)
 {
     global $conn;
 
-    $stmt = $conn->prepare("DELETE FROM users
+    $stmt = $conn->prepare("DELETE FROM events
                             WHERE id = ?");
     return $stmt->execute(array($id));
 }

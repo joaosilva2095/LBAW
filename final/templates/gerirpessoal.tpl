@@ -56,7 +56,7 @@
                                             <i class="fa fa-bullhorn fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Notificar"></i>
                                         </i>
                                         {if $role === 'Administrador'}
-                                        <i data-toggle="modal" data-target="#userModal">
+                                        <i data-toggle="modal" data-target="#addUserModal">
                                                 <i class="fa fa-pencil fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Editar"></i>
                                         </i>
                                         <i class="fa fa-trash fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Eliminar"></i> {elseif $role === 'Contabilista' && $user.role === 'Amigo'} {if $user.frozen}
@@ -70,7 +70,7 @@
                     </table>
                 </div>
                 {if $role === 'Administrador'}
-                <button id="newUser" type="button" class="btn btn-default" data-toggle="modal" data-target="#userModal">
+                <button id="newUser" type="button" class="btn btn-default" data-toggle="modal" data-target="#addUserModal">
                     <i class="fa fa-user-plus"></i> Novo Utilizador
                 </button>
                 {/if}

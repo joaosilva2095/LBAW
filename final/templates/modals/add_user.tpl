@@ -1,19 +1,19 @@
-<div class="modal fade" tabindex="-1" role="dialog" id="userModal">
+<div class="modal fade" tabindex="-1" role="dialog" id="addUserModal">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 id="userModalTitle" class="modal-title">Adicionar Utilizador</h4>
+                <h4 id="addUserModalTitle" class="modal-title">Adicionar Utilizador</h4>
             </div>
             <div class="modal-body">
-                <form id="userForm">
+                <form id="addUserForm">
                     <div class="form-group">
                         <label for="identification">ID:</label>
-                        <input class="form-control" id="identification" required="required">
+                        <input type="text" class="form-control" id="identification" required="required">
                     </div>
                     <div class="form-group">
                         <label for="name">Nome:</label>
-                        <input class="form-control" id="name" required="required">
+                        <input type="text" class="form-control" id="name" required="required">
                     </div>
                     <div class="form-group">
                         <label for="email">Email:</label>
@@ -48,7 +48,7 @@
                     <div id="friendOnlyParams">
                         <div class="form-group">
                             <label for="nif">NIF:</label>
-                            <input class="form-control" id="nif" required="required">
+                            <input type="number" class="form-control" id="nif" required="required">
                         </div>
                         <div class="form-group">
                             <label for="cellphone">Telemóvel:</label>
@@ -77,7 +77,7 @@
                     </div>
 
                 </form>
-                <div class="alert alert-danger alert-dismissible" style="display: none;" role="alert" id="userStatus">
+                <div class="alert alert-danger alert-dismissible" style="display: none;" role="alert" id="addUserStatus">
                     <button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span>
                     </button>
                     Failed to complete the user action! Please verify the information.
@@ -85,7 +85,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                <button type="submit" form="userForm" class="btn btn-primary">Guardar</button>
+                <button type="submit" form="addUserForm" class="btn btn-primary">Guardar</button>
             </div>
         </div>
     </div>
