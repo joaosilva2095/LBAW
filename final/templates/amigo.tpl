@@ -5,9 +5,8 @@
 
     <div class="container-fluid">
         <div class="row">
-            {include file='common/sidebar_adm.tpl'}
 
-            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <div class="col-sm-9 col-sm-offset-1 col-md-10 col-md-offset-1 main">
                 <h1 id="UserName" class="page-header">{$user.name}</h1>
                 
                 
@@ -86,12 +85,15 @@
                                 {if $entry.type eq "Evento"}
                                 <td></td>
                                 <td>
-                                    <i class="fa fa-eye fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Ver detalhes"></i> {else}
+                                    <i class="fa fa-eye fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Ver detalhes"></i>
+                                {else}
                                     <td> <i class="fa fa-file-pdf-o fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Imprimir Recibo"></i> </td>
                                     <td> <i class="fa fa-eye fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Ver detalhes"></i> {/if}
-
+                                        
+                                      {if $user.role != 'Amigo'}
                                         <i class="fa fa-pencil fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Editar"></i>
                                         <i class="fa fa-trash fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Eliminar"></i>
+                                       {/if}
                                     </td>
                             </tr>
 
@@ -186,15 +188,6 @@
         <!-- /.modal-dialog -->
     </div>
     <!-- /.modal -->
-
-    <!-- JQuery -->
-    <script src="{$BASE_URL}js/vendor/jquery.min.js"></script>
-
-    <!-- Bootstrap -->
-    <script src="{$BASE_URL}js/vendor/bootstrap.min.js"></script>
-
-    <!-- G.A.S.Porto -->
-    <script src="{$BASE_URL}js/holder.min.js"></script>
 
     <!-- G.A.S.Porto -->
     <script src="{$BASE_URL}js/amigo.min.js"></script>
