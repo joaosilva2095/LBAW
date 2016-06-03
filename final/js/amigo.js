@@ -18,8 +18,10 @@ $(document).ready(function () {
     });
 
     $('#EditPaymentModal').click(function () {
+        
         var payment = $("#UserDonative").text();
-         
+        
+        alert(payment);
         //set form
         $('#sel1').val(payment);
     });
@@ -71,11 +73,13 @@ function editUserPayment($id) {
             payment: payment
         },
         function (data, statusText, xhr) {
-            $('#methPayment').modal('hide');
+            alert("lol1");
+           // $('#methPayment').modal('hide');
 
             $("#UserDonative").html(payment);
         })
         .fail(function (error) {
+            alert("lol");
             console.log(error);
             $('#friendStatus2').fadeIn();
         });       

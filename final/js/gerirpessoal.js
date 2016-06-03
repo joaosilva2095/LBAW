@@ -5,6 +5,15 @@ var green = '#DFF0D8';
 var red = '#A94442';
 
 /**
+ * Enable the tooltips
+ */
+function enableTooltips() {
+    $('[data-toggle="tooltip"]').tooltip({
+        placement: 'top'
+    });
+}
+
+/**
  * Remove a user from the database
  */
 function removeUser() {
@@ -71,6 +80,7 @@ function registerUser() {
                 var tr = $('#users tr:last'),
                     trNew = tr.clone();
                 trNew.attr("id", "user" + id);
+                trNew.removeClass("warning");
                 tr.after(trNew);
 
                 $("#user" + id + " td:nth-child(1)").html(id);
@@ -194,12 +204,29 @@ function updateUser() {
 }
 
 /**
- * Enable the tooltips
+ * Function to register a user
  */
-function enableTooltips() {
-    $('[data-toggle="tooltip"]').tooltip({
-        placement: 'top'
-    });
+function addUserNotification() {
+    // Variables
+    var id = $('#notificationUserId').val(),
+        message = $('#notificationMessage').val(),
+        type = $('#notificationType').val();
+
+    // Async call to register
+    $.post(
+            "../api/add_notification.php", {
+                id: id,
+                message: message,
+                type: type
+            },
+            function (data, statusText, xhr) {
+                $('#notificationModal').modal('hide');
+
+                $('#user' + id).highlightAnimation(green, 1500);
+            })
+        .fail(function (error) {
+            $('#notificationStatus').fadeIn();
+        });
 }
 
 /**
@@ -297,7 +324,9 @@ $.fn.highlightAnimation = function (highlightColor, duration) {
 $(document).ready(function () {
     enableTooltips();
 
+    // User form
     $('#newUser').click(configNewUserModal);
+
     $('#userForm').submit(function (e) {
         e.preventDefault();
         if ($('#userModalTitle').text() == 'Novo Utilizador')
@@ -305,12 +334,6 @@ $(document).ready(function () {
         else
             updateUser();
     });
-
-    $('i[data-original-title="Editar"]').click(configEditUserModal);
-    $('i[data-original-title="Eliminar"]').click(removeUser);
-    $('i[data-original-title="Congelar"]').click(togglePauseUser);
-    $('i[data-original-title="Descongelar"]').click(togglePauseUser);
-    $('i[data-original-title="Notificar"]').click(configAddNotificationModal);
 
     $('#userStatus').click(function () {
         $(this).fadeOut();
@@ -332,4 +355,21 @@ $(document).ready(function () {
             $('#friendOnlyParams').fadeOut();
         }
     });
+
+    // Notifications form
+    $('#notificationForm').submit(function (e) {
+        e.preventDefault();
+        addUserNotification();
+    });
+
+    $('#notificationStatus').click(function () {
+        $(this).fadeOut();
+    });
+
+    // Manage users
+    $('i[data-original-title="Editar"]').click(configEditUserModal);
+    $('i[data-original-title="Eliminar"]').click(removeUser);
+    $('i[data-original-title="Congelar"]').click(togglePauseUser);
+    $('i[data-original-title="Descongelar"]').click(togglePauseUser);
+    $('i[data-original-title="Notificar"]').click(configAddNotificationModal);
 });

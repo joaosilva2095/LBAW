@@ -162,8 +162,8 @@
                 </div>
                 <div class="modal-body">
                     <form id = "editUserPayment" role="form" onsubmit="editUserPayment({$user.id}); return false;">
-                        <select class="form-control" id="sel1">
-                            <option value="Referência multibanco">Referência multibanco</option>
+                        <select id="sel1" class="form-control">
+                            <option value="Referência multibanco">Referência Multibanco</option>
                             <option value="Débito direto">Débito direto</option>
                             <option value="Transferência bancária">Transferência bancária</option>
                             <option value="Cheque">Cheque</option>

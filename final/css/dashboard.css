@@ -2,7 +2,16 @@
 
 /* Firefox Dotted Line */
 
-a, a:active, a:hover, a:focus, a:link, a:visited, input::-moz-focus-inner, button::-moz-focus-inner, object, embed {
+a,
+a:active,
+a:hover,
+a:focus,
+a:link,
+a:visited,
+input::-moz-focus-inner,
+button::-moz-focus-inner,
+object,
+embed {
     outline: none;
 }
 
@@ -13,8 +22,10 @@ a, a:active, a:hover, a:focus, a:link, a:visited, input::-moz-focus-inner, butto
 body {
     padding-top: 50px;
 }
-
-#users td a, #users td a:hover, #users td a:visited, #users td a:active {
+#users td a,
+#users td a:hover,
+#users td a:visited,
+#users td a:active {
     color: #333;
     text-decoration: none;
 }
@@ -28,28 +39,26 @@ body {
     margin: 1rem 0rem;
     border-bottom: 1px solid #eee;
 }
-
 .navbar-inverse {
     font-family: "Roboto Condensed";
     font-size: 16px;
     background-color: #00325F;
 }
-
-.navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:focus, .navbar-inverse .navbar-nav > .open > a:active, .navbar-inverse .navbar-nav > .open > a:hover {
+.navbar-inverse .navbar-nav > .open > a,
+.navbar-inverse .navbar-nav > .open > a:focus,
+.navbar-inverse .navbar-nav > .open > a:active,
+.navbar-inverse .navbar-nav > .open > a:hover {
     background-color: transparent;
 }
-
 .navbar-fixed-top {
     border: 0;
 }
-
 .sidebar {
     font-family: "Roboto Condensed";
     text-transform: uppercase;
     font-size: 16px;
     display: none;
 }
-
 @media (min-width: 768px) {
     .sidebar {
         position: fixed;
@@ -66,7 +75,6 @@ body {
         border-right: 1px solid #eee;
     }
 }
-
 .clickable {
     cursor: pointer;
 }
@@ -79,13 +87,13 @@ body {
     margin-bottom: 20px;
     margin-left: -20px;
 }
-
 .nav-sidebar > li > a {
     padding-right: 20px;
     padding-left: 20px;
 }
-
-.nav-sidebar > .active > a, .nav-sidebar > .active > a:hover, .nav-sidebar > .active > a:focus {
+.nav-sidebar > .active > a,
+.nav-sidebar > .active > a:hover,
+.nav-sidebar > .active > a:focus {
     color: #fff;
     background-color: #428bca;
 }
@@ -97,14 +105,12 @@ body {
 .main {
     padding: 20px;
 }
-
 @media (min-width: 768px) {
     .main {
         padding-right: 40px;
         padding-left: 40px;
     }
 }
-
 .main .page-header {
     margin-top: 0;
 }
@@ -117,15 +123,12 @@ body {
     margin-bottom: 30px;
     text-align: center;
 }
-
 .placeholders h4 {
     margin-bottom: 0;
 }
-
 .placeholder {
     margin-bottom: 20px;
 }
-
 .placeholder img {
     display: inline-block;
     /* border-radius: 50%;*/
