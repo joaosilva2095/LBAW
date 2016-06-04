@@ -2,8 +2,8 @@
 function get_all_mercha()
 {
     global $conn;
-    $stmt = $conn->prepare("SELECT id, description, price, category
-                            FROM mercha_products");
+    $stmt = $conn->prepare("SELECT mercha_products.id, mercha_products.description, mercha_products.price, mercha_categories.name
+                            FROM mercha_products,mercha_categories WHERE  mercha_products.category= mercha_categories.id");
     $stmt->execute();
     return $stmt->fetchAll();
 }
