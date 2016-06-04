@@ -3,6 +3,8 @@
     <table class="table table-striped">
         <thead>
             <tr>
+                <th style="display:none;">id</th>
+				<th style="display:none;">receipt</th>
                 <th>Data</th>
                 <th>Nome do Evento</th>
                 <th>Valor (EUR)</th>

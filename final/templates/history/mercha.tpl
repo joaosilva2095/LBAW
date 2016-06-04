@@ -3,6 +3,8 @@
     <table class="table table-striped">
         <thead>
             <tr>
+                <th style="display:none;">id</th>
+				<th style="display:none;">payment_type</th>
                 <th>Data</th>
                 <th>Valor (EUR)</th>
                 <th>Quantidade</th>

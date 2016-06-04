@@ -3,6 +3,10 @@
 	<table class="table table-striped">
 		<thead>
 			<tr>
+				<th style="display:none;">id</th>
+				<th style="display:none;">description</th>
+				<th style="display:none;">duration </th>
+				<th style="display:none;">place</th>
 				<th>Data</th>
 				<th>Nome</th>
 				<th>Valor (EUR)</th>
