@@ -45,11 +45,11 @@ function addMercha($category,$description,$price){
     $categoryId=getCategoryId($category)[0]['id'];
 
     $stmt = $conn->prepare("INSERT INTO mercha_products (category, description, price)
-                            VALUES (?, ?, ?) WHERE  RETURNING id");
+                            VALUES (?, ?, ?)  RETURNING id");
     if (!$stmt->execute(array($categoryId, $description, $price))) {
         return false;
     };
-    $stmt->fetch();
+    return $stmt->fetch();
 }
 
 function editMercha($id,$category,$description,$price){
@@ -63,5 +63,25 @@ function editMercha($id,$category,$description,$price){
     return $stmt->execute(array($categoryId,$price,$description,$id));
 }
 
+function newCategory($name){
+    global $conn;
+
+    $stmt = $conn->prepare("INSERT INTO mercha_categories (name)
+                            VALUES (?)  RETURNING id");
+    if (!$stmt->execute(array($name))) {
+        return false;
+    };
+    return $stmt->fetch();
+}
+
+function delCategory($name){
+    global $conn;
+
+    $stmt = $conn->prepare("DELETE FROM mercha_categoies WHERE name =?");
+    if (!$stmt->execute(array($name))) {
+        return false;
+    };
+    return $stmt->fetch();
+}
 
 ?>

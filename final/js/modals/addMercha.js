@@ -4,52 +4,53 @@
 /*global $ */
 
 /**
- * Function to register a event
+ * Function to register a mercha product
  */
 function registerMercha() {
     // Variables
-    var id = $('#id').val(),
-        category = $('#category').val(),
+    var category = $('#category').val(),
         description = $('#description').val(),
         price = $('#price').val();
 
     // Async call to register
     $.post(
         "../api/add_mercha.php", {
-            id: id,
             category: category,
             description: description,
-            price: price,
+            price: price
 
         },
         function (data, statusText, xhr) {
-            $('#addMerchaModal').modal('hide');
+            if(data !=="") {
+                $('#addMerchaModal').modal('hide');
 
-            var tr = $('#mercha tr:last'),
-                trNew = tr.clone(),
-                id = parseInt(data);
-            trNew.attr("id", "mercha" + id);
-            tr.after(trNew);
+                var tr = $('#merchas tr:last'),
+                    trNew = tr.clone(),
+                    id = parseInt(data);
+                trNew.attr("id", "mercha" + id);
+                tr.after(trNew);
 
-            $("#event" + id + " td:nth-child(1)").html(id);
-            $("#event" + id + " td:nth-child(2)").html(category);
-            $("#event" + id + " td:nth-child(3)").html(description);
-            $("#event" + id + " td:nth-child(4)").html(price);
+                $("#mercha" + id + " td:nth-child(1)").html(id);
+                $("#mercha" + id + " td:nth-child(2)").html(category);
+                $("#mercha" + id + " td:nth-child(3)").html(description);
+                $("#mercha" + id + " td:nth-child(4)").html(price);
 
-            trNew.highlightAnimation(green, 1500);
+                trNew.highlightAnimation(green, 1500);
 
-            // Update listeners
-            $('i[data-original-title="Editar"]').click(configEditEventModal);
-            $('i[data-original-title="Eliminar"]').click(confirmRemoveEvent);
-            enableTooltips();
+                // Update listeners
+                $('i[data-original-title="Editar"]').click(configEditMerchaModal);
+                $('i[data-original-title="Eliminar"]').click(confirmRemoveMercha);
+                enableTooltips();
+            }else
+                $('#addMerchaStatus').fadeIn();
         })
         .fail(function (error) {
-            $('#addEventStatus').fadeIn();
+            $('#addMerchaStatus').fadeIn();
         });
 }
 
 /**
- * Update event in the database
+ * Update Mercha in the database
  */
 function updateMercha() {
     // Variables
@@ -83,7 +84,7 @@ function updateMercha() {
 }
 
 /**
- * Configuration of the new event modal
+ * Configuration of the new mercha modal
  */
 function configNewMerchaModal() {
     $('#addMerchaModal form').trigger('reset');
@@ -105,7 +106,7 @@ function config() {
             updateMercha();
     });
 
-    $('#addEventStatus').click(function () {
+    $('#addMerchaStatus').click(function () {
         $(this).fadeOut();
     });
 }
