@@ -257,10 +257,10 @@ function get_search_user_by_name($user) {
     if ($user === "") return array();
 
     global $conn;
-
-    $user = "%".$user."%";
-    $stmt = $conn->prepare("SELECT id, name, birth, role FROM users
-                          WHERE LOWER(name) LIKE LOWER(?) ORDER BY name ASC");
+    $stmt = $conn->prepare("SELECT id, name, birth, role, ts_rank(phrase, query) AS rank
+                            FROM users, to_tsquery('portuguese', ?) query, to_tsvector('portuguese', name) phrase
+                            WHERE phrase @@ query
+                            ORDER BY rank");
     $stmt->execute(array($user));
 
     return $stmt->fetchAll();
