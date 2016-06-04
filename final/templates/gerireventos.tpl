@@ -38,13 +38,13 @@
                                         <i class="fa fa-eye fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Ver"></i>
                                     </i>
                                     <!-- Administrador options -->
-                                    {if $role === 'Administrador'}
+                                    {if $viewer.role === 'Administrador'}
                                     <i data-toggle="modal" data-target="#addEventModal">
                                                 <i class="fa fa-pencil fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Editar"></i>
                                     </i>
                                     <i class="fa fa-trash fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Eliminar"></i>
                                     <!-- Contabilista options -->
-                                    {elseif $role === 'Contabilista'}
+                                    {elseif $viewer.role === 'Contabilista'}
                                     <i data-toggle="modal" data-target="#addUserAttendanceEventModal">
                                         <i class="fa fa-user-plus fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Adicionar Presença"></i>
                                     </i>{/if}
@@ -56,7 +56,7 @@
                                             <tr>
                                                 <th>ID</th>
                                                 <th>Nome</th>
-                                                {if $role === 'Contabilista'}
+                                                {if $viewer.role === 'Contabilista'}
                                                 <th>Opções</th>
                                                 {/if}
                                             </tr>
