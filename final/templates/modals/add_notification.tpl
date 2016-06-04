@@ -9,6 +9,10 @@
                 <form id="notificationForm">
                     <input style="display: none;" class="form-control" id="notificationUserId" disabled="disabled">
                     <div class="form-group">
+                        <label for="notificationName">Nome:</label>
+                        <input class="form-control" id="notificationName" disabled="disabled">
+                    </div>
+                    <div class="form-group">
                         <label for="notificationMessage">Mensagem:</label>
                         <input class="form-control" id="notificationMessage" required="required">
                     </div>
