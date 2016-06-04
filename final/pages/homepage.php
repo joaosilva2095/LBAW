@@ -18,7 +18,7 @@ $user = get_user_by_email($_SESSION['username']);
 $notifications = get_user_notifications($user['id']);
 $users = get_all_users();
 
-$viewer['name']=$user;
+$viewer['name']=$user['name'];
 $viewer['role']=$role;
 
 $smarty->assign('viewer', $viewer);
@@ -26,4 +26,3 @@ $smarty->assign('notifications', $notifications);
 $smarty->assign('users', $users);
 
 $smarty->display('../templates/homepage.tpl');
-

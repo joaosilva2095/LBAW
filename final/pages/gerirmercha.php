@@ -20,7 +20,7 @@ $notifications = get_user_notifications($user['id']);
 $merchas = get_all_mercha();
 $categories = getAllCategories();
 
-$viewer['name']=$user;
+$viewer['name']=$user['name'];
 $viewer['role']=$role;
 
 $smarty->assign('viewer', $viewer);
