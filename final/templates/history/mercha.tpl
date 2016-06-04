@@ -9,7 +9,9 @@
                 <th>Produto</th>
                 <th>Preço</th>
                 <th>Fatura</th>
-                <th>Opções</th>
+                {if $user.role != 'Amigo'}
+				<th>Opções</th>
+				{/if}
             </tr>
         </thead>
         <tbody>

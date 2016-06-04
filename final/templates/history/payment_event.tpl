@@ -8,7 +8,9 @@
                 <th>Valor (EUR)</th>
                 <th>Referência ATM </th>
                 <th>Fatura</th>
-                <th>Opções</th>
+                {if $user.role != 'Amigo'}
+				<th>Opções</th>
+				{/if}
             </tr>
         </thead>
         <tbody>
