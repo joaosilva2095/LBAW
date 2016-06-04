@@ -147,7 +147,7 @@
     </div>
     <!-- /.modal -->
 
-
+    {include file='modals/see_event.tpl'}
   
     {include file='modals/confirm_action.tpl'}
 
