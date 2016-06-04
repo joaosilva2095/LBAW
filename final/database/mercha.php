@@ -63,5 +63,25 @@ function editMercha($id,$category,$description,$price){
     return $stmt->execute(array($categoryId,$price,$description,$id));
 }
 
+function newCategory($name){
+    global $conn;
+
+    $stmt = $conn->prepare("INSERT INTO mercha_categories (name)
+                            VALUES (?)  RETURNING id");
+    if (!$stmt->execute(array($name))) {
+        return false;
+    };
+    return $stmt->fetch();
+}
+
+function delCategory($name){
+    global $conn;
+
+    $stmt = $conn->prepare("DELETE FROM mercha_categoies WHERE name =?");
+    if (!$stmt->execute(array($name))) {
+        return false;
+    };
+    return $stmt->fetch();
+}
 
 ?>
