@@ -41,10 +41,22 @@ $(document).ready(function () {
 
 
     $('#TabPagEvento i[data-original-title="Editar"]').click(function(event){
+        $('#editEventPaymentModal form').trigger('reset');
         
-        
-        
-            
+        var closest_tr = $(this).closest('tr');
+        var tr_id_attr = $(closest_tr).attr('id');       
+        var id = tr_id_attr.substring(tr_id_attr.indexOf("-") + 1, tr_id_attr.length);
+
+        var date = $("#eventoPayment-" + id + " td:nth-child(3)").text(),
+            price = $("#eventoPayment-" + id + " td:nth-child(5)").text(),
+            url = $("#eventoPayment-" + id + " td:nth-child(2)").text(),
+            reference = $("#eventoPayment-" + id + " td:nth-child(6)").text();
+
+        // Set form
+        $('#editEventPaymentDate').val(date);
+        $('#editEventPaymentValue').val(price);    
+        $('#editEventPaymentReceipt').val(url);  
+        $('#editEventPaymentReference').val(reference); 
     });
     
     $('#TabPagEvento i[data-original-title="Eliminar"]').click(confirmRemoveHistory);
