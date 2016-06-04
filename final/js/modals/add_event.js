@@ -23,7 +23,7 @@ function registerEvent() {
                 price: price
             },
             function (data, statusText, xhr) {
-                if (data === '') {
+                if (data !== '') {
                     $('#addEventModal').modal('hide');
 
                     var tr = $('#events tr:last'),

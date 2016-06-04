@@ -11,10 +11,39 @@ function removeEvent(id) {
                 id: id
             },
             function (data, statusText, xhr) {
-                $('#event' + id).remove();
+                if (data === '') {
+                    $('#event' + id).remove();
+                } else {
+                    $('#event' + id).highlightAnimation(red, 1500);
+                }
             })
         .fail(function (error) {
             $('#event' + id).highlightAnimation(red, 1500);
+        });
+}
+
+/**
+ * Remove a friend from a event
+ * @param {integer} eventId id of the event
+ * @param {integer} userId id of the friend to remove from the event
+ */
+function removeEventFriend(eventId, userId) {
+    // Async call to remove event
+    $.post(
+            "../api/delete_friend_event.php", {
+                eventId: eventId,
+                userId: userId
+            },
+            function (data, statusText, xhr) {
+                if (data === '') {
+                    $('#seeEventModal').modal('hide');
+                    $('#eventFriend' + eventId + "-" + userId).remove();
+                } else {
+                    $('#eventFriend' + eventId + "-" + userId).highlightAnimation(red, 1500);
+                }
+            })
+        .fail(function (error) {
+            $('#eventFriend' + eventId + "-" + userId).highlightAnimation(red, 1500);
         });
 }
 
@@ -35,6 +64,24 @@ function confirmRemoveEvent() {
         });
 }
 
+/**
+ * Confirm remove event
+ */
+function confirmRemoveEventFriend() {
+    // Variables
+    var eventFriend = $(this).closest('tr').attr('id'),
+        split = eventFriend.split("-"),
+        eventId = split[0].replace("eventFriend", ""),
+        userId = split[1];
+
+    $('#confirm').modal({
+            backdrop: 'static',
+            keyboard: false
+        })
+        .one('click', '#delete', function () {
+            removeEventFriend(eventId, userId);
+        });
+}
 /**
  * Configuration of the edit event modal
  */
@@ -73,12 +120,17 @@ function configSeeEventModal() {
     var id = $(this).closest('tr').attr('id');
     id = id.replace("event", "");
 
-    var description = $("#event" + id + " td:nth-child(1)").text(),
-        name = $("#event" + id + " td:nth-child(2)").text();
+    var description = $("#event" + id + " > td:nth-child(1)").text(),
+        name = $("#event" + id + " > td:nth-child(2)").text(),
+        friends = $("#event" + id + " td:nth-child(8)").html();
 
     // Set form
     $('#seeEventName').val(name);
     $('#seeEventDescription').val(description);
+    $('#seeEventFriends').html(friends);
+
+    enableTooltips();
+    $('i[data-original-title="Eliminar Presença"]').click(confirmRemoveEventFriend);
 }
 
 
@@ -104,7 +156,7 @@ function configNewFriendEventModal() {
 function config() {
     // Manage users
     $('i[data-original-title="Ver"]').click(configSeeEventModal);
-    $('i[data-original-title="Presença"]').click(configNewFriendEventModal);
+    $('i[data-original-title="Adicionar Presença"]').click(configNewFriendEventModal);
     $('i[data-original-title="Editar"]').click(configEditEventModal);
     $('i[data-original-title="Eliminar"]').click(confirmRemoveEvent);
 }
