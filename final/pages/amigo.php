@@ -1,28 +1,34 @@
-<?php
+<?php 
 include_once('../config/init.php');
-include_once($BASE_DIR . 'database/users.php');
-include_once($BASE_DIR . 'database/notifications.php');
+include_once($BASE_DIR.'database/users.php');
+include_once($BASE_DIR.'database/notifications.php');
 
 
 // Validate user
-if (!isset($_SESSION['username'])
-    || !isset($_SESSION['username'])
-) {
+if (!isset($_SESSION['username']) || !isset($_SESSION['username'])) {
     $_SESSION['error_messages'][] = 'No permission to access this page!';
     http_response_code(404);
     return;
 }
 
-$friend = get_friend_info($_SESSION['username']);
+if ($_SESSION['role'] != 'Amigo') {
+    $user_id = $_GET['user'];
+    $friend = get_friend_info_by_id($user_id);
 
-$user_id = $friend['id'];
+} else {
+    $friend = get_friend_info($_SESSION['username']);
+    $user_id = $friend['id'];
+}
+
+$viewer['role'] = $_SESSION['role'];
+$viewer['name'] = get_user_by_email($_SESSION['username'])['name'];
 
 $event_history = get_user_event_history($user_id);
 $event_payment_history = get_user_event_payments($user_id);
 $donatives = get_user_donative_history($user_id);
 $mercha_payments = get_user_merchandise_history($user_id);
 
-
+$smarty->assign('viewer', $viewer);
 $smarty->assign('user', $friend);
 
 $smarty->assign('event_history', $event_history);

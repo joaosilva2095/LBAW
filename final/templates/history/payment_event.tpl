@@ -10,7 +10,7 @@
                 <th>Valor (EUR)</th>
                 <th>Referência ATM </th>
                 <th>Fatura</th>
-                {if $user.role != 'Amigo'}
+                {if $viewer.role !== 'Amigo'}
 				<th>Opções</th>
 				{/if}
             </tr>
@@ -30,7 +30,7 @@
                 <td><i class="fa fa-file-pdf-o fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Obter Fatura"></i></td>
 
                 <td>
-                    {if $user.role != 'Amigo'}
+                    {if $viewer.role !== 'Amigo'}
                     <i data-toggle="modal" data-target="#editEventPaymentModal">
                         <i class="fa fa-pencil fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Editar"></i>
                     </i>

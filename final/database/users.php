@@ -337,6 +337,7 @@ function get_user_role($email) {
     return $stmt->fetch();
 }
 
+
 /**
  *  Get user's entity by its email
  * @param email user's username
@@ -350,6 +351,16 @@ function get_user_by_email($email) {
     $stmt->execute(array($email));
     return $stmt->fetch();
 }
+
+function get_user_by_id($id) {
+    global $conn;
+    $stmt = $conn->prepare("SELECT *
+                            FROM users
+                            WHERE id = ?");
+    $stmt->execute(array($id));
+    return $stmt->fetch();
+}
+
 
 /**
  *  Get friends's info (entity) from 2 querries (user + friend)
@@ -367,6 +378,26 @@ function get_friend_info($username) {
                             WHERE id = ?");
 
     $stmt->execute(array($user['id']));
+    $friend = $stmt->fetchAll();
+
+    if ($friend === false) {
+        return false;
+    }
+
+    return array_merge($user, $friend[0]);
+}
+
+function get_friend_info_by_id($id) {
+    if (($user = get_user_by_id($id)) === false) {
+        return false;
+    }
+
+    global $conn;
+    $stmt = $conn->prepare("SELECT *
+                            FROM friends
+                            WHERE id = ?");
+
+    $stmt->execute(array($id));
     $friend = $stmt->fetchAll();
 
     if ($friend === false) {

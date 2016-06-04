@@ -11,7 +11,7 @@
                 <th>Referência ATM </th>
                 <th>Método de Pagamento</th>
                 <th>Fatura</th>
-                {if $user.role != 'Amigo'}
+                {if $viewer.role !== 'Amigo'}
 				<th>Opções</th>
 				{/if}
             </tr>
@@ -29,7 +29,7 @@
                 <td>{$entry.donative_type}</td>
                 <td><i class="fa fa-file-pdf-o fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Obter Fatura"></i></td>
                 <td>
-                    {if $user.role != 'Amigo'}
+                    {if $viewer.role !== 'Amigo'}
                     <i data-toggle="modal" data-target="#editDonativeModal">
                         <i class=" fa fa-pencil fa-lg fa-fw clickable " data-toggle="tooltip " data-original-title="Editar"></i>
                     </i>
