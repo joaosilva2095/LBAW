@@ -40,7 +40,13 @@ $(document).ready(function () {
     $('#TabIrEvento i[data-original-title="Eliminar"]').click(confirmRemoveHistory);
 
 
-    // $('#TabPagEvento i[data-original-title="Editar"]').click(editEventPagHistory);
+    $('#TabPagEvento i[data-original-title="Editar"]').click(function(event){
+        
+        
+        
+            
+    });
+    
     $('#TabPagEvento i[data-original-title="Eliminar"]').click(confirmRemoveHistory);
     // $('#TabPagEvento i[data-original-title="Obter Fatura"]').click(imprimir);
 
