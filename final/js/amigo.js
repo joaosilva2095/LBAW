@@ -40,6 +40,7 @@ $(document).ready(function () {
 
     $('#TabIrEvento i[data-original-title="Eliminar"]').click(confirmRemoveHistory);
 
+
     //Tab2
     $('#TabPagEvento i[data-original-title="Editar"]').click(function (event) {
         $('#editEventPaymentModal form').trigger('reset');
@@ -69,6 +70,7 @@ $(document).ready(function () {
     $('#TabPagEvento i[data-original-title="Eliminar"]').click(confirmRemoveHistory);
     // $('#TabPagEvento i[data-original-title="Obter Fatura"]').click(imprimir);
 
+
     //tab3
     $('#TabDonative i[data-original-title="Editar"]').click(function (e) {
         $('#editDonativeModal form').trigger('reset');
@@ -89,14 +91,12 @@ $(document).ready(function () {
             reference = $("#donative-" + id + " td:nth-child(6)").text(),
             pay_method = $("#donative-" + id + " td:nth-child(7)").text();
 
-        alert(date, value, url, reference, pay_method);
-
         // Set form
         $('#editDonativeDate').val(date);
         $('#editDonativeValue').val(value);
         $('#editDonativeReceipt').val(url);
         $('#editDonativeReference').val(reference);
-        $('#editDonativePayMethod').val(pay_method);
+        $('#DonativeFormSel1').val(pay_method);
     });
 
     $('#TabDonative i[data-original-title="Eliminar"]').click(confirmRemoveHistory);
@@ -167,7 +167,6 @@ function removeHistoryEntry(id, type) {
             type: type
         },
         function (data, statusText, xhr) {
-            alert("#" + type + "-" + id);
             $("#" + type + "-" + id).remove();
         })
         .fail(function (error) {
@@ -233,9 +232,9 @@ function editDonativeHistory() {
         price = $('#editDonativeValue').val(),
         receipt = $('#editDonativeReceipt').val(),
         reference = $('#editDonativeReference').val(),
-        pay_method = $('#editDonativePayMethod').val();
+        pay_method = $('#DonativeFormSel1').val();
 
-    console.log(date, price, receipt, reference, paymethid);
+    console.log(id,date, price, receipt, reference, pay_method, id);
 
     $.post(
         "../api/edit_hist_donative.php", {
@@ -247,6 +246,7 @@ function editDonativeHistory() {
             pay_method: pay_method
         },
         function (data, statusText, xhr) {
+            console.log(data);
             $('#editDonativeModal').modal('hide');
 
             $("#donative-" + id + " td:nth-child(2)").html(receipt);
@@ -256,6 +256,7 @@ function editDonativeHistory() {
             $("#donative-" + id + " td:nth-child(7)").html(pay_method);
         })
         .fail(function (error) {
+            console.log(error);
             $("#donative-" + id).highlightAnimation(red, 1500);
         });
 

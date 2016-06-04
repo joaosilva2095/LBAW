@@ -30,7 +30,12 @@
                     
                     <div class="form-group">
                         <label for="editDonativePayMethod">Método de Pagamento:</label>
-                        <input type="number" class="form-control" id="editDonativePayMethod">
+                        <select id="DonativeFormSel1" class="form-control">
+                            <option value="Referência Multibanco">Referência Multibanco</option>
+                            <option value="Numerário">Numerário</option>
+                            <option value="Transferência Bancária">Transferência Bancária</option>
+                            <option value="Débito Direto">Débito Direto</option>
+                        </select>
                     </div>
                 </form>
             </div>
