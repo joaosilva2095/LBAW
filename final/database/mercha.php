@@ -77,11 +77,8 @@ function newCategory($name){
 function delCategory($name){
     global $conn;
 
-    $stmt = $conn->prepare("DELETE FROM mercha_categoies WHERE name =?");
-    if (!$stmt->execute(array($name))) {
-        return false;
-    };
-    return $stmt->fetch();
+    $stmt = $conn->prepare("DELETE FROM mercha_categories WHERE name =?");
+    return $stmt->execute(array($name));
 }
 
 ?>

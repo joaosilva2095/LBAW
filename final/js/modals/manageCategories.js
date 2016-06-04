@@ -21,9 +21,19 @@ function newCat() {
         },
         function (data, statusText, xhr) {
                 var form = $('#newCatForm');
-                form.highlightAnimation(green, 1500);
+                $('#newCatModal').highlightAnimation(green, 1500);
 
-                $('#newCatModal').modal('hide');
+            $('#category').append($('<option>', {
+                value: category,
+                text: category
+                }));
+
+            $('#delCatName').append($('<option>', {
+                value: category,
+                text: category
+            }));
+
+            $('#newCatModal').modal('hide');
 
         })
         .fail(function (error) {
@@ -37,25 +47,27 @@ function newCat() {
 function delCat() {
     // Variables
     // Fill data
-    var description = $('#delCatName').val();
+    var category = $('#delCatName').val();
 
-    // Async call to edit
+    // Async call to register
     $.post(
         "../api/manageCategories.php", {
-            category: category
+            category: category,
+            type:'DELETE'
         },
         function (data, statusText, xhr) {
-            $('#addMerchaModal').modal('hide');
+            var form = $('#delCatForm');
+            form.highlightAnimation(green, 1500);
+            $('#delCatModal').modal('hide');
 
-            $("#mercha" + id + " td:nth-child(1)").html(id);
-            $("#mercha" + id + " td:nth-child(2)").html(category);
-            $("#mercha" + id + " td:nth-child(3)").html(description);
-            $("#mercha" + id + " td:nth-child(4)").html(price);
+            $("#category option[value="+category+"]").remove();
+            $("#delCatName option[value="+category+"]").remove();
 
-            $('#mercha' + id).highlightAnimation(green, 1500);
+
+
         })
         .fail(function (error) {
-            $('#delCatStatus').fadeIn();
+            $('#newCatStatus').fadeIn();
         });
 }
 

@@ -34,7 +34,6 @@ if ($type === 'CREATE') {
     $result = newCategory($category);
 } else if ($type === 'DELETE') {
     $result = delCategory($category);
-
 }
 
 // Return result
