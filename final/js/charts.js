@@ -132,29 +132,44 @@ Chart.defaults.global = {
     }
 }
 
-var data = [
+$.post(
+    "../api/edit_graph.php",
     {
-        value: 50,
-        color: "#F7464A",
-        highlight: "#FF5A5E",
-        label: "Amigos"
     },
-    {
-        value: 1,
-        color: "#46BFBD",
-        highlight: "#5AD3D1",
-        label: "Administrador"
-    },
-    {
-        value: 2,
-        color: "#FDB45C",
-        highlight: "#FFC870",
-        label: "Contabilistas"
-    }
-]
-var ctx = document.getElementById("myChart").getContext("2d");
-// For a pie chart
-var myPieChart = new Chart(ctx).Pie(data);
+    function (data, statusText, xhr) {
+        var json = JSON.parse(data);
+
+         var data = [
+           {
+               value: json[0]["count"],
+               color: "#F7464A",
+               highlight: "#FF5A5E",
+               label: json[0]["role"]
+           },
+           {
+               value: json[1]["count"],
+               color: "#46BFBD",
+               highlight: "#5AD3D1",
+               label: json[1]["role"]
+           },
+           {
+               value: json[2]["count"],
+               color: "#FDB45C",
+               highlight: "#FFC870",
+               label: json[2]["role"]
+           }
+       ]
+
+
+
+        var ctx = document.getElementById("myChart").getContext("2d");
+        // For a pie chart
+        var myPieChart = new Chart(ctx).Pie(data);
+    })
+    .fail(function (error) {
+        console.log(error);
+    });
+
 
 var dataBar = {
     labels: ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho"],
