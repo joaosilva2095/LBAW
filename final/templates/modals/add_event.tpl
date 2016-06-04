@@ -30,7 +30,7 @@
                     </div>
                     <div class="form-group">
                         <label for="price">Preço (€):</label>
-                        <input type="number" step="any" class="form-control" id="price" required="required">
+                        <input type="number" step="0.01" class="form-control" id="price" required="required">
                     </div>
                 </form>
                 <div class="alert alert-danger alert-dismissible" style="display: none;" role="alert" id="addEventStatus">

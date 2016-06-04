@@ -13,7 +13,7 @@
                     <table class="table table-striped table-hover">
                         <thead>
                             <tr>
-                                <th style="display:none;">ID</th>
+                                <th style="display:none;">Descrição</th>
                                 <th>Nome</th>
                                 <th>Data</th>
                                 <th>Duração (horas)</th>
@@ -46,8 +46,35 @@
                                     <!-- Contabilista options -->
                                     {elseif $role === 'Contabilista'}
                                     <i data-toggle="modal" data-target="#addUserAttendanceEventModal">
-                                        <i class="fa fa-user-plus fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Presença"></i>
+                                        <i class="fa fa-user-plus fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Adicionar Presença"></i>
                                     </i>{/if}
+                                </td>
+                                <td>
+                                    <!-- Friends that went to the event -->
+                                    <table style="display:none;">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Nome</th>
+                                                {if $role === 'Contabilista'}
+                                                <th>Opções</th>
+                                                {/if}
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {foreach $event.friends as $key => $eventFriend}
+                                            <tr id="eventFriend{$event.id}-{$eventFriend.id}">
+                                                <td>{$eventFriend.id}</td>
+                                                <td>{$eventFriend.name}</td>
+                                                {if $role === 'Contabilista'}
+                                                <td>
+                                                    <i class="fa fa-user-times fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Eliminar Presença"></i>
+                                                </td>
+                                                {/if}
+                                            </tr>
+                                            {/foreach}
+                                        </tbody>
+                                    </table>
                                 </td>
                             </tr>
                             {/foreach}
