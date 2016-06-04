@@ -195,6 +195,27 @@ function edit_payment_event_hist($id, $date, $price, $receipt, $reference) {
     } catch (PDOException $e) {}
 }
 
+function edit_donative_hist($id, $date, $price, $receipt, $reference, $pay_method) {
+
+    global $conn;
+
+    $stmt = $conn->prepare("UPDATE payments
+                            SET payment_date = ?, value = ?, receipt = ?, atm_reference = ?
+                            WHERE id = ?");
+    try {
+        return $stmt->execute(array($date, $price, $receipt, $reference, $id));
+    } catch (PDOException $e) {}
+    
+    $stmt = $conn->prepare("UPDATE donatives
+                            SET donative_type = ?
+                            WHERE id = ?");
+    
+    try{
+        return $stmt->execute(array($pay_method,$id));
+    } catch (PDOException $e) {}
+    
+}
+
 
 /**
  *  Edit a user in the database

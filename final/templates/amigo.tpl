@@ -153,6 +153,7 @@
   
     {include file='modals/confirm_action.tpl'}
 
+    {include file='modals/edit_donative.tpl'}
 
     <!-- G.A.S.Porto -->
     <script src="{$BASE_URL}js/amigo.min.js"></script>
