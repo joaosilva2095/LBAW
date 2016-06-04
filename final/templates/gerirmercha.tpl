@@ -5,7 +5,7 @@
 
     <div class="container-fluid">
         <div class="row">
-            {include file='common/sidebar_adm.tpl'}
+            {include file='common/sidebar_adm.tpl' selected='gerirmercha'}
 
             <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
                 <h1 class="page-header">Gerir Merchandising</h1>
@@ -38,19 +38,32 @@
                         </tbody>
                     </table>
                 </div>
+                {if $role === 'Administrador'}
+                <button id="newMercha" type="button" class="btn btn-default" data-toggle="modal"
+                        data-target="#addMerchaModal">
+                    <i class="fa fa-user-plus"></i> Novo Produto
+                </button>
+                    <button id="newCat" type="button" class="btn btn-default" data-toggle="modal"
+                            data-target="#newCatModal">
+                        <i class="fa fa-user-plus"></i> Nova Categoria
+                    </button>
+                    <button id="DelCat" type="button" class="btn btn-default" data-toggle="modal"
+                            data-target="#delCatModal">
+                        <i class="fa fa-trash"></i> Remover Categoria
+                    </button>
+                {/if}
             </div>
         </div>
     </div>
 
     <!-- Confirm Dialog -->
     {include file='modals/confirm_action.tpl'}
-    
-     <!-- Add/Edit Modal -->
+
+    <!-- Add/Edit Modal -->
     {include file='modals/addMercha.tpl' categories=$categories}
 
     <!-- G.A.S.Porto -->
     <script src="{$BASE_URL}js/gerirmercha.js "></script>
-
 
 </body>
 

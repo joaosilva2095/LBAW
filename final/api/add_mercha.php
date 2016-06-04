@@ -20,7 +20,7 @@ if (!isset($_SESSION['username'])
 }
 
 // Check if all parameters exist
-$params = array('id', 'category', 'description', 'price');
+$params = array('category', 'description', 'price');
 
 foreach ($params as $param) {
     if (!isset($_POST[$param])) {
@@ -34,7 +34,6 @@ foreach ($params as $param) {
 
 // Insert in the database
 $result = addMercha(
-    $params['id'],
     $params['category'],
     $params['description'],
     $params['price']);

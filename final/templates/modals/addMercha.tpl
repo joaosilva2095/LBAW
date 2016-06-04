@@ -7,10 +7,7 @@
             </div>
             <div class="modal-body">
                 <form id="addMerchaForm">
-                    <div class="form-group">
-                        <label for="id">Id:</label>
-                        <input class="form-control" id="id" disabled>
-                    </div>
+                        <input class="form-control hidden" id="id" disabled>
                     <div class="form-group">
                         <label for="category">Categoria:</label>
                         <select class="form-control" id="category">
@@ -25,7 +22,7 @@
                     </div>
                     <div class="form-group">
                         <label for="price">Preço:</label>
-                        <input class="form-control" id="price" required="required">
+                        <input type="number" step="0.01" class="form-control" id="price" required="required">
                     </div>
 
                 </form>

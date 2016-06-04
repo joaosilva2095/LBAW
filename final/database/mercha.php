@@ -45,11 +45,11 @@ function addMercha($category,$description,$price){
     $categoryId=getCategoryId($category)[0]['id'];
 
     $stmt = $conn->prepare("INSERT INTO mercha_products (category, description, price)
-                            VALUES (?, ?, ?) WHERE  RETURNING id");
+                            VALUES (?, ?, ?)  RETURNING id");
     if (!$stmt->execute(array($categoryId, $description, $price))) {
         return false;
     };
-    $stmt->fetch();
+    return $stmt->fetch();
 }
 
 function editMercha($id,$category,$description,$price){
