@@ -70,3 +70,25 @@ function get_all_events()
     $stmt->execute();
     return $stmt->fetchAll();
 }
+
+/**
+ * Add a friend to a event
+ * @param  {integer} $eventId   id of the event
+ * @param  {integer} $userId    if of the user to be added to the event
+ * @param  {integer} $paymentId id of the user's event payment
+ * @return {boolean} true if successful, false otherwise
+ */
+function add_friend_event($eventId, $userId, $paymentId)
+{
+    global $conn;
+
+    if($paymentId === '') {
+        $stmt = $conn->prepare("INSERT INTO friend_events (event, friend)
+                            VALUES (?, ?)");
+        return $stmt->execute(array($eventId, $userId));
+    } else {
+        $stmt = $conn->prepare("INSERT INTO friend_events (event, friend, payment)
+                            VALUES (?, ?, ?)");
+        return $stmt->execute(array($eventId, $userId, $paymentId));
+    }
+}

@@ -17,9 +17,13 @@ function addUserNotification() {
                 type: type
             },
             function (data, statusText, xhr) {
-                $('#notificationModal').modal('hide');
+                if (data === '') {
+                    $('#notificationModal').modal('hide');
 
-                $('#user' + id).highlightAnimation(green, 1500);
+                    $('#user' + id).highlightAnimation(green, 1500);
+                } else {
+                    $('#notificationStatus').fadeIn();
+                }
             })
         .fail(function (error) {
             $('#notificationStatus').fadeIn();

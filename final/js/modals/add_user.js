@@ -41,33 +41,37 @@ function registerUser() {
                 periodicity: periodicity
             },
             function (data, statusText, xhr) {
-                $('#addUserModal').modal('hide');
+                if (data === '') {
+                    $('#addUserModal').modal('hide');
 
-                var tr = $('#users tr:last'),
-                    trNew = tr.clone();
-                trNew.attr("id", "user" + id);
-                trNew.removeClass("warning");
-                tr.after(trNew);
+                    var tr = $('#users tr:last'),
+                        trNew = tr.clone();
+                    trNew.attr("id", "user" + id);
+                    trNew.removeClass("warning");
+                    tr.after(trNew);
 
-                $("#user" + id + " td:nth-child(1)").html(id);
-                $("#user" + id + " td:nth-child(2)").html(name);
-                $("#user" + id + " td:nth-child(3)").html(email);
-                $("#user" + id + " td:nth-child(4)").html(gender);
-                $("#user" + id + " td:nth-child(5)").html(birth);
-                $("#user" + id + " td:nth-child(6)").html(cellphone);
-                $("#user" + id + " td:nth-child(7)").html(nif);
-                $("#user" + id + " td:nth-child(8)").html(donativeType);
-                $("#user" + id + " td:nth-child(9)").html(periodicity);
-                $("#user" + id + " td:nth-child(10)").html(role);
-                $("#user" + id + " td:nth-child(11) a").attr("href", "amigo.php?user=" + id);
+                    $("#user" + id + " td:nth-child(1)").html(id);
+                    $("#user" + id + " td:nth-child(2)").html(name);
+                    $("#user" + id + " td:nth-child(3)").html(email);
+                    $("#user" + id + " td:nth-child(4)").html(gender);
+                    $("#user" + id + " td:nth-child(5)").html(birth);
+                    $("#user" + id + " td:nth-child(6)").html(cellphone);
+                    $("#user" + id + " td:nth-child(7)").html(nif);
+                    $("#user" + id + " td:nth-child(8)").html(donativeType);
+                    $("#user" + id + " td:nth-child(9)").html(periodicity);
+                    $("#user" + id + " td:nth-child(10)").html(role);
+                    $("#user" + id + " td:nth-child(11) a").attr("href", "amigo.php?user=" + id);
 
-                trNew.highlightAnimation(green, 1500);
+                    trNew.highlightAnimation(green, 1500);
 
-                // Update listeners
-                $('i[data-original-title="Notificar"]').click(configAddNotificationModal);
-                $('i[data-original-title="Editar"]').click(configEditUserModal);
-                $('i[data-original-title="Eliminar"]').click(confirmRemoveUser);
-                enableTooltips();
+                    // Update listeners
+                    $('i[data-original-title="Notificar"]').click(configAddNotificationModal);
+                    $('i[data-original-title="Editar"]').click(configEditUserModal);
+                    $('i[data-original-title="Eliminar"]').click(confirmRemoveUser);
+                    enableTooltips();
+                } else {
+                    $('#addUserStatus').fadeIn();
+                }
             })
         .fail(function (error) {
             $('#addUserStatus').fadeIn();
@@ -115,19 +119,23 @@ function updateUser() {
                 periodicity: periodicity
             },
             function (data, statusText, xhr) {
-                $('#addUserModal').modal('hide');
+                if (data === '') {
+                    $('#addUserModal').modal('hide');
 
-                $("#user" + id + " td:nth-child(2)").html(name);
-                $("#user" + id + " td:nth-child(3)").html(email);
-                $("#user" + id + " td:nth-child(4)").html(gender);
-                $("#user" + id + " td:nth-child(5)").html(birth);
-                $("#user" + id + " td:nth-child(6)").html(cellphone);
-                $("#user" + id + " td:nth-child(7)").html(nif);
-                $("#user" + id + " td:nth-child(8)").html(donativeType);
-                $("#user" + id + " td:nth-child(9)").html(periodicity);
-                $("#user" + id + " td:nth-child(10)").html(role);
+                    $("#user" + id + " td:nth-child(2)").html(name);
+                    $("#user" + id + " td:nth-child(3)").html(email);
+                    $("#user" + id + " td:nth-child(4)").html(gender);
+                    $("#user" + id + " td:nth-child(5)").html(birth);
+                    $("#user" + id + " td:nth-child(6)").html(cellphone);
+                    $("#user" + id + " td:nth-child(7)").html(nif);
+                    $("#user" + id + " td:nth-child(8)").html(donativeType);
+                    $("#user" + id + " td:nth-child(9)").html(periodicity);
+                    $("#user" + id + " td:nth-child(10)").html(role);
 
-                $('#user' + id).highlightAnimation(green, 1500);
+                    $('#user' + id).highlightAnimation(green, 1500);
+                } else {
+                    $('#addUserStatus').fadeIn();
+                }
             })
         .fail(function (error) {
             $('#addUserStatus').fadeIn();
