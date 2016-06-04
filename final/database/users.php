@@ -183,6 +183,18 @@ function remove_history_entry($id, $type) {
     return $stmt->execute(array($id));
 }
 
+function edit_payment_event_hist($id, $date, $price, $receipt, $reference) {
+
+    global $conn;
+
+    $stmt = $conn->prepare("UPDATE payments
+                            SET payment_date = ?, value = ?, receipt = ?, atm_reference = ?
+                            WHERE id = ?");
+    try {
+        return $stmt->execute(array($date, $price, $receipt, $reference, $id));
+    } catch (PDOException $e) {}
+}
+
 
 /**
  *  Edit a user in the database

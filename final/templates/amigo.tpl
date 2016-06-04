@@ -147,6 +147,8 @@
     </div>
     <!-- /.modal -->
 
+    {include file='modals/edit_payment_event.tpl'}
+
     {include file='modals/see_event.tpl'}
   
     {include file='modals/confirm_action.tpl'}

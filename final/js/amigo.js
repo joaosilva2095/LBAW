@@ -26,7 +26,7 @@ $(document).ready(function () {
         $('#seeEventModal form').trigger('reset');
 
         var closest_tr = $(this).closest('tr');
-        var tr_id_attr = $(closest_tr).attr('id');       
+        var tr_id_attr = $(closest_tr).attr('id');
         var id = tr_id_attr.substring(tr_id_attr.indexOf("-") + 1, tr_id_attr.length);
 
         var description = $("#Evento-" + id + " td:nth-child(2)").text(),
@@ -40,7 +40,31 @@ $(document).ready(function () {
     $('#TabIrEvento i[data-original-title="Eliminar"]').click(confirmRemoveHistory);
 
 
-    // $('#TabPagEvento i[data-original-title="Editar"]').click(editEventPagHistory);
+    $('#TabPagEvento i[data-original-title="Editar"]').click(function (event) {
+        $('#editEventPaymentModal form').trigger('reset');
+
+        var closest_tr = $(this).closest('tr');
+        var tr_id_attr = $(closest_tr).attr('id');
+        var id = tr_id_attr.substring(tr_id_attr.indexOf("-") + 1, tr_id_attr.length);
+
+        $('<input>').attr({
+            type: 'hidden',
+            id: "PayId",
+            value: id
+        }).appendTo('#editEventPaymentModal form');
+
+        var date = $("#eventoPayment-" + id + " td:nth-child(3)").text(),
+            price = $("#eventoPayment-" + id + " td:nth-child(5)").text(),
+            url = $("#eventoPayment-" + id + " td:nth-child(2)").text(),
+            reference = $("#eventoPayment-" + id + " td:nth-child(6)").text();
+
+        // Set form
+        $('#editEventPaymentDate').val(date);
+        $('#editEventPaymentValue').val(price);
+        $('#editEventPaymentReceipt').val(url);
+        $('#editEventPaymentReference').val(reference);
+    });
+
     $('#TabPagEvento i[data-original-title="Eliminar"]').click(confirmRemoveHistory);
     // $('#TabPagEvento i[data-original-title="Obter Fatura"]').click(imprimir);
 
@@ -137,64 +161,36 @@ function confirmRemoveHistory() {
         });
 }
 
-function seeEventDetails() {
-
-
-}
-
 
 function editEventPagHistory() {
-    var closest_tr = $(this).closest('tr'),
-        id = $(closest_tr.children()[0]).html(),
-        type = 'Evento';
+    var id = $('#PayId').val();
 
-    alert(id);
-    /*
-$.post(
-"../api/edit_hist_entry.php", {
-    id: id,
-    type: type
-},
-function (data, statusText, xhr) {
-    $('#editHistory').modal('hide');
-    
-    $("#UserName").html(name);
-    $("#UserEmail").html(email);
-    $("#UserBirth").html(birth);
-    $("#UserCellphone").html(cellphone);
-    $("#UserNameNav").html(name + " (Amigo)");
-})
-.fail(function (error) {
-    $("#" + type + id).highlightAnimation(red, 1500);
-}); 
-*/
+    //vars do form
+    var date = $('#editEventPaymentDate').val(),
+        price = $('#editEventPaymentValue').val(),
+        receipt = $('#editEventPaymentReceipt').val(),
+        reference = $('#editEventPaymentReference').val();
+
+        console.log(date,price,receipt,reference);
+
+    $.post(
+        "../api/edit_hist_pay_event.php", {
+            id: id,
+            date: date,
+            price: price,
+            receipt: receipt,
+            reference: reference
+        },
+        function (data, statusText, xhr) {
+            $('#editEventPaymentModal').modal('hide');
+
+            $("#eventoPayment-"+ id + " td:nth-child(3)").html(date);
+            $("#eventoPayment-"+ id + " td:nth-child(5)").html(price);
+            $("#eventoPayment-"+ id + " td:nth-child(2)").html(receipt);
+            $("#eventoPayment-"+ id + " td:nth-child(6)").html(reference);
+        })
+        .fail(function (error) {
+            $("#eventoPayment-"+ id).highlightAnimation(red, 1500);
+        });
 
 }
-
-/*function editHistoryEntry() {
-    var closest_tr = $(this).closest('tr'),
-        id = $(closest_tr.children()[0]).html(),
-        type = $(closest_tr.children()[2]).html();
-
-    console.log(closest_tr);
-
-    /*
-     $.post(
-     "../api/edit_hist_entry.php", {
-         id: id,
-         type: type
-     },
-     function (data, statusText, xhr) {
-         $('#editHistory').modal('hide');
-         
-         $("#UserName").html(name);
-         $("#UserEmail").html(email);
-         $("#UserBirth").html(birth);
-         $("#UserCellphone").html(cellphone);
-         $("#UserNameNav").html(name + " (Amigo)");
-     })
-     .fail(function (error) {
-         $("#" + type + id).highlightAnimation(red, 1500);
-     }); 
-
-}*/
