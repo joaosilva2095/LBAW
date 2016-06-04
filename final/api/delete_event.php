@@ -1,11 +1,11 @@
 <?php
 include_once('../config/init.php');
-include_once($BASE_DIR . 'database/notifications.php');
+include_once($BASE_DIR . 'database/events.php');
 
 // Validate user
 if (!isset($_SESSION['username'])
-    || !isset($_SESSION['username'])
-    || $_SESSION['role'] === 'Amigo'
+    || !isset($_SESSION['role'])
+    || $_SESSION['role'] !== 'Administrador'
 ) {
     $_SESSION['error_messages'][] = 'No permission to access this page!';
     http_response_code(404);
@@ -13,7 +13,7 @@ if (!isset($_SESSION['username'])
 }
 
 // Check if all parameters exist
-$params = array('id', 'message', 'type');
+$params = array('id');
 
 foreach ($params as $param) {
     if (!isset($_POST[$param])) {
@@ -25,16 +25,16 @@ foreach ($params as $param) {
     }
 }
 
-// Add notification
-$result = add_notification($params['id'], $params['message'], $params['type']);
+// Remove from the database
+$result = remove_event($params['id']);
 
 // Return result
 if ($result) {
-    $_SESSION['success_messages'][] = 'Added notification to the user successfully!';
+    $_SESSION['success_messages'][] = 'Removed event successfully!';
     http_response_code(200);
     return;
 } else {
-    $_SESSION['error_messages'][] = 'Error while adding notification to the user in the database!';
+    $_SESSION['error_messages'][] = 'Error while removing event in the database!';
     http_response_code(404);
     return;
 }

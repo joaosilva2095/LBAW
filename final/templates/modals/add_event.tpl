@@ -7,6 +7,7 @@
             </div>
             <div class="modal-body">
                 <form id="addEventForm">
+                    <input style="display:none;" class="form-control" id="id">
                     <div class="form-group">
                         <label for="name">Nome:</label>
                         <input class="form-control" id="name" required="required">

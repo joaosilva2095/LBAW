@@ -26,22 +26,23 @@ function registerEvent() {
                 $('#addEventModal').modal('hide');
 
                 var tr = $('#events tr:last'),
-                    trNew = tr.clone();
+                    trNew = tr.clone(),
+                    id = parseInt(data);
                 trNew.attr("id", "event" + id);
                 tr.after(trNew);
 
-                $("#event" + id + " td:nth-child(1)").html(id);
-                $("#event" + id + " td:nth-child(2)").html(description);
-                $("#event" + id + " td:nth-child(3)").html(name);
-                $("#event" + id + " td:nth-child(4)").html(date);
-                $("#event" + id + " td:nth-child(5)").html(duration);
-                $("#event" + id + " td:nth-child(6)").html(place);
-                $("#event" + id + " td:nth-child(7)").html(price);
+                $("#event" + id + " td:nth-child(1)").html(description);
+                $("#event" + id + " td:nth-child(2)").html(name);
+                $("#event" + id + " td:nth-child(3)").html(date);
+                $("#event" + id + " td:nth-child(4)").html(duration);
+                $("#event" + id + " td:nth-child(5)").html(place);
+                $("#event" + id + " td:nth-child(6)").html(price);
 
                 trNew.highlightAnimation(green, 1500);
 
                 // Update listeners
-                $('i[data-original-title="Eliminar"]').click(removeEvent);
+                $('i[data-original-title="Editar"]').click(configEditEventModal);
+                $('i[data-original-title="Eliminar"]').click(confirmRemoveEvent);
                 enableTooltips();
             })
         .fail(function (error) {
@@ -54,110 +55,68 @@ function registerEvent() {
  */
 function updateEvent() {
     // Variables
-    var id = $('#identification').val(),
-        role = $('#role').val(),
-        email = $('#email').val(),
-        password = $('#password').val(),
+    // Fill data
+    var id = $('#id').val(),
         name = $('#name').val(),
-        gender = $('#gender').val(),
-        birth = $('#birthdate').val(),
-
-        // Friend only
-        nif = $('#nif').val(),
-        cellphone = $('#cellphone').val(),
-        donativeType = $('#paymethod').val(),
-        periodicity = $('#periodicity').val();
-
-    if (role !== 'Amigo') {
-        nif = " ";
-        cellphone = " ";
-        donativeType = " ";
-        periodicity = " ";
-    }
+        description = $('#description').val(),
+        date = $('#date').val(),
+        duration = $('#duration').val(),
+        place = $('#place').val(),
+        price = $('#price').val();
 
     // Async call to edit
     $.post(
-            "../api/edit_user.php", {
+            "../api/edit_event.php", {
                 id: id,
-                role: role,
-                email: email,
                 name: name,
-                gender: gender,
-                birth: birth,
-                nif: nif,
-                cellphone: cellphone,
-                donative_type: donativeType,
-                periodicity: periodicity
+                description: description,
+                date: date,
+                duration: duration,
+                place: place,
+                price: price
             },
             function (data, statusText, xhr) {
-                $('#addUserModal').modal('hide');
+                $('#addEventModal').modal('hide');
 
-                $("#user" + id + " td:nth-child(1)").html(id);
-                $("#user" + id + " td:nth-child(2)").html(name);
-                $("#user" + id + " td:nth-child(3)").html(email);
-                $("#user" + id + " td:nth-child(4)").html(gender);
-                $("#user" + id + " td:nth-child(5)").html(birth);
-                $("#user" + id + " td:nth-child(6)").html(cellphone);
-                $("#user" + id + " td:nth-child(7)").html(nif);
-                $("#user" + id + " td:nth-child(8)").html(donativeType);
-                $("#user" + id + " td:nth-child(9)").html(periodicity);
-                $("#user" + id + " td:nth-child(10)").html(role);
+                $("#event" + id + " td:nth-child(1)").html(description);
+                $("#event" + id + " td:nth-child(2)").html(name);
+                $("#event" + id + " td:nth-child(3)").html(date);
+                $("#event" + id + " td:nth-child(4)").html(duration);
+                $("#event" + id + " td:nth-child(5)").html(place);
+                $("#event" + id + " td:nth-child(6)").html(price);
 
-                $('#user' + id).highlightAnimation(green, 1500);
+                $('#event' + id).highlightAnimation(green, 1500);
             })
         .fail(function (error) {
-            $('#addUserStatus').fadeIn();
+            $('#addEventStatus').fadeIn();
         });
 }
 
 /**
- * Configuration of the new user modal
+ * Configuration of the new event modal
  */
-function configNewUserModal() {
-    $('#addUserModal form').trigger('reset');
+function configNewEventModal() {
+    $('#addEventModal form').trigger('reset');
 
-    $('#friendOnlyParams').fadeIn();
-    $('label[for="password"]').show();
-    $('#password').attr("required", "required");
-    $('#password').show();
-    $('#identification').removeAttr('disabled');
-
-    $('#addUserModalTitle').html('Novo Utilizador');
+    $('#addEventModalTitle').html('Novo Evento');
 }
 
 /**
  * Configure the elements
  */
 function config() {
-    $('#newUser').click(configNewUserModal);
+    $('#newEvent').click(configNewEventModal);
 
-    $('#addUserForm').submit(function (e) {
+    $('#addEventForm').submit(function (e) {
         e.preventDefault();
-        if ($('#addUserModalTitle').text() === 'Novo Utilizador')
-            registerUser();
+        if ($('#addEventModalTitle').text() === 'Novo Evento')
+            registerEvent();
         else
-            updateUser();
+            updateEvent();
     });
 
-    $('#addUserStatus').click(function () {
+    $('#addEventStatus').click(function () {
         $(this).fadeOut();
-    });
-
-    $('#role').change(function () {
-        var role = $('#role').val();
-        if (role === 'Amigo') {
-            $('#nif').attr("required", "required");
-            $('#cellphone').attr("required", "required");
-            $('#paymethod').attr("required", "required");
-            $('#periodicity').attr("required", "required");
-            $('#friendOnlyParams').fadeIn();
-        } else {
-            $('#nif').removeAttr("required");
-            $('#cellphone').removeAttr("required");
-            $('#paymethod').removeAttr("required");
-            $('#periodicity').removeAttr("required");
-            $('#friendOnlyParams').fadeOut();
-        }
     });
 }
 
