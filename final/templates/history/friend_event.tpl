@@ -12,24 +12,25 @@
 		<tbody>
 
 			{foreach $event_history as $entry}
-			<tr id="evento{$entry.id}">
-				<td style="display:none;">{$entry.id}</td>  <!-- to be used on view modal -->
+			<tr id="Evento-{$entry.id}">
+				<td style="display:none;">{$entry.id}</td>
+				<!-- to be used on view modal -->
 				<td style="display:none;">{$entry.description}</td>
 				<td style="display:none;">{$entry.duration}</td>
 				<td style="display:none;">{$entry.place}</td>
 				<td>{$entry.event_date}</td>
 				<td>{$entry.name}</td>
-				<td>{$entry.price}</td>				
+				<td>{$entry.price}</td>
 				<td>
-					  <i class="fa fa-eye fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Detalhes"></i>
-						<i class="fa fa-trash fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Eliminar"></i>
+					<i class="fa fa-eye fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Detalhes"></i>
+					<i class="fa fa-trash fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Eliminar"></i>
 
-						<!-- TODO    REMOVE   BELOW COMMENT TO REMOVE PRIVILEGES FROM FRIEND -->
+					<!-- TODO    REMOVE   BELOW COMMENT TO REMOVE PRIVILEGES FROM FRIEND -->
 
-						<!--  {if $user.role != 'Amigo'}
+					<!--  {if $user.role != 'Amigo'}
                                         add above buttons (editentry + remove) here;
                {/if} -->
-					</td>
+				</td>
 			</tr>
 			{/foreach}
 
