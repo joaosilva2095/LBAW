@@ -19,8 +19,10 @@ $user = get_user_by_email($_SESSION['username']);
 $notifications = get_user_notifications($user['id']);
 $events = get_all_events();
 
-$smarty->assign('role', $role);
-$smarty->assign('user', $user);
+$viewer['name']=$user;
+$viewer['role']=$role;
+
+$smarty->assign('viewer', $viewer);
 $smarty->assign('notifications', $notifications);
 $smarty->assign('events', $events);
 

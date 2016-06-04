@@ -33,7 +33,11 @@ else {
 $user = get_user_by_email($_SESSION['username']);
 $notifications = get_user_notifications($user['id']);
 
-$smarty->assign('user', $user);
+
+$viewer['name']=$user;
+$viewer['role']=$role;
+
+$smarty->assign('viewer', $viewer);
 $smarty->assign('notifications', $notifications);
 
 $smarty->display('../templates/pesquisa.tpl');
