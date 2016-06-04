@@ -29,8 +29,13 @@
                                 <td>{$mercha.description}</td>
                                 <td>{$mercha.price}</td>
                                 <td>
+                                    {if $viewer.role === 'Administrador'}
                                     <i class="fa fa-pencil fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Editar"></i>
                                     <i class="fa fa-trash fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Eliminar"></i>
+                                    {elseif $viewer.role === 'Contabilista'}
+                                        <i class="fa fa-shopping-cart fa-lg fa-fw clickable" data-toggle="tooltip"
+                                           data-original-title="Comprar"></i>
+                                    {/if}
                                 </td>
                             </tr>
                             {/foreach}
@@ -58,11 +63,13 @@
 
     <!-- Confirm Dialog -->
     {include file='modals/confirm_action.tpl'}
-
+    {if $viewer.role === "Administrador"}
     <!-- Add/Edit Modal -->
     {include file='modals/addMercha.tpl' categories=$categories}
-
     {include file='modals/manageCategories.tpl' categories=$categories}
+    {elseif $viewer.role === "Contabilista"}
+        {include file='modals/buyProduct.tpl'}
+    {/if}
 
     <!-- G.A.S.Porto -->
     <script src="{$BASE_URL}js/gerirmercha.js "></script>
