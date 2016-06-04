@@ -7,7 +7,6 @@
             </div>
             <div class="modal-body">
                 <form id="seeEventForm">
-                    <input style="display:none;" class="form-control" id="id">
                     <div class="form-group">
                         <label for="seeEventName">Nome:</label>
                         <input class="form-control" id="seeEventName" disabled="disabled">

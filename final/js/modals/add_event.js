@@ -23,27 +23,31 @@ function registerEvent() {
                 price: price
             },
             function (data, statusText, xhr) {
-                $('#addEventModal').modal('hide');
+                if (data === '') {
+                    $('#addEventModal').modal('hide');
 
-                var tr = $('#events tr:last'),
-                    trNew = tr.clone(),
-                    id = parseInt(data);
-                trNew.attr("id", "event" + id);
-                tr.after(trNew);
+                    var tr = $('#events tr:last'),
+                        trNew = tr.clone(),
+                        id = parseInt(data);
+                    trNew.attr("id", "event" + id);
+                    tr.after(trNew);
 
-                $("#event" + id + " td:nth-child(1)").html(description);
-                $("#event" + id + " td:nth-child(2)").html(name);
-                $("#event" + id + " td:nth-child(3)").html(date);
-                $("#event" + id + " td:nth-child(4)").html(duration);
-                $("#event" + id + " td:nth-child(5)").html(place);
-                $("#event" + id + " td:nth-child(6)").html(price);
+                    $("#event" + id + " td:nth-child(1)").html(description);
+                    $("#event" + id + " td:nth-child(2)").html(name);
+                    $("#event" + id + " td:nth-child(3)").html(date);
+                    $("#event" + id + " td:nth-child(4)").html(duration);
+                    $("#event" + id + " td:nth-child(5)").html(place);
+                    $("#event" + id + " td:nth-child(6)").html(price);
 
-                trNew.highlightAnimation(green, 1500);
+                    trNew.highlightAnimation(green, 1500);
 
-                // Update listeners
-                $('i[data-original-title="Editar"]').click(configEditEventModal);
-                $('i[data-original-title="Eliminar"]').click(confirmRemoveEvent);
-                enableTooltips();
+                    // Update listeners
+                    $('i[data-original-title="Editar"]').click(configEditEventModal);
+                    $('i[data-original-title="Eliminar"]').click(confirmRemoveEvent);
+                    enableTooltips();
+                } else {
+                    $('#addEventStatus').fadeIn();
+                }
             })
         .fail(function (error) {
             $('#addEventStatus').fadeIn();
@@ -54,7 +58,6 @@ function registerEvent() {
  * Update event in the database
  */
 function updateEvent() {
-    // Variables
     // Fill data
     var id = $('#id').val(),
         name = $('#name').val(),
@@ -76,16 +79,20 @@ function updateEvent() {
                 price: price
             },
             function (data, statusText, xhr) {
-                $('#addEventModal').modal('hide');
+                if (data === '') {
+                    $('#addEventModal').modal('hide');
 
-                $("#event" + id + " td:nth-child(1)").html(description);
-                $("#event" + id + " td:nth-child(2)").html(name);
-                $("#event" + id + " td:nth-child(3)").html(date);
-                $("#event" + id + " td:nth-child(4)").html(duration);
-                $("#event" + id + " td:nth-child(5)").html(place);
-                $("#event" + id + " td:nth-child(6)").html(price);
+                    $("#event" + id + " td:nth-child(1)").html(description);
+                    $("#event" + id + " td:nth-child(2)").html(name);
+                    $("#event" + id + " td:nth-child(3)").html(date);
+                    $("#event" + id + " td:nth-child(4)").html(duration);
+                    $("#event" + id + " td:nth-child(5)").html(place);
+                    $("#event" + id + " td:nth-child(6)").html(price);
 
-                $('#event' + id).highlightAnimation(green, 1500);
+                    $('#event' + id).highlightAnimation(green, 1500);
+                } else {
+                    $('#addEventStatus').fadeIn();
+                }
             })
         .fail(function (error) {
             $('#addEventStatus').fadeIn();

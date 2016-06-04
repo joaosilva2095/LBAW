@@ -81,12 +81,30 @@ function configSeeEventModal() {
     $('#seeEventDescription').val(description);
 }
 
+
+/**
+ * Configuration of the new event modal
+ */
+function configNewFriendEventModal() {
+    $('#addUserAttendanceEventModal form').trigger('reset');
+
+    // Fill data
+    var id = $(this).closest('tr').attr('id');
+    id = id.replace("event", "");
+
+    // Set form
+    $('#attendanceEventId').val(id);
+
+    $('#addUserAttendanceEventModalTitle').html('Adicionar Presença');
+}
+
 /**
  * Configure the elements
  */
 function config() {
     // Manage users
     $('i[data-original-title="Ver"]').click(configSeeEventModal);
+    $('i[data-original-title="Presença"]').click(configNewFriendEventModal);
     $('i[data-original-title="Editar"]').click(configEditEventModal);
     $('i[data-original-title="Eliminar"]').click(confirmRemoveEvent);
 }
