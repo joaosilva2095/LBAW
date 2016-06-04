@@ -51,7 +51,7 @@ function configEditMerchaModal() {
 
     // Set form
     $('#id').val(id);
-    $("select option[value="+category+"]").attr("selected","selected");
+    $("select option[value=\""+category+"\"]").attr("selected","selected");
     $('#category').val(category);
     $('#description').val(description);
     $('#price').val(price);

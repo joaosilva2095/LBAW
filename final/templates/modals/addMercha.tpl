@@ -37,7 +37,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                <button type="submit" form="addEventForm" class="btn btn-primary">Guardar</button>
+                <button type="submit" form="addMerchaForm" class="btn btn-primary">Guardar</button>
             </div>
         </div>
     </div>

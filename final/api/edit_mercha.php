@@ -33,7 +33,7 @@ foreach ($params as $param) {
 }
 
 // Insert in the database
-$result = edit_mercha(
+$result = editMercha(
     $params['id'],
     $params['category'],
     $params['description'],

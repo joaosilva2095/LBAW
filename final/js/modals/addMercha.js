@@ -88,18 +88,18 @@ function updateMercha() {
 function configNewMerchaModal() {
     $('#addMerchaModal form').trigger('reset');
 
-    $('#addMerchaModalTitle').html('Novo Mercha');
+    $('#addMerchaModalTitle').html('Adicionar Mercha');
 }
 
 /**
  * Configure the elements
  */
 function config() {
-    $('#newMercha').click(configNewEventModal);
+    $('#newMercha').click(configNewMerchaModal);
 
     $('#addMerchaForm').submit(function (e) {
         e.preventDefault();
-        if ($('#addEventModalTitle').text() === 'Novo Mercha')
+        if ($('#addMerchaModalTitle').text() === 'Adicionar Mercha')
             registerMercha();
         else
             updateMercha();
