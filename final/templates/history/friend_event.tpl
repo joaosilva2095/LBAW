@@ -39,3 +39,5 @@
 		</tbody>
 	</table>
 </div>
+
+{include file='modals/see_event.tpl'}

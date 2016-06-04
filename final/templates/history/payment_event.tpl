@@ -43,3 +43,5 @@
         </tbody>
     </table>
 </div>
+
+  {include file='modals/edit_payment_event.tpl'}

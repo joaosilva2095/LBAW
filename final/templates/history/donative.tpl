@@ -41,3 +41,5 @@
         </tbody>
     </table>
 </div>
+
+{include file='modals/edit_donative.tpl'}

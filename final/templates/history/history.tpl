@@ -30,3 +30,5 @@
         </div>
     </div>
 </div>
+
+{include file='modals/confirm_action.tpl'}
