@@ -18,8 +18,11 @@ $user = get_user_by_email($_SESSION['username']);
 $notifications = get_user_notifications($user['id']);
 $users = get_all_users();
 
-$smarty->assign('role', $role);
-$smarty->assign('user', $user);
+
+$viewer['name']=$user;
+$viewer['role']=$role;
+
+$smarty->assign('viewer', $viewer);
 $smarty->assign('notifications', $notifications);
 $smarty->assign('users', $users);
 

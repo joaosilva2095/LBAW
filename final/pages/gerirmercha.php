@@ -20,8 +20,10 @@ $notifications = get_user_notifications($user['id']);
 $merchas = get_all_mercha();
 $categories = getAllCategories();
 
-$smarty->assign('user', $user);
-$smarty->assign('role', $role);
+$viewer['name']=$user;
+$viewer['role']=$role;
+
+$smarty->assign('viewer', $viewer);
 $smarty->assign('notifications', $notifications);
 $smarty->assign('merchas', $merchas);
 $smarty->assign('categories', $categories);
