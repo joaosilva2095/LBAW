@@ -69,7 +69,7 @@
                         </tbody>
                     </table>
                 </div>
-                {if $role === 'Administrador'}
+                {if $viewer.role === 'Administrador'}
                 <button id="newUser" type="button" class="btn btn-default" data-toggle="modal" data-target="#addUserModal">
                     <i class="fa fa-user-plus"></i> Novo Utilizador
                 </button>

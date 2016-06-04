@@ -66,7 +66,7 @@
                                             <tr id="eventFriend{$event.id}-{$eventFriend.id}">
                                                 <td>{$eventFriend.id}</td>
                                                 <td>{$eventFriend.name}</td>
-                                                {if $role === 'Contabilista'}
+                                                {if $viewer.role === 'Contabilista'}
                                                 <td>
                                                     <i class="fa fa-user-times fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Eliminar Presença"></i>
                                                 </td>
@@ -82,7 +82,7 @@
                         </tbody>
                     </table>
                 </div>
-                {if $role === 'Administrador'}
+                {if $viewer.role === 'Administrador'}
                 <button id="newEvent" type="button" class="btn btn-default" data-toggle="modal" data-target="#addEventModal">
                     <i class="fa fa-calendar-plus-o"></i> Novo Evento
                 </button>
