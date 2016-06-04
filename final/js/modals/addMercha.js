@@ -13,7 +13,7 @@ function registerMercha() {
         description = $('#description').val(),
         price = $('#price').val();
 
-    // Async call to register           //todo fazer api
+    // Async call to register
     $.post(
         "../api/add_mercha.php", {
             id: id,
@@ -23,20 +23,18 @@ function registerMercha() {
 
         },
         function (data, statusText, xhr) {
-            $('#addEventModal').modal('hide');
+            $('#addMerchaModal').modal('hide');
 
-            var tr = $('#events tr:last'),
+            var tr = $('#mercha tr:last'),
                 trNew = tr.clone(),
                 id = parseInt(data);
-            trNew.attr("id", "event" + id);
+            trNew.attr("id", "mercha" + id);
             tr.after(trNew);
 
-            $("#event" + id + " td:nth-child(1)").html(description);
-            $("#event" + id + " td:nth-child(2)").html(name);
-            $("#event" + id + " td:nth-child(3)").html(date);
-            $("#event" + id + " td:nth-child(4)").html(duration);
-            $("#event" + id + " td:nth-child(5)").html(place);
-            $("#event" + id + " td:nth-child(6)").html(price);
+            $("#event" + id + " td:nth-child(1)").html(id);
+            $("#event" + id + " td:nth-child(2)").html(category);
+            $("#event" + id + " td:nth-child(3)").html(description);
+            $("#event" + id + " td:nth-child(4)").html(price);
 
             trNew.highlightAnimation(green, 1500);
 
@@ -53,66 +51,58 @@ function registerMercha() {
 /**
  * Update event in the database
  */
-function updateMercha() {           //todo fazer api
+function updateMercha() {
     // Variables
     // Fill data
     var id = $('#id').val(),
-        name = $('#name').val(),
         description = $('#description').val(),
-        date = $('#date').val(),
-        duration = $('#duration').val(),
-        place = $('#place').val(),
+        category = $('#category').val(),
         price = $('#price').val();
 
     // Async call to edit
     $.post(
-        "../api/edit_event.php", {
+        "../api/edit_mercha.php", {
             id: id,
-            name: name,
+            category: category,
             description: description,
-            date: date,
-            duration: duration,
-            place: place,
             price: price
         },
         function (data, statusText, xhr) {
-            $('#addEventModal').modal('hide');
+            $('#addMerchaModal').modal('hide');
 
-            $("#event" + id + " td:nth-child(1)").html(description);
-            $("#event" + id + " td:nth-child(2)").html(name);
-            $("#event" + id + " td:nth-child(3)").html(date);
-            $("#event" + id + " td:nth-child(4)").html(duration);
-            $("#event" + id + " td:nth-child(5)").html(place);
-            $("#event" + id + " td:nth-child(6)").html(price);
+            $("#mercha" + id + " td:nth-child(1)").html(id);
+            $("#mercha" + id + " td:nth-child(2)").html(category);
+            $("#mercha" + id + " td:nth-child(3)").html(description);
+            $("#mercha" + id + " td:nth-child(4)").html(price);
 
-            $('#event' + id).highlightAnimation(green, 1500);
+            $('#mercha' + id).highlightAnimation(green, 1500);
         })
         .fail(function (error) {
-            $('#addEventStatus').fadeIn();
+            $('#addmerchaStatus').fadeIn();
         });
 }
 
 /**
  * Configuration of the new event modal
  */
-function configNewEventModal() {
-    $('#addEventModal form').trigger('reset');
+function configNewMerchaModal() {
+    $('#addMerchaModal form').trigger('reset');
 
-    $('#addEventModalTitle').html('Novo Evento');
+    $('#addMerchaModalTitle').html('Novo Mercha');
 }
 
 /**
  * Configure the elements
  */
 function config() {
-    $('#newEvent').click(configNewEventModal);
+    $('#newMercha').click(configNewEventModal);
 
-    $('#addEventForm').submit(function (e) {
+    $('#addMerchaForm').submit(function (e) {
         e.preventDefault();
-        if ($('#addEventModalTitle').text() === 'Novo Evento')
-            registerEvent();
+        if ($('#addEventModalTitle').text() === 'Novo Mercha')
+            registerMercha();
         else
-            updateEvent();
+            updateMercha();
     });
 
     $('#addEventStatus').click(function () {

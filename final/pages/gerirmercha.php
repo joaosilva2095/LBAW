@@ -17,13 +17,15 @@ $role = $_SESSION['role'];
 
 $user = get_user_by_email($_SESSION['username']);
 $notifications = get_user_notifications($user['id']);
-$mercha = get_all_mercha();
-
-
+$merchas = get_all_mercha();
+$categories = getAllCategories();
 
 $smarty->assign('user', $user);
 $smarty->assign('notifications', $notifications);
 $smarty->assign('merchas', $merchas);
+$smarty->assign('categories',$categories);
+
+
 
 $smarty->display('../templates/gerirmercha.tpl');
 ?>

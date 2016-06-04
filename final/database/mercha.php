@@ -23,12 +23,44 @@ function remove_mercha($mercha_id)
     return $stmt->execute(array($mercha_id));
 }
 
-function getAllProduct(){
+function getAllCategories(){
     global $conn;
 
     $stmt = $conn->prepare("SELECT * FROM mercha_categories");
     $stmt->execute();
     return $stmt->fetchAll();
 }
+
+function getCategoryId($category){
+    global $conn;
+    $stmt = $conn->prepare("SELECT id FROM mercha_categories WHERE name=?");
+    $stmt->execute(array($category));
+    return $stmt->fetchAll();
+}
+
+function addMercha($category,$description,$price){
+    global $conn;
+
+    $categoryId=getCategoryId($category)[0]['id'];
+
+    $stmt = $conn->prepare("INSERT INTO mercha_products (category, description, price)
+                            VALUES (?, ?, ?) WHERE  RETURNING id");
+    if (!$stmt->execute(array($categoryId, $description, $price))) {
+        return false;
+    };
+    $stmt->fetch();
+}
+
+function editMercha($id,$category,$description,$price){
+    global $conn;
+
+    $categoryId=getCategoryId($category)[0]['id'];
+
+    $stmt = $conn->prepare("UPDATE mercha_products SET
+                            category = ?, price = ?,description = ?
+                            WHERE id = ?");
+    return $stmt->execute(array($categoryId,$price,$description,$id));
+}
+
 
 ?>

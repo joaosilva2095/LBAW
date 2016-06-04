@@ -46,7 +46,7 @@
     {include file='modals/confirm_action.tpl'}
     
      <!-- Add/Edit Modal -->
-    {include file='modals/addMercha.tpl'}
+    {include file='modals/addMercha.tpl' categories=$categories}
 
     <!-- G.A.S.Porto -->
     <script src="{$BASE_URL}js/gerirmercha.js "></script>
