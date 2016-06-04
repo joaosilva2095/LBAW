@@ -31,7 +31,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                <input id="editEventPaymentSubmit" type="submit" class="btn btn-primary" form="editEventPaymentForm"></input>
+                <input id="editEventPaymentSubmit" type="submit" class="btn btn-primary" form="editEventPaymentForm">
             </div>
         </div>
     </div>

@@ -29,7 +29,7 @@
                     </div>
                     
                     <div class="form-group">
-                        <label for="editDonativePayMethod">Método de Pagamento:</label>
+                        <label for="DonativeFormSel1">Método de Pagamento:</label>
                         <select id="DonativeFormSel1" class="form-control">
                             <option value="Referência Multibanco">Referência Multibanco</option>
                             <option value="Numerário">Numerário</option>
@@ -41,7 +41,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                <input id="editDonativeSubmit" type="submit" class="btn btn-primary" form="editDonativeForm"></input>
+                <input id="editDonativeSubmit" type="submit" class="btn btn-primary" form="editDonativeForm">
             </div>
         </div>
     </div>

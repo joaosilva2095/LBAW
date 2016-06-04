@@ -114,8 +114,11 @@ function editUser(id) {
         email = $('#email').val(),
         birth = $('#dateBirth').val(),
         cellphone = $('#contact').val();
+    
+    var contentNameNav =  $("#UserNameNav").text();
+    var roleContentNav = contentNameNav.substring(contentNameNav.indexOf('('),contentNameNav.length);
 
-    //alert(name + email + birth + cellphone);
+    console.log(roleContentNav);
 
     $.post(
         "../api/edit_profile.php", {
@@ -132,7 +135,7 @@ function editUser(id) {
             $("#UserEmail").html(email);
             $("#UserBirth").html(birth);
             $("#UserCellphone").html(cellphone);
-            $("#UserNameNav").html(name + " (Amigo)");
+            $("#UserNameNav").html(name + " " +roleContentNav);
         })
         .fail(function (error) {
             console.log(error);

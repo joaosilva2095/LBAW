@@ -3,6 +3,10 @@
 	<table class="table table-striped">
 		<thead>
 			<tr>
+				<th style="display:none;">id</th>
+				<th style="display:none;">description</th>
+				<th style="display:none;">duration </th>
+				<th style="display:none;">place</th>
 				<th>Data</th>
 				<th>Nome</th>
 				<th>Valor (EUR)</th>
@@ -25,7 +29,7 @@
 					<i data-toggle="modal" data-target="#seeEventModal">
 					<i class="fa fa-eye fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Detalhes"></i>
 					</i>
-					{if $user.role != 'Amigo'}
+					{if $viewer.role !== 'Amigo'}
 					<i class="fa fa-trash fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Eliminar"></i> {/if}
 				</td>
 			</tr>

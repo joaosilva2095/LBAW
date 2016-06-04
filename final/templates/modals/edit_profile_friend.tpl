@@ -9,7 +9,7 @@
                     <h4 class="modal-title">Editar Perfil</h4>
                 </div>
                 <div class="modal-body">
-                    <form id = "editFriendForm" role="form" onsubmit="editUser({$user.id}); return false;">
+                    <form id = "editFriendForm" onsubmit="editUser({$user.id}); return false;">
                         <div class="form-group">
                             <label for="name">Nome:</label>
                             <input class="form-control" id="name">
@@ -35,7 +35,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                    <input id="EditProfileSubmit" type="submit" class="btn btn-primary" form="editFriendForm"></input>
+                    <input id="EditProfileSubmit" type="submit" class="btn btn-primary" form="editFriendForm">
                 </div>                
             </div>
             <!-- /.modal-content -->
