@@ -6,14 +6,15 @@ include_once($BASE_DIR.'database/users.php');
 
 if (!isset($_SESSION['username'])
     || !isset($_SESSION['role'])
-    || $_SESSION['role'] === 'Amigo') {
+    || $_SESSION['role'] === 'Amigo' ) {
     $_SESSION['error_messages'][] = 'No permission to access this page!';
     http_response_code(404);
     return;
 }
 
+/* todo TO TESTE REMOVE/EDIT remove $_SESSION['role'] === 'Amigo' line*/
 
-$params = array('id', 'type');
+$params = array('id', 'date','price','receipt', 'reference', 'pay_method');
 
 foreach($params as $param) {
     if (!isset($_POST[$param])) {
@@ -25,9 +26,13 @@ foreach($params as $param) {
     }
 }
 
-$result = remove_history_entry(
+$result = edit_donative_hist(
                         $params['id'],
-                        $params['type']);
+                        $params['date'],
+                        $params['price'],
+                        $params['receipt'],
+                        $params['reference'],
+                        $params['pay_method']);
 
 // Return result
 if ($result) {

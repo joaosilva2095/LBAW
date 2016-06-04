@@ -9,7 +9,9 @@
                 <th>Produto</th>
                 <th>Preço</th>
                 <th>Fatura</th>
-                <th>Opções</th>
+                {if $user.role != 'Amigo'}
+				<th>Opções</th>
+				{/if}
             </tr>
         </thead>
         <tbody>
@@ -26,13 +28,8 @@
                 <td>{$entry.price}</td>
                 <td><i class="fa fa-file-pdf-o fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Obter Fatura"></i></td>
                 <td>
-                    <i class="fa fa-trash fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Eliminar"></i>
-
-                    <!-- TODO    REMOVE   BELOW COMMENT TO REMOVE PRIVILEGES FROM FRIEND -->
-
-                    <!--  {if $user.role != 'Amigo'}
-                                        add above buttons (editentry + remove) here;
-               {/if} -->
+                    {if $user.role != 'Amigo'}
+                    <i class="fa fa-trash fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Eliminar"></i>    {/if} 
                 </td>
             </tr>
             {/foreach}

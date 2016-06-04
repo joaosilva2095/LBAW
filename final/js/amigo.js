@@ -22,6 +22,7 @@ $(document).ready(function () {
     });
 
 
+    //Tab1
     $('#TabIrEvento i[data-original-title="Detalhes"]').click(function (event) {
         $('#seeEventModal form').trigger('reset');
 
@@ -40,6 +41,7 @@ $(document).ready(function () {
     $('#TabIrEvento i[data-original-title="Eliminar"]').click(confirmRemoveHistory);
 
 
+    //Tab2
     $('#TabPagEvento i[data-original-title="Editar"]').click(function (event) {
         $('#editEventPaymentModal form').trigger('reset');
 
@@ -68,11 +70,39 @@ $(document).ready(function () {
     $('#TabPagEvento i[data-original-title="Eliminar"]').click(confirmRemoveHistory);
     // $('#TabPagEvento i[data-original-title="Obter Fatura"]').click(imprimir);
 
-    // $('#TabDonative i[data-original-title="Editar"]').click(editHistoryEntry);
+
+    //tab3
+    $('#TabDonative i[data-original-title="Editar"]').click(function (e) {
+        $('#editDonativeModal form').trigger('reset');
+
+        var closest_tr = $(this).closest('tr');
+        var tr_id_attr = $(closest_tr).attr('id');
+        var id = tr_id_attr.substring(tr_id_attr.indexOf("-") + 1, tr_id_attr.length);
+
+        $('<input>').attr({
+            type: 'hidden',
+            id: "DonId",
+            value: id
+        }).appendTo('#editDonativeModal form');
+
+        var date = $("#donative-" + id + " td:nth-child(4)").text(),
+            value = $("#donative-" + id + " td:nth-child(5)").text(),
+            url = $("#donative-" + id + " td:nth-child(2)").text(),
+            reference = $("#donative-" + id + " td:nth-child(6)").text(),
+            pay_method = $("#donative-" + id + " td:nth-child(7)").text();
+
+        // Set form
+        $('#editDonativeDate').val(date);
+        $('#editDonativeValue').val(value);
+        $('#editDonativeReceipt').val(url);
+        $('#editDonativeReference').val(reference);
+        $('#DonativeFormSel1').val(pay_method);
+    });
+
     $('#TabDonative i[data-original-title="Eliminar"]').click(confirmRemoveHistory);
     // $('#TabDonative i[data-original-title="Obter Fatura"]').click(imprimir);
 
-    //  $('#TabMercha i[data-original-title="Detalhes"]').click(editHistoryEntry);
+    //Tab4
     $('#TabMercha i[data-original-title="Eliminar"]').click(confirmRemoveHistory);
     // $('#TabMercha i[data-original-title="Obter Fatura"]').click(imprimir);
 
@@ -137,7 +167,6 @@ function removeHistoryEntry(id, type) {
             type: type
         },
         function (data, statusText, xhr) {
-            alert("#" + type + "-" + id);
             $("#" + type + "-" + id).remove();
         })
         .fail(function (error) {
@@ -171,7 +200,7 @@ function editEventPagHistory() {
         receipt = $('#editEventPaymentReceipt').val(),
         reference = $('#editEventPaymentReference').val();
 
-        console.log(date,price,receipt,reference);
+    console.log(date, price, receipt, reference);
 
     $.post(
         "../api/edit_hist_pay_event.php", {
@@ -184,13 +213,51 @@ function editEventPagHistory() {
         function (data, statusText, xhr) {
             $('#editEventPaymentModal').modal('hide');
 
-            $("#eventoPayment-"+ id + " td:nth-child(3)").html(date);
-            $("#eventoPayment-"+ id + " td:nth-child(5)").html(price);
-            $("#eventoPayment-"+ id + " td:nth-child(2)").html(receipt);
-            $("#eventoPayment-"+ id + " td:nth-child(6)").html(reference);
+            $("#eventoPayment-" + id + " td:nth-child(3)").html(date);
+            $("#eventoPayment-" + id + " td:nth-child(5)").html(price);
+            $("#eventoPayment-" + id + " td:nth-child(2)").html(receipt);
+            $("#eventoPayment-" + id + " td:nth-child(6)").html(reference);
         })
         .fail(function (error) {
-            $("#eventoPayment-"+ id).highlightAnimation(red, 1500);
+            $("#eventoPayment-" + id).highlightAnimation(red, 1500);
+        });
+
+}
+
+function editDonativeHistory() {
+    var id = $('#DonId').val();
+
+    //vars do form
+    var date = $('#editDonativeDate').val(),
+        price = $('#editDonativeValue').val(),
+        receipt = $('#editDonativeReceipt').val(),
+        reference = $('#editDonativeReference').val(),
+        pay_method = $('#DonativeFormSel1').val();
+
+    console.log(id,date, price, receipt, reference, pay_method, id);
+
+    $.post(
+        "../api/edit_hist_donative.php", {
+            id: id,
+            date: date,
+            price: price,
+            receipt: receipt,
+            reference: reference,
+            pay_method: pay_method
+        },
+        function (data, statusText, xhr) {
+            console.log(data);
+            $('#editDonativeModal').modal('hide');
+
+            $("#donative-" + id + " td:nth-child(2)").html(receipt);
+            $("#donative-" + id + " td:nth-child(4)").html(date);
+            $("#donative-" + id + " td:nth-child(5)").html(price);
+            $("#donative-" + id + " td:nth-child(6)").html(reference);
+            $("#donative-" + id + " td:nth-child(7)").html(pay_method);
+        })
+        .fail(function (error) {
+            console.log(error);
+            $("#donative-" + id).highlightAnimation(red, 1500);
         });
 
 }
