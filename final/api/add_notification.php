@@ -27,6 +27,19 @@ foreach ($params as $param) {
 // Add notification
 $result = add_notification($params['id'], $params['message'], $params['type']);
 
+// Send email if thats the case
+if($params['type'] === 'Danger') {
+    $user = get_user_by_id($params['id']);
+    $to      = $user['email'];
+    $subject = '[G.A.S.Porto] Nova notificação';
+    $message = $params['message'];
+    $headers = 'From: noreply@gasporto.pt' . "\r\n" .
+        'Reply-To: noreply@gasporto.pt' . "\r\n" .
+        'X-Mailer: PHP/' . phpversion();
+
+    mail($to, $subject, $message, $headers);
+}
+
 // Return result
 if ($result) {
     $_SESSION['success_messages'][] = 'Added notification to the user successfully!';

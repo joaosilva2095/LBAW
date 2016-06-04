@@ -1,4 +1,4 @@
-<div id="confirm" class="modal fade" role="dialog">
+<div id="confirm" style="z-index:1500;" class="modal fade" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">

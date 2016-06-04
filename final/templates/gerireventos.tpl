@@ -13,7 +13,7 @@
                     <table class="table table-striped table-hover">
                         <thead>
                             <tr>
-                                <th style="display:none;">ID</th>
+                                <th style="display:none;">Descrição</th>
                                 <th>Nome</th>
                                 <th>Data</th>
                                 <th>Duração (horas)</th>
@@ -38,16 +38,43 @@
                                         <i class="fa fa-eye fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Ver"></i>
                                     </i>
                                     <!-- Administrador options -->
-                                    {if $role === 'Administrador'}
+                                    {if $viewer.role === 'Administrador'}
                                     <i data-toggle="modal" data-target="#addEventModal">
                                                 <i class="fa fa-pencil fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Editar"></i>
                                     </i>
                                     <i class="fa fa-trash fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Eliminar"></i>
                                     <!-- Contabilista options -->
-                                    {elseif $role === 'Contabilista'}
+                                    {elseif $viewer.role === 'Contabilista'}
                                     <i data-toggle="modal" data-target="#addUserAttendanceEventModal">
-                                        <i class="fa fa-user-plus fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Presença"></i>
+                                        <i class="fa fa-user-plus fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Adicionar Presença"></i>
                                     </i>{/if}
+                                </td>
+                                <td>
+                                    <!-- Friends that went to the event -->
+                                    <table style="display:none;">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Nome</th>
+                                                {if $viewer.role === 'Contabilista'}
+                                                <th>Opções</th>
+                                                {/if}
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {foreach $event.friends as $key => $eventFriend}
+                                            <tr id="eventFriend{$event.id}-{$eventFriend.id}">
+                                                <td>{$eventFriend.id}</td>
+                                                <td>{$eventFriend.name}</td>
+                                                {if $viewer.role === 'Contabilista'}
+                                                <td>
+                                                    <i class="fa fa-user-times fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Eliminar Presença"></i>
+                                                </td>
+                                                {/if}
+                                            </tr>
+                                            {/foreach}
+                                        </tbody>
+                                    </table>
                                 </td>
                             </tr>
                             {/foreach}
@@ -55,7 +82,7 @@
                         </tbody>
                     </table>
                 </div>
-                {if $role === 'Administrador'}
+                {if $viewer.role === 'Administrador'}
                 <button id="newEvent" type="button" class="btn btn-default" data-toggle="modal" data-target="#addEventModal">
                     <i class="fa fa-calendar-plus-o"></i> Novo Evento
                 </button>

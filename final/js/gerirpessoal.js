@@ -129,7 +129,10 @@ function configAddNotificationModal() {
     var id = $(this).closest('tr').attr('id');
     id = id.replace("user", "");
 
+    var name = $("#user" + id + " td:nth-child(2)").text();
+
     $('#notificationUserId').val(id);
+    $('#notificationName').val(name);
 }
 
 /**

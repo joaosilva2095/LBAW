@@ -28,6 +28,7 @@
                 </li>
                 <li><a href="{$BASE_URL}actions/logout.php"><i class="fa fa-sign-out"></i> Sair</a></li>
             </ul>
+            {if $user.role !== "Amigo"}
             <form class="navbar-form navbar-right" role="search" action="pesquisa.php" method="GET">
                 <div class="input-group">
                     <input type="text" class="form-control" placeholder="Procurar" name="user">
@@ -36,6 +37,7 @@
                     </div>
                 </div>
             </form>
+            {/if}
         </div>
     </div>
 </nav>

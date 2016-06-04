@@ -68,27 +68,64 @@ function get_all_events()
                             FROM events
                             ORDER BY event_date ASC");
     $stmt->execute();
+    $events = $stmt->fetchAll();
+    foreach($events as $key => $event) {
+        $events[$key]['friends'] = get_all_event_friends($event['id']);
+    }
+    return $events;
+}
+
+/**
+ * Get all the friends that went to a event
+ * @param  {integer} $event_id id of the event to get all the friends
+ * @return {array} array with all the friends that went to that event
+ */
+function get_all_event_friends($event_id)
+{
+    global $conn;
+    $stmt = $conn->prepare("SELECT users.id, users.name
+                            FROM friend_events
+                            JOIN users ON friend_events.friend = users.id
+                            WHERE friend_events.event = ?
+                            ORDER BY users.name ASC");
+    $stmt->execute(array($event_id));
     return $stmt->fetchAll();
 }
 
 /**
  * Add a friend to a event
- * @param  {integer} $eventId   id of the event
- * @param  {integer} $userId    if of the user to be added to the event
- * @param  {integer} $paymentId id of the user's event payment
+ * @param  {integer} $event_id   id of the event
+ * @param  {integer} $user_id    if of the user to be added to the event
+ * @param  {integer} $payment_id id of the user's event payment
  * @return {boolean} true if successful, false otherwise
  */
-function add_friend_event($eventId, $userId, $paymentId)
+function add_friend_event($event_id, $user_id, $payment_id)
 {
     global $conn;
 
-    if($paymentId === '') {
+    if($payment_id === '') {
         $stmt = $conn->prepare("INSERT INTO friend_events (event, friend)
                             VALUES (?, ?)");
-        return $stmt->execute(array($eventId, $userId));
+        return $stmt->execute(array($event_id, $user_id));
     } else {
         $stmt = $conn->prepare("INSERT INTO friend_events (event, friend, payment)
                             VALUES (?, ?, ?)");
-        return $stmt->execute(array($eventId, $userId, $paymentId));
+        return $stmt->execute(array($event_id, $user_id, $payment_id));
     }
+}
+
+/**
+ *  Remove a user event from the database
+ *
+ * @param {integer} $event_id id of the event to get the user removed
+ * @param {string}  $user_id id of the user to be removed from the event
+ * @return true if successfull, false otherwise
+ */
+function remove_friend_event($event_id, $user_id)
+{
+    global $conn;
+
+    $stmt = $conn->prepare("DELETE FROM friend_events
+                            WHERE event = ? AND friend = ?");
+    return $stmt->execute(array($event_id, $user_id));
 }

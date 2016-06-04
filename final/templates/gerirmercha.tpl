@@ -38,7 +38,7 @@
                         </tbody>
                     </table>
                 </div>
-                {if $role === 'Administrador'}
+                {if $viewer.role === 'Administrador'}
                 <button id="newMercha" type="button" class="btn btn-default" data-toggle="modal"
                         data-target="#addMerchaModal">
                     <i class="fa fa-user-plus"></i> Novo Produto
@@ -61,6 +61,8 @@
 
     <!-- Add/Edit Modal -->
     {include file='modals/addMercha.tpl' categories=$categories}
+
+    {include file='modals/manageCategories.tpl' categories=$categories}
 
     <!-- G.A.S.Porto -->
     <script src="{$BASE_URL}js/gerirmercha.js "></script>
