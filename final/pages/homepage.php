@@ -6,7 +6,7 @@ include_once($BASE_DIR . 'database/notifications.php');
 // Validate user
 if (!isset($_SESSION['username'])
     || !isset($_SESSION['username'])
-    || $_SESSION['role'] !== 'Administrador'
+    || $_SESSION['role'] !== 'Amigo'
 ) {
     $_SESSION['error_messages'][] = 'No permission to access this page!';
     http_response_code(404);
@@ -23,5 +23,5 @@ $smarty->assign('user', $user);
 $smarty->assign('notifications', $notifications);
 $smarty->assign('users', $users);
 
-$smarty->display('../templates/homepageadmin.tpl');
+$smarty->display('../templates/homepage.tpl');
 
