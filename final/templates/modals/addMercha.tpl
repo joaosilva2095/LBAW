@@ -13,7 +13,11 @@
                     </div>
                     <div class="form-group">
                         <label for="category">Categoria:</label>
-                        <input class="form-control" id="category" required="required">
+                        <select class="form-control" id="category">
+                            {foreach $categories as $category}
+                                <option value="{$category.name}">{$category.name}</option>
+                            {/foreach}
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="description">Descrição:</label>
@@ -25,15 +29,15 @@
                     </div>
 
                 </form>
-                <div class="alert alert-danger alert-dismissible" style="display: none;" role="alert" id="addEventStatus">
+                <div class="alert alert-danger alert-dismissible" style="display: none;" role="alert" id="addMerchaStatus">
                     <button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span>
                     </button>
-                    Failed to complete the action! Please verify the information.
+                    Acao nao completada! Por favor verifique a informação
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                <button type="submit" form="addEventForm" class="btn btn-primary">Guardar</button>
+                <button type="submit" form="addMerchaForm" class="btn btn-primary">Guardar</button>
             </div>
         </div>
     </div>

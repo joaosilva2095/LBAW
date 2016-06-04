@@ -44,9 +44,15 @@
 
     <!-- Confirm Dialog -->
     {include file='modals/confirm_action.tpl'}
+<<<<<<< HEAD
 
     <!-- Add/Edit Modal -->
     {include file='modals/addMercha.tpl'}
+=======
+
+     <!-- Add/Edit Modal -->
+    {include file='modals/addMercha.tpl' categories=$categories}
+>>>>>>> origin/master
 
     <!-- G.A.S.Porto -->
     <script src="{$BASE_URL}js/gerirmercha.js "></script>
