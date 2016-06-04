@@ -21,17 +21,12 @@
 				<td>{$entry.event_date}</td>
 				<td>{$entry.name}</td>
 				<td>{$entry.price}</td>
-				<td>
-				<i data-toggle="modal" data-target="#seeEventModal">
+				<td>				
+					<i data-toggle="modal" data-target="#seeEventModal">
 					<i class="fa fa-eye fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Detalhes"></i>
-				</i>
-					<i class="fa fa-trash fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Eliminar"></i>
-
-					<!-- TODO    REMOVE   BELOW COMMENT TO REMOVE PRIVILEGES FROM FRIEND -->
-
-					<!--  {if $user.role != 'Amigo'}
-                                        add above buttons (editentry + remove) here;
-               {/if} -->
+					</i>
+					{if $user.role != 'Amigo'}
+					<i class="fa fa-trash fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Eliminar"></i> {/if}
 				</td>
 			</tr>
 			{/foreach}
@@ -40,4 +35,4 @@
 	</table>
 </div>
 
-{include file='modals/see_event.tpl'}
+{include file='modals/see_event_history.tpl'}

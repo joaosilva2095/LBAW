@@ -12,7 +12,6 @@ if (!isset($_SESSION['username'])
     return;
 }
 
-/* todo TO TESTE REMOVE/EDIT remove $_SESSION['role'] === 'Amigo' line*/
 
 $params = array('id', 'type');
 

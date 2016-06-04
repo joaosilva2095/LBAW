@@ -48,11 +48,11 @@
                                 </a>
                                 <a>
                                     <div class="container" id="accordion">
-                                        <h6 data-toggle="collapse" data-parent="#accordion" href="#ref" class="clickable"><i class="fa fa-search fa-lg fa-fw"></i>Ver referência de multibanco</h6>
+                                        <h6 data-toggle="collapse" data-parent="#accordion" class="clickable"><i class="fa fa-search fa-lg fa-fw"></i>Ver referência de multibanco</h6>
 
                                         <div id="ref" class="collapse">
                                             <h6> 2562548641200056532 </h6>
-                                            <!--   -------         TODO       -----     -->
+                                            <!--   TODO       -->
                                         </div>
                                     </div>
                                 </a>
