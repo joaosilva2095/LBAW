@@ -39,4 +39,4 @@
     </div>
 </div>
 
-<!--<script src="{$BASE_URL}js/modals/add_event.min.js"></script>-->
+<script src="{$BASE_URL}js/modals/addMercha.js"></script>

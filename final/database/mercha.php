@@ -8,8 +8,6 @@ function get_all_mercha()
     return $stmt->fetchAll();
 }
 
-
-
 /**
  *  Remove a mercha product from the database
  *
@@ -23,6 +21,14 @@ function remove_mercha($mercha_id)
     $stmt = $conn->prepare("DELETE FROM mercha_products
                             WHERE id = ?");
     return $stmt->execute(array($mercha_id));
+}
+
+function getAllProduct(){
+    global $conn;
+
+    $stmt = $conn->prepare("SELECT * FROM mercha_categories");
+    $stmt->execute();
+    return $stmt->fetchAll();
 }
 
 ?>
