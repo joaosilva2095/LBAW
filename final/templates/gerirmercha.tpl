@@ -22,16 +22,14 @@
                         </thead>
                         <tbody id="merchas">
 
-                            {foreach $merchas as $key => $mercha}
+                            {foreach $merchas as $mercha}
                             <tr id="mercha{$mercha.id}">
                                 <td>{$mercha.id}</td>
-                                <td>{$mercha.category}</td>
+                                <td>{$mercha.name}</td>
                                 <td>{$mercha.description}</td>
                                 <td>{$mercha.price}</td>
                                 <td>
-                                    <i data-toggle="modal" data-target="#editMercha">
-                                        <i class="fa fa-pencil fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Editar"></i>
-                                    </i>
+                                    <i class="fa fa-pencil fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Editar"></i>
                                     <i class="fa fa-trash fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Eliminar"></i>
                                 </td>
                             </tr>
@@ -44,8 +42,14 @@
         </div>
     </div>
 
+    <!-- Confirm Dialog -->
+    {include file='modals/confirm_action.tpl'}
+    
+     <!-- Add/Edit Modal -->
+    {include file='modals/addMercha.tpl'}
 
     <!-- G.A.S.Porto -->
+    <script src="{$BASE_URL}js/gerirmercha.js "></script>
 
 
 </body>
