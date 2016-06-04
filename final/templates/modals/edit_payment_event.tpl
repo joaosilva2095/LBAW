@@ -6,8 +6,7 @@
                 <h4 id="editEventPaymentModalTitle" class="modal-title">Editar Pagamento do Evento</h4>
             </div>
             <div class="modal-body">
-                <form id="editEventPaymentForm">
-                    <input style="display:none;" class="form-control" id="id">
+                <form id="editEventPaymentForm" onsubmit="editEventPagHistory(); return false;">           
 
                     <div class="form-group">
                         <label for="editEventPaymentDate">Data de pagamento:</label>
