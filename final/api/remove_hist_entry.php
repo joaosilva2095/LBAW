@@ -26,8 +26,6 @@ foreach($params as $param) {
     }
 }
 
-
-
 $result = remove_history_entry(
                         $params['id'],
                         $params['type']);

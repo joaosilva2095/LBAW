@@ -15,7 +15,7 @@
         <tbody>
 
             {foreach $mercha_payments as $entry}
-            <tr id="mercha{$entry.id}">
+            <tr id="mercha-{$entry.id}">
                 <td style="display:none;">{$entry.id}</td>
                 <!-- to be used on view modal -->
                 <td style="display:none;">{$entry.payment_type}</td>
@@ -24,7 +24,7 @@
                 <td>{$entry.quantity}</td>
                 <td>{$entry.description}</td>
                 <td>{$entry.price}</td>
-                <td><i class="fa fa-file-pdf-o fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Imprimir Fatura"></i></td>
+                <td><i class="fa fa-file-pdf-o fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Obter Fatura"></i></td>
                 <td>
                     <i class="fa fa-eye fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Detalhes"></i>
                     <i class="fa fa-trash fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Eliminar"></i>

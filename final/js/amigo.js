@@ -21,9 +21,36 @@ $(document).ready(function () {
         $('#sel1').val(payment);
     });
 
-    $('i[data-original-title="Editar"]').click(editHistoryEntry);
-    $('i[data-original-title="Eliminar"]').click(confirmRemoveHistoryEntry);
-    
+
+    $('#TabIrEvento i[data-original-title="Detalhes"]').click(function (event) {
+        $('#seeEventModal form').trigger('reset');
+
+        var closest_tr = $(this).closest('tr');
+        var tr_id_attr = $(closest_tr).attr('id');       
+        var id = tr_id_attr.substring(tr_id_attr.indexOf("-") + 1, tr_id_attr.length);
+
+        var description = $("#Evento-" + id + " td:nth-child(2)").text(),
+            name = $("#Evento-" + id + " td:nth-child(6)").text();
+
+        // Set form
+        $('#seeEventName').val(name);
+        $('#seeEventDescription').val(description);
+    });
+
+    $('#TabIrEvento i[data-original-title="Eliminar"]').click(confirmRemoveHistory);
+
+
+    // $('#TabPagEvento i[data-original-title="Editar"]').click(editEventPagHistory);
+    $('#TabPagEvento i[data-original-title="Eliminar"]').click(confirmRemoveHistory);
+    // $('#TabPagEvento i[data-original-title="Obter Fatura"]').click(imprimir);
+
+    // $('#TabDonative i[data-original-title="Editar"]').click(editHistoryEntry);
+    $('#TabDonative i[data-original-title="Eliminar"]').click(confirmRemoveHistory);
+    // $('#TabDonative i[data-original-title="Obter Fatura"]').click(imprimir);
+
+    //  $('#TabMercha i[data-original-title="Detalhes"]').click(editHistoryEntry);
+    $('#TabMercha i[data-original-title="Eliminar"]').click(confirmRemoveHistory);
+    // $('#TabMercha i[data-original-title="Obter Fatura"]').click(imprimir);
 
 });
 
@@ -79,25 +106,28 @@ function editUserPayment(id) {
 
 
 function removeHistoryEntry(id, type) {
- 
+
     $.post(
         "../api/remove_hist_entry.php", {
             id: id,
             type: type
         },
         function (data, statusText, xhr) {
-            $("#" + type + id).remove();
+            alert("#" + type + "-" + id);
+            $("#" + type + "-" + id).remove();
         })
         .fail(function (error) {
-            $("#" + type + id).highlightAnimation(red, 1500);
+            $("#" + type + "-" + id).highlightAnimation(red, 1500);
         });
 }
 
-function confirmRemoveHistoryEntry() {
-    var closest_tr = $(this).closest('tr'),
-        id = $(closest_tr.children()[0]).html(),
-        type = $(closest_tr.children()[2]).html();
-      
+function confirmRemoveHistory() {
+    var closest_tr = $(this).closest('tr');
+
+    var tr_id_attr = $(closest_tr).attr('id');
+    var type = tr_id_attr.substring(0, tr_id_attr.indexOf("-"));
+    var id = tr_id_attr.substring(tr_id_attr.indexOf("-") + 1, tr_id_attr.length);
+
     $('#confirm').modal({
         backdrop: 'static',
         keyboard: false
@@ -107,31 +137,64 @@ function confirmRemoveHistoryEntry() {
         });
 }
 
+function seeEventDetails() {
 
-function editHistoryEntry(){
-     var closest_tr = $(this).closest('tr'),
+
+}
+
+
+function editEventPagHistory() {
+    var closest_tr = $(this).closest('tr'),
+        id = $(closest_tr.children()[0]).html(),
+        type = 'Evento';
+
+    alert(id);
+    /*
+$.post(
+"../api/edit_hist_entry.php", {
+    id: id,
+    type: type
+},
+function (data, statusText, xhr) {
+    $('#editHistory').modal('hide');
+    
+    $("#UserName").html(name);
+    $("#UserEmail").html(email);
+    $("#UserBirth").html(birth);
+    $("#UserCellphone").html(cellphone);
+    $("#UserNameNav").html(name + " (Amigo)");
+})
+.fail(function (error) {
+    $("#" + type + id).highlightAnimation(red, 1500);
+}); 
+*/
+
+}
+
+/*function editHistoryEntry() {
+    var closest_tr = $(this).closest('tr'),
         id = $(closest_tr.children()[0]).html(),
         type = $(closest_tr.children()[2]).html();
-        
-        alert(closest_tr);
-        
-       /*
-        $.post(
-        "../api/edit_hist_entry.php", {
-            id: id,
-            type: type
-        },
-        function (data, statusText, xhr) {
-            $('#editHistory').modal('hide');
-            
-            $("#UserName").html(name);
-            $("#UserEmail").html(email);
-            $("#UserBirth").html(birth);
-            $("#UserCellphone").html(cellphone);
-            $("#UserNameNav").html(name + " (Amigo)");
-        })
-        .fail(function (error) {
-            $("#" + type + id).highlightAnimation(red, 1500);
-        }); 
-    */    
-}
+
+    console.log(closest_tr);
+
+    /*
+     $.post(
+     "../api/edit_hist_entry.php", {
+         id: id,
+         type: type
+     },
+     function (data, statusText, xhr) {
+         $('#editHistory').modal('hide');
+         
+         $("#UserName").html(name);
+         $("#UserEmail").html(email);
+         $("#UserBirth").html(birth);
+         $("#UserCellphone").html(cellphone);
+         $("#UserNameNav").html(name + " (Amigo)");
+     })
+     .fail(function (error) {
+         $("#" + type + id).highlightAnimation(red, 1500);
+     }); 
+
+}*/

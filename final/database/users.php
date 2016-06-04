@@ -175,10 +175,10 @@ function remove_history_entry($id, $type) {
     if ($type == 'Evento') {
         $stmt = $conn->prepare("DELETE FROM friend_events 
                                          WHERE event = ?");
-    } else {
+    } else if ($type == 'donative' || $type == 'mercha' || $type == 'eventoPayment') {
         $stmt = $conn->prepare("DELETE FROM payments 
                                          WHERE id = ?");
-    }
+    } else return false;
 
     return $stmt->execute(array($id));
 }
@@ -241,10 +241,8 @@ function get_all_users() {
  * @param user name of the user to be searched
  * @return results that match the user
  */
-function get_search_user_by_name($user)
-{
-    if($user === "")
-        return array();
+function get_search_user_by_name($user) {
+    if ($user === "") return array();
 
     global $conn;
 
@@ -420,7 +418,7 @@ function get_user_merchandise_history($id) {
  *  Get all users's history (global)
  * @returns hystory global history
  */
-function get_global_history() {  /* TODO REDO THIS METHOD */
+function get_global_history() { /* TODO REDO THIS METHOD */
     global $conn;
 
     //get payments history
