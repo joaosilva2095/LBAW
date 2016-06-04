@@ -43,6 +43,14 @@
                         data-target="#addMerchaModal">
                     <i class="fa fa-user-plus"></i> Novo Produto
                 </button>
+                    <button id="newCat" type="button" class="btn btn-default" data-toggle="modal"
+                            data-target="#newCatModal">
+                        <i class="fa fa-user-plus"></i> Nova Categoria
+                    </button>
+                    <button id="DelCat" type="button" class="btn btn-default" data-toggle="modal"
+                            data-target="#delCatModal">
+                        <i class="fa fa-trash"></i> Remover Categoria
+                    </button>
                 {/if}
             </div>
         </div>
