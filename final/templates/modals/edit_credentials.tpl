@@ -32,6 +32,11 @@
                         </button>
                         A edição falhou! Por favor verifique se preencheu correctamente os campos.
                     </div>
+                    <div class="alert alert-danger alert-dismissible" style="display: none;" role="alert" id="UserStatus2">
+                        <button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span>
+                        </button>
+                        Alterações aplicadas!
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
