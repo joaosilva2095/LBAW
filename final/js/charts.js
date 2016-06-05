@@ -189,7 +189,7 @@ $.post(
         profit = new Array(6).fill(0);
 
         for(var i=0; i < 6 ; i++){
-            monthLabel.push(month[teste+i]);
+            monthLabel.push(month[diff+i]);
 
         }
         for(var i=0;i<json["profit"].length;i++){
