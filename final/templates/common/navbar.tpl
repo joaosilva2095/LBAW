@@ -27,7 +27,7 @@
                     </ul>
                 </li>
 
-                <li id="settings" class="dropdown">
+                <li id="navsettings" class="dropdown">
                     <a href="" class="dropdown-toggle" onclick="return false"> <i class="fa fa-cog" aria-hidden="true"></i> Opções </a>
 
                     <ul class="dropdown-menu list-group">
