@@ -27,8 +27,12 @@
                 <td>{$entry.name|escape:'html'}</td>
                 <td>{$entry.value|escape:'html'}</td>
                 <td>{$entry.atm_reference|escape:'html'}</td>
-                <td><i class="fa fa-file-pdf-o fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Obter Fatura"></i></td>
-
+                
+                <td>
+                {if !is_null($entry.receipt)}
+                <a href="{$BASE_URL}receipts/{$entry.receipt}"><i class="fa fa-file-pdf-o fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Obter Fatura"></i></a>
+                {/if}
+                </td>
                 <td>
                     {if $viewer.role !== 'Amigo'}
                     <i data-toggle="modal" data-target="#editEventPaymentModal">

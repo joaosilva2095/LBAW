@@ -69,10 +69,11 @@ function editCredentials(id, old_name) {
             confirm_pw: form_confirm_pw
         },
         function (data, statusText, xhr) {
-            console.log(data);
-            $('#editCredentialsModal').modal('hide');
-
+            //console.log(data);                    
             $("#UserEmail").html(form_name);
+            $('#UserStatus2').fadeIn(3000);            
+            $('#editCredentialsModal').modal('hide');    
+
         })
         .fail(function (error) {
             console.log(error);

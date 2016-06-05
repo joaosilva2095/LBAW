@@ -142,7 +142,7 @@ function edit_friend($id, $email, $name, $gender, $birth, $nif, $cellphone, $don
 
 
 /*short version from the one above*/
-function edit_friend_short($id, $email, $name, $birth, $cellphone) {
+function edit_friend_short($id, $name, $birth, $cellphone) {
     global $conn;
 
     $stmt = $conn->prepare("UPDATE friends 
@@ -152,10 +152,10 @@ function edit_friend_short($id, $email, $name, $birth, $cellphone) {
     if (!$result) return false;
 
     $stmt = $conn->prepare("UPDATE users
-                            SET name = ?, email = ?, birth = ? 
+                            SET name = ?, birth = ? 
                             WHERE id = ?");
     try {
-        return $stmt->execute(array($name, $email, $birth, $id));
+        return $stmt->execute(array($name, $birth, $id));
     } catch (PDOException $e) {}
 }
 
@@ -266,7 +266,14 @@ function get_all_users() {
                             ON users.id = friends.id
                             ORDER BY name ASC");
     $stmt->execute();
-    return $stmt->fetchAll();
+
+    $users = $stmt->fetchAll();
+
+    foreach ($users as $key => $user) {
+        $user["has_to_pay"] = how_many_month_to_pay($user["id"]);
+    }
+
+    return $users;
 }
 
 /**
@@ -296,9 +303,9 @@ function get_search_user_by_atm_reference($atm_reference) {
     global $conn;
 
     $stmt = $conn->prepare("SELECT atm_reference, users.id, name, birth, role FROM payments
-                          JOIN mercha_purchases ON mercha_purchases.id = payments.id
-                          JOIN donatives ON donatives.id = payments.id
-                          JOIN friend_events ON friend_events.payment = payments.id
+                          FULL OUTER JOIN mercha_purchases ON mercha_purchases.id = payments.id
+                          FULL OUTER JOIN donatives ON donatives.id = payments.id
+                          FULL OUTER JOIN friend_events ON friend_events.payment = payments.id
                           JOIN users ON users.id = mercha_purchases.friend
                           OR users.id = donatives.friend
                           OR users.id = friend_events.friend
@@ -370,6 +377,9 @@ function edit_credentials($id, $old_name, $new_name, $old_pw, $new_pw, $confirm_
 
         if (!$result1) return false;
     }
+
+    if(strlen($old_pw) == 0)
+        return true;
 
     $stmt = $conn->prepare("SELECT *
                             FROM users
@@ -549,4 +559,40 @@ function get_global_history() { /* TODO REDO THIS METHOD */
 
     $stmt->execute();
     return $stmt->fetchAll();
+}
+
+function how_many_month_to_pay($id)
+{
+    global $conn;
+    $stmt = $conn->prepare("select last_donative, periodicity, frozen from friends where id = ?");
+    $stmt->execute(array($id));
+
+    $result = $stmt->fetchAll();
+
+    $last_donative = $result[0]["last_donative"];
+    $periodicity = $result[0]["periodicity"];
+    $frozen = $result[0]["frozen"];
+
+
+    if(!$frozen){
+        $currentDate = new DateTime();
+        $last_donative = new DateTime($last_donative);
+        $diff = $last_donative->diff($currentDate);
+        $diff=$diff->format("%R%a");
+
+        if($periodicity === 'Mensal' && $diff >= 30 ){
+            return floor($diff/30);
+        }
+        else if($periodicity === 'Trimestral' && $diff >= 90){
+            return floor($diff/90);
+        }
+        else if($periodicity === 'Semestral' && $diff >= 180){
+            return floor($diff/180);
+        }
+        else if($periodicity === 'Anual' && $diff >= 365){
+            return floor($diff/365);
+        }
+    }
+
+    return 0;
 }

@@ -2,7 +2,7 @@
 include_once('../config/init.php');
 include_once($BASE_DIR.'database/users.php');
 
-$params = array('id', 'email', 'name', 'cellphone', 'birth');
+$params = array('id', 'name', 'birth', 'cellphone');
 
 
 foreach($params as $param) {
@@ -15,17 +15,9 @@ foreach($params as $param) {
     }
 }
 
-// Validate input parameters
-
-if (!filter_var($params['email'], FILTER_VALIDATE_EMAIL)) {
-    $_SESSION['error_messages'][] = 'Invalid input emails!';
-    http_response_code(404);
-    return;
-}
 
 $result = edit_friend_short(
             $params['id'],
-            $params['email'],
             $params['name'],
             $params['birth'],
             $params['cellphone']);

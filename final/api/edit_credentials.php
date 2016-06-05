@@ -21,7 +21,6 @@ foreach($params as $param) {
     }
 }
 
-
 $result = edit_credentials(
 $params['id'],
 $params['old_name'],
@@ -42,7 +41,7 @@ if ($result) {
 } else {
     $_SESSION['error_messages'][] = 'Error while editing in the database!';
     http_response_code(404);
-
+    //cho($result);
     return $result;
 }
 
