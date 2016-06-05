@@ -28,46 +28,18 @@
                             <th>Data</th>
                             <th>Utilizador</th>
                             <th>Tipo</th>
-                            <th>Descrição</th>
                             <th>Valor</th>
                         </tr>
                         </thead>
                         <tbody>
+                        {foreach $histories as $history}
                         <tr>
-                            <td>2016-03-09</td>
-                            <td>Diogo Moura</td>
-                            <td>Doação</td>
-                            <td>Mensalidade</td>
-                            <td>50</td>
+                            <td>{$history.payment_date}</td>
+                            <td>{$history.name}</td>
+                            <td>{$history.payment_type}</td>
+                            <td>{$history.value}</td>
                         </tr>
-                        <tr>
-                            <td>2016-03-09</td>
-                            <td>Sérgio Domingues</td>
-                            <td>Evento</td>
-                            <td>Jardim dos encantos</td>
-                            <td>10</td>
-                        </tr>
-                        <tr>
-                            <td>2016-03-09</td>
-                            <td>Diogo Moura</td>
-                            <td>Evento</td>
-                            <td>Jardim dos Encantos</td>
-                            <td>10</td>
-                        </tr>
-                        <tr>
-                            <td>2015-12-26</td>
-                            <td>Diogo Moura</td>
-                            <td>Merchandising</td>
-                            <td>Camisola Branca</td>
-                            <td>15</td>
-                        </tr>
-                        <tr>
-                            <td>2015-11-02</td>
-                            <td>Sérgio Domingues</td>
-                            <td>Evento</td>
-                            <td>Jantar G.A.S.Porto</td>
-                            <td>Grátis</td>
-                        </tr>
+                        {/foreach}
                         </tbody>
                     </table>
                 </div>
