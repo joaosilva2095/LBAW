@@ -14,7 +14,7 @@
                     <h4>Informação de Pagamento</h4>
                     <div class="form-group">
                         <label for="paymentDateId">Data do Pagamento:</label>
-                        <input type="date" class="form-control" id="paymentDateId" placeholder="Data do Pagamento">
+                        <input type="text" class="date-picker form-control" id="paymentDateId">
                     </div>
                     <div class="form-group">
                         <label for="quantity">Quantidade:</label>
@@ -22,7 +22,7 @@
                     </div>
                     <div class="form-group">
                         <label for="receipt">Recibo:</label>
-                        <input type="file"class="form-control" id="receipt">
+                        <input type="file" class="form-control" id="receipt">
                     </div>
                 </form>
                 <div class="alert alert-danger alert-dismissible" style="display: none;" role="alert" id="buyProductStatus">

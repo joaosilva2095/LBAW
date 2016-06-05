@@ -6,26 +6,26 @@
                 <h4 id="editEventPaymentModalTitle" class="modal-title">Editar Pagamento do Evento</h4>
             </div>
             <div class="modal-body">
-                <form id="editEventPaymentForm" onsubmit="editEventPagHistory(); return false;">           
+                <form id="editEventPaymentForm" onsubmit="editEventPagHistory(); return false;">
 
                     <div class="form-group">
                         <label for="editEventPaymentDate">Data de pagamento:</label>
-                        <input type="date" class="form-control" id="editEventPaymentDate">
+                        <input type="text" class="date-picker form-control" id="editEventPaymentDate">
                     </div>
-                    
+
                     <div class="form-group">
-                        <label for="editEventPaymentValue">Preço (EUR):</label>
-                        <input type="number" class="form-control" id="editEventPaymentValue">
+                        <label for="editEventPaymentValue">Preço (€):</label>
+                        <input type="number" step="0.01" min="0" class="form-control" id="editEventPaymentValue">
                     </div>
 
                     <div class="form-group">
                         <label for="editEventPaymentReceipt">Fatura (URL):</label>
                         <input class="form-control" id="editEventPaymentReceipt">
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="editEventPaymentReference">Referência (ATM):</label>
-                        <input type="number" class="form-control" id="editEventPaymentReference">
+                        <input type="number" min="0" class="form-control" id="editEventPaymentReference">
                     </div>
                 </form>
             </div>

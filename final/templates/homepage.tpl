@@ -11,11 +11,11 @@
 
                 <div class="row placeholders">
                     <div class="col-xs-12 col-sm-3 placeholder  hidden-xs">
-                        <canvas id="myChart" class="center-block" width="auto" height="200px"></canvas>
+                        <canvas id="myChart" class="center-block" height="200"></canvas>
                         <h4>Pessoal</h4>
                     </div>
                     <div class="col-xs-12 col-sm-9 placeholder  hidden-xs">
-                        <canvas id="earnings" class="center-block" width="auto" height="100px"></canvas>
+                        <canvas id="earnings" class="center-block" height="100"></canvas>
                         <h4>Lucro</h4>
                     </div>
                 </div>
@@ -45,10 +45,10 @@
                                     <tbody>
                                     {foreach $histories as $history}
                                         <tr>
-                                            <td>{$history.payment_date|date_format:"%d-%m-%Y"}</td>
-                                            <td>{$history.name}</td>
-                                            <td>{$history.payment_type}</td>
-                                            <td>{$history.value}</td>
+                                            <td>{$history.payment_date|date_format:"%d-%m-%Y"|escape:'html'}</td>
+                                            <td>{$history.name|escape:'html'}</td>
+                                            <td>{$history.payment_type|escape:'html'}</td>
+                                            <td>{$history.value|escape:'html'}</td>
                                         </tr>
                                     {/foreach}
                                     </tbody>
@@ -81,12 +81,6 @@
                         </div>
                     </div>
                 </div>
-
-
-
-
-
-
 
             </div>
         </div>

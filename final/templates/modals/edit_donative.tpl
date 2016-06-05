@@ -6,28 +6,28 @@
                 <h4 id="editDonativeModalTitle" class="modal-title">Editar Donativo</h4>
             </div>
             <div class="modal-body">
-                <form id="editDonativeForm" onsubmit="editDonativeHistory(); return false;">           
+                <form id="editDonativeForm" onsubmit="editDonativeHistory(); return false;">
 
                     <div class="form-group">
                         <label for="editDonativeDate">Data de pagamento:</label>
-                        <input type="date" class="form-control" id="editDonativeDate">
+                        <input type="text" class="date-picker form-control" id="editDonativeDate">
                     </div>
-                    
+
                     <div class="form-group">
-                        <label for="editDonativeValue">Valor (EUR):</label>
-                        <input type="number" class="form-control" id="editDonativeValue">
+                        <label for="editDonativeValue">Valor (€):</label>
+                        <input type="number" step="0.01" min="0" class="form-control" id="editDonativeValue">
                     </div>
 
                     <div class="form-group">
                         <label for="editDonativeReceipt">Fatura (URL):</label>
                         <input class="form-control" id="editDonativeReceipt">
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="editDonativeReference">Referência (ATM):</label>
-                        <input type="number" class="form-control" id="editDonativeReference">
+                        <input type="number" step="1" min="0" class="form-control" id="editDonativeReference">
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="DonativeFormSel1">Método de Pagamento:</label>
                         <select id="DonativeFormSel1" class="form-control">

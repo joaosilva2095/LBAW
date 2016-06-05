@@ -16,7 +16,7 @@
                         <textarea rows="10" style="resize:none;" class="form-control" id="seeEventDescription" disabled="disabled"></textarea>
                     </div>
                 </form>
-                <label for="seeEventFriends">Participantes:</label>
+                <p class="label-custom">Participantes:</p>
                 <div style="max-height: 15rem; overflow-y:auto;">
                     <table id="seeEventFriends" class="table table-striped table-hover">
                     </table>
