@@ -15,23 +15,23 @@
                     <div class="col-sm-3 col-md-4 text-left">
                         <div class="row">
                             <h4>Data Nascimento:</h4>
-                            <p id="UserBirth">{$user.birth}</p>
+                            <p id="UserBirth">{$user.birth|escape:'html'}</p>
                         </div>
                         <div class="row">
                             <h4>Email:</h4>
-                            <p id="UserEmail">{$user.email}</p>
+                            <p id="UserEmail">{$user.email|escape:'html'}</p>
                         </div>
                         <div class="row">
                             <h4>Contacto:</h4>
-                            <p id="UserCellphone">{$user.cellphone}</p>
+                            <p id="UserCellphone">{$user.cellphone|escape:'html'}</p>
                         </div>
                         <div class="row">
                             <h4>Método de pagamento:</h4>
-                            <p id="UserDonative">{$user.donative_type}</p>
+                            <p id="UserDonative">{$user.donative_type|escape:'html'}</p>
                         </div>
                         <div class="row">
                             <h4>Frequência de pagamento:</h4>
-                            <p>{$user.periodicity}</p>
+                            <p>{$user.periodicity|escape:'html'}</p>
                         </div>
                     </div>
                     <div class="col-sm-3 col-md-4 col-sm-offset-1 col-md-offset-1" id="settings">

@@ -29,27 +29,27 @@
                         <tbody id="users">
 
                             {foreach $users as $key => $user} {if $user.role === 'Amigo' && $user.frozen}
-                            <tr class="warning" id="user{$user.id}">
+                            <tr class="warning" id="user{$user.id|escape:'html'}">
                                 {else}
-                                <tr id="user{$user.id}">
+                                <tr id="user{$user.id|escape:'html'}">
                                     {/if}
-                                    <td>{$user.id}</td>
-                                    <td>{$user.name}</td>
-                                    <td>{$user.email}</td>
-                                    <td>{$user.gender}</td>
-                                    <td>{$user.birth}</td>
+                                    <td>{$user.id|escape:'html'}</td>
+                                    <td>{$user.name|escape:'html'}</td>
+                                    <td>{$user.email|escape:'html'}</td>
+                                    <td>{$user.gender|escape:'html'}</td>
+                                    <td>{$user.birth|escape:'html'}</td>
                                     {if $user.role === 'Amigo'}
-                                    <td>{$user.cellphone}</td>
-                                    <td>{$user.nif}</td>
-                                    <td>{$user.donative_type}</td>
-                                    <td>{$user.periodicity}</td>
+                                    <td>{$user.cellphone|escape:'html'}</td>
+                                    <td>{$user.nif|escape:'html'}</td>
+                                    <td>{$user.donative_type|escape:'html'}</td>
+                                    <td>{$user.periodicity|escape:'html'}</td>
                                     {else}
                                     <td></td>
                                     <td></td>
                                     <td></td>
                                     <td></td>
                                     {/if}
-                                    <td>{$user.role}</td>
+                                    <td>{$user.role|escape:'html'}</td>
                                     <td>
                                         <a href="amigo.php?user={$user.id}" class="fa fa-eye fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Ver"></a>
                                         <i data-toggle="modal" data-target="#notificationModal">
@@ -59,7 +59,8 @@
                                         <i data-toggle="modal" data-target="#addUserModal">
                                                 <i class="fa fa-pencil fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Editar"></i>
                                         </i>
-                                        <i class="fa fa-trash fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Eliminar"></i> {elseif $viewer.role === 'Contabilista' && $user.role === 'Amigo'} {if $user.frozen}
+                                        <i class="fa fa-trash fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Eliminar"></i> {elseif $viewer.role === 'Contabilista' && $user.role === 'Amigo'}
+                                        <i class="fa fa-heart fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Adicionar Donativo"></i> {if $user.frozen}
                                         <i id="user{$user.id}-frozen" class="fa fa-play fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Descongelar"></i> {else}
                                         <i id="user{$user.id}-frozen" class="fa fa-pause fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Congelar"></i> {/if} {/if}
                                     </td>
