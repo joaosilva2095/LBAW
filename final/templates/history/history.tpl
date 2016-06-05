@@ -1,8 +1,8 @@
-<div class="container">
+<div class="row">
     <h2>Histórico</h2></div>
 
-<div id="Tabs" class="container">
-    <ul class="nav nav-tabs">
+<div id="Tabs" class="row">
+    <ul class="nav nav-tabs" role="tablist">
         <li class="active">
             <a href="#TabIrEvento" data-toggle="tab">Ida a Eventos</a>
         </li>
@@ -15,17 +15,17 @@
     </ul>
 
     <div class="tab-content ">
-        <div class="tab-pane active" id="TabIrEvento">
+        <div role="tabpanel" class="tab-pane active" id="TabIrEvento">
             {include file='history/friend_event.tpl'}
         </div>
-        <div class="tab-pane" id="TabPagEvento">
+        <div role="tabpanel" class="tab-pane" id="TabPagEvento">
             {include file='history/payment_event.tpl'}
         </div>
-        <div class="tab-pane" id="TabDonative">
+        <div role="tabpanel" class="tab-pane" id="TabDonative">
             {include file='history/donative.tpl'}
         </div>
 
-        <div class="tab-pane" id="TabMercha">
+        <div role="tabpanel" class="tab-pane" id="TabMercha">
             {include file='history/mercha.tpl'}
         </div>
     </div>

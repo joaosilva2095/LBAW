@@ -10,9 +10,9 @@
             <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
                 <h1 id="UserName" class="page-header">{$user.name|escape:'html'}</h1>
                 
-                <div class="row placeholders">
+                <div class="row">
 
-                    <div class="col-sm-3 text-left">
+                    <div class="col-sm-3 col-md-4 text-left">
                         <div class="row">
                             <h4>Data Nascimento:</h4>
                             <p id="UserBirth">{$user.birth}</p>
@@ -34,7 +34,7 @@
                             <p>{$user.periodicity}</p>
                         </div>
                     </div>
-                    <div class="col-sm-3 col-sm-offset-1 placeholder text-justify" id="settings">
+                    <div class="col-sm-3 col-md-4 col-sm-offset-1 col-md-offset-1" id="settings">
                         <div class="panel panel-primary">
                             <div class="panel-heading">
                                 <h4><i class="fa fa-cogs fa-lg fa-fw panel-title"></i>Ferramentas</h4>
@@ -47,7 +47,7 @@
                                     <h6 id="EditPaymentModal" class="clickable"><i class="fa fa-credit-card fa-lg fa-fw"></i>Editar método de pagamento</h6>
                                 </a>
                                 <a>
-                                    <div class="container" id="accordion">
+                                    <div id="accordion">
                                         <h6 data-toggle="collapse" data-parent="#accordion" class="clickable"><i class="fa fa-search fa-lg fa-fw"></i>Ver referência de multibanco</h6>
 
                                         <div id="ref" class="collapse">
