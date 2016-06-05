@@ -9,7 +9,7 @@
                     <h4 class="modal-title">Método de pagamento</h4>
                 </div>
                 <div class="modal-body">
-                    <form id = "editUserPayment"  onsubmit="editUserPayment({$user.id}); return false;">
+                    <form id = "editUserPayment"  onsubmit="editUserPayment({$user.id|escape:'html'}); return false;">
                         <select id="sel1" class="form-control">
                             <option value="" disabled="disabled">&nbsp;</option>
                             <option value="Referência Multibanco">Referência Multibanco</option>

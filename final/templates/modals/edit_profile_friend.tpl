@@ -9,7 +9,7 @@
                     <h4 class="modal-title">Editar Perfil</h4>
                 </div>
                 <div class="modal-body">
-                    <form id = "editFriendForm" onsubmit="editUser({$user.id}); return false;">
+                    <form id = "editFriendForm" onsubmit="editUser({$user.id|escape:'html'}); return false;">
                         <div class="form-group">
                             <label for="name">Nome:</label>
                             <input class="form-control" id="name">
