@@ -10,7 +10,7 @@
 
                     <div class="form-group">
                         <label for="editDonativeDate">Data de pagamento:</label>
-                        <input type="date" class="form-control" id="editDonativeDate">
+                        <input type="text" class="date-picker form-control" id="editDonativeDate">
                     </div>
 
                     <div class="form-group">

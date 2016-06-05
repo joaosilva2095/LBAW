@@ -18,7 +18,7 @@
                     </div>
                     <div class="form-group">
                         <label for="date">Data:</label>
-                        <input type="date" class="form-control" id="date" required="required">
+                        <input type="text" class="date-picker form-control" id="date" required="required">
                     </div>
                     <div class="form-group">
                         <label for="duration">Duração (horas):</label>

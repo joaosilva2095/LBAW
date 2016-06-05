@@ -14,7 +14,7 @@
                     <h4>Informação de Pagamento</h4>
                     <div class="form-group">
                         <label for="paymentDateId">Data do Pagamento:</label>
-                        <input type="date" class="form-control" id="paymentDateId">
+                        <input type="text" class="date-picker form-control" id="paymentDateId">
                     </div>
                     <div class="form-group">
                         <label for="quantity">Quantidade:</label>

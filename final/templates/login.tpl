@@ -30,48 +30,46 @@
 </head>
 
 <body>
-<div class="row v-align">
-    <div class="col-sm-3 h-align">
-        <header class="page-title text-center">G.A.S.Porto</header>
+    <div class="row v-align">
+        <div class="col-sm-3 h-align">
+            <header class="page-title text-center">G.A.S.Porto</header>
 
-        <form role="form" class="login-form" action="../actions/login.php" method="post">
-            <div class="form-group">
-                <label for="username">Email:</label>
-                <input type="text" required="required" name="username" class="form-control" id="username"
-                       placeholder="Email">
-            </div>
-            <div class="form-group">
-                <label for="password">Password:</label>
-                <input type="password" required="required" name="password" class="form-control" id="password"
-                       placeholder="Password">
-            </div>
-            <div class="text-right">
-                <a href="#">Esqueceu a password?</a>
-            </div>
+            <form class="login-form" action="../actions/login.php" method="post">
+                <div class="form-group">
+                    <label for="username">Email:</label>
+                    <input type="text" required="required" name="username" class="form-control" id="username" placeholder="Email">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" required="required" name="password" class="form-control" id="password" placeholder="Password">
+                </div>
+                <div class="text-right">
+                    <a href="#">Esqueceu a password?</a>
+                </div>
 
-            {if isset($ERROR_MESSAGES)}
+                {if isset($ERROR_MESSAGES)}
                 <div class="alert alert-danger alert-dismissible" role="alert" id="registerStatus">
                     <button type="button" class="close" onclick="$('#registerStatus').fadeOut()" aria-label="Close">
                         <span aria-hidden="true">&times;</span></button>
                     Login failed!
                 </div>
-            {/if}
+                {/if}
 
-            <div class="text-center">
-                <button type="submit" class="btn btn-default">Entrar</button>
-            </div>
-        </form>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-default">Entrar</button>
+                </div>
+            </form>
+        </div>
     </div>
-</div>
 
-<!-- JQuery -->
-<script src="{$BASE_URL}js/vendor/jquery.min.js"></script>
+    <!-- JQuery -->
+    <script src="{$BASE_URL}js/vendor/jquery.min.js"></script>
 
-<!-- Bootstrap -->
-<script src="{$BASE_URL}js/vendor/bootstrap.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="{$BASE_URL}js/vendor/bootstrap.min.js"></script>
 
-<!-- G.A.S.Porto -->
-<script src="{$BASE_URL}js/holder.min.js"></script>
+    <!-- G.A.S.Porto -->
+    <script src="{$BASE_URL}js/holder.min.js"></script>
 </body>
 
 {include file='common/footer.tpl'}
