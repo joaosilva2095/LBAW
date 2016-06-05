@@ -371,6 +371,9 @@ function edit_credentials($id, $old_name, $new_name, $old_pw, $new_pw, $confirm_
         if (!$result1) return false;
     }
 
+    if(strlen($old_pw) == 0)
+        return true;
+
     $stmt = $conn->prepare("SELECT *
                             FROM users
                             WHERE id = ? 

@@ -70,9 +70,11 @@ function editCredentials(id, old_name) {
         },
         function (data, statusText, xhr) {
             console.log(data);
-            $('#editCredentialsModal').modal('hide');
-
+            // $('#UserStatus2').fadeIn();
+            
+            $('#editCredentialsModal').modal('hide');            
             $("#UserEmail").html(form_name);
+
         })
         .fail(function (error) {
             console.log(error);
