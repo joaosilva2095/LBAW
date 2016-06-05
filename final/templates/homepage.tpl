@@ -11,11 +11,11 @@
 
                 <div class="row placeholders">
                     <div class="col-xs-12 col-sm-3 placeholder  hidden-xs">
-                        <canvas id="myChart" class="center-block" width="auto" height="200px"></canvas>
+                        <canvas id="myChart" class="center-block" height="200"></canvas>
                         <h4>Pessoal</h4>
                     </div>
                     <div class="col-xs-12 col-sm-9 placeholder  hidden-xs">
-                        <canvas id="earnings" class="center-block" width="auto" height="100px"></canvas>
+                        <canvas id="earnings" class="center-block" height="100"></canvas>
                         <h4>Lucro</h4>
                     </div>
                 </div>
