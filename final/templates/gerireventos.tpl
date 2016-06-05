@@ -25,13 +25,13 @@
                         <tbody id="events">
 
                             {foreach $events as $key => $event}
-                            <tr id="event{$event.id}">
-                                <td style="display:none;">{$event.description}</td>
-                                <td>{$event.name}</td>
-                                <td>{$event.event_date}</td>
-                                <td>{$event.duration}</td>
-                                <td>{$event.place}</td>
-                                <td>{$event.price}</td>
+                            <tr id="event{$event.id|escape:'html'}">
+                                <td style="display:none;">{$event.description|escape:'html'}</td>
+                                <td>{$event.name|escape:'html'}</td>
+                                <td>{$event.event_date|escape:'html'}</td>
+                                <td>{$event.duration|escape:'html'}</td>
+                                <td>{$event.place|escape:'html'}</td>
+                                <td>{$event.price|escape:'html'}</td>
                                 <td>
                                     <!-- Common options -->
                                     <i data-toggle="modal" data-target="#seeEventModal">
@@ -63,9 +63,9 @@
                                         </thead>
                                         <tbody>
                                             {foreach $event.friends as $key => $eventFriend}
-                                            <tr id="eventFriend{$event.id}-{$eventFriend.id}">
-                                                <td>{$eventFriend.id}</td>
-                                                <td>{$eventFriend.name}</td>
+                                            <tr id="eventFriend{$event.id|escape:'html'}-{$eventFriend.id|escape:'html'}">
+                                                <td>{$eventFriend.id|escape:'html'}</td>
+                                                <td>{$eventFriend.name|escape:'html'}</td>
                                                 {if $viewer.role === 'Contabilista'}
                                                 <td>
                                                     <i class="fa fa-user-times fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Eliminar Presença"></i>
