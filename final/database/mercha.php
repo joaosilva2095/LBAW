@@ -81,4 +81,34 @@ function delCategory($name){
     return $stmt->execute(array($name));
 }
 
+function addMerchaPayment($datePayment,$value){
+    global $conn;
+
+    $stmt = $conn->prepare("INSERT INTO payments (payment_date,value,payment_type)
+                            VALUES (?,?,?)  RETURNING id");
+    if (!$stmt->execute(array($datePayment,$value,'Merchandise'))) {
+        return false;
+    };
+    return $stmt->fetch();
+}
+
+function addMerchaPurchase($idUser,$datePayment,$productId,$quantity){
+    global $conn;
+    $stmt = $conn->prepare("SELECT price FROM mercha_products WHERE id=?");
+    $stmt->execute(array($productId));
+    $result= $stmt->fetchAll();
+    $value=$result[0]['price']*$quantity;
+
+    $idPurchase=addMerchaPayment($datePayment,$value);
+
+    $stmt = $conn->prepare("INSERT INTO mercha_purchases (id,friend,product,quantity)
+                            VALUES (?,?,?,?)  RETURNING id");
+    if (!$stmt->execute(array($idPurchase['id'],$idUser,$productId,$quantity))) {
+        return false;
+    };
+
+    return $stmt->fetch();
+
+}
+
 ?>
