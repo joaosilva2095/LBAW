@@ -135,7 +135,7 @@ function configSeeEventModal() {
 
 
 /**
- * Configuration of the new event modal
+ * Configuration of the new friend event modal
  */
 function configNewFriendEventModal() {
     $('#addUserAttendanceEventModal form').trigger('reset');

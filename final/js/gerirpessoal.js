@@ -136,12 +136,32 @@ function configAddNotificationModal() {
 }
 
 /**
+ * Configuration of the add donative modal
+ */
+function configAddDonativeModal() {
+    $('#addDonativeForm form').trigger('reset');
+
+    // Fill data
+    var id = $(this).closest('tr').attr('id');
+    id = id.replace("user", "");
+
+    var name = $("#user" + id + " td:nth-child(2)").text(),
+        donativeType = $("#user" + id + " > td:nth-child(8)").text();
+
+    // Set form
+    $('#addDonativeUserId').val(id);
+    $('#addDonativeName').val(name);
+    $('#addDonativeType').val(donativeType);
+}
+
+/**
  * Configure the elements
  */
 function config() {
     // Manage users
     $('i[data-original-title="Editar"]').click(configEditUserModal);
     $('i[data-original-title="Eliminar"]').click(confirmRemoveUser);
+    $('i[data-original-title="Adicionar Donativo"]').click(configAddDonativeModal);
     $('i[data-original-title="Congelar"]').click(togglePauseUser);
     $('i[data-original-title="Descongelar"]').click(togglePauseUser);
     $('i[data-original-title="Notificar"]').click(configAddNotificationModal);
