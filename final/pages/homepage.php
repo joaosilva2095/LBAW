@@ -1,9 +1,9 @@
 <?php
 include_once('../config/init.php');
-include_once($BASE_DIR . 'database/charts.php');
-include_once($BASE_DIR . 'database/users.php');
-include_once($BASE_DIR . 'database/notifications.php');
-include_once($BASE_DIR . 'database/donatives.php');
+require_once($BASE_DIR . 'database/charts.php');
+require_once($BASE_DIR . 'database/users.php');
+require_once($BASE_DIR . 'database/notifications.php');
+require_once($BASE_DIR . 'database/donatives.php');
 
 // Validate user
 if (!isset($_SESSION['username'])
@@ -30,8 +30,6 @@ if ($histories === null) {
 
 $friendsNoPay = latePayments();
 
-$viewer['name']=$user['name'];
-$viewer['role']=$role;
 $viewer_info = get_user_by_email($_SESSION['username']);
 $viewer['role'] = $_SESSION['role'];
 $viewer['name'] = $viewer_info['name'];
