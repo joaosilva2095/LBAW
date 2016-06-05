@@ -50,20 +50,26 @@
                                     <td></td>
                                     {/if}
                                     <td>{$user.role|escape:'html'}</td>
-                                    <td>                                                               
+                                    <td>
+                                        {if $user.role == 'Amigo'}
+                                        <a href="amigo.php?user={$user.id|escape:'html'}" class="fa fa-eye fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Ver"></a>
                                         <i data-toggle="modal" data-target="#notificationModal">
+                                        {/if}
                                         <i class="fa fa-bullhorn fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Notificar"></i>
                                         </i>
                                         {if $viewer.role === 'Administrador'}
                                         <i data-toggle="modal" data-target="#addUserModal">
                                         <i class="fa fa-pencil fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Editar"></i>
                                         </i>
-                                        <i class="fa fa-trash fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Eliminar"></i> {elseif $viewer.role === 'Contabilista' && $user.role === 'Amigo'}
+                                        {if $viewer.id !== $user.id}
+                                        <i class="fa fa-trash fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Eliminar"></i> 
+                                        {/if}
+                                                                               {elseif $viewer.role === 'Contabilista' && $user.role === 'Amigo'}
                                         <i data-toggle="modal" data-target="#addDonativeModal">
                                         <i class="fa fa-heart fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Adicionar Donativo"></i>
                                         </i> {if $user.frozen}
-                                        <i id="user{$user.id|escape:'html'}-frozen" class="fa fa-play fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Descongelar"></i> {else}
-                                        <i id="user{$user.id|escape:'html'}-frozen" class="fa fa-pause fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Congelar"></i> {/if} {/if}
+                                        <i id="user{$user.id|escape:'html'}-frozen" class="fa fa-play fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Descongelar"></i>                                        {else}
+                                        <i id="user{$user.id|escape:'html'}-frozen" class="fa fa-pause fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Congelar"></i>                                        {/if} {/if}
                                     </td>
                                 </tr>
                                 {/foreach}
@@ -74,8 +80,7 @@
                 {if $viewer.role === 'Administrador'}
                 <button id="newUser" type="button" class="btn btn-default" data-toggle="modal" data-target="#addUserModal">
                     <i class="fa fa-user-plus"></i> Novo Utilizador
-                </button>
-                {/if}
+                </button> {/if}
             </div>
         </div>
     </div>

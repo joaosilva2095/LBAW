@@ -130,11 +130,16 @@ function editUser(id) {
             $("#UserBirth").html(birth);
             $("#UserCellphone").html(cellphone);
             $("#UserNameNav").html(name + " " +roleContentNav);
+            $('#friend_Status1').fadeIn(1000);
+             setTimeout(function () {
+                $('#editCredentialsModal').modal('hide');
+            }, 1500);
+            
         })
         .fail(function (error) {
                        
             console.log(error);
-            $('#friendStatus').fadeIn();
+            $('#friend_Status2').fadeIn();
         });
 }
 
@@ -215,6 +220,7 @@ function editEventPagHistory() {
             $("#eventoPayment-" + id + " td:nth-child(5)").html(price);
             $("#eventoPayment-" + id + " td:nth-child(2)").html(receipt);
             $("#eventoPayment-" + id + " td:nth-child(6)").html(reference);
+            $("#eventoPayment-" + id).highlightAnimation(green, 2000);
         })
         .fail(function (error) {
             $("#eventoPayment-" + id).highlightAnimation(red, 1500);
@@ -232,7 +238,7 @@ function editDonativeHistory() {
         reference = $('#editDonativeReference').val(),
         pay_method = $('#DonativeFormSel1').val();
 
-    console.log(id,date, price, receipt, reference, pay_method, id);
+   // console.log(id,date, price, receipt, reference, pay_method, id);
 
     $.post(
         "../api/edit_hist_donative.php", {
@@ -244,7 +250,7 @@ function editDonativeHistory() {
             pay_method: pay_method
         },
         function (data, statusText, xhr) {
-            console.log(data);
+            //console.log(data);
             $('#editDonativeModal').modal('hide');
 
             $("#donative-" + id + " td:nth-child(2)").html(receipt);
@@ -252,6 +258,7 @@ function editDonativeHistory() {
             $("#donative-" + id + " td:nth-child(5)").html(price);
             $("#donative-" + id + " td:nth-child(6)").html(reference);
             $("#donative-" + id + " td:nth-child(7)").html(pay_method);
+            $("#donative-" + id).highlightAnimation(green, 1500);
         })
         .fail(function (error) {
             console.log(error);
