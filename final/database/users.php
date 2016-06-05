@@ -608,9 +608,6 @@ function get_global_history()
 
     $stmt->execute();
     return $stmt->fetchAll();
-<<<<<<< HEAD
-}
-=======
 }
 
 /**
@@ -682,4 +679,3 @@ function how_many_month_to_pay($id)
 
     return 0;
 }
->>>>>>> d0497d9ea0416250ec5e69dc61496ac6c18d464e

@@ -3,7 +3,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 id="buyProductModalTitle" class="modal-title">Adicionar Presença</h4>
+                <h4 id="buyProductModalTitle" class="modal-title">Adicionar Compra</h4>
             </div>
             <div class="modal-body">
                 <form id="buyProductForm" enctype="multipart/form-data">
