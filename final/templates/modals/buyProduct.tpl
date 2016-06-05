@@ -1,4 +1,4 @@
-<div class="modal fade" tabindex="-1" role="dialog" id="buyProduct">
+<div class="modal fade" tabindex="-1" role="dialog" id="buyProductModal">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -7,21 +7,21 @@
             </div>
             <div class="modal-body">
                 <form id="buyProductForm">
-                    <input style="display:none;" class="form-control" id="attendanceEventId">
                     <div class="form-group">
                         <label for="buyerUserId">ID Utilizador:</label>
                         <input class="form-control" id="buyerUserId" required="required">
                     </div>
+                    <h4>Informação de Pagamento</h4>
                     <div class="form-group">
-                        <label for="attendancePaymentId">ID Pagamento:</label>
-                        <input type="text" class="form-control" id="attendancePaymentId" placeholder="ID do pagamento associado se existir.">
+                        <label for="paymentDateId">Data do Pagamento:</label>
+                        <input type="date" class="form-control" id="paymentDateId" placeholder="Data do Pagamento">
                     </div>
                     <div class="form-group">
                         <label for="quantity">Quantidade:</label>
                         <input type="number" step="1" class="form-control" id="quantity">
                     </div>
                 </form>
-                <div class="alert alert-danger alert-dismissible" style="display: none;" role="alert" id="addUserAttendanceEventStatus">
+                <div class="alert alert-danger alert-dismissible" style="display: none;" role="alert" id="buyProductStatus">
                     <button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span>
                     </button>
                     Failed to complete the friend attendance in event action! Please verify the information.

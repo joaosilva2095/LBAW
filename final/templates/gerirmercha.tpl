@@ -63,10 +63,11 @@
 
     <!-- Confirm Dialog -->
     {include file='modals/confirm_action.tpl'}
+
     {if $viewer.role === "Administrador"}
-    <!-- Add/Edit Modal -->
-    {include file='modals/addMercha.tpl' categories=$categories}
-    {include file='modals/manageCategories.tpl' categories=$categories}
+        <!-- Add/Edit Modal -->
+        {include file='modals/addMercha.tpl' categories=$categories}
+        {include file='modals/manageCategories.tpl' categories=$categories}
     {elseif $viewer.role === "Contabilista"}
         {include file='modals/buyProduct.tpl'}
     {/if}

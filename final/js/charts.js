@@ -132,44 +132,93 @@ Chart.defaults.global = {
     }
 }
 
-var data = [
+$.post(
+    "../api/edit_graph.php",
     {
-        value: 50,
-        color: "#F7464A",
-        highlight: "#FF5A5E",
-        label: "Amigos"
     },
-    {
-        value: 1,
-        color: "#46BFBD",
-        highlight: "#5AD3D1",
-        label: "Administrador"
-    },
-    {
-        value: 2,
-        color: "#FDB45C",
-        highlight: "#FFC870",
-        label: "Contabilistas"
-    }
-]
-var ctx = document.getElementById("myChart").getContext("2d");
-// For a pie chart
-var myPieChart = new Chart(ctx).Pie(data);
+    function (data, statusText, xhr) {
 
-var dataBar = {
-    labels: ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho"],
-    datasets: [
-        {
-            label: "My First dataset",
-            fillColor: "rgba(220,220,220,0.5)",
-            strokeColor: "rgba(220,220,220,0.8)",
-            highlightFill: "rgba(220,220,220,0.75)",
-            highlightStroke: "rgba(220,220,220,1)",
-            data: [65, 59, 80, 81, 56, 55, 40]
+        var json = JSON.parse(data);
+
+         var data = [
+           {
+               value: json["users"][0]["count"],
+               color: "#F7464A",
+               highlight: "#FF5A5E",
+               label: json["users"][0]["role"]
+           },
+           {
+               value: json["users"][1]["count"],
+               color: "#46BFBD",
+               highlight: "#5AD3D1",
+               label: json["users"][1]["role"]
+           },
+           {
+               value: json["users"][2]["count"],
+               color: "#FDB45C",
+               highlight: "#FFC870",
+               label: json["users"][2]["role"]
+           }
+       ]
+        
+        var ctx = document.getElementById("myChart").getContext("2d");
+        // For a pie chart
+        var myPieChart = new Chart(ctx).Pie(data);
+    })
+    .fail(function (error) {
+        console.log(error);
+    });
+
+
+$.post(
+    "../api/edit_graph.php",
+    {
+    },
+    function (data, statusText, xhr) {
+        var json = JSON.parse(data);
+
+        const month=["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"];
+        const currentMonth = new Date().getMonth();
+        var monthLabel=[];
+        var diff=currentMonth-6;
+
+        if(diff<0){
+            diff=0;
         }
-    ]
-};
 
-var ctxbar = document.getElementById("earnings").getContext("2d");
+        profit = new Array(6).fill(0);
 
-var barChart = new Chart(ctxbar).Bar(dataBar);
+        for(var i=0; i < 6 ; i++){
+            monthLabel.push(month[diff+i]);
+
+        }
+        for(var i=0;i<json["profit"].length;i++){
+            let prof = json["profit"][i];
+            profit[prof["month"]-1]=prof["sum"];
+        }
+
+
+        var dataBar = {
+            labels: monthLabel,
+            datasets: [
+                {
+                    label: "My First dataset",
+                    fillColor: "rgba(220,220,220,0.5)",
+                    strokeColor: "rgba(220,220,220,0.8)",
+                    highlightFill: "rgba(220,220,220,0.75)",
+                    highlightStroke: "rgba(220,220,220,1)",
+                    data: profit
+                }
+            ]
+        };
+
+
+        var ctxbar = document.getElementById("earnings").getContext("2d");
+
+        var barChart = new Chart(ctxbar).Bar(dataBar);
+    })
+    .fail(function (error) {
+        console.log(error);
+    });
+
+
