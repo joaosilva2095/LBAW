@@ -76,6 +76,30 @@ function get_all_events()
 }
 
 /**
+ * Get a event by its description
+ * @param {string} $description description of the event
+ */
+function get_search_event_by_description($description)
+{
+    if ($description === "") {
+        return array();
+    }
+
+    global $conn;
+    $stmt = $conn->prepare("SELECT id, name, event_date, description, duration, place, price, ts_rank(phrase, query) AS rank
+                            FROM events, to_tsquery('portuguese', ?) query, to_tsvector('portuguese', description) phrase
+                            WHERE phrase @@ query
+                            ORDER BY rank");
+    $stmt->execute(array($description));
+
+    $events = $stmt->fetchAll();
+    foreach ($events as $key => $event) {
+        $events[$key]['friends'] = get_all_event_friends($event['id']);
+    };
+    return $events;
+}
+
+/**
  * Get all the friends that went to a event
  * @param  {integer} $event_id id of the event to get all the friends
  * @return {array} array with all the friends that went to that event

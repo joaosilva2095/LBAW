@@ -7,15 +7,21 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">G.A.S.Porto</a>
+
+            {if $viewer.role !== 'Amigo'}
+            <a class="navbar-brand" href="homepage.php">G.A.S.Porto</a> {else}
+            <a class="navbar-brand" href="amigo.php">G.A.S.Porto</a> {/if}
         </div>
 
-                <p id="meID" style="display:none;">{$viewer.id}</p>
-                <p id="meEmail" style="display:none;">{$viewer.email}</p>
+        <p id="meID" style="display:none;">{$viewer.id}</p>
+        <p id="meEmail" style="display:none;">{$viewer.email}</p>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
                 {if $viewer.role === "Amigo"}
-                <li><a id="UserNameNav" href="amigo.php"><i class="fa fa-user"></i> {$viewer.name|escape:'html'} ({$viewer.role|escape:'html'})</a></li>{else}<li><a id="UserNameNav" href="homepage.php"><i class="fa fa-user"></i> {$viewer.name|escape:'html'} ({$viewer.role|escape:'html'})</a></li>{/if}
+                <li><a id="UserNameNav" href="amigo.php"><i class="fa fa-user"></i> {$viewer.name|escape:'html'}
+                        ({$viewer.role|escape:'html'})</a></li>{else}
+                <li><a id="UserNameNav" href="homepage.php"><i class="fa fa-user"></i> {$viewer.name|escape:'html'}
+                        ({$viewer.role|escape:'html'})</a></li>{/if}
                 <li id="notifications" class="dropdown">
                     <a href="#" class="dropdown-toggle"><i class="fa fa-bell"></i> Notificações
                         <span class="badge">{$notifications|@count}</span></a>
@@ -28,7 +34,7 @@
                     </ul>
                 </li>
 
-                <li id="settings" class="dropdown">
+                <li id="navsettings" class="dropdown">
                     <a href="" class="dropdown-toggle" onclick="return false"> <i class="fa fa-cog" aria-hidden="true"></i> Opções </a>
 
                     <ul class="dropdown-menu list-group">
@@ -45,7 +51,7 @@
             {if $viewer.role !== "Amigo"}
             <form class="navbar-form navbar-right" role="search" action="pesquisa.php" method="GET">
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Procurar" name="user">
+                    <input type="text" class="form-control" placeholder="Procurar" name="search">
                     <div class="input-group-btn">
                         <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
                     </div>

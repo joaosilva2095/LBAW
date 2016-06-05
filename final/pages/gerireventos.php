@@ -13,6 +13,9 @@ if (!isset($_SESSION['username'])
     http_response_code(404);
     return;
 }
+
+$page_title = 'Gerir Eventos';
+
 $role = $_SESSION['role'];
 
 $user = get_user_by_email($_SESSION['username']);
@@ -25,6 +28,8 @@ $viewer['role'] = $_SESSION['role'];
 $viewer['name'] = $viewer_info['name'];
 $viewer['id'] = $viewer_info['id'];
 $viewer['email'] = $viewer_info['email'];
+
+$smarty->assign('page_title', $page_title);
 $smarty->assign('viewer', $viewer);
 $smarty->assign('notifications', $notifications);
 $smarty->assign('events', $events);

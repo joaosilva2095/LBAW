@@ -46,7 +46,7 @@ function editCredentials(id, old_name) {
         form_confirm_pw = $('#editCredentialsFormConfirmPw').val();
 
     var contentNameNav = $("#UserNameNav").text();
-    var roleContentNav = contentNameNav.substring(contentNameNav.indexOf('('), contentNameNav.length);
+    var roleContentNav = contentNameNav.substring(contentNameNav.indexOf('(')+1, contentNameNav.length-1);
     var nameContentNav = contentNameNav.substring(0, contentNameNav.indexOf('(') - 1);
     //viewer_name = email (contabilsita/admin)
     var viewer_new_name = "";
@@ -90,11 +90,10 @@ function editCredentials(id, old_name) {
             confirm_pw: form_confirm_pw
         },
         function (data, statusText, xhr) {
-            console.log(data);
-
+            
             if (roleContentNav != 'Amigo') {
                 if (viewer_new_name !== undefined && viewer_new_name.length != 0)
-                    $("#UserNameNav").html(viewer_new_name + " " + roleContentNav);
+                    $("#UserNameNav").html(viewer_new_name + " " + roleContentNav);                    
             }
             else {
                 $("#UserEmail").html(form_name);
@@ -133,7 +132,7 @@ function config() {
 
     $('#EditCredentials').click(prepareEditCredentialsModal);
 
-    $('#settings a').click(function (event) {
+    $('#navsettings a').click(function (event) {
         $(this).parent().toggleClass('open');
     });
 
