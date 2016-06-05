@@ -19,10 +19,6 @@
                             <input type="date" class="form-control" id="dateBirth">
                         </div>
                         <div class="form-group">
-                            <label for="email">Email:</label>
-                            <input class="form-control" id="email">
-                        </div>
-                        <div class="form-group">
                             <label for="contact">Contacto:</label>
                             <input class="form-control" id="contact">
                         </div>

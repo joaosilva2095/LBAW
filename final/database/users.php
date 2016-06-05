@@ -142,7 +142,7 @@ function edit_friend($id, $email, $name, $gender, $birth, $nif, $cellphone, $don
 
 
 /*short version from the one above*/
-function edit_friend_short($id, $email, $name, $birth, $cellphone) {
+function edit_friend_short($id, $name, $birth, $cellphone) {
     global $conn;
 
     $stmt = $conn->prepare("UPDATE friends 
@@ -152,10 +152,10 @@ function edit_friend_short($id, $email, $name, $birth, $cellphone) {
     if (!$result) return false;
 
     $stmt = $conn->prepare("UPDATE users
-                            SET name = ?, email = ?, birth = ? 
+                            SET name = ?, birth = ? 
                             WHERE id = ?");
     try {
-        return $stmt->execute(array($name, $email, $birth, $id));
+        return $stmt->execute(array($name, $birth, $id));
     } catch (PDOException $e) {}
 }
 

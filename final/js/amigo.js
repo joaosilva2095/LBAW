@@ -2,14 +2,12 @@ $(document).ready(function () {
 
     $('#EditUserModal').click(function () {
         var name = $("#UserName").text();
-        var email = $("#UserEmail").text();
         var cellphone = $("#UserCellphone").text();
         var birth = $("#UserBirth").text();
 
         //set form
         $('#name').val(name);
         $('#dateBirth').val(birth);
-        $('#email').val(email);
         $('#contact').val(cellphone);
     });
 
@@ -111,33 +109,30 @@ $(document).ready(function () {
 function editUser(id) {
 
     var name = $('#name').val(),
-        email = $('#email').val(),
         birth = $('#dateBirth').val(),
         cellphone = $('#contact').val();
     
     var contentNameNav =  $("#UserNameNav").text();
     var roleContentNav = contentNameNav.substring(contentNameNav.indexOf('('),contentNameNav.length);
 
-    console.log(roleContentNav);
-
     $.post(
         "../api/edit_profile.php", {
             id: id,
-            email: email,
             name: name,
             birth: birth,
             cellphone: cellphone
         },
-        function (data, statusText, xhr) {
+        function (data, statusText, xhr) {           
+            console.log(data);
             $('#editProfile').modal('hide');
 
             $("#UserName").html(name);
-            $("#UserEmail").html(email);
             $("#UserBirth").html(birth);
             $("#UserCellphone").html(cellphone);
             $("#UserNameNav").html(name + " " +roleContentNav);
         })
         .fail(function (error) {
+                       
             console.log(error);
             $('#friendStatus').fadeIn();
         });
