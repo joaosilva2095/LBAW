@@ -38,6 +38,8 @@ function enableTooltips() {
  */
 function config() {
     enableTooltips();
+
+    $('.date-picker').datepicker();
 }
 
 $(document).ready(config);

@@ -16,7 +16,7 @@
                         <h4>Informação de Pagamento</h4>
                         <div class="form-group">
                             <label for="attendancePaymentDate">Data do Pagamento:</label>
-                            <input type="date" class="form-control" id="attendancePaymentDate" required="required">
+                            <input type="text" class="date-picker form-control" id="attendancePaymentDate" required="required">
                         </div>
                         <div class="form-group">
                             <label for="attendancePaymentATMReference">Referência Multibanco:</label>

@@ -14,6 +14,7 @@
 
     <!-- Bootstrap -->
     <link href="{$BASE_URL}css/vendor/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.1/css/bootstrap-datepicker.css" rel="stylesheet">
 
     <!-- Font Awesome -->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
@@ -33,6 +34,7 @@
 
     <!-- Bootstrap -->
     <script src="{$BASE_URL}js/vendor/bootstrap.min.js "></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.1/js/bootstrap-datepicker.min.js"></script>
 
     <!-- G.A.S.Porto -->
     <script src="{$BASE_URL}js/utilities.min.js"></script>
