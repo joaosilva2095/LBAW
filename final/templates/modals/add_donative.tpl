@@ -25,7 +25,7 @@
                         <input type="text" class="form-control" id="addDonativeType" disabled="disabled" required="required">
                     </div>
                     <div class="form-group">
-                        <label for="addDonativeValue">Valor (€):</label>
+                        <label for="addDonativeValue">Valor (EUR):</label>
                         <input type="number" step="0.01" min="0" class="form-control" id="addDonativeValue" required="required">
                     </div>
                     <div class="form-group">

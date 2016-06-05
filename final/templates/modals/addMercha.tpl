@@ -7,12 +7,12 @@
             </div>
             <div class="modal-body">
                 <form id="addMerchaForm">
-                        <input class="form-control hidden" id="id" disabled>
+                    <input class="form-control hidden" id="id" disabled>
                     <div class="form-group">
                         <label for="category">Categoria:</label>
                         <select class="form-control" id="category">
                             {foreach $categories as $category}
-                                <option value="{$category.name|escape:'html'}">{$category.name|escape:'html'}</option>
+                            <option value="{$category.name|escape:'html'}">{$category.name|escape:'html'}</option>
                             {/foreach}
                         </select>
                     </div>
@@ -21,7 +21,7 @@
                         <input class="form-control" id="description" required="required">
                     </div>
                     <div class="form-group">
-                        <label for="price">Preço:</label>
+                        <label for="price">Preço (EUR):</label>
                         <input type="number" step="0.01" class="form-control" id="price" required="required">
                     </div>
 

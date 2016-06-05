@@ -14,7 +14,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="editEventPaymentValue">Preço (€):</label>
+                        <label for="editEventPaymentValue">Preço (EUR):</label>
                         <input type="number" step="0.01" min="0" class="form-control" id="editEventPaymentValue">
                     </div>
 
@@ -24,7 +24,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="editEventPaymentReference">Referência (ATM):</label>
+                        <label for="editEventPaymentReference">Referência Multibanco:</label>
                         <input type="number" min="0" class="form-control" id="editEventPaymentReference">
                     </div>
                 </form>

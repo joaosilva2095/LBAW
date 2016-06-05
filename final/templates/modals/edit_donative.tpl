@@ -14,7 +14,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="editDonativeValue">Valor (€):</label>
+                        <label for="editDonativeValue">Valor (EUR):</label>
                         <input type="number" step="0.01" min="0" class="form-control" id="editDonativeValue">
                     </div>
 
@@ -24,7 +24,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="editDonativeReference">Referência (ATM):</label>
+                        <label for="editDonativeReference">Referência Multibanco:</label>
                         <input type="number" step="1" min="0" class="form-control" id="editDonativeReference">
                     </div>
 
