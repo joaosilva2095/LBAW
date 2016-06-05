@@ -18,6 +18,7 @@ $role = $_SESSION['role'];
 $user = get_user_by_email($_SESSION['username']);
 $notifications = get_user_notifications($user['id']);
 
+
 $histories = getHistory();
 // Return result
 if ($histories === null) {
