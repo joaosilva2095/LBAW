@@ -11,4 +11,4 @@ if (!isset($_SESSION['username'])
     return;
 }
 
-header('Location: gerirpessoal.php');
+header('Location: homepage.php');

@@ -3,7 +3,6 @@ include_once('../config/init.php');
 include_once($BASE_DIR . 'database/users.php');
 include_once($BASE_DIR . 'database/notifications.php');
 include_once($BASE_DIR . 'database/charts.php');
-include_once($BASE_DIR . 'database/donatives.php');
 
 // Validate user
 if (!isset($_SESSION['username'])

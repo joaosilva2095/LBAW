@@ -28,13 +28,13 @@
                             <th>Data</th>
                             <th>Utilizador</th>
                             <th>Tipo</th>
-                            <th>Valor</th>
+                            <th>Valor (EUR)</th>
                         </tr>
                         </thead>
                         <tbody>
                         {foreach $histories as $history}
                         <tr>
-                            <td>{$history.payment_date}</td>
+                            <td>{$history.payment_date|date_format:"%d-%m-%Y"}</td>
                             <td>{$history.name}</td>
                             <td>{$history.payment_type}</td>
                             <td>{$history.value}</td>
