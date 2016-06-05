@@ -20,6 +20,7 @@
                                 <th>Local</th>
                                 <th>Preço (€)</th>
                                 <th>Opções</th>
+                                <th style="display:none;">Participantes</th>
                             </tr>
                         </thead>
                         <tbody id="events">
@@ -49,9 +50,9 @@
                                         <i class="fa fa-user-plus fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Adicionar Presença"></i>
                                     </i>{/if}
                                 </td>
-                                <td>
+                                <td style="display:none;">
                                     <!-- Friends that went to the event -->
-                                    <table style="display:none;">
+                                    <table>
                                         <thead>
                                             <tr>
                                                 <th>ID</th>
