@@ -19,30 +19,75 @@
                         <h4>Lucro</h4>
                     </div>
                 </div>
+                <h2 class="sub-header">Detalhes</h2>
 
-                <h2 class="sub-header">Histórico</h2>
-                <div class="table-responsive">
-                    <table class="table table-striped">
-                        <thead>
-                        <tr>
-                            <th>Data</th>
-                            <th>Utilizador</th>
-                            <th>Tipo</th>
-                            <th>Valor (EUR)</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {foreach $histories as $history}
-                        <tr>
-                            <td>{$history.payment_date|date_format:"%d-%m-%Y"}</td>
-                            <td>{$history.name}</td>
-                            <td>{$history.payment_type}</td>
-                            <td>{$history.value}</td>
-                        </tr>
-                        {/foreach}
-                        </tbody>
-                    </table>
+                <div id="Tabs" class="row">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="active">
+                            <a href="#UltimosPag" data-toggle="tab">Ultimos Pagamentos</a>
+                        </li>
+                        <li><a href="#DonativosAtr" data-toggle="tab">Donativos em Atraso</a>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content ">
+                        <div role="tabpanel" class="tab-pane active" id="UltimosPag">
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>Data</th>
+                                        <th>Utilizador</th>
+                                        <th>Tipo</th>
+                                        <th>Valor (EUR)</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {foreach $histories as $history}
+                                        <tr>
+                                            <td>{$history.payment_date|date_format:"%d-%m-%Y"}</td>
+                                            <td>{$history.name}</td>
+                                            <td>{$history.payment_type}</td>
+                                            <td>{$history.value}</td>
+                                        </tr>
+                                    {/foreach}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="DonativosAtr">
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>Ultimo Pagamento</th>
+                                        <th>Utilizador</th>
+                                        <th>Periodicidade</th>
+                                        <th>Nr Donativos em atraso</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {foreach $friendsNoPay as $friendNoPay}
+                                        <tr>
+                                            <td>{$friendNoPay.last_donative|date_format:"%d-%m-%Y"}</td>
+                                            <td>{$friendNoPay.name}</td>
+                                            <td>{$friendNoPay.periodicity}</td>
+                                            <td>{$friendNoPay.numberofPayments}</td>
+                                        </tr>
+                                    {/foreach}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
+
+
+
+
+
+
             </div>
         </div>
     </div>

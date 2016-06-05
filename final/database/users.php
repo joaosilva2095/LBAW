@@ -287,6 +287,8 @@ function get_all_users()
 
     $users = $stmt->fetchAll();
 
+    var_dump($users);
+
     foreach ($users as $key => $user) {
         $user["has_to_pay"] = how_many_month_to_pay($user["id"]);
     }
