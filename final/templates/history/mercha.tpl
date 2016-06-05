@@ -28,7 +28,12 @@
                 <td>{$entry.quantity|escape:'html'}</td>
                 <td>{$entry.description|escape:'html'}</td>
                 <td>{$entry.price|escape:'html'}</td>
-                <td><i class="fa fa-file-pdf-o fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Obter Fatura"></i></td>
+                <td style="display:none;">{$entry.receipt|escape:'html'}</td>
+                
+                <td>
+                <i class="fa fa-file-pdf-o fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Obter Fatura"></i>
+                </td>
+                
                 <td>
                     {if $viewer.role !== 'Amigo'}
                     <i class="fa fa-trash fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Eliminar"></i>    {/if} 
