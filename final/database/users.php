@@ -205,15 +205,15 @@ function edit_donative_hist($id, $date, $price, $receipt, $reference, $pay_metho
     try {
         return $stmt->execute(array($date, $price, $receipt, $reference, $id));
     } catch (PDOException $e) {}
-    
+
     $stmt = $conn->prepare("UPDATE donatives
                             SET donative_type = ?
                             WHERE id = ?");
-    
-    try{
-        return $stmt->execute(array($pay_method,$id));
+
+    try {
+        return $stmt->execute(array($pay_method, $id));
     } catch (PDOException $e) {}
-    
+
 }
 
 
@@ -361,7 +361,52 @@ function get_user_by_id($id) {
     return $stmt->fetch();
 }
 
+function edit_credentials($id, $old_name, $new_name, $old_pw, $new_pw, $confirm_pw) {
+    global $conn;
 
+    //update username
+    if ($old_name == $new_name || strlen($new_name)) {
+        return true;
+    } else {
+        $result1 = update_credential_username($id, $new_name);
+    }
+
+    if (!$result1) return false;
+
+    //update password
+
+    $stmt = $conn->prepare("SELECT *
+                            FROM users
+                            WHERE id = ? 
+                            AND password = ?");
+
+    $stmt->execute(array($id, sha256($old_pw)));
+
+    //old pw dont match database pw
+    if (count($stmt->fetch()) <= 0) return false;
+
+    return update_credential_password($id, $new_pw);
+}
+
+function update_credential_username($id, $new_name) {
+    global $conn;
+
+    $stmt = $conn->prepare("UPDATE users
+                            SET email = ?
+                            WHERE id = ?");
+
+    return $stmt->execute(array($new_name, $id));
+}
+
+function update_credential_password($id, $new_pw) {
+    global $conn;
+
+    $stmt = $conn->prepare("UPDATE users                            
+                            SET password = ?
+                            WHERE id = ?");                            
+    
+    return $stmt->execute(array(sha356($new_pw), $id));                        
+}
 /**
  *  Get friends's info (entity) from 2 querries (user + friend)
  * @param username email user's username

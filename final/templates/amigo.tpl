@@ -5,14 +5,11 @@
 
     <div class="container-fluid">
         <div class="row">
-        {if $viewer.role !== "Amigo"}
-        {include file='common/sidebar_adm.tpl'}
-        {/if}
+            {if $viewer.role !== "Amigo"} {include file='common/sidebar_adm.tpl'} {/if}
 
             <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
                 <h1 id="UserName" class="page-header">{$user.name}</h1>
-
-
+                
                 <div class="row placeholders">
 
                     <div class="col-sm-3 text-left">

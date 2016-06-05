@@ -1,7 +1,8 @@
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+                aria-controls="navbar">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -22,11 +23,22 @@
                         {foreach $notifications as $notification}
                         <li id="notification{$notification.id}" class="list-group-item list-group-item-{$notification.notification_type|@strtolower}">{$notification.description}</li>
                         {/foreach}
-
                     </ul>
-
                 </li>
-                <li><a href="{$BASE_URL}actions/logout.php"><i class="fa fa-sign-out"></i> Sair</a></li>
+
+                <li id="settings" class="dropdown">
+                    <a href="#" class="dropdown-toggle"> <i class="fa fa-cog clickable" aria-hidden="true"></i> Opções </a>
+
+                    <ul class="dropdown-menu list-group">
+                        <li id="EditCredentials">
+                            <a href="#editCredentialsModal" data-toggle="modal">
+                                <i class="fa fa-pencil fa-lg fa-fw"></i> Editar Credenciais
+                            </a>
+                        </li>
+                        <li><a href="{$BASE_URL}actions/logout.php"><i class="fa fa-sign-out"></i> Sair</a></li>
+                    </ul>
+                </li>
+
             </ul>
             {if $viewer.role !== "Amigo"}
             <form class="navbar-form navbar-right" role="search" action="pesquisa.php" method="GET">
