@@ -34,7 +34,7 @@
                                     <i class="fa fa-trash fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Eliminar"></i>
                                     {elseif $viewer.role === 'Contabilista'}
                                         <i class="fa fa-shopping-cart fa-lg fa-fw clickable" data-toggle="tooltip"
-                                           data-original-title="Comprar"></i>
+                                           data-original-title="Adicionar Compra"></i>
                                     {/if}
                                 </td>
                             </tr>
