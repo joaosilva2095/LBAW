@@ -604,7 +604,6 @@ function get_global_history()
     return $stmt->fetchAll();
 }
 
-<<<<<<< HEAD
 /**
  * Add a donative to a user
  * @param {string} $user_id       id of the user of the donative
@@ -638,7 +637,7 @@ function add_donative($user_id, $date, $atm_reference, $donative_type, $value, $
     }
     return true;
 }
-=======
+
 function how_many_month_to_pay($id)
 {
     global $conn;
@@ -674,4 +673,3 @@ function how_many_month_to_pay($id)
 
     return 0;
 }
->>>>>>> origin/master
