@@ -6,7 +6,7 @@
                 <h4 id="buyProductModalTitle" class="modal-title">Adicionar Presença</h4>
             </div>
             <div class="modal-body">
-                <form id="buyProductForm">
+                <form id="buyProductForm" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="buyerUserId">ID Utilizador:</label>
                         <input class="form-control" id="buyerUserId" required="required">
@@ -19,6 +19,10 @@
                     <div class="form-group">
                         <label for="quantity">Quantidade:</label>
                         <input type="number" step="1" class="form-control" id="quantity">
+                    </div>
+                    <div class="form-group">
+                        <label for="receipt">Recibo:</label>
+                        <input type="file"class="form-control" id="receipt">
                     </div>
                 </form>
                 <div class="alert alert-danger alert-dismissible" style="display: none;" role="alert" id="buyProductStatus">
