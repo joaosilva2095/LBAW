@@ -14,7 +14,7 @@
                 <p id="meEmail" style="display:none;">{$viewer.email}</p>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li><a id="UserNameNav" href="amigo.php"><i class="fa fa-user"></i> {$viewer.name|escape:'html'} ({$viewer.role|escape:'html'})</a></li>
+                <li><a id="UserNameNav" href="amigo.php"><i class="fa fa-user"></i>{$viewer.name|escape:'html'} ({$viewer.role|escape:'html'})</a></li>
                 <li id="notifications" class="dropdown">
                     <a href="#" class="dropdown-toggle"><i class="fa fa-bell"></i> Notificações
                         <span class="badge">{$notifications|@count}</span></a>

@@ -404,6 +404,7 @@ function edit_credentials($id, $old_name, $new_name, $viewer_name, $old_pw, $new
     if ($old_name !== $new_name && strlen($new_name) != 0) {
         $result1 = update_credential_username($id, $new_name);
 
+        echo "lol";
         if (!$result1) {
             return false;
         }
