@@ -69,7 +69,7 @@ function get_all_events()
                             ORDER BY event_date ASC");
     $stmt->execute();
     $events = $stmt->fetchAll();
-    foreach($events as $key => $event) {
+    foreach ($events as $key => $event) {
         $events[$key]['friends'] = get_all_event_friends($event['id']);
     }
     return $events;
@@ -94,24 +94,57 @@ function get_all_event_friends($event_id)
 
 /**
  * Add a friend to a event
- * @param  {integer} $event_id   id of the event
- * @param  {integer} $user_id    if of the user to be added to the event
- * @param  {integer} $payment_id id of the user's event payment
- * @return {boolean} true if successful, false otherwise
+ * @param  {integer} $event_id      id of the event to add the friend
+ * @param  {string} $user_id       id of the user to be added
+ * @param  {date} $payment_date  date of the payment of the event
+ * @param  {integer} $atm_reference atm reference for the payment
+ * @param  {double} $payment_value value of the event payment
+ * @param  {string} $receipt       receipt hash file
+ * @return boolean  true if successful, false otherwise
  */
-function add_friend_event($event_id, $user_id, $payment_id)
+function add_friend_event($event_id, $user_id, $payment_date, $atm_reference, $payment_value, $receipt)
 {
     global $conn;
 
-    if($payment_id === '') {
-        $stmt = $conn->prepare("INSERT INTO friend_events (event, friend)
-                            VALUES (?, ?)");
-        return $stmt->execute(array($event_id, $user_id));
-    } else {
-        $stmt = $conn->prepare("INSERT INTO friend_events (event, friend, payment)
-                            VALUES (?, ?, ?)");
-        return $stmt->execute(array($event_id, $user_id, $payment_id));
+    // Insert payment in the database
+    $stmt = $conn->prepare("INSERT INTO payments
+                            (payment_date, receipt, atm_reference, value, payment_type)
+                            VALUES (?, ?, ?, ?, 'Pagamento Evento') RETURNING id");
+    if (!$stmt->execute(array($payment_date, $receipt, $atm_reference, $payment_value))) {
+        return false;
     }
+    $payment_id = $stmt->fetch()['id'];
+
+    // Insert friend attendance
+    $stmt = $conn->prepare("INSERT INTO friend_events (event, friend, payment)
+                            VALUES (?, ?, ?)");
+    if (!$stmt->execute(array($event_id, $user_id, $payment_id))) {
+        $stmt = $conn->prepare("DELETE FROM payments
+                                WHERE id = ?");
+        $stmt->execute(array($payment_id));
+        return false;
+    }
+    return true;
+}
+
+/**
+ * Add a friend to a free event
+ * @param  {integer} $event_id      id of the event to add the friend
+ * @param  {string} $user_id       id of the user to be added
+ * @param  {date} $payment_date  date of the payment of the event
+ * @param  {integer} $atm_reference atm reference for the payment
+ * @param  {double} $payment_value value of the event payment
+ * @param  {string} $receipt       receipt hash file
+ * @return boolean  true if successful, false otherwise
+ */
+function add_friend_free_event($event_id, $user_id)
+{
+    global $conn;
+
+    // Insert friend attendance
+    $stmt = $conn->prepare("INSERT INTO friend_events (event, friend)
+                            VALUES (?, ?)");
+    return $stmt->execute(array($event_id, $user_id));
 }
 
 /**
@@ -125,7 +158,16 @@ function remove_friend_event($event_id, $user_id)
 {
     global $conn;
 
+    // Delete from friend events
     $stmt = $conn->prepare("DELETE FROM friend_events
-                            WHERE event = ? AND friend = ?");
-    return $stmt->execute(array($event_id, $user_id));
+                            WHERE event = ? AND friend = ? RETURNING payment");
+    if (!$stmt->execute(array($event_id, $user_id))) {
+        return false;
+    }
+    $payment_id = $stmt->fetch()['payment'];
+
+    // Delete from payments
+    $stmt = $conn->prepare("DELETE FROM payments
+                            WHERE id = ?");
+    return $stmt->execute(array($payment_id));
 }

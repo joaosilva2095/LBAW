@@ -12,9 +12,24 @@
                         <label for="attendanceUserId">ID Utilizador:</label>
                         <input class="form-control" id="attendanceUserId" required="required">
                     </div>
-                    <div class="form-group">
-                        <label for="attendancePaymentId">ID Pagamento:</label>
-                        <input type="text" class="form-control" id="attendancePaymentId" placeholder="ID do pagamento associado se existir.">
+                    <div id="paidEventParams">
+                        <h4>Informação de Pagamento</h4>
+                        <div class="form-group">
+                            <label for="attendancePaymentDate">Data do Pagamento:</label>
+                            <input type="date" class="form-control" id="attendancePaymentDate" placeholder="Data do Pagamento" required="required">
+                        </div>
+                        <div class="form-group">
+                            <label for="attendancePaymentATMReference">Referência Multibanco:</label>
+                            <input type="number" step="1" class="form-control" id="attendancePaymentATMReference" required="required">
+                        </div>
+                        <div class="form-group">
+                            <label for="attendancePaymentValue">Valor (€):</label>
+                            <input type="number" step="0.01" class="form-control" id="attendancePaymentValue" disabled="disabled" required="required">
+                        </div>
+                        <div class="form-group">
+                            <label for="attendancePaymentReceipt">Recibo:</label>
+                            <input type="file" class="form-control" id="attendancePaymentReceipt" required="required">
+                        </div>
                     </div>
                 </form>
                 <div class="alert alert-danger alert-dismissible" style="display: none;" role="alert" id="addUserAttendanceEventStatus">

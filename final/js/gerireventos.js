@@ -144,9 +144,27 @@ function configNewFriendEventModal() {
     var id = $(this).closest('tr').attr('id');
     id = id.replace("event", "");
 
+    var price = $("#event" + id + " > td:nth-child(6)").text();
+    var value = parseFloat(price);
+
+    // Event without payment
+    if (value === 0) {
+        $('#paidEventParams').hide();
+
+        $('#attendancePaymentDate').removeAttr('required');
+        $('#attendancePaymentATMReference').removeAttr('required');
+        $('#attendancePaymentReceipt').removeAttr('required');
+    } else {
+        $('#paidEventParams').show();
+
+        $('#attendancePaymentDate').attr('required', 'required');
+        $('#attendancePaymentATMReference').attr('required', 'required');
+        $('#attendancePaymentReceipt').attr('required', 'required');
+    }
+
     // Set form
     $('#attendanceEventId').val(id);
-
+    $('#attendancePaymentValue').val(value);
     $('#addUserAttendanceEventModalTitle').html('Adicionar Presença');
 }
 
