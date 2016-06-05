@@ -24,7 +24,7 @@ function markNotification() {
 
 
 function prepareEditCredentialsModal() {
-    var username = $('#UserEmail').val();
+    var username = $('#UserEmail').text();
     $('#editCredentialsFormName').val(username);
 }
 

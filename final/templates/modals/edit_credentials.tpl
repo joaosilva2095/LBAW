@@ -1,5 +1,5 @@
   <!-- Modal -->
-    <div id="editCredentialsModal" data-target="#editCredentialsModal" class="modal fade" role="dialog">
+    <div id="editCredentialsModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
 
             <!-- Modal content-->
@@ -11,7 +11,7 @@
                 <div class="modal-body">
                     <form id = "EditCredentialsForm" onsubmit="editCredentials({$user.id},{$user.email}); return false;">
                         <div class="form-group">
-                            <label for="editCredentialsFormName">Username:</label>
+                            <label for="editCredentialsFormName">Nome do utilizador:</label>
                             <input class="form-control" id="editCredentialsFormName">
                         </div>
                         <div class="form-group">
