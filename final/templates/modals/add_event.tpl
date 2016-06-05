@@ -22,7 +22,7 @@
                     </div>
                     <div class="form-group">
                         <label for="duration">Duração (horas):</label>
-                        <input type="number" class="form-control" id="duration" required="required">
+                        <input type="number" step="1" min="0" class="form-control" id="duration" required="required">
                     </div>
                     <div class="form-group">
                         <label for="place">Local:</label>
@@ -30,7 +30,7 @@
                     </div>
                     <div class="form-group">
                         <label for="price">Preço (€):</label>
-                        <input type="number" step="0.01" class="form-control" id="price" required="required">
+                        <input type="number" step="0.01" min="0" class="form-control" id="price" required="required">
                     </div>
                 </form>
                 <div class="alert alert-danger alert-dismissible" style="display: none;" role="alert" id="addEventStatus">

@@ -20,11 +20,11 @@
                         </div>
                         <div class="form-group">
                             <label for="attendancePaymentATMReference">Referência Multibanco:</label>
-                            <input type="number" step="1" class="form-control" id="attendancePaymentATMReference" required="required">
+                            <input type="number" step="1" min="0" class="form-control" id="attendancePaymentATMReference" required="required">
                         </div>
                         <div class="form-group">
                             <label for="attendancePaymentValue">Valor (€):</label>
-                            <input type="number" step="0.01" class="form-control" id="attendancePaymentValue" disabled="disabled" required="required">
+                            <input type="number" step="0.01" min="0" class="form-control" id="attendancePaymentValue" disabled="disabled" required="required">
                         </div>
                         <div class="form-group">
                             <label for="attendancePaymentReceipt">Recibo:</label>

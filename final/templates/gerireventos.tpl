@@ -16,9 +16,9 @@
                                 <th style="display:none;">Descrição</th>
                                 <th>Nome</th>
                                 <th>Data</th>
-                                <th>Duração (horas)</th>
+                                <th>Duração (H)</th>
                                 <th>Local</th>
-                                <th>Preço</th>
+                                <th>Preço (€)</th>
                                 <th>Opções</th>
                             </tr>
                         </thead>
