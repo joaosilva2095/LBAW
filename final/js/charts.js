@@ -176,24 +176,25 @@ $.post(
     },
     function (data, statusText, xhr) {
         var json = JSON.parse(data);
-        console.log(json["profit"]);
 
         const month=["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"];
-
         const currentMonth = new Date().getMonth();
         var monthLabel=[];
-        var teste=currentMonth-6;
-        if(teste<0){
-            teste=0;
+        var diff=currentMonth-6;
+
+        if(diff<0){
+            diff=0;
         }
-        profit=new Array(6).fill(0);
+
+        profit = new Array(6).fill(0);
+
         for(var i=0; i < 6 ; i++){
             monthLabel.push(month[teste+i]);
 
         }
         for(var i=0;i<json["profit"].length;i++){
-            let month = json["profit"][i];
-            profit[month["month"]-1]=month["sum"];
+            let prof = json["profit"][i];
+            profit[prof["month"]-1]=prof["sum"];
         }
 
 
