@@ -45,10 +45,10 @@
                                     <tbody>
                                     {foreach $histories as $history}
                                         <tr>
-                                            <td>{$history.payment_date|date_format:"%d-%m-%Y"}</td>
-                                            <td>{$history.name}</td>
-                                            <td>{$history.payment_type}</td>
-                                            <td>{$history.value}</td>
+                                            <td>{$history.payment_date|date_format:"%d-%m-%Y"|escape:'html'}</td>
+                                            <td>{$history.name|escape:'html'}</td>
+                                            <td>{$history.payment_type|escape:'html'}</td>
+                                            <td>{$history.value|escape:'html'}</td>
                                         </tr>
                                     {/foreach}
                                     </tbody>
