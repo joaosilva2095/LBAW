@@ -43,9 +43,6 @@
                     <label for="password">Password:</label>
                     <input type="password" required="required" name="password" class="form-control" id="password" placeholder="Password">
                 </div>
-                <div class="text-right">
-                    <a href="#">Esqueceu a password?</a>
-                </div>
 
                 {if isset($ERROR_MESSAGES)}
                 <div class="alert alert-danger alert-dismissible" role="alert" id="registerStatus">
