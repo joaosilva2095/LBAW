@@ -10,11 +10,17 @@ if (!isset($_SESSION['username']) || !isset($_SESSION['username'])) {
     http_response_code(404);
     return;
 }
+$user_id = $_GET['user'];
+$roleUserPage=get_user_by_id($user_id)['role'];
+
+if($roleUserPage!=='Amigo'){
+    $_SESSION['error_messages'][] = 'No permission to access this page!';
+    http_response_code(404);
+    return;
+}
 
 if ($_SESSION['role'] != 'Amigo') {
-    $user_id = $_GET['user'];
     $friend = get_friend_info_by_id($user_id);
-
 } else {
     $friend = get_friend_info($_SESSION['username']);
     $user_id = $friend['id'];
