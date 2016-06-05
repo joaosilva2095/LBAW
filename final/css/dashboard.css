@@ -84,6 +84,9 @@ td a:active {
     margin-bottom: 5px;
     font-weight: 700;
 }
+.margin-left-small {
+    margin-left: 1rem;
+}
 
 /*
     Ids
