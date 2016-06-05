@@ -24,12 +24,12 @@
 
                             {foreach $name_users as $key => $user}
                             <tr id="user{$user.id}">
-                                <td>{$user.id}</td>
-                                <td>{$user.name}</td>
-                                <td>{$user.birth}</td>
-                                <td>{$user.role}</td>
+                                <td>{$user.id|escape:'html'}</td>
+                                <td>{$user.name|escape:'html'}</td>
+                                <td>{$user.birth|escape:'html'}</td>
+                                <td>{$user.role|escape:'html'}</td>
                                 <td>
-                                    <a href="amigo.php?user={$user.id}" class="fa fa-eye fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Ver"></a>
+                                    <a href="amigo.php?user={$user.id|escape:'html'}" class="fa fa-eye fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Ver"></a>
                                 </td>
                             </tr>
                             {/foreach}
@@ -54,15 +54,13 @@
 
                             {foreach $atm_users as $key => $user}
                             <tr id="user{$user.id}">
-                                <td>{$user.atm_reference}</td>
-                                <td>{$user.id}</td>
-                                <td>{$user.name}</td>
-                                <td>{$user.birth}</td>
-                                <td>{$user.role}</td>
+                                <td>{$user.atm_reference|escape:'html'}</td>
+                                <td>{$user.id|escape:'html'}</td>
+                                <td>{$user.name|escape:'html'}</td>
+                                <td>{$user.birth|escape:'html'}</td>
+                                <td>{$user.role|escape:'html'}</td>
                                 <td>
-                                    <i class="fa fa-pencil fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Editar"></i>
-                                    <i class="fa fa-briefcase fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Alterar Cargo"></i>
-                                    <i class="fa fa-trash fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Eliminar"></i>
+                                    <a href="amigo.php?user={$user.id|escape:'html'}" class="fa fa-eye fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Ver"></a>
                                 </td>
                             </tr>
                             {/foreach}

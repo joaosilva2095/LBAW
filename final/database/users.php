@@ -296,9 +296,9 @@ function get_search_user_by_atm_reference($atm_reference) {
     global $conn;
 
     $stmt = $conn->prepare("SELECT atm_reference, users.id, name, birth, role FROM payments
-                          JOIN mercha_purchases ON mercha_purchases.id = payments.id
-                          JOIN donatives ON donatives.id = payments.id
-                          JOIN friend_events ON friend_events.payment = payments.id
+                          FULL OUTER JOIN mercha_purchases ON mercha_purchases.id = payments.id
+                          FULL OUTER JOIN donatives ON donatives.id = payments.id
+                          FULL OUTER JOIN friend_events ON friend_events.payment = payments.id
                           JOIN users ON users.id = mercha_purchases.friend
                           OR users.id = donatives.friend
                           OR users.id = friend_events.friend
