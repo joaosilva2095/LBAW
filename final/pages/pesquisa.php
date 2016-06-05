@@ -30,11 +30,12 @@ else {
     $smarty->assign('name_users', $name_users);
 }
 
+$role = $_SESSION['role'];
 $user = get_user_by_email($_SESSION['username']);
 $notifications = get_user_notifications($user['id']);
 
 
-$viewer['name']=$user;
+$viewer['name']=$user['name'];
 $viewer['role']=$role;
 
 $smarty->assign('viewer', $viewer);

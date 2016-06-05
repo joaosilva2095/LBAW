@@ -26,7 +26,7 @@ function registerEvent() {
                 if (data !== '') {
                     $('#addEventModal').modal('hide');
 
-                    var tr = $('#events tr:last'),
+                    var tr = $('#events > tr:last'),
                         trNew = tr.clone(),
                         id = parseInt(data);
                     trNew.attr("id", "event" + id);

@@ -29,7 +29,7 @@ foreach ($params as $param) {
 $result = add_notification($params['id'], $params['message'], $params['type']);
 
 // Send email if thats the case
-if($params['type'] === 'Danger') {
+if ($params['type'] === 'Danger') {
     $user = get_user_by_id($params['id']);
     $to      = $user['email'];
     $subject = '[G.A.S.Porto] Nova notificação';

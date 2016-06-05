@@ -12,7 +12,7 @@ if (!isset($_SESSION['username'])
 }
 
 // Check if all parameters exist
-$params = array('eventId', 'userId', 'paymentId');
+$params = array('eventId', 'userId', 'paymentDate', 'paymentATMReference', 'paymentValue');
 
 foreach ($params as $param) {
     if (!isset($_POST[$param])) {
@@ -24,8 +24,38 @@ foreach ($params as $param) {
     }
 }
 
-// Add friend event
-$result = add_friend_event($params['eventId'], $params['userId'], $params['paymentId']);
+// Check for the price
+if ($params['paymentValue'] === 0) { // Free event
+    $result = add_friend_free_event(
+        $params['eventId'],
+        $params['userId']
+    );
+} else { // Paid event
+    if (!isset($_FILES["file"])) {
+        $_SESSION['error_messages'][] = 'Parameters are missing!';
+        http_response_code(404);
+        return;
+    }
+
+    $file=$_FILES["file"];
+    if ($file["type"]=="application/pdf" && $file["size"]<1000000 && $file["error"]==0) {
+        $hashfile=hash("sha256", $file["name"].$file["size"].date('d')).".pdf";
+        move_uploaded_file($file["tmp_name"], "../receipts/".$hashfile);
+
+        $result = add_friend_event(
+            $params['eventId'],
+            $params['userId'],
+            $params['paymentDate'],
+            $params['paymentATMReference'],
+            $params['paymentValue'],
+            $hashfile
+        );
+    } else {
+        $_SESSION['error_messages'][] = 'Invalid receipt file!';
+        http_response_code(404);
+        return;
+    }
+}
 
 // Return result
 if ($result) {

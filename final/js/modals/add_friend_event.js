@@ -5,29 +5,39 @@
  */
 function registerFriendEvent() {
     // Variables
-    var eventId = $('#attendanceEventId').val(),
+    var formData = new FormData(),
+        eventId = $('#attendanceEventId').val(),
         userId = $('#attendanceUserId').val(),
-        paymentId = $('#attendancePaymentId').val();
+        paymentDate = $('#attendancePaymentDate').val(),
+        paymentATMReference = $('#attendancePaymentATMReference').val(),
+        paymentValue = $('#attendancePaymentValue').val();
+
+    formData.append('eventId', eventId);
+    formData.append('userId', userId);
+    formData.append('paymentDate', paymentDate);
+    formData.append('paymentATMReference', paymentATMReference);
+    formData.append('paymentValue', paymentValue);
+    formData.append('file', $('#attendancePaymentReceipt')[0].files[0]);
 
     // Async call to add friend event
-    $.post(
-            "../api/add_friend_event.php", {
-                eventId: eventId,
-                userId: userId,
-                paymentId: paymentId
-            },
-            function (data, statusText, xhr) {
-                if (data === '') {
-                    $('#addUserAttendanceEventModal').modal('hide');
+    $.ajax({
+        url: "../api/add_friend_event.php",
+        data: formData,
+        processData: false,
+        contentType: false,
+        type: 'POST',
+        success: function (data, statusText, xhr) {
+            if (data === '') {
+                $('#addUserAttendanceEventModal').modal('hide');
 
-                    $('#event' + eventId).highlightAnimation(green, 1500);
-                } else {
-                    $('#addUserAttendanceEventStatus').fadeIn();
-                }
-            })
-        .fail(function (error) {
-            $('#addUserAttendanceEventStatus').fadeIn();
-        });
+                $('#event' + eventId).highlightAnimation(green, 1500);
+            } else {
+                $('#addUserAttendanceEventStatus').fadeIn();
+            }
+        }
+    }).fail(function (error) {
+        $('#addUserAttendanceEventStatus').fadeIn();
+    });
 }
 
 /**
