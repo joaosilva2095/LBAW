@@ -22,6 +22,13 @@ embed {
 body {
     padding-top: 50px;
 }
+td a,
+td a:hover,
+td a:visited,
+td a:active {
+    color: #333;
+    text-decoration: none;
+}
 
 /*
     Classes
@@ -82,13 +89,6 @@ body {
     Ids
 */
 
-#users td a,
-#users td a:hover,
-#users td a:visited,
-#users td a:active {
-    color: #333;
-    text-decoration: none;
-}
 #notifications li {
     cursor: pointer;
 }
