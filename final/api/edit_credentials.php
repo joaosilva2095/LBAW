@@ -21,6 +21,7 @@ foreach($params as $param) {
     }
 }
 
+
 $result = edit_credentials(
 $params['id'],
 $params['old_name'],
@@ -32,11 +33,16 @@ $params['confirm_pw']);
 // Return result
 if ($result) {
     $_SESSION['success_messages'][] = 'Edited successfully!';
+
+    if (strcmp($params['old_name'], $params['new_name']) != 0) $_SESSION['username'] = $params['new_name'];
+    var_dump($result);
     http_response_code(200);
+    //todo remover session do return
     return $result;
 } else {
     $_SESSION['error_messages'][] = 'Error while editing in the database!';
     http_response_code(404);
+
     return $result;
 }
 

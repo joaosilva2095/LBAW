@@ -365,26 +365,22 @@ function edit_credentials($id, $old_name, $new_name, $old_pw, $new_pw, $confirm_
     global $conn;
 
     //update username
-    if ($old_name == $new_name || strlen($new_name)) {
-        return true;
-    } else {
+    if ($old_name !== $new_name && strlen($new_name) != 0) {
         $result1 = update_credential_username($id, $new_name);
+
+        if (!$result1) return false;
     }
-
-    if (!$result1) return false;
-
-    //update password
 
     $stmt = $conn->prepare("SELECT *
                             FROM users
                             WHERE id = ? 
                             AND password = ?");
 
-    $stmt->execute(array($id, sha256($old_pw)));
+    $stmt->execute(array($id, hash("sha256", $old_pw)));
 
     //old pw dont match database pw
-    if (count($stmt->fetch()) <= 0) return false;
-
+    if (!$stmt->fetch()) return false;
+    
     return update_credential_password($id, $new_pw);
 }
 
@@ -403,9 +399,9 @@ function update_credential_password($id, $new_pw) {
 
     $stmt = $conn->prepare("UPDATE users                            
                             SET password = ?
-                            WHERE id = ?");                            
-    
-    return $stmt->execute(array(sha356($new_pw), $id));                        
+                            WHERE id = ?");
+
+    return $stmt->execute(array(hash("sha256", $new_pw), $id));
 }
 /**
  *  Get friends's info (entity) from 2 querries (user + friend)

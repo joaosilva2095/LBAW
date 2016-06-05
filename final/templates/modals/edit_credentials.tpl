@@ -9,22 +9,22 @@
                     <h4 class="modal-title">Editar Credenciais</h4>
                 </div>
                 <div class="modal-body">
-                    <form id = "EditCredentialsForm" onsubmit="editCredentials({$user.id},{$user.email}); return false;">
+                    <form id = "EditCredentialsForm" onsubmit="editCredentials('{$user.id}','{$user.email}'); return false;">
                         <div class="form-group">
                             <label for="editCredentialsFormName">Nome do utilizador:</label>
                             <input class="form-control" id="editCredentialsFormName">
                         </div>
                         <div class="form-group">
                             <label for="editCredentialsFormOldPw">Palavra-passe antiga:</label>
-                            <input class="form-control" id="editCredentialsFormOldPw">
+                            <input type="password" class="form-control" id="editCredentialsFormOldPw">
                         </div>
                         <div class="form-group">
                             <label for="editCredentialsFormNewPw">Nova palavra-passe:</label>
-                            <input class="form-control" id="editCredentialsFormNewPw">
+                            <input type="password" class="form-control" id="editCredentialsFormNewPw">
                         </div>  
                         <div class="form-group">
                             <label for="editCredentialsFormConfirmPw">Insira novamente a nova palavra-passe:</label>
-                            <input class="form-control" id="editCredentialsFormConfirmPw">
+                            <input type="password" class="form-control" id="editCredentialsFormConfirmPw">
                         </div>                     
                     </form>
                     <div class="alert alert-danger alert-dismissible" style="display: none;" role="alert" id="UserStatus1">

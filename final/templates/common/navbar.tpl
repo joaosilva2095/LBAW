@@ -27,10 +27,10 @@
                 </li>
 
                 <li id="settings" class="dropdown">
-                    <a href="#" class="dropdown-toggle"> <i class="fa fa-cog" aria-hidden="true"></i> Opções </a>
+                    <a href="" class="dropdown-toggle" onclick="return false"> <i class="fa fa-cog" aria-hidden="true"></i> Opções </a>
 
                     <ul class="dropdown-menu list-group">
-                        <li class="clickable" id="EditCredentials" data-toggle="modal" data-target="#editCredentialsModal" >
+                        <li class="clickable" id="EditCredentials" data-toggle="modal" data-target="#editCredentialsModal">
                             <a>
                                 <i class="fa fa-pencil fa-lg fa-fw"></i> Editar Credenciais
                             </a>

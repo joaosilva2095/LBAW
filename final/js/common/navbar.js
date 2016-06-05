@@ -28,6 +28,7 @@ function prepareEditCredentialsModal() {
     $('#editCredentialsFormName').val(username);
 }
 
+
 function editCredentials(id, old_name) {
 
     var form_name = $('#editCredentialsFormName').val(),
@@ -35,9 +36,7 @@ function editCredentials(id, old_name) {
         form_new_pw = $('#editCredentialsFormNewPw').val(),
         form_confirm_pw = $('#editCredentialsFormConfirmPw').val();
 
-    console.log(old_name, form_name, form_old_pw, form_new_pw, form_confirm_pw);
-
-    //nao existem modificacoes
+    //form vazio
     if ((form_name === old_name || form_name.length == 0) && form_old_pw.length == 0) {
         $('#editCredentialsModal').modal('hide');
         return true;
@@ -45,16 +44,17 @@ function editCredentials(id, old_name) {
 
     //checks
     if (form_old_pw.length != 0) {
-        if (form_new_pw.length == 0 || form_confirm_pw.length == 0 || form_new_pw !== form_confirm_pw) {
-            $('#editCredentialsFormNewPw').highlightAnimation(red, 1500);
-            $('#editCredentialsFormConfirmPw').highlightAnimation(red, 1500);
+        if (form_new_pw.length == 0 || 
+        form_confirm_pw.length == 0 || 
+        form_new_pw == form_old_pw ||
+        form_new_pw !== form_confirm_pw) {
+            $('#UserStatus1').fadeIn();
             return false;
         }
     }
     else {
-        if (form_new_pw.length != 0 || form_new_pw.length != 0) {
-            $('#editCredentialsFormNewPw').highlightAnimation(red, 1500);
-            $('#editCredentialsFormConfirmPw').highlightAnimation(red, 1500);
+        if (form_new_pw.length != 0 || form_confirm_pw.length != 0) {
+            $('#UserStatus1').fadeIn();
             return false;
         }
     }
@@ -69,16 +69,16 @@ function editCredentials(id, old_name) {
             confirm_pw: form_confirm_pw
         },
         function (data, statusText, xhr) {
+            console.log(data);
             $('#editCredentialsModal').modal('hide');
 
-            $("#UserEmail").html(new_name);
+            $("#UserEmail").html(form_name);
         })
         .fail(function (error) {
             console.log(error);
             $('#UserStatus1').fadeIn();
         });
 }
-
 
 /**
  * Configure the elements
@@ -98,7 +98,7 @@ function config() {
     $('#notifications li').click(markNotification);
 
     $('#EditCredentials').click(prepareEditCredentialsModal);
-    
+
     $('#settings a').click(function (event) {
         $(this).parent().toggleClass('open');
     });
