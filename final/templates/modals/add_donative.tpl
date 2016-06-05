@@ -14,7 +14,7 @@
                     </div>
                     <div class="form-group">
                         <label for="addDonativeDate">Data do Donativo:</label>
-                        <input type="date" class="form-control" id="addDonativeDate" placeholder="Data do Pagamento" required="required">
+                        <input type="date" class="form-control" id="addDonativeDate" required="required">
                     </div>
                     <div class="form-group">
                         <label for="addDonativeATMReference">Referência Multibanco:</label>
