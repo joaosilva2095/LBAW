@@ -78,7 +78,6 @@ function latePayments()
 
     foreach ($users as $key => $user) {
         $num = how_many_to_pay($user["id"]);
-        var_dump($num);
         if ($num > 0)
             $users[$key]["numberofPayments"] = $num;
         else
