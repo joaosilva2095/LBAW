@@ -18,9 +18,18 @@ $role = $_SESSION['role'];
 $user = get_user_by_email($_SESSION['username']);
 $notifications = get_user_notifications($user['id']);
 
+$histories = getHistory();
+// Return result
+if ($histories === null) {
+    $_SESSION['error_messages'][] = 'Error while registering in the database!';
+    http_response_code(404);
+    return;
+}
+
 $viewer['name']=$user['name'];
 $viewer['role']=$role;
 $smarty->assign('viewer', $viewer);
+$smarty->assign('histories', $histories);
 $smarty->assign('notifications', $notifications);
 
 

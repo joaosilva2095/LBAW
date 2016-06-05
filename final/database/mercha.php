@@ -111,4 +111,35 @@ function addMerchaPurchase($idUser,$datePayment,$productId,$quantity){
 
 }
 
+function addMerchaPaymentFile($datePayment,$value,$filehash){
+    global $conn;
+
+    $stmt = $conn->prepare("INSERT INTO payments (payment_date,value,payment_type,receipt)
+                            VALUES (?,?,?,?)  RETURNING id");
+    if (!$stmt->execute(array($datePayment,$value,'Merchandise',$filehash))) {
+        return false;
+    };
+    return $stmt->fetch();
+}
+
+function addMerchaPurchaseFile($idUser,$datePayment,$productId,$quantity,$filehash){
+    global $conn;
+    $stmt = $conn->prepare("SELECT price FROM mercha_products WHERE id=?");
+    $stmt->execute(array($productId));
+    $result= $stmt->fetchAll();
+    $value=$result[0]['price']*$quantity;
+
+    $idPurchase=addMerchaPaymentFile($datePayment,$value,$filehash);
+
+    $stmt = $conn->prepare("INSERT INTO mercha_purchases (id,friend,product,quantity)
+                            VALUES (?,?,?,?)  RETURNING id");
+    if (!$stmt->execute(array($idPurchase['id'],$idUser,$productId,$quantity))) {
+        return false;
+    };
+
+    return $stmt->fetch();
+
+}
+
+
 ?>
