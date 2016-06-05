@@ -24,8 +24,16 @@ function markNotification() {
 
 
 function prepareEditCredentialsModal() {
-    var username = $('#UserEmail').text();
+    var username = $('#meEmail').text();
     $('#editCredentialsFormName').val(username);
+
+    var contentNameNav = $("#UserNameNav").text();
+    var roleContentNav = contentNameNav.substring(contentNameNav.indexOf('('), contentNameNav.length);
+    var nameContentNav = contentNameNav.substring(0, contentNameNav.indexOf('(') - 1);
+
+    if (roleContentNav != 'Amigo') {
+        $('#editCredentialsFormViewerName').val(nameContentNav);
+    }
 }
 
 
@@ -36,6 +44,14 @@ function editCredentials(id, old_name) {
         form_new_pw = $('#editCredentialsFormNewPw').val(),
         form_confirm_pw = $('#editCredentialsFormConfirmPw').val();
 
+    var contentNameNav = $("#UserNameNav").text();
+    var roleContentNav = contentNameNav.substring(contentNameNav.indexOf('('), contentNameNav.length);
+    var nameContentNav = contentNameNav.substring(0, contentNameNav.indexOf('(') - 1);
+    //viewer_name = email (contabilsita/admin)
+    var viewer_new_name = "";
+    if (roleContentNav != 'Amigo'){        
+        viewer_new_name = $('#editCredentialsFormViewerName').val();
+    }
     //form vazio
     if ((form_name === old_name || form_name.length == 0) && form_old_pw.length == 0) {
         $('#editCredentialsModal').modal('hide');
@@ -44,10 +60,10 @@ function editCredentials(id, old_name) {
 
     //checks
     if (form_old_pw.length != 0) {
-        if (form_new_pw.length == 0 || 
-        form_confirm_pw.length == 0 || 
-        form_new_pw == form_old_pw ||
-        form_new_pw !== form_confirm_pw) {
+        if (form_new_pw.length == 0 ||
+            form_confirm_pw.length == 0 ||
+            form_new_pw == form_old_pw ||
+            form_new_pw !== form_confirm_pw) {
             $('#UserStatus1').fadeIn();
             return false;
         }
@@ -64,15 +80,26 @@ function editCredentials(id, old_name) {
             id: id,
             old_name: old_name,
             new_name: form_name,
+            viewer_new_name: viewer_new_name,
             old_pw: form_old_pw,
             new_pw: form_new_pw,
             confirm_pw: form_confirm_pw
         },
         function (data, statusText, xhr) {
+
+            if (roleContentNav != 'Amigo') {
+                if (viewer_new_name.length != 0)
+                    $("#UserNameNav").html(name + " " + roleContentNav);
+            }
+            else {
+                $("#UserEmail").html(form_name);
+            }
             //console.log(data);                    
-            $("#UserEmail").html(form_name);
-            $('#UserStatus2').fadeIn(3000);            
-            $('#editCredentialsModal').modal('hide');    
+
+            $('#UserStatus2').fadeIn(1000);
+            setTimeout(function () {
+                $('#editCredentialsModal').modal('hide');
+            }, 1500);
 
         })
         .fail(function (error) {

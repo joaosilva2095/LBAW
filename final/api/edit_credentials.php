@@ -9,7 +9,7 @@ if (!isset($_SESSION['username']) || !isset($_SESSION['role'])) {
     return;
 }
 
-$params = array('id', 'old_name', 'new_name', 'old_pw', 'new_pw', 'confirm_pw');
+$params = array('id', 'old_name', 'viewer_new_name', 'new_name', 'old_pw', 'new_pw', 'confirm_pw');
 
 foreach($params as $param) {
     if (!isset($_POST[$param])) {
@@ -25,6 +25,7 @@ $result = edit_credentials(
 $params['id'],
 $params['old_name'],
 $params['new_name'],
+$params['viewer_new_name'],
 $params['old_pw'],
 $params['new_pw'],
 $params['confirm_pw']);

@@ -361,7 +361,7 @@ function get_user_by_id($id) {
     return $stmt->fetch();
 }
 
-function edit_credentials($id, $old_name, $new_name, $old_pw, $new_pw, $confirm_pw) {
+function edit_credentials($id, $old_name, $new_name, $viewer_name, $old_pw, $new_pw, $confirm_pw) {
     global $conn;
 
     //update username
@@ -371,8 +371,16 @@ function edit_credentials($id, $old_name, $new_name, $old_pw, $new_pw, $confirm_
         if (!$result1) return false;
     }
 
-    if(strlen($old_pw) == 0)
-        return true;
+    if (strlen($viewer_name) != 0) {
+        $stmt = $conn->prepare("UPDATE users
+                                SET name = ? 
+                                WHERE id = ?");
+
+        if(!$stmt->execute(array($viewer_name, $id)))
+            return false;
+    }
+
+    if (strlen($old_pw) == 0) return true;
 
     $stmt = $conn->prepare("SELECT *
                             FROM users
@@ -383,7 +391,7 @@ function edit_credentials($id, $old_name, $new_name, $old_pw, $new_pw, $confirm_
 
     //old pw dont match database pw
     if (!$stmt->fetch()) return false;
-    
+
     return update_credential_password($id, $new_pw);
 }
 

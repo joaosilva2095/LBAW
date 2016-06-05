@@ -20,8 +20,12 @@ if ($_SESSION['role'] != 'Amigo') {
     $user_id = $friend['id'];
 }
 
+
+$viewer_info = get_user_by_email($_SESSION['username']);
 $viewer['role'] = $_SESSION['role'];
-$viewer['name'] = get_user_by_email($_SESSION['username'])['name'];
+$viewer['name'] = $viewer_info['name'];
+$viewer['id'] = $viewer_info['id'];
+$viewer['email'] = $viewer_info['email'];
 
 $event_history = get_user_event_history($user_id);
 $event_payment_history = get_user_event_payments($user_id);
