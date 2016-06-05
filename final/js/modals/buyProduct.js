@@ -49,7 +49,7 @@ function configBuyProduct() {
  */
 function config() {
     // Manage users
-    $('i[data-original-title="Comprar"]').click(configBuyProduct);
+    $('i[data-original-title="Adicionar Compra"]').click(configBuyProduct);
 }
 
 /**
