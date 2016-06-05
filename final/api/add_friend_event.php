@@ -25,7 +25,7 @@ foreach ($params as $param) {
 }
 
 // Check for the price
-if ($params['paymentValue'] === 0) { // Free event
+if (intval($params['paymentValue']) === 0) { // Free event
     $result = add_friend_free_event(
         $params['eventId'],
         $params['userId']

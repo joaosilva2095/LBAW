@@ -158,7 +158,16 @@ function remove_friend_event($event_id, $user_id)
 {
     global $conn;
 
+    // Delete from friend events
     $stmt = $conn->prepare("DELETE FROM friend_events
-                            WHERE event = ? AND friend = ?");
-    return $stmt->execute(array($event_id, $user_id));
+                            WHERE event = ? AND friend = ? RETURNING payment");
+    if (!$stmt->execute(array($event_id, $user_id))) {
+        return false;
+    }
+    $payment_id = $stmt->fetch()['payment'];
+
+    // Delete from payments
+    $stmt = $conn->prepare("DELETE FROM payments
+                            WHERE id = ?");
+    return $stmt->execute(array($payment_id));
 }
