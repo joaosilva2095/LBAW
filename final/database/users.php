@@ -287,7 +287,6 @@ function get_all_users()
 
     $users = $stmt->fetchAll();
 
-    var_dump($users);
 
     foreach ($users as $key => $user) {
         $user["has_to_pay"] = how_many_month_to_pay($user["id"]);
@@ -404,6 +403,7 @@ function edit_credentials($id, $old_name, $new_name, $viewer_name, $old_pw, $new
     if ($old_name !== $new_name && strlen($new_name) != 0) {
         $result1 = update_credential_username($id, $new_name);
 
+        echo "lol";
         if (!$result1) {
             return false;
         }

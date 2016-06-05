@@ -16,7 +16,7 @@
                                 <th>Id</th>
                                 <th>Categoria</th>
                                 <th>Descrição</th>
-                                <th>Valor(EUR)</th>
+                                <th>Valor (EUR)</th>
                                 <th>Opções</th>
                             </tr>
                         </thead>
@@ -24,10 +24,10 @@
 
                             {foreach $merchas as $mercha}
                             <tr id="mercha{$mercha.id}">
-                                <td>{$mercha.id}</td>
-                                <td>{$mercha.name}</td>
-                                <td>{$mercha.description}</td>
-                                <td>{$mercha.price}</td>
+                                <td>{$mercha.id|escape:'html'}</td>
+                                <td>{$mercha.name|escape:'html'}</td>
+                                <td>{$mercha.description|escape:'html'}</td>
+                                <td>{$mercha.price|escape:'html'}</td>
                                 <td>
                                     {if $viewer.role === 'Administrador'}
                                     <i class="fa fa-pencil fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Editar"></i>

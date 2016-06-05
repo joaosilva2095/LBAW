@@ -39,7 +39,7 @@
                         <label for="catName">Nome da Categoria:</label>
                         <select class="form-control" id="delCatName">
                             {foreach $categories as $category}
-                                <option value="{$category.name}">{$category.name}</option>
+                                <option value="{$category.name|escape:'html'}">{$category.name|escape:'html'}</option>
                             {/foreach}
                         </select>
                     </div>
