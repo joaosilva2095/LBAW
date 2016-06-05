@@ -3,7 +3,7 @@
 function has_to_pay($id)
 {
     global $conn;
-    $stmt = $conn->prepare("select last_donative, periodicity, frozen from friends where id = ?");
+    $stmt = $conn->prepare("SELECT last_donative, periodicity, frozen FROM friends WHERE id = ?");
     $stmt->execute(array($id));
 
     $result = $stmt->fetchAll();
@@ -41,7 +41,7 @@ function has_to_pay($id)
 function how_many_month_to_pay($id)
 {
     global $conn;
-    $stmt = $conn->prepare("select last_donative, periodicity, frozen from friends where id = ?");
+    $stmt = $conn->prepare("SELECT last_donative, periodicity, frozen FROM friends WHERE id = ?");
     $stmt->execute(array($id));
 
     $result = $stmt->fetchAll();
@@ -72,4 +72,23 @@ function how_many_month_to_pay($id)
     }
 
     return 0;
+}
+
+function latePayments(){
+
+    global $conn;
+    $stmt = $conn->prepare("SELECT users.name,friends.last_donative, friends.periodicity, friends.id FROM friends, users 
+                            WHERE users.id=friends.id");
+    $stmt->execute();
+    $users = $stmt->fetchAll();
+
+    foreach($users as $key=> $user){
+        $num = how_many_month_to_pay($user["id"]);
+        if($num>0)
+        $users[$key]["numberofPayments"] = $num ;
+       else
+            unset($users[$key]);
+    }
+
+    return $users;
 }
