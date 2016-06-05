@@ -9,7 +9,13 @@ if (!isset($_SESSION['username']) || !isset($_SESSION['role'])) {
     return;
 }
 
-$params = array('id', 'old_name', 'viewer_new_name', 'new_name', 'old_pw', 'new_pw', 'confirm_pw');
+$v_name = "";
+
+if (isset($_POST['viewer_new_name'])) {
+    $params = array('id', 'old_name', 'viewer_new_name', 'new_name', 'old_pw', 'new_pw', 'confirm_pw');
+} else {
+    $params = array('id', 'old_name', 'new_name', 'old_pw', 'new_pw', 'confirm_pw');
+}
 
 foreach($params as $param) {
     if (!isset($_POST[$param])) {
@@ -21,11 +27,16 @@ foreach($params as $param) {
     }
 }
 
+if (isset($_POST['viewer_new_name'])) {
+    $v_name = $_POST['viewer_new_name'];
+}
+
+
 $result = edit_credentials(
 $params['id'],
 $params['old_name'],
 $params['new_name'],
-$params['viewer_new_name'],
+$v_name,
 $params['old_pw'],
 $params['new_pw'],
 $params['confirm_pw']);
@@ -34,7 +45,8 @@ $params['confirm_pw']);
 if ($result) {
     $_SESSION['success_messages'][] = 'Edited successfully!';
 
-    if (strcmp($params['old_name'], $params['new_name']) != 0) $_SESSION['username'] = $params['new_name'];
+    if (strcmp($params['old_name'], $params['new_name']) != 0)
+         $_SESSION['username'] = $params['new_name'];
 
     http_response_code(200);
     //todo remover session do return
