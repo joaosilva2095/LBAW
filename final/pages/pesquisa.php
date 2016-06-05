@@ -35,8 +35,11 @@ $user = get_user_by_email($_SESSION['username']);
 $notifications = get_user_notifications($user['id']);
 
 
-$viewer['name']=$user['name'];
-$viewer['role']=$role;
+$viewer_info = get_user_by_email($_SESSION['username']);
+$viewer['role'] = $_SESSION['role'];
+$viewer['name'] = $viewer_info['name'];
+$viewer['id'] = $viewer_info['id'];
+$viewer['email'] = $viewer_info['email'];
 
 $smarty->assign('viewer', $viewer);
 $smarty->assign('notifications', $notifications);
