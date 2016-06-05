@@ -30,6 +30,8 @@ else {
     $smarty->assign('name_users', $name_users);
 }
 
+$page_title = 'Pesquisa por ' . $user;
+
 $role = $_SESSION['role'];
 $user = get_user_by_email($_SESSION['username']);
 $notifications = get_user_notifications($user['id']);
@@ -41,6 +43,7 @@ $viewer['name'] = $viewer_info['name'];
 $viewer['id'] = $viewer_info['id'];
 $viewer['email'] = $viewer_info['email'];
 
+$smarty->assign('page_title', $page_title);
 $smarty->assign('viewer', $viewer);
 $smarty->assign('notifications', $notifications);
 

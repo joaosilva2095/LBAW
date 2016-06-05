@@ -20,5 +20,9 @@ if (isset($_SESSION['username'])) {
     }
 }
 
+$page_title = 'Login';
+
+$smarty->assign('page_title', $page_title);
+
 $smarty->display('login.tpl');
 ?>

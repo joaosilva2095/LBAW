@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-PT">
 
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <meta name="description" content="G.A.S.Porto - Management Panel">
+    <meta name="description" content="G.A.S.Porto - {$page_title}">
     <meta name="author" content="CodeCats @ LBAW">
     <link rel="icon" href="{$BASE_URL}img/favicon.ico">
 
-    <title>G.A.S.Porto - Management Panel</title>
+    <title>G.A.S.Porto - {$page_title}</title>
 
     <!-- Bootstrap -->
     <link href="{$BASE_URL}css/vendor/bootstrap.min.css" rel="stylesheet">
