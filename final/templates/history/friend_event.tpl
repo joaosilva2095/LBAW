@@ -16,15 +16,15 @@
 		<tbody>
 
 			{foreach $event_history as $entry}
-			<tr id="Evento-{$entry.id}">
-				<td style="display:none;">{$entry.id}</td>
+			<tr id="Evento-{$entry.id|escape:'html'}">
+				<td style="display:none;">{$entry.id|escape:'html'}</td>
 				<!-- to be used on view modal -->
-				<td style="display:none;">{$entry.description}</td>
-				<td style="display:none;">{$entry.duration}</td>
-				<td style="display:none;">{$entry.place}</td>
-				<td>{$entry.event_date}</td>
-				<td>{$entry.name}</td>
-				<td>{$entry.price}</td>
+				<td style="display:none;">{$entry.description|escape:'html'}</td>
+				<td style="display:none;">{$entry.duration|escape:'html'}</td>
+				<td style="display:none;">{$entry.place|escape:'html'}</td>
+				<td>{$entry.event_date|escape:'html'}</td>
+				<td>{$entry.name|escape:'html'}</td>
+				<td>{$entry.price|escape:'html'}</td>
 				<td>				
 					<i data-toggle="modal" data-target="#seeEventModal">
 					<i class="fa fa-eye fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Detalhes"></i>

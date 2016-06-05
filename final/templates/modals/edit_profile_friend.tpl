@@ -16,7 +16,7 @@
                         </div>
                         <div class="form-group">
                             <label for="dateBirth">Data Nascimento:</label>
-                            <input class="form-control" id="dateBirth">
+                            <input type="date" class="form-control" id="dateBirth">
                         </div>
                         <div class="form-group">
                             <label for="email">Email:</label>
