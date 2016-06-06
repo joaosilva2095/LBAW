@@ -1,5 +1,5 @@
 $(document).ready(function () {
-
+    
     $('#EditUserModal').click(function () {
         var name = $("#UserName").text();
         var cellphone = $("#UserCellphone").text();
