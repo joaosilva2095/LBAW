@@ -47,23 +47,23 @@
                                     <h6 id="EditPaymentModal" class="clickable"><i class="fa fa-credit-card fa-lg fa-fw"></i>Editar método de pagamento</h6>
                                 </a>
 
-                                <a href="#accordion" data-toggle="collapse">
-                                        <h6 data-toggle="collapse" data-parent="#accordion" class="clickable"><i class="fa fa-search fa-lg fa-fw"></i>Ver referência atm do último pagamento efectuado</h6>
+                                <a href="#ref" data-toggle="collapse">
+                                    <h6 data-toggle="collapse" data-parent="#accordion" class="clickable"><i class="fa fa-search fa-lg fa-fw"></i>Ver referência atm do último pagamento efectuado</h6>
                                 </a>
-                                <div id="accordion" class="collapse">
+                                <div id="ref" class="collapse">
                                     {if is_null({$user_last_atm_reference}) }
                                     <h6> (Vazio) </h6> {else}
                                     <h6>{$user_last_atm_reference}</h6> {/if}
                                 </div>
-                            </div>
 
+
+                            </div>
                         </div>
                     </div>
                 </div>
+                {include file='history/history.tpl'}
             </div>
-            {include file='history/history.tpl'}
         </div>
-    </div>
     </div>
 
     {include file='modals/edit_profile_friend.tpl'} {include file='modals/edit_friend_payment.tpl'}
