@@ -31,8 +31,8 @@
 
     <body>
         <div class="row v-align">
-            <div class="col-sm-3 h-align">
-                <header class="page-title text-center">Bem-vindo ao sistema de gestão do G.A.S. Porto</header>
+            <div class="col-sm-6 col-xs-9 col-md-3 v-align h-align">
+                <header class="page-title text-center">G.A.S. Porto</header>
                 <!--  <header class="page-title text-center">G.A.S. Porto</header>-->
 
                 <form class="login-form" action="../actions/login.php" method="post">

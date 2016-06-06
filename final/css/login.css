@@ -55,7 +55,8 @@ input:active {
 }
 .page-title {
     color: white;
-    font-size: 7rem;
+    font-size: 4rem;
+    font-weight:bold;
 }
 .login-form {
     color: white;
@@ -82,3 +83,16 @@ input:active {
 /*
     IDs
 */
+
+#footer_login
+{
+      position:fixed;
+      bottom:0px;
+      bottom:0px;
+    left:0px;
+    right:0px;
+    margin-bottom:0px;
+    text-align:center;
+    color:white;
+    background-color:#00325F;
+}
