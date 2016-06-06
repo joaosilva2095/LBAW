@@ -26,12 +26,12 @@
                 <div class="alert alert-success alert-dismissible" style="display: none;" role="alert" id="friend_Status2">
                     <button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span>
                     </button>
-                    Failed to complete the action! Please verify the information.
+                    Edição bem-sucedida.
                 </div>
                 <div class="alert alert-danger alert-dismissible" style="display: none;" role="alert" id="friend_Status1">
                     <button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span>
                     </button>
-                    Failed to complete the action! Please verify the information.
+                    Verifique se preencheu os campos correctamente!
                 </div>
             </div>
             <div class="modal-footer">

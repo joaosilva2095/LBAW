@@ -24,6 +24,9 @@ function markNotification() {
 
 
 function prepareEditCredentialsModal() {
+    
+    $('#UserStatus1').fadeOut();
+    $('#EditCredentialsForm').trigger('reset');
     var username = $('#meEmail').text();
     $('#editCredentialsFormName').val(username);
 
@@ -102,10 +105,10 @@ function editCredentials(id, old_name) {
             }
             //console.log(data);                    
 
-            $('#UserStatus2').fadeIn(1000);
+            $('#UserStatus2').fadeIn(1500);
             setTimeout(function () {
                 $('#editCredentialsModal').modal('hide');
-            }, 1500);
+            }, 2000);
             $('#UserStatus2').fadeOut();
 
         })

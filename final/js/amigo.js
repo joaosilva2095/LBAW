@@ -1,6 +1,7 @@
 $(document).ready(function () {
     
     $('#EditUserModal').click(function () {
+        $('#EditUserModal form').trigger('reset');
         var name = $("#UserName").text();
         var cellphone = $("#UserCellphone").text();
         var birth = $("#UserBirth").text();
@@ -123,23 +124,24 @@ function editUser(id) {
             cellphone: cellphone
         },
         function (data, statusText, xhr) {           
-            console.log(data);
-            $('#editProfile').modal('hide');
+            //console.log(data);
 
             $("#UserName").html(name);
             $("#UserBirth").html(birth);
             $("#UserCellphone").html(cellphone);
             $("#UserNameNav").html(name + " " +roleContentNav);
-            $('#friend_Status1').fadeIn(1000);
-             setTimeout(function () {
-                $('#editCredentialsModal').modal('hide');
-            }, 1500);
+        
+            $('#friend_Status2').fadeIn(1500);
+            setTimeout(function () {
+                $('#editProfile').modal('hide');
+            }, 2000);
+            $('#friend_Status2').fadeOut();
             
         })
         .fail(function (error) {
                        
             console.log(error);
-            $('#friend_Status2').fadeIn();
+            $('#friend_Status1').fadeIn();
         });
 }
 
