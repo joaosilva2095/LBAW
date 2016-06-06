@@ -48,11 +48,13 @@
                                 </a>
                                 <a>
                                     <div id="accordion">
-                                        <h6 data-toggle="collapse" data-parent="#accordion" class="clickable"><i class="fa fa-search fa-lg fa-fw"></i>Ver referência de multibanco</h6>
-
+                                        <h6 data-toggle="collapse" data-parent="#accordion" class="clickable"><i class="fa fa-search fa-lg fa-fw"></i>Ver referência atm do último pagamento efectuado</h6>
+                                                
                                         <div id="ref" class="collapse">
-                                            <h6> 2562548641200056532 </h6>
-                                            <!--   TODO       -->
+                                            {if is_null($user_last_atm_reference) } <h6> (Vazio) </h6>
+                                            {else} <h6>$user_last_atm_reference</h6>
+                                            {/if}
+                                            
                                         </div>
                                     </div>
                                 </a>

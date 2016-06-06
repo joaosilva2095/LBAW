@@ -39,6 +39,8 @@ $event_payment_history = get_user_event_payments($user_id);
 $donatives = get_user_donative_history($user_id);
 $mercha_payments = get_user_merchandise_history($user_id);
 
+$user_last_atm_reference = get_last_atm_refence_friend($user_id);
+var_dump($user_last_atm_reference);
 $smarty->assign('page_title', $page_title);
 $smarty->assign('viewer', $viewer);
 $smarty->assign('user', $friend);
@@ -46,7 +48,7 @@ $smarty->assign('event_history', $event_history);
 $smarty->assign('event_payment_history', $event_payment_history);
 $smarty->assign('donatives', $donatives);
 $smarty->assign('mercha_payments', $mercha_payments);
-
+$smarty->assign('user_last_atm_reference', $user_last_atm_reference);
 
 $smarty->display('../templates/amigo.tpl');
 

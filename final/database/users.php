@@ -337,6 +337,24 @@ function get_search_user_by_atm_reference($atm_reference)
     return $stmt->fetchAll();
 }
 
+function get_last_atm_refence_friend($id){
+    global $conn;
+    
+    $stmt= $conn->prepare("SELECT payments.id, atm_reference, payment_date FROM payments
+                          FULL OUTER JOIN mercha_purchases ON mercha_purchases.id = payments.id
+                          FULL OUTER JOIN donatives ON donatives.id = payments.id
+                          FULL OUTER JOIN friend_events ON friend_events.payment = payments.id
+                          JOIN users ON users.id = mercha_purchases.friend
+                          OR users.id = donatives.friend
+                          OR users.id = friend_events.friend
+                    WHERE atm_reference IS NOT NULL
+                    ORDER BY payment_date DESC");
+    $stmt->execute();
+    return  $stmt->fetchAll();
+}
+
+
+
 /**
  *  Verify the user credentials by querrying the database.
  *  Uses sha256 encryptation.

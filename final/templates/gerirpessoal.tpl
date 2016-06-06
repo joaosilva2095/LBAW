@@ -53,8 +53,8 @@
                                     <td>
                                         {if $user.role == 'Amigo'}
                                         <a href="amigo.php?user={$user.id|escape:'html'}" class="fa fa-eye fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Ver"></a>
-                                        <i data-toggle="modal" data-target="#notificationModal">
                                         {/if}
+                                        <i data-toggle="modal" data-target="#notificationModal">                                        
                                         <i class="fa fa-bullhorn fa-lg fa-fw clickable" data-toggle="tooltip" data-original-title="Notificar"></i>
                                         </i>
                                         {if $viewer.role === 'Administrador'}
