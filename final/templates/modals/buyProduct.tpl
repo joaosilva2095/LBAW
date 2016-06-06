@@ -2,11 +2,14 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
                 <h4 id="buyProductModalTitle" class="modal-title">Adicionar Compra</h4>
             </div>
             <div class="modal-body">
                 <form id="buyProductForm" enctype="multipart/form-data">
+                    <input style="display:none;" type="text" id="buyProductId" required="required" disabled="disabled">
                     <div class="form-group">
                         <label for="buyerUserId">ID Utilizador:</label>
                         <input class="form-control" id="buyerUserId" required="required">
@@ -26,11 +29,13 @@
                     </div>
                 </form>
                 <div class="alert alert-success alert-dismissible" style="display: none;" role="alert" id="buyProductStatus1">
-                    <button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span>
+                    <button type="button" class="close" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
                     </button> Acção efectuada com sucesso!
                 </div>
                 <div class="alert alert-danger alert-dismissible" style="display: none;" role="alert" id="buyProductStatus2">
-                    <button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span>
+                    <button type="button" class="close" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
                     </button> A operação falhou! Por favor verifique a informação.
                 </div>
             </div>
@@ -42,4 +47,5 @@
     </div>
 </div>
 
-<script src="{$BASE_URL}js/modals/buyProduct.js"></script>
+<script src="{$BASE_URL}js/modals/buyProduct.min.js"></script>
+

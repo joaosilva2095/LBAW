@@ -2,10 +2,11 @@
  * Created by diogo on 04/06/2016.
  */
 
-function buyProductwithReceipt(productId) {
+function buyProductwithReceipt() {
     var form = $('#buyProductForm')[0];
     var fd = new FormData();
 
+    var productId = $('#buyProductId').val();
     var userId = $('#buyerUserId').val();
     var datepayment = $('#paymentDateId').val();
     var quantity = $('#quantity').val();
@@ -22,14 +23,14 @@ function buyProductwithReceipt(productId) {
         processData: false,
         contentType: false,
         type: 'POST',
-        success: function (data) {
+        success: function(data) {
             $('#buyProductStatus1').fadeIn(2000);
-            setTimeout(function () {
+            setTimeout(function() {
                 $('#buyProductModal').modal('hide');
             }, 2000);
             $('#buyProductStatus1').fadeOut();
         }
-    }).fail(function (error) {
+    }).fail(function(error) {
         $('#buyProductStatus2').fadeIn();
         console.log(error)
     });
@@ -42,10 +43,8 @@ function configBuyProduct() {
     $('#buyProductModal').modal("toggle");
     var productId = $(this).closest('tr').attr('id');
     productId = productId.replace("mercha", "");
-    $('#buyProductForm').submit(function (e) {
-        e.preventDefault();
-        buyProductwithReceipt(productId);
-    });
+
+    $('#buyProductId').val(productId);
 }
 
 
@@ -55,6 +54,11 @@ function configBuyProduct() {
 function config() {
     // Manage users
     $('i[data-original-title="Adicionar Compra"]').click(configBuyProduct);
+
+    $('#buyProductForm').submit(function(e) {
+        e.preventDefault();
+        buyProductwithReceipt();
+    });
 }
 
 /**
