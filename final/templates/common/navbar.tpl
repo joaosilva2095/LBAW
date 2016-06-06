@@ -8,7 +8,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-
+            
             {if $viewer.role !== 'Amigo'}
                 <a class="navbar-brand" href="homepage.php">G.A.S.Porto</a>
             {else}
