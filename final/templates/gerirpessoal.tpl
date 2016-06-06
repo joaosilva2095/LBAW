@@ -3,7 +3,9 @@
 <!-- Navigation Bar -->
 {include file='common/navbar.tpl'}
 
-<div class="container-fluid">
+<div class="container-fluid
+
+">
     <div class="row row-offcanvas row-offcanvas-left">
         {include file='common/sidebar_adm.tpl' selected='gerirpessoal'}
 

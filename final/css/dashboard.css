@@ -1,3 +1,23 @@
+html,
+body {
+    height: 100% !important;
+}
+
+nav .container-fluid {
+    height: auto;
+    overflow-y: unset;
+}
+
+.container-fluid {
+    height: 100%;
+    overflow-y: auto;
+}
+
+.container-fluid > .row {
+    height: 100%;
+}
+
+
 /* Firefox Dotted Line */
 
 a,
@@ -17,10 +37,6 @@ embed {
 /*
     Elements
 */
-
-body {
-    padding-top: 50px;
-}
 
 td a,
 td a:hover,
@@ -56,13 +72,6 @@ td a:active {
 
 .navbar-fixed-top {
     border: 0;
-}
-
-.sidebar {
-    font-family: "Roboto Condensed";
-    text-transform: uppercase;
-    font-size: 16px;
-    display: none;
 }
 
 .clickable {
@@ -125,6 +134,13 @@ footer {
     }
 }
 
+.sidebar-offcanvas {
+    font-family: "Roboto Condensed";
+    text-transform: uppercase;
+    font-size: 16px;
+    height: 100%;
+}
+
 
 /* Sidebar navigation */
 
@@ -151,6 +167,7 @@ footer {
  */
 
 .main {
+    height: 100%;
     padding: 20px;
     background-color: #fff;
 }
