@@ -29,7 +29,7 @@
                         <input class="form-control" id="place" required="required">
                     </div>
                     <div class="form-group">
-                        <label for="price">Preço (€):</label>
+                        <label for="price">Preço (EUR):</label>
                         <input type="number" step="0.01" min="0" class="form-control" id="price" required="required">
                     </div>
                 </form>
