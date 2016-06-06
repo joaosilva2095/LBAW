@@ -4,11 +4,17 @@
     {include file='common/navbar.tpl'}
 
     <div class="container-fluid">
-        <div class="row">
+        <div class="row row-offcanvas row-offcanvas-left">
             {include file='common/sidebar_adm.tpl' selected='gerireventos'}
 
-            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-                <h1 class="page-header">Gerir Eventos</h1>
+            <div class="col-sm-9 col-md-10 main">
+                <h1 class="page-header">Gerir Eventos
+                    {if $viewer.role === 'Administrador'}
+                        <button id="newEvent" type="button" class="btn btn-default pull-right" data-toggle="modal" data-target="#addEventModal">
+                            <i class="fa fa-calendar-plus-o"></i> Novo Evento
+                        </button>
+                    {/if}
+                </h1>
                 <div class="table-responsive">
                     <table class="table table-striped table-hover">
                         <thead>
@@ -16,7 +22,7 @@
                                 <th style="display:none;">Descrição</th>
                                 <th>Nome</th>
                                 <th>Data</th>
-                                <th>Duração (horas)</th>
+                                <th>Duração (Horas)</th>
                                 <th>Local</th>
                                 <th>Preço (EUR)</th>
                                 <th>Opções</th>
@@ -83,11 +89,6 @@
                         </tbody>
                     </table>
                 </div>
-                {if $viewer.role === 'Administrador'}
-                <button id="newEvent" type="button" class="btn btn-default" data-toggle="modal" data-target="#addEventModal">
-                    <i class="fa fa-calendar-plus-o"></i> Novo Evento
-                </button>
-                {/if}
             </div>
         </div>
     </div>

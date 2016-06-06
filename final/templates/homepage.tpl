@@ -3,10 +3,10 @@
 <body>
 {include file='common/navbar.tpl'}
 <div class="container-fluid">
-    <div class="row">
+    <div class="row row-offcanvas row-offcanvas-left">
         {include file='common/sidebar_adm.tpl' selected='visaogeral'}
 
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        <div class="col-sm-9 col-md-10 main">
             <h1 class="page-header">Visão Geral</h1>
 
             <div class="row placeholders">
@@ -117,6 +117,7 @@
 <!-- Charts -->
 <script src="{$BASE_URL}js/charts.js"></script>
 
+<!-- Homepage -->
 <script src="{$BASE_URL}js/homepage.js"></script>
 
 </body>

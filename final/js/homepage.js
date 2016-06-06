@@ -61,7 +61,10 @@ function config() {
     $('i[data-original-title="Notificar"]').click(configAddNotificationModal);
 }
 
+
 /**
  * On document ready
  */
 $(document).ready(config);
+
+

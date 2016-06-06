@@ -348,7 +348,8 @@ function get_last_atm_refence_friend($id){
                           OR users.id = donatives.friend
                           OR users.id = friend_events.friend
                     WHERE atm_reference IS NOT NULL
-                    ORDER BY payment_date DESC");
+                    ORDER BY payment_date DESC
+                    LIMIT 1");
     $stmt->execute();
     return  $stmt->fetchAll();
 }
