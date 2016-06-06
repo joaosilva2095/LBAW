@@ -4,7 +4,6 @@
     <p>Copyright
         <i class="fa fa-copyright" aria-hidden="true"></i> 2016 CodeCats / Todos os direitos reservados.</p>
 </footer>
-</footer>
 
 </body>
 
