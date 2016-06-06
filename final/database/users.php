@@ -26,7 +26,7 @@ function register_friend($id, $email, $password, $name, $gender, $birth, $nif, $
     // Register the friend
     global $conn;
     $stmt = $conn->prepare("INSERT INTO friends
-        VALUES (?, ?, ?, FALSE, current_date, NULL, ?, ?)");
+        VALUES (?, ?, ?, FALSE, current_date, current_date, ?, ?)");
     try {
         return $stmt->execute(array($id, $nif, $cellphone, $donative_type, $periodicity));
     } catch (PDOException $e) {
