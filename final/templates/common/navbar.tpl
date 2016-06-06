@@ -35,7 +35,7 @@
                 </li>
 
                 <li id="navsettings" class="dropdown">
-                    <a href="" class="dropdown-toggle" onclick="return false"> <i class="fa fa-cog" aria-hidden="true"></i> Opções </a>
+                    <a href="#" class="dropdown-toggle"><i class="fa fa-cog"></i> Opções </a>
 
                     <ul class="dropdown-menu list-group">
                         <li class="clickable" id="EditCredentials" data-toggle="modal" data-target="#editCredentialsModal">
