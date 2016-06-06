@@ -26,7 +26,7 @@ function register_friend($id, $email, $password, $name, $gender, $birth, $nif, $
     // Register the friend
     global $conn;
     $stmt = $conn->prepare("INSERT INTO friends
-                            VALUES (?, ?, ?, FALSE, current_date, NULL, ?, ?)");
+        VALUES (?, ?, ?, FALSE, current_date, NULL, ?, ?)");
     try {
         return $stmt->execute(array($id, $nif, $cellphone, $donative_type, $periodicity));
     } catch (PDOException $e) {
@@ -54,7 +54,7 @@ function register_user($id, $role, $email, $password, $name, $gender, $birth)
 {
     global $conn;
     $stmt = $conn->prepare("INSERT INTO users
-                            VALUES (?, ?, ?, ?, ?, ?, ?)");
+        VALUES (?, ?, ?, ?, ?, ?, ?)");
 
     return $stmt->execute(array($id, $role, $email, $password, $name, $gender, $birth));
 }
@@ -70,7 +70,7 @@ function remove_user($id)
     global $conn;
 
     $stmt = $conn->prepare("DELETE FROM users
-                            WHERE id = ?");
+        WHERE id = ?");
     return $stmt->execute(array($id));
 }
 
@@ -85,8 +85,8 @@ function toggle_pause_friend($id)
     global $conn;
 
     $stmt = $conn->prepare("UPDATE friends
-                            SET frozen = NOT frozen
-                            WHERE id = ?");
+        SET frozen = NOT frozen
+        WHERE id = ?");
     return $stmt->execute(array($id));
 }
 
@@ -116,7 +116,7 @@ function edit_friend($id, $email, $name, $gender, $birth, $nif, $cellphone, $don
     }
     if ($stmt->rowCount() <= 0) {
         $stmt = $conn->prepare("INSERT INTO friends
-                                VALUES (?, ?, ?, FALSE, NULL, NULL, ?, ?)");
+            VALUES (?, ?, ?, FALSE, NULL, NULL, ?, ?)");
         if (!$stmt->execute(array($id, $nif, $cellphone, $donative_type, $periodicity))) {
             return false;
         }
@@ -129,7 +129,7 @@ function edit_friend($id, $email, $name, $gender, $birth, $nif, $cellphone, $don
 
     // Register the friend
     $stmt = $conn->prepare("UPDATE friends
-                            SET nif = ?, cellphone = ?, donative_type = ?, periodicity = ? WHERE id = ?");
+        SET nif = ?, cellphone = ?, donative_type = ?, periodicity = ? WHERE id = ?");
     try {
         return $stmt->execute(array($nif, $cellphone, $donative_type, $periodicity, $id));
     } catch (PDOException $e) {
@@ -143,8 +143,8 @@ function edit_friend_short($id, $name, $birth, $cellphone)
 {
     global $conn;
 
-    $stmt = $conn->prepare("UPDATE friends 
-                           SET cellphone = ? WHERE id = ?");
+    $stmt = $conn->prepare("UPDATE friends
+     SET cellphone = ? WHERE id = ?");
 
     $result = $stmt->execute(array($cellphone, $id));
     if (!$result) {
@@ -152,8 +152,8 @@ function edit_friend_short($id, $name, $birth, $cellphone)
     }
 
     $stmt = $conn->prepare("UPDATE users
-                            SET name = ?, birth = ? 
-                            WHERE id = ?");
+        SET name = ?, birth = ?
+        WHERE id = ?");
     try {
         return $stmt->execute(array($name, $birth, $id));
     } catch (PDOException $e) {
@@ -165,8 +165,8 @@ function edit_friend_payment($id, $payment)
 {
     global $conn;
 
-    $stmt = $conn->prepare("UPDATE friends 
-                           SET donative_type = ? WHERE id = ?");
+    $stmt = $conn->prepare("UPDATE friends
+     SET donative_type = ? WHERE id = ?");
     try {
         return $stmt->execute(array($payment, $id));
     } catch (PDOException $e) {
@@ -179,11 +179,11 @@ function remove_history_entry($id, $type)
     global $conn;
 
     if ($type == 'Evento') {
-        $stmt = $conn->prepare("DELETE FROM friend_events 
-                                         WHERE event = ?");
+        $stmt = $conn->prepare("DELETE FROM friend_events
+           WHERE event = ?");
     } elseif ($type == 'donative' || $type == 'mercha' || $type == 'eventoPayment') {
-        $stmt = $conn->prepare("DELETE FROM payments 
-                                         WHERE id = ?");
+        $stmt = $conn->prepare("DELETE FROM payments
+           WHERE id = ?");
     } else {
         return false;
     }
@@ -197,8 +197,8 @@ function edit_payment_event_hist($id, $date, $price, $receipt, $reference)
     global $conn;
 
     $stmt = $conn->prepare("UPDATE payments
-                            SET payment_date = ?, value = ?, receipt = ?, atm_reference = ?
-                            WHERE id = ?");
+        SET payment_date = ?, value = ?, receipt = ?, atm_reference = ?
+        WHERE id = ?");
     try {
         return $stmt->execute(array($date, $price, $receipt, $reference, $id));
     } catch (PDOException $e) {
@@ -212,8 +212,8 @@ function edit_donative_hist($id, $date, $price, $receipt, $reference, $pay_metho
     global $conn;
 
     $stmt = $conn->prepare("UPDATE payments
-                            SET payment_date = ?, value = ?, receipt = ?, atm_reference = ?
-                            WHERE id = ?");
+        SET payment_date = ?, value = ?, receipt = ?, atm_reference = ?
+        WHERE id = ?");
     try {
         return $stmt->execute(array($date, $price, $receipt, $reference, $id));
     } catch (PDOException $e) {
@@ -221,8 +221,8 @@ function edit_donative_hist($id, $date, $price, $receipt, $reference, $pay_metho
     }
 
     $stmt = $conn->prepare("UPDATE donatives
-                            SET donative_type = ?
-                            WHERE id = ?");
+        SET donative_type = ?
+        WHERE id = ?");
 
     try {
         return $stmt->execute(array($pay_method, $id));
@@ -278,11 +278,11 @@ function get_all_users()
 {
     global $conn;
     $stmt = $conn->prepare("SELECT users.id, role, name, email, gender, birth, frozen,
-                                    nif, cellphone, donative_type, periodicity
-                            FROM users
-                            LEFT OUTER JOIN friends
-                            ON users.id = friends.id
-                            ORDER BY name ASC");
+        nif, cellphone, donative_type, periodicity
+        FROM users
+        LEFT OUTER JOIN friends
+        ON users.id = friends.id
+        ORDER BY name ASC");
     $stmt->execute();
 
     $users = $stmt->fetchAll();
@@ -308,9 +308,9 @@ function get_search_user_by_name($user)
 
     global $conn;
     $stmt = $conn->prepare("SELECT id, name, birth, role, ts_rank(phrase, query) AS rank
-                            FROM users, to_tsquery('portuguese', ?) query, to_tsvector('portuguese', name) phrase
-                            WHERE phrase @@ query
-                            ORDER BY rank");
+        FROM users, to_tsquery('portuguese', ?) query, to_tsvector('portuguese', name) phrase
+        WHERE phrase @@ query
+        ORDER BY rank");
     $stmt->execute(array($user));
 
     return $stmt->fetchAll();
@@ -326,30 +326,30 @@ function get_search_user_by_atm_reference($atm_reference)
     global $conn;
 
     $stmt = $conn->prepare("SELECT atm_reference, users.id, name, birth, role FROM payments
-                          FULL OUTER JOIN mercha_purchases ON mercha_purchases.id = payments.id
-                          FULL OUTER JOIN donatives ON donatives.id = payments.id
-                          FULL OUTER JOIN friend_events ON friend_events.payment = payments.id
-                          JOIN users ON users.id = mercha_purchases.friend
-                          OR users.id = donatives.friend
-                          OR users.id = friend_events.friend
-                          WHERE atm_reference = ?");
+      FULL OUTER JOIN mercha_purchases ON mercha_purchases.id = payments.id
+      FULL OUTER JOIN donatives ON donatives.id = payments.id
+      FULL OUTER JOIN friend_events ON friend_events.payment = payments.id
+      JOIN users ON users.id = mercha_purchases.friend
+      OR users.id = donatives.friend
+      OR users.id = friend_events.friend
+      WHERE atm_reference = ?");
     $stmt->execute(array($atm_reference));
     return $stmt->fetchAll();
 }
 
 function get_last_atm_refence_friend($id){
     global $conn;
-    
+
     $stmt= $conn->prepare("SELECT payments.id, atm_reference, payment_date FROM payments
-                          FULL OUTER JOIN mercha_purchases ON mercha_purchases.id = payments.id
-                          FULL OUTER JOIN donatives ON donatives.id = payments.id
-                          FULL OUTER JOIN friend_events ON friend_events.payment = payments.id
-                          JOIN users ON users.id = mercha_purchases.friend
-                          OR users.id = donatives.friend
-                          OR users.id = friend_events.friend
-                    WHERE atm_reference IS NOT NULL
-                    ORDER BY payment_date DESC
-                    LIMIT 1");
+      FULL OUTER JOIN mercha_purchases ON mercha_purchases.id = payments.id
+      FULL OUTER JOIN donatives ON donatives.id = payments.id
+      FULL OUTER JOIN friend_events ON friend_events.payment = payments.id
+      JOIN users ON users.id = mercha_purchases.friend
+      OR users.id = donatives.friend
+      OR users.id = friend_events.friend
+      WHERE atm_reference IS NOT NULL
+      ORDER BY payment_date DESC
+      LIMIT 1");
     $stmt->execute();
     return  $stmt->fetchAll();
 }
@@ -366,8 +366,8 @@ function is_login_correct($username, $password)
 {
     global $conn;
     $stmt = $conn->prepare("SELECT *
-                            FROM users
-                            WHERE email = ? AND password = ?");
+        FROM users
+        WHERE email = ? AND password = ?");
     $stmt->execute(array($username, hash("sha256", $password)));
     return $stmt->fetch() == true;
 }
@@ -382,8 +382,8 @@ function get_user_role($email)
     global $conn;
 
     $stmt = $conn->prepare("SELECT ROLE
-                            FROM users
-                            WHERE email = ?");
+        FROM users
+        WHERE email = ?");
     $stmt->execute(array($email));
     return $stmt->fetch();
 }
@@ -398,8 +398,8 @@ function get_user_by_email($email)
 {
     global $conn;
     $stmt = $conn->prepare("SELECT *
-                            FROM users
-                            WHERE email = ?");
+        FROM users
+        WHERE email = ?");
     $stmt->execute(array($email));
     return $stmt->fetch();
 }
@@ -408,8 +408,8 @@ function get_user_by_id($id)
 {
     global $conn;
     $stmt = $conn->prepare("SELECT *
-                            FROM users
-                            WHERE id = ?");
+        FROM users
+        WHERE id = ?");
     $stmt->execute(array($id));
     return $stmt->fetch();
 }
@@ -431,8 +431,8 @@ function edit_credentials($id, $old_name, $new_name, $viewer_name, $old_pw, $new
 
     if (strlen($viewer_name) != 0) {
         $stmt = $conn->prepare("UPDATE users
-                                SET name = ? 
-                                WHERE id = ?");
+            SET name = ?
+            WHERE id = ?");
 
         if(!$stmt->execute(array($viewer_name, $id)))
             return false;
@@ -441,9 +441,9 @@ function edit_credentials($id, $old_name, $new_name, $viewer_name, $old_pw, $new
     if (strlen($old_pw) == 0) return true;
 
     $stmt = $conn->prepare("SELECT *
-                            FROM users
-                            WHERE id = ? 
-                            AND password = ?");
+        FROM users
+        WHERE id = ?
+        AND password = ?");
 
     $stmt->execute(array($id, hash("sha256", $old_pw)));
 
@@ -458,8 +458,8 @@ function update_credential_username($id, $new_name)
     global $conn;
 
     $stmt = $conn->prepare("UPDATE users
-                            SET email = ?
-                            WHERE id = ?");
+        SET email = ?
+        WHERE id = ?");
 
     return $stmt->execute(array($new_name, $id));
 }
@@ -468,9 +468,9 @@ function update_credential_password($id, $new_pw)
 {
     global $conn;
 
-    $stmt = $conn->prepare("UPDATE users                            
-                            SET password = ?
-                            WHERE id = ?");
+    $stmt = $conn->prepare("UPDATE users
+        SET password = ?
+        WHERE id = ?");
 
     return $stmt->execute(array(hash("sha256", $new_pw), $id));
 }
@@ -487,8 +487,8 @@ function get_friend_info($username)
 
     global $conn;
     $stmt = $conn->prepare("SELECT *
-                            FROM friends
-                            WHERE id = ?");
+        FROM friends
+        WHERE id = ?");
 
     $stmt->execute(array($user['id']));
     $friend = $stmt->fetchAll();
@@ -508,8 +508,8 @@ function get_friend_info_by_id($id)
 
     global $conn;
     $stmt = $conn->prepare("SELECT *
-                            FROM friends
-                            WHERE id = ?");
+        FROM friends
+        WHERE id = ?");
 
     $stmt->execute(array($id));
     $friend = $stmt->fetchAll();
@@ -532,12 +532,12 @@ function get_user_event_history($id)
     global $conn;
 
     $stmt = $conn->prepare("SELECT events.*
-    FROM events, friends, friend_events
-    WHERE friends.id = ?
-    AND friend_events.friend = friends.id
-    AND events.id = friend_events.event
-    GROUP BY events.id
-    ORDER BY events.event_date DESC");
+        FROM events, friends, friend_events
+        WHERE friends.id = ?
+        AND friend_events.friend = friends.id
+        AND events.id = friend_events.event
+        GROUP BY events.id
+        ORDER BY events.event_date DESC");
 
     $stmt->execute(array($id));
 
@@ -549,12 +549,12 @@ function get_user_event_payments($id)
     global $conn;
 
     $stmt = $conn->prepare("SELECT payments.*, events.name
-         FROM payments, friends, friend_events, events
-         WHERE friends.id = ?
-         AND friend_events.friend = friends.id
-         AND friend_events.payment = payments.id
-         AND friend_events.event = events.id
-         ORDER BY payments.payment_date DESC");
+       FROM payments, friends, friend_events, events
+       WHERE friends.id = ?
+       AND friend_events.friend = friends.id
+       AND friend_events.payment = payments.id
+       AND friend_events.event = events.id
+       ORDER BY payments.payment_date DESC");
 
     $stmt->execute(array($id));
 
@@ -566,11 +566,11 @@ function get_user_donative_history($id)
     global $conn;
 
     $stmt = $conn->prepare("SELECT payments.*, donatives.donative_type
-         FROM friends, payments, donatives
-         WHERE friends.id = ?
-         AND donatives.friend = friends.id
-         AND payments.id = donatives.id
-         ORDER BY payments.payment_date DESC");
+       FROM friends, payments, donatives
+       WHERE friends.id = ?
+       AND donatives.friend = friends.id
+       AND payments.id = donatives.id
+       ORDER BY payments.payment_date DESC");
 
     $stmt->execute(array($id));
 
@@ -583,13 +583,13 @@ function get_user_merchandise_history($id)
     global $conn;
 
     $stmt = $conn->prepare("SELECT payments.*, mercha_purchases.quantity,
-    mercha_products.description, mercha_products.price
-    FROM friends, payments, mercha_purchases, mercha_products
-    WHERE friends.id = ?
-    AND mercha_purchases.friend = friends.id
-    AND payments.id = mercha_purchases.id
-    AND mercha_purchases.product = mercha_products.id
-    ORDER BY payment_date DESC");
+        mercha_products.description, mercha_products.price
+        FROM friends, payments, mercha_purchases, mercha_products
+        WHERE friends.id = ?
+        AND mercha_purchases.friend = friends.id
+        AND payments.id = mercha_purchases.id
+        AND mercha_purchases.product = mercha_products.id
+        ORDER BY payment_date DESC");
 
     $stmt->execute(array($id));
 
@@ -608,24 +608,24 @@ function get_global_history()
 
     //get payments history
     $stmt = $conn->prepare(" (
-    (SELECT friends.id, payments.id, payments.payment_date AS date,
-    payments.payment_type AS type, payments.value AS value
-    FROM users, friends, payments, donatives, mercha_purchases
-    WHERE friends.id = users.id
-    AND(
-    (payments.id = donatives.id
-    AND donatives.friend = friends.id)
-    OR(payments.id = mercha_purchases.id AND
-    mercha_purchases.id = payments.id))
-    GROUP BY payments.id, friends.id)
-    UNION(SELECT friends.id, events.id, events.event_date AS date, 'Evento'
-    as type, events.price AS value
-    FROM events, payments, friends, friend_events, users
-    WHERE events.id = friend_events.event
-    AND friend_events.friend = friends.id
-    AND users.id = friends.id
-    GROUP BY events.id, friends.id))
-    ORDER BY date ");
+        (SELECT friends.id, payments.id, payments.payment_date AS date,
+        payments.payment_type AS type, payments.value AS value
+        FROM users, friends, payments, donatives, mercha_purchases
+        WHERE friends.id = users.id
+        AND(
+        (payments.id = donatives.id
+        AND donatives.friend = friends.id)
+        OR(payments.id = mercha_purchases.id AND
+        mercha_purchases.id = payments.id))
+        GROUP BY payments.id, friends.id)
+        UNION(SELECT friends.id, events.id, events.event_date AS date, 'Evento'
+        as type, events.price AS value
+        FROM events, payments, friends, friend_events, users
+        WHERE events.id = friend_events.event
+        AND friend_events.friend = friends.id
+        AND users.id = friends.id
+        GROUP BY events.id, friends.id))
+        ORDER BY date ");
 
     $stmt->execute();
     return $stmt->fetchAll();
@@ -646,8 +646,8 @@ function add_donative($user_id, $date, $atm_reference, $donative_type, $value, $
 
     // Insert payment in the database
     $stmt = $conn->prepare("INSERT INTO payments
-                            (payment_date, receipt, atm_reference, value, payment_type)
-                            VALUES (?, ?, ?, ?, 'Donativo') RETURNING id");
+        (payment_date, receipt, atm_reference, value, payment_type)
+        VALUES (?, ?, ?, ?, 'Donativo') RETURNING id");
     if (!$stmt->execute(array($date, $receipt, $atm_reference, $value))) {
         return false;
     }
@@ -655,10 +655,10 @@ function add_donative($user_id, $date, $atm_reference, $donative_type, $value, $
 
     // Insert donative
     $stmt = $conn->prepare("INSERT INTO donatives (id, friend, donative_type)
-                            VALUES (?, ?, ?)");
+        VALUES (?, ?, ?)");
     if (!$stmt->execute(array($payment_id, $user_id, $donative_type))) {
         $stmt = $conn->prepare("DELETE FROM payments
-                                WHERE id = ?");
+            WHERE id = ?");
         $stmt->execute(array($payment_id));
         return false;
     }

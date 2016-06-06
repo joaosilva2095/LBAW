@@ -22,7 +22,6 @@ if (is_login_correct($username, $password)) {
 
     $_SESSION['success_messages'] = 'Login successful';
 
-
     /*Get user's role*/
     //echo "<script type='text/javascript'>alert('$username');</script>";
     //sleep(3);

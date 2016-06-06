@@ -1,6 +1,7 @@
-$(document).ready(function () {
-    
-    $('#EditUserModal').click(function () {
+/*global $*/
+$(document).ready(function() {
+
+    $('#EditUserModal').click(function() {
         $('#EditUserModal form').trigger('reset');
         var name = $("#UserName").text();
         var cellphone = $("#UserCellphone").text();
@@ -12,7 +13,7 @@ $(document).ready(function () {
         $('#contact').val(cellphone);
     });
 
-    $('#EditPaymentModal').click(function (event) {
+    $('#EditPaymentModal').click(function(event) {
         event.preventDefault();
 
         var payment = $("#UserDonative").text();
@@ -22,7 +23,7 @@ $(document).ready(function () {
 
 
     //Tab1
-    $('#TabIrEvento i[data-original-title="Detalhes"]').click(function (event) {
+    $('#TabIrEvento i[data-original-title="Detalhes"]').click(function(event) {
         $('#seeEventModal form').trigger('reset');
 
         var closest_tr = $(this).closest('tr');
@@ -41,7 +42,7 @@ $(document).ready(function () {
 
 
     //Tab2
-    $('#TabPagEvento i[data-original-title="Editar"]').click(function (event) {
+    $('#TabPagEvento i[data-original-title="Editar"]').click(function(event) {
         $('#editEventPaymentModal form').trigger('reset');
 
         var closest_tr = $(this).closest('tr');
@@ -71,7 +72,7 @@ $(document).ready(function () {
 
 
     //tab3
-    $('#TabDonative i[data-original-title="Editar"]').click(function (e) {
+    $('#TabDonative i[data-original-title="Editar"]').click(function(e) {
         $('#editDonativeModal form').trigger('reset');
 
         var closest_tr = $(this).closest('tr');
@@ -112,34 +113,34 @@ function editUser(id) {
     var name = $('#name').val(),
         birth = $('#dateBirth').val(),
         cellphone = $('#contact').val();
-    
-    var contentNameNav =  $("#UserNameNav").text();
-    var roleContentNav = contentNameNav.substring(contentNameNav.indexOf('('),contentNameNav.length);
+
+    var contentNameNav = $("#UserNameNav").text();
+    var roleContentNav = contentNameNav.substring(contentNameNav.indexOf('('), contentNameNav.length);
 
     $.post(
-        "../api/edit_profile.php", {
-            id: id,
-            name: name,
-            birth: birth,
-            cellphone: cellphone
-        },
-        function (data, statusText, xhr) {           
-            //console.log(data);
+            "../api/edit_profile.php", {
+                id: id,
+                name: name,
+                birth: birth,
+                cellphone: cellphone
+            },
+            function(data, statusText, xhr) {
+                //console.log(data);
 
-            $("#UserName").html(name);
-            $("#UserBirth").html(birth);
-            $("#UserCellphone").html(cellphone);
-            $("#UserNameNav").html(name + " " +roleContentNav);
-        
-            $('#friend_Status2').fadeIn(1500);
-            setTimeout(function () {
-                $('#editProfile').modal('hide');
-            }, 2000);
-            $('#friend_Status2').fadeOut();
-            
-        })
-        .fail(function (error) {
-                       
+                $("#UserName").html(name);
+                $("#UserBirth").html(birth);
+                $("#UserCellphone").html(cellphone);
+                $("#UserNameNav").html(name + " " + roleContentNav);
+
+                $('#friend_Status2').fadeIn(1500);
+                setTimeout(function() {
+                    $('#editProfile').modal('hide');
+                }, 2000);
+                $('#friend_Status2').fadeOut();
+
+            })
+        .fail(function(error) {
+
             console.log(error);
             $('#friend_Status1').fadeIn();
         });
@@ -149,15 +150,15 @@ function editUserPayment(id) {
     var payment = $('#sel1').val();
 
     $.post(
-        "../api/edit_donative_meth.php", {
-            id: id,
-            payment: payment
-        },
-        function (data, statusText, xhr) {
-            $('#methPayment').modal('hide');
-            $("#UserDonative").html(payment);
-        })
-        .fail(function (error) {
+            "../api/edit_donative_meth.php", {
+                id: id,
+                payment: payment
+            },
+            function(data, statusText, xhr) {
+                $('#methPayment').modal('hide');
+                $("#UserDonative").html(payment);
+            })
+        .fail(function(error) {
             console.log(error);
             $('#friendStatus2').fadeIn();
         });
@@ -167,14 +168,14 @@ function editUserPayment(id) {
 function removeHistoryEntry(id, type) {
 
     $.post(
-        "../api/remove_hist_entry.php", {
-            id: id,
-            type: type
-        },
-        function (data, statusText, xhr) {
-            $("#" + type + "-" + id).remove();
-        })
-        .fail(function (error) {
+            "../api/remove_hist_entry.php", {
+                id: id,
+                type: type
+            },
+            function(data, statusText, xhr) {
+                $("#" + type + "-" + id).remove();
+            })
+        .fail(function(error) {
             $("#" + type + "-" + id).highlightAnimation(red, 1500);
         });
 }
@@ -187,10 +188,10 @@ function confirmRemoveHistory() {
     var id = tr_id_attr.substring(tr_id_attr.indexOf("-") + 1, tr_id_attr.length);
 
     $('#confirm').modal({
-        backdrop: 'static',
-        keyboard: false
-    })
-        .one('click', '#delete', function () {
+            backdrop: 'static',
+            keyboard: false
+        })
+        .one('click', '#delete', function() {
             removeHistoryEntry(id, type);
         });
 }
@@ -208,23 +209,23 @@ function editEventPagHistory() {
     console.log(date, price, receipt, reference);
 
     $.post(
-        "../api/edit_hist_pay_event.php", {
-            id: id,
-            date: date,
-            price: price,
-            receipt: receipt,
-            reference: reference
-        },
-        function (data, statusText, xhr) {
-            $('#editEventPaymentModal').modal('hide');
+            "../api/edit_hist_pay_event.php", {
+                id: id,
+                date: date,
+                price: price,
+                receipt: receipt,
+                reference: reference
+            },
+            function(data, statusText, xhr) {
+                $('#editEventPaymentModal').modal('hide');
 
-            $("#eventoPayment-" + id + " td:nth-child(3)").html(date);
-            $("#eventoPayment-" + id + " td:nth-child(5)").html(price);
-            $("#eventoPayment-" + id + " td:nth-child(2)").html(receipt);
-            $("#eventoPayment-" + id + " td:nth-child(6)").html(reference);
-            $("#eventoPayment-" + id).highlightAnimation(green, 2000);
-        })
-        .fail(function (error) {
+                $("#eventoPayment-" + id + " td:nth-child(3)").html(date);
+                $("#eventoPayment-" + id + " td:nth-child(5)").html(price);
+                $("#eventoPayment-" + id + " td:nth-child(2)").html(receipt);
+                $("#eventoPayment-" + id + " td:nth-child(6)").html(reference);
+                $("#eventoPayment-" + id).highlightAnimation(green, 2000);
+            })
+        .fail(function(error) {
             $("#eventoPayment-" + id).highlightAnimation(red, 1500);
         });
 
@@ -240,29 +241,29 @@ function editDonativeHistory() {
         reference = $('#editDonativeReference').val(),
         pay_method = $('#DonativeFormSel1').val();
 
-   // console.log(id,date, price, receipt, reference, pay_method, id);
+    // console.log(id,date, price, receipt, reference, pay_method, id);
 
     $.post(
-        "../api/edit_hist_donative.php", {
-            id: id,
-            date: date,
-            price: price,
-            receipt: receipt,
-            reference: reference,
-            pay_method: pay_method
-        },
-        function (data, statusText, xhr) {
-            //console.log(data);
-            $('#editDonativeModal').modal('hide');
+            "../api/edit_hist_donative.php", {
+                id: id,
+                date: date,
+                price: price,
+                receipt: receipt,
+                reference: reference,
+                pay_method: pay_method
+            },
+            function(data, statusText, xhr) {
+                //console.log(data);
+                $('#editDonativeModal').modal('hide');
 
-            $("#donative-" + id + " td:nth-child(2)").html(receipt);
-            $("#donative-" + id + " td:nth-child(4)").html(date);
-            $("#donative-" + id + " td:nth-child(5)").html(price);
-            $("#donative-" + id + " td:nth-child(6)").html(reference);
-            $("#donative-" + id + " td:nth-child(7)").html(pay_method);
-            $("#donative-" + id).highlightAnimation(green, 1500);
-        })
-        .fail(function (error) {
+                $("#donative-" + id + " td:nth-child(2)").html(receipt);
+                $("#donative-" + id + " td:nth-child(4)").html(date);
+                $("#donative-" + id + " td:nth-child(5)").html(price);
+                $("#donative-" + id + " td:nth-child(6)").html(reference);
+                $("#donative-" + id + " td:nth-child(7)").html(pay_method);
+                $("#donative-" + id).highlightAnimation(green, 1500);
+            })
+        .fail(function(error) {
             console.log(error);
             $("#donative-" + id).highlightAnimation(red, 1500);
         });

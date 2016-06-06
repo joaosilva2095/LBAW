@@ -8,7 +8,7 @@ var red = '#A94442';
  * @param highlightColor color to highlight
  * @param duration duration of the animation
  */
-$.fn.highlightAnimation = function (highlightColor, duration) {
+$.fn.highlightAnimation = function(highlightColor, duration) {
     "use strict";
 
     this.css("background-color", ""); // Reset color of the row
@@ -40,6 +40,10 @@ function config() {
     enableTooltips();
 
     $('.date-picker').datepicker();
+
+    $('[data-toggle=offcanvas]').click(function() {
+        $('.row-offcanvas').toggleClass('row-offcanvas-active');
+    });
 }
 
 $(document).ready(config);
