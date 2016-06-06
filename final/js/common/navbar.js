@@ -32,6 +32,7 @@ function prepareEditCredentialsModal() {
 
     var contentNameNav = $("#UserNameNav").text();
     console.log(contentNameNav);
+    contentNameNav = contentNameNav.trim();
     var roleContentNav = contentNameNav.substring(contentNameNav.indexOf('('), contentNameNav.length);
     var nameContentNav = contentNameNav.substring(0, contentNameNav.indexOf('(') - 1);
 
