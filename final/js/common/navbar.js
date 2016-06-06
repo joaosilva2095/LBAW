@@ -28,6 +28,7 @@ function prepareEditCredentialsModal() {
     $('#editCredentialsFormName').val(username);
 
     var contentNameNav = $("#UserNameNav").text();
+    console.log(contentNameNav);
     var roleContentNav = contentNameNav.substring(contentNameNav.indexOf('('), contentNameNav.length);
     var nameContentNav = contentNameNav.substring(0, contentNameNav.indexOf('(') - 1);
 
@@ -92,10 +93,11 @@ function editCredentials(id, old_name) {
         function (data, statusText, xhr) {
             
             if (roleContentNav != 'Amigo') {
+                console.log(viewer_new_name + " " + roleContentNav);
                 if (viewer_new_name !== undefined && viewer_new_name.length != 0)
-                    $("#UserNameNav").html(viewer_new_name + " " + roleContentNav);                    
+                    $("#UserNameNav").html(viewer_new_name + " (" + roleContentNav +")");                    
             }
-            else {
+            else {                
                 $("#UserEmail").html(form_name);
             }
             //console.log(data);                    
