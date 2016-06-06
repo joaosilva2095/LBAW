@@ -17,27 +17,30 @@ function newCat() {
     $.post(
         "../api/manageCategories.php", {
             category: category,
-            type:'CREATE'
+            type: 'CREATE'
         },
         function (data, statusText, xhr) {
-                var form = $('#newCatForm');
-                $('#newCatModal').highlightAnimation(green, 1500);
+            var form = $('#newCatForm');
+            $('#newCatModal').highlightAnimation(green, 1500);
 
             $('#category').append($('<option>', {
                 value: category,
                 text: category
-                }));
+            }));
 
             $('#delCatName').append($('<option>', {
                 value: category,
                 text: category
             }));
 
-            $('#newCatModal').modal('hide');
-
+            $('#newCatStatus1').fadeIn(2000);
+            setTimeout(function () {
+                $('#newCatModal').modal('hide');
+            }, 2000);
+            $('#newCatStatus1').fadeOut();
         })
         .fail(function (error) {
-            $('#newCatStatus').fadeIn();
+            $('#newCatStatus2').fadeIn();
         });
 }
 
@@ -53,21 +56,21 @@ function delCat() {
     $.post(
         "../api/manageCategories.php", {
             category: category,
-            type:'DELETE'
+            type: 'DELETE'
         },
         function (data, statusText, xhr) {
-            var form = $('#delCatForm');
-            form.highlightAnimation(green, 1500);
-            $('#delCatModal').modal('hide');
+            $("#category option[value=" + category + "]").remove();
+            $("#delCatName option[value=" + category + "]").remove();
 
-            $("#category option[value="+category+"]").remove();
-            $("#delCatName option[value="+category+"]").remove();
-
-
+            $('#delCatStatus1').fadeIn(2000);
+            setTimeout(function () {
+                $('#delCatModal').modal('hide');
+            }, 2000);
+            $('#delCatStatus1').fadeOut();
 
         })
         .fail(function (error) {
-            $('#newCatStatus').fadeIn();
+            $('#delCatStatus2').fadeIn();
         });
 }
 

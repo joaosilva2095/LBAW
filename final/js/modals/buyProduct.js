@@ -23,9 +23,14 @@ function buyProductwithReceipt(productId) {
         contentType: false,
         type: 'POST',
         success: function (data) {
-            $('#buyProductModal').modal("toggle");
+            $('#buyProductStatus1').fadeIn(2000);
+            setTimeout(function () {
+                $('#buyProductModal').modal('hide');
+            }, 2000);
+            $('#buyProductStatus1').fadeOut();
         }
     }).fail(function (error) {
+        $('#buyProductStatus2').fadeIn();
         console.log(error)
     });
 }

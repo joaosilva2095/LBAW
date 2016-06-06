@@ -26,10 +26,9 @@
                     </div>
 
                 </form>
-                <div class="alert alert-danger alert-dismissible" style="display: none;" role="alert" id="addMerchaStatus">
+                <div class="alert alert-danger alert-dismissible" style="display: none;" role="alert" id="addMerchaStatus1">
                     <button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span>
-                    </button>
-                    Acao nao completada! Por favor verifique a informação
+                    </button> A operação falhou! Por favor verifique a informação.
                 </div>
             </div>
             <div class="modal-footer">

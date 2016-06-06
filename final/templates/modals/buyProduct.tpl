@@ -25,10 +25,13 @@
                         <input type="file" class="form-control" id="receipt">
                     </div>
                 </form>
-                <div class="alert alert-danger alert-dismissible" style="display: none;" role="alert" id="buyProductStatus">
+                <div class="alert alert-success alert-dismissible" style="display: none;" role="alert" id="buyProductStatus1">
                     <button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span>
-                    </button>
-                    Failed to complete the friend attendance in event action! Please verify the information.
+                    </button> Acção efectuada com sucesso!
+                </div>
+                <div class="alert alert-danger alert-dismissible" style="display: none;" role="alert" id="buyProductStatus2">
+                    <button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span>
+                    </button> A operação falhou! Por favor verifique a informação.
                 </div>
             </div>
             <div class="modal-footer">

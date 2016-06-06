@@ -9,7 +9,7 @@ function removeMercha(id) {
                 id: id
             },
             function (data, statusText, xhr) {
-                $('#mercha' + id).remove();
+                $('#mercha' + id).remove();                
             })
         .fail(function (error) {
             $('#mercha' + id).highlightAnimation(red, 1500);

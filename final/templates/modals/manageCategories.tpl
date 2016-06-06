@@ -12,10 +12,15 @@
                         <input type="text" class="form-control" id="newCatName" required="required">
                     </div>
                 </form>
-                <div class="alert alert-danger alert-dismissible" style="display: none;" role="alert" id="newCatStatus">
+                <div class="alert alert-danger alert-dismissible" style="display: none;" role="alert" id="newCatStatus1">
                     <button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span>
                     </button>
-                    Erro a criar categoria! Por favor verifique as informações
+                    Acção efectuada com sucesso!
+                </div>
+                <div class="alert alert-danger alert-dismissible" style="display: none;" role="alert" id="newCatStatus2">
+                    <button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span>
+                    </button>
+                    A operação falhou! Verifique a informação.
                 </div>
             </div>
             <div class="modal-footer">
@@ -44,10 +49,15 @@
                         </select>
                     </div>
                 </form>
-                <div class="alert alert-danger alert-dismissible" style="display: none;" role="alert" id="delCatStatus">
+                <div class="alert alert-success alert-dismissible" style="display: none;" role="alert" id="delCatStatus1">
                     <button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span>
                     </button>
-                    Erro a remover categoria! Por favor verifique as informações
+                    A operação falhou! Por favor verifique as informações.
+                </div>
+                <div class="alert alert-danger alert-dismissible" style="display: none;" role="alert" id="delCatStatus2">
+                    <button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span>
+                    </button>
+                    A operação falhou! Por favor verifique as informações.
                 </div>
             </div>
             <div class="modal-footer">
