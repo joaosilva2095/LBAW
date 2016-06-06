@@ -115,6 +115,9 @@ footer {
     }
 }
 
+.margin-left-small {
+    margin-left: 1rem;
+}
 
 /* Sidebar navigation */
 .nav-sidebar {
