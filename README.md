@@ -20,16 +20,16 @@ Once you end all that, the Website will be ready to be used.
 ##<a name="Accounts"></a>Accounts
 
 Admin
-Email: admin@gasporto.pt
-Password: admin
+* Email: admin@gasporto.pt
+* Password: admin
 
 Accountant
-Email: contabilista@gasporto.pt
-Password: contabilista
+* Email: contabilista@gasporto.pt
+* Password: contabilista
 
 Friend
-Email: amigo@gasporto.pt
-Password: amigo
+* Email: amigo@gasporto.pt
+* Password: amigo
 
 URL do produto: http://gnomo.fe.up.pt/~lbaw1532/final/
 
