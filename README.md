@@ -1,4 +1,4 @@
-#G.A.S.Porto-Management(https://github.com/joaosilva2095/LBAW)
+#G.A.S.Porto-Management
 
 [G.A.S.Porto-Management](https://github.com/joaosilva2095/LBAW) is a program developed for the LBAW curricular unit. Our objective was to develope a management 
 system for "Grupo de Acção Social do Porto(G.A.S Porto)". This system is compose by a web interface (front-end) visually appealing , funtional and easy to use. 
