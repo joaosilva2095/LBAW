@@ -6,7 +6,7 @@ Providing a set of tools that allows you to store and manage information related
 
 
 # Table of Contents
-1. [How to Use]
+1. [How to Use](#HowtoUse)
 2. [Product URL](#productURL)
 3. [Forms Validation](#FormsValidation)
 
