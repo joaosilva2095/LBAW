@@ -6,8 +6,8 @@ Providing a set of tools that allows you to store and manage information related
 
 
 # Table of Contents
-1. [How to Use](#HowtoUse)
-2. [Accounts](#Accounts)
+1. [How to Use]
+2. [Product URL](#productURL)
 3. [Forms Validation](#FormsValidation)
 
 ##<a name="HowtoUse"></a>How to Use
@@ -17,21 +17,8 @@ You will also need to configure "init.php" file inside "config" folder with the 
 
 Once you end all that, the Website will be ready to be used.
 
-##<a name="Accounts"></a>Accounts
-
-Admin
-* Email: admin@gasporto.pt
-* Password: admin
-
-Accountant
-* Email: contabilista@gasporto.pt
-* Password: contabilista
-
-Friend
-* Email: amigo@gasporto.pt
-* Password: amigo
-
-URL do produto: http://gnomo.fe.up.pt/~lbaw1532/final/
+##<a name="productURL"></a>Product URL
+You can find our product in: http://gnomo.fe.up.pt/~lbaw1532/final/
 
 
 ##<a name="FormsValidation"></a>Forms Validation
